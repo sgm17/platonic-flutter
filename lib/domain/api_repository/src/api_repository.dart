@@ -6,7 +6,6 @@ import '../../user_repository/src/models/models.dart';
 abstract class ApiRepository {
   Future<List<Chat>> fetchChats({required int userId});
   Future<List<Meet>> fetchMeets({required int userId});
-  Future<HomeStory> fetchStories({int? universityId});
   Future<User> fetchProfile({required int userId});
   Future<dynamic> postStory({required PostStory story});
   Future<dynamic> startSearch({required Preferences preferences});

@@ -30,22 +30,6 @@ class ApiViewmodel implements ApiRepository {
   }
 
   @override
-  Future<HomeStory> fetchStories({int? universityId}) {
-    return Future.delayed(const Duration(seconds: 1), () {
-      return HomeStory(
-          lastStoryIdsPerUniversity: apiLastStoriesPerUni,
-          university: apiStories
-              .where((customApi) => customApi.university.id == universityId)
-              .toList()[0]
-              .university,
-          stories: apiStories
-              .where((customApi) => customApi.university.id == universityId)
-              .map((customApi) => customApi.stories as Story)
-              .toList());
-    });
-  }
-
-  @override
   Future postStory({required PostStory story}) {
     return Future.delayed(const Duration(seconds: 1), () => 1);
   }
