@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+HomeStory _$HomeStoryFromJson(Map<String, dynamic> json) {
+  return _HomeStory.fromJson(json);
+}
+
 /// @nodoc
 mixin _$HomeStory {
   List<LastStoryIdsPerUniversity> get lastStoryIdsPerUniversity =>
@@ -21,6 +25,7 @@ mixin _$HomeStory {
   University? get university => throw _privateConstructorUsedError;
   List<Story> get stories => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HomeStoryCopyWith<HomeStory> get copyWith =>
       throw _privateConstructorUsedError;
@@ -129,7 +134,7 @@ class __$$_HomeStoryCopyWithImpl<$Res> extends _$HomeStoryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_HomeStory implements _HomeStory {
   const _$_HomeStory(
       {required final List<LastStoryIdsPerUniversity> lastStoryIdsPerUniversity,
@@ -137,6 +142,9 @@ class _$_HomeStory implements _HomeStory {
       required final List<Story> stories})
       : _lastStoryIdsPerUniversity = lastStoryIdsPerUniversity,
         _stories = stories;
+
+  factory _$_HomeStory.fromJson(Map<String, dynamic> json) =>
+      _$$_HomeStoryFromJson(json);
 
   final List<LastStoryIdsPerUniversity> _lastStoryIdsPerUniversity;
   @override
@@ -171,6 +179,7 @@ class _$_HomeStory implements _HomeStory {
             const DeepCollectionEquality().equals(other._stories, _stories));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -182,6 +191,13 @@ class _$_HomeStory implements _HomeStory {
   @override
   _$$_HomeStoryCopyWith<_$_HomeStory> get copyWith =>
       __$$_HomeStoryCopyWithImpl<_$_HomeStory>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_HomeStoryToJson(
+      this,
+    );
+  }
 }
 
 abstract class _HomeStory implements HomeStory {
@@ -189,6 +205,9 @@ abstract class _HomeStory implements HomeStory {
       {required final List<LastStoryIdsPerUniversity> lastStoryIdsPerUniversity,
       final University? university,
       required final List<Story> stories}) = _$_HomeStory;
+
+  factory _HomeStory.fromJson(Map<String, dynamic> json) =
+      _$_HomeStory.fromJson;
 
   @override
   List<LastStoryIdsPerUniversity> get lastStoryIdsPerUniversity;

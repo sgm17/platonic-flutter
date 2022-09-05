@@ -1,6 +1,7 @@
 import 'models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'university_model.freezed.dart';
+part 'university_model.g.dart';
 
 @freezed
 abstract class University with _$University {
@@ -13,7 +14,10 @@ abstract class University with _$University {
       required String name,
       required String address,
       required String simple,
-      required List<int> center,
+      required List<double> center,
       required String image,
-      required IncludeUniversity? includes}) = _University;
+      List<IncludeUniversity>? includes}) = _University;
+
+  factory University.fromJson(Map<String, Object?> json) =>
+      _$UniversityFromJson(json);
 }

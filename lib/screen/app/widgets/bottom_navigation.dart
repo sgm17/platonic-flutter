@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/app/app_provider.dart';
+
+import '../../../providers/app_provider/app_provider.dart';
 
 enum BottomNavigationState { home, create, meet, chat, profile }
 

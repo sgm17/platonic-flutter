@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'meet_model.freezed.dart';
+part 'meet_model.g.dart';
 
 @freezed
 abstract class Meet with _$Meet {
@@ -16,4 +17,6 @@ abstract class Meet with _$Meet {
     required String universityName,
     String? universityFaculty,
   }) = _Meet;
+
+  factory Meet.fromJson(Map<String, Object?> json) => _$MeetFromJson(json);
 }

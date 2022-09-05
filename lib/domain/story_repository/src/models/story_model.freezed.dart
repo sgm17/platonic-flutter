@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Story _$StoryFromJson(Map<String, dynamic> json) {
+  return _Story.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Story {
   int get id => throw _privateConstructorUsedError;
@@ -25,6 +29,7 @@ mixin _$Story {
   String get backgroundColor => throw _privateConstructorUsedError;
   int get createdAt => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $StoryCopyWith<Story> get copyWith => throw _privateConstructorUsedError;
 }
@@ -174,7 +179,7 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Story implements _Story {
   const _$_Story(
       {required this.id,
@@ -185,6 +190,9 @@ class _$_Story implements _Story {
       required this.body,
       required this.backgroundColor,
       required this.createdAt});
+
+  factory _$_Story.fromJson(Map<String, dynamic> json) =>
+      _$$_StoryFromJson(json);
 
   @override
   final int id;
@@ -226,6 +234,7 @@ class _$_Story implements _Story {
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -242,6 +251,13 @@ class _$_Story implements _Story {
   @override
   _$$_StoryCopyWith<_$_Story> get copyWith =>
       __$$_StoryCopyWithImpl<_$_Story>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_StoryToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Story implements Story {
@@ -254,6 +270,8 @@ abstract class _Story implements Story {
       required final String body,
       required final String backgroundColor,
       required final int createdAt}) = _$_Story;
+
+  factory _Story.fromJson(Map<String, dynamic> json) = _$_Story.fromJson;
 
   @override
   int get id;

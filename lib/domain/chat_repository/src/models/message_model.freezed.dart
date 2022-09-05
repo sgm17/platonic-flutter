@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Message _$MessageFromJson(Map<String, dynamic> json) {
+  return _Message.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Message {
   int get id => throw _privateConstructorUsedError;
@@ -23,6 +27,7 @@ mixin _$Message {
   bool? get read => throw _privateConstructorUsedError;
   int get timestamp => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
 }
@@ -137,7 +142,7 @@ class __$$_MessageCopyWithImpl<$Res> extends _$MessageCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Message implements _Message {
   const _$_Message(
       {required this.id,
@@ -146,6 +151,9 @@ class _$_Message implements _Message {
       required this.body,
       this.read,
       required this.timestamp});
+
+  factory _$_Message.fromJson(Map<String, dynamic> json) =>
+      _$$_MessageFromJson(json);
 
   @override
   final int id;
@@ -178,6 +186,7 @@ class _$_Message implements _Message {
             const DeepCollectionEquality().equals(other.timestamp, timestamp));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -192,6 +201,13 @@ class _$_Message implements _Message {
   @override
   _$$_MessageCopyWith<_$_Message> get copyWith =>
       __$$_MessageCopyWithImpl<_$_Message>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_MessageToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Message implements Message {
@@ -202,6 +218,8 @@ abstract class _Message implements Message {
       required final String body,
       final bool? read,
       required final int timestamp}) = _$_Message;
+
+  factory _Message.fromJson(Map<String, dynamic> json) = _$_Message.fromJson;
 
   @override
   int get id;

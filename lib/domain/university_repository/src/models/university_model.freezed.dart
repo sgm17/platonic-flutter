@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+University _$UniversityFromJson(Map<String, dynamic> json) {
+  return _University.fromJson(json);
+}
+
 /// @nodoc
 mixin _$University {
   int get id => throw _privateConstructorUsedError;
@@ -24,10 +28,11 @@ mixin _$University {
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get simple => throw _privateConstructorUsedError;
-  List<int> get center => throw _privateConstructorUsedError;
+  List<double> get center => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  IncludeUniversity? get includes => throw _privateConstructorUsedError;
+  List<IncludeUniversity>? get includes => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UniversityCopyWith<University> get copyWith =>
       throw _privateConstructorUsedError;
@@ -47,11 +52,9 @@ abstract class $UniversityCopyWith<$Res> {
       String name,
       String address,
       String simple,
-      List<int> center,
+      List<double> center,
       String image,
-      IncludeUniversity? includes});
-
-  $IncludeUniversityCopyWith<$Res>? get includes;
+      List<IncludeUniversity>? includes});
 }
 
 /// @nodoc
@@ -112,7 +115,7 @@ class _$UniversityCopyWithImpl<$Res> implements $UniversityCopyWith<$Res> {
       center: center == freezed
           ? _value.center
           : center // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -120,19 +123,8 @@ class _$UniversityCopyWithImpl<$Res> implements $UniversityCopyWith<$Res> {
       includes: includes == freezed
           ? _value.includes
           : includes // ignore: cast_nullable_to_non_nullable
-              as IncludeUniversity?,
+              as List<IncludeUniversity>?,
     ));
-  }
-
-  @override
-  $IncludeUniversityCopyWith<$Res>? get includes {
-    if (_value.includes == null) {
-      return null;
-    }
-
-    return $IncludeUniversityCopyWith<$Res>(_value.includes!, (value) {
-      return _then(_value.copyWith(includes: value));
-    });
   }
 }
 
@@ -152,12 +144,9 @@ abstract class _$$_UniversityCopyWith<$Res>
       String name,
       String address,
       String simple,
-      List<int> center,
+      List<double> center,
       String image,
-      IncludeUniversity? includes});
-
-  @override
-  $IncludeUniversityCopyWith<$Res>? get includes;
+      List<IncludeUniversity>? includes});
 }
 
 /// @nodoc
@@ -220,21 +209,21 @@ class __$$_UniversityCopyWithImpl<$Res> extends _$UniversityCopyWithImpl<$Res>
       center: center == freezed
           ? _value._center
           : center // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
       includes: includes == freezed
-          ? _value.includes
+          ? _value._includes
           : includes // ignore: cast_nullable_to_non_nullable
-              as IncludeUniversity?,
+              as List<IncludeUniversity>?,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_University implements _University {
   const _$_University(
       {required this.id,
@@ -245,10 +234,14 @@ class _$_University implements _University {
       required this.name,
       required this.address,
       required this.simple,
-      required final List<int> center,
+      required final List<double> center,
       required this.image,
-      required this.includes})
-      : _center = center;
+      final List<IncludeUniversity>? includes})
+      : _center = center,
+        _includes = includes;
+
+  factory _$_University.fromJson(Map<String, dynamic> json) =>
+      _$$_UniversityFromJson(json);
 
   @override
   final int id;
@@ -266,17 +259,23 @@ class _$_University implements _University {
   final String address;
   @override
   final String simple;
-  final List<int> _center;
+  final List<double> _center;
   @override
-  List<int> get center {
+  List<double> get center {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_center);
   }
 
   @override
   final String image;
+  final List<IncludeUniversity>? _includes;
   @override
-  final IncludeUniversity? includes;
+  List<IncludeUniversity>? get includes {
+    final value = _includes;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -300,9 +299,10 @@ class _$_University implements _University {
             const DeepCollectionEquality().equals(other.simple, simple) &&
             const DeepCollectionEquality().equals(other._center, _center) &&
             const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality().equals(other.includes, includes));
+            const DeepCollectionEquality().equals(other._includes, _includes));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -316,12 +316,19 @@ class _$_University implements _University {
       const DeepCollectionEquality().hash(simple),
       const DeepCollectionEquality().hash(_center),
       const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(includes));
+      const DeepCollectionEquality().hash(_includes));
 
   @JsonKey(ignore: true)
   @override
   _$$_UniversityCopyWith<_$_University> get copyWith =>
       __$$_UniversityCopyWithImpl<_$_University>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UniversityToJson(
+      this,
+    );
+  }
 }
 
 abstract class _University implements University {
@@ -334,9 +341,12 @@ abstract class _University implements University {
       required final String name,
       required final String address,
       required final String simple,
-      required final List<int> center,
+      required final List<double> center,
       required final String image,
-      required final IncludeUniversity? includes}) = _$_University;
+      final List<IncludeUniversity>? includes}) = _$_University;
+
+  factory _University.fromJson(Map<String, dynamic> json) =
+      _$_University.fromJson;
 
   @override
   int get id;
@@ -355,11 +365,11 @@ abstract class _University implements University {
   @override
   String get simple;
   @override
-  List<int> get center;
+  List<double> get center;
   @override
   String get image;
   @override
-  IncludeUniversity? get includes;
+  List<IncludeUniversity>? get includes;
   @override
   @JsonKey(ignore: true)
   _$$_UniversityCopyWith<_$_University> get copyWith =>

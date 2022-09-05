@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+User _$UserFromJson(Map<String, dynamic> json) {
+  return _User.fromJson(json);
+}
+
 /// @nodoc
 mixin _$User {
   int get id => throw _privateConstructorUsedError;
@@ -23,14 +27,16 @@ mixin _$User {
   bool get online => throw _privateConstructorUsedError;
   int get lastTimeOnline => throw _privateConstructorUsedError;
   int get universityId => throw _privateConstructorUsedError;
+  String? get universityParentName => throw _privateConstructorUsedError;
   String get universityName => throw _privateConstructorUsedError;
   String? get universityFaculty => throw _privateConstructorUsedError;
   String? get universityAcronym => throw _privateConstructorUsedError;
   int get likesGiven => throw _privateConstructorUsedError;
   int get repliesGiven => throw _privateConstructorUsedError;
   int get totalChats => throw _privateConstructorUsedError;
-  List<int> get center => throw _privateConstructorUsedError;
+  List<double> get center => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
@@ -47,13 +53,14 @@ abstract class $UserCopyWith<$Res> {
       bool online,
       int lastTimeOnline,
       int universityId,
+      String? universityParentName,
       String universityName,
       String? universityFaculty,
       String? universityAcronym,
       int likesGiven,
       int repliesGiven,
       int totalChats,
-      List<int> center});
+      List<double> center});
 }
 
 /// @nodoc
@@ -73,6 +80,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? online = freezed,
     Object? lastTimeOnline = freezed,
     Object? universityId = freezed,
+    Object? universityParentName = freezed,
     Object? universityName = freezed,
     Object? universityFaculty = freezed,
     Object? universityAcronym = freezed,
@@ -110,6 +118,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.universityId
           : universityId // ignore: cast_nullable_to_non_nullable
               as int,
+      universityParentName: universityParentName == freezed
+          ? _value.universityParentName
+          : universityParentName // ignore: cast_nullable_to_non_nullable
+              as String?,
       universityName: universityName == freezed
           ? _value.universityName
           : universityName // ignore: cast_nullable_to_non_nullable
@@ -137,7 +149,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       center: center == freezed
           ? _value.center
           : center // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
     ));
   }
 }
@@ -155,13 +167,14 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       bool online,
       int lastTimeOnline,
       int universityId,
+      String? universityParentName,
       String universityName,
       String? universityFaculty,
       String? universityAcronym,
       int likesGiven,
       int repliesGiven,
       int totalChats,
-      List<int> center});
+      List<double> center});
 }
 
 /// @nodoc
@@ -182,6 +195,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? online = freezed,
     Object? lastTimeOnline = freezed,
     Object? universityId = freezed,
+    Object? universityParentName = freezed,
     Object? universityName = freezed,
     Object? universityFaculty = freezed,
     Object? universityAcronym = freezed,
@@ -219,6 +233,10 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.universityId
           : universityId // ignore: cast_nullable_to_non_nullable
               as int,
+      universityParentName: universityParentName == freezed
+          ? _value.universityParentName
+          : universityParentName // ignore: cast_nullable_to_non_nullable
+              as String?,
       universityName: universityName == freezed
           ? _value.universityName
           : universityName // ignore: cast_nullable_to_non_nullable
@@ -246,13 +264,13 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       center: center == freezed
           ? _value._center
           : center // ignore: cast_nullable_to_non_nullable
-              as List<int>,
+              as List<double>,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_User implements _User {
   const _$_User(
       {required this.id,
@@ -262,14 +280,17 @@ class _$_User implements _User {
       required this.online,
       required this.lastTimeOnline,
       required this.universityId,
+      this.universityParentName,
       required this.universityName,
       this.universityFaculty,
       this.universityAcronym,
       required this.likesGiven,
       required this.repliesGiven,
       required this.totalChats,
-      required final List<int> center})
+      required final List<double> center})
       : _center = center;
+
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
   @override
   final int id;
@@ -286,6 +307,8 @@ class _$_User implements _User {
   @override
   final int universityId;
   @override
+  final String? universityParentName;
+  @override
   final String universityName;
   @override
   final String? universityFaculty;
@@ -297,16 +320,16 @@ class _$_User implements _User {
   final int repliesGiven;
   @override
   final int totalChats;
-  final List<int> _center;
+  final List<double> _center;
   @override
-  List<int> get center {
+  List<double> get center {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_center);
   }
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, profileImage: $profileImage, sex: $sex, online: $online, lastTimeOnline: $lastTimeOnline, universityId: $universityId, universityName: $universityName, universityFaculty: $universityFaculty, universityAcronym: $universityAcronym, likesGiven: $likesGiven, repliesGiven: $repliesGiven, totalChats: $totalChats, center: $center)';
+    return 'User(id: $id, username: $username, profileImage: $profileImage, sex: $sex, online: $online, lastTimeOnline: $lastTimeOnline, universityId: $universityId, universityParentName: $universityParentName, universityName: $universityName, universityFaculty: $universityFaculty, universityAcronym: $universityAcronym, likesGiven: $likesGiven, repliesGiven: $repliesGiven, totalChats: $totalChats, center: $center)';
   }
 
   @override
@@ -325,6 +348,8 @@ class _$_User implements _User {
             const DeepCollectionEquality()
                 .equals(other.universityId, universityId) &&
             const DeepCollectionEquality()
+                .equals(other.universityParentName, universityParentName) &&
+            const DeepCollectionEquality()
                 .equals(other.universityName, universityName) &&
             const DeepCollectionEquality()
                 .equals(other.universityFaculty, universityFaculty) &&
@@ -339,6 +364,7 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other._center, _center));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -349,6 +375,7 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(online),
       const DeepCollectionEquality().hash(lastTimeOnline),
       const DeepCollectionEquality().hash(universityId),
+      const DeepCollectionEquality().hash(universityParentName),
       const DeepCollectionEquality().hash(universityName),
       const DeepCollectionEquality().hash(universityFaculty),
       const DeepCollectionEquality().hash(universityAcronym),
@@ -361,6 +388,13 @@ class _$_User implements _User {
   @override
   _$$_UserCopyWith<_$_User> get copyWith =>
       __$$_UserCopyWithImpl<_$_User>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UserToJson(
+      this,
+    );
+  }
 }
 
 abstract class _User implements User {
@@ -372,13 +406,16 @@ abstract class _User implements User {
       required final bool online,
       required final int lastTimeOnline,
       required final int universityId,
+      final String? universityParentName,
       required final String universityName,
       final String? universityFaculty,
       final String? universityAcronym,
       required final int likesGiven,
       required final int repliesGiven,
       required final int totalChats,
-      required final List<int> center}) = _$_User;
+      required final List<double> center}) = _$_User;
+
+  factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
   int get id;
@@ -395,6 +432,8 @@ abstract class _User implements User {
   @override
   int get universityId;
   @override
+  String? get universityParentName;
+  @override
   String get universityName;
   @override
   String? get universityFaculty;
@@ -407,7 +446,7 @@ abstract class _User implements User {
   @override
   int get totalChats;
   @override
-  List<int> get center;
+  List<double> get center;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

@@ -1,6 +1,7 @@
 import 'models.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_model.freezed.dart';
+part 'user_model.g.dart';
 
 @freezed
 abstract class User with _$User {
@@ -12,11 +13,14 @@ abstract class User with _$User {
       required bool online,
       required int lastTimeOnline,
       required int universityId,
+      String? universityParentName,
       required String universityName,
       String? universityFaculty,
       String? universityAcronym,
       required int likesGiven,
       required int repliesGiven,
       required int totalChats,
-      required List<int> center}) = _User;
+      required List<double> center}) = _User;
+
+  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
 }

@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+IncludeUniversity _$IncludeUniversityFromJson(Map<String, dynamic> json) {
+  return _IncludeUniversity.fromJson(json);
+}
+
 /// @nodoc
 mixin _$IncludeUniversity {
   String? get associateName => throw _privateConstructorUsedError;
@@ -23,6 +27,7 @@ mixin _$IncludeUniversity {
   String get type => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $IncludeUniversityCopyWith<IncludeUniversity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -155,7 +160,7 @@ class __$$_IncludeUniversityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_IncludeUniversity implements _IncludeUniversity {
   const _$_IncludeUniversity(
       {this.associateName,
@@ -164,6 +169,9 @@ class _$_IncludeUniversity implements _IncludeUniversity {
       this.acronym,
       required this.type,
       required this.address});
+
+  factory _$_IncludeUniversity.fromJson(Map<String, dynamic> json) =>
+      _$$_IncludeUniversityFromJson(json);
 
   @override
   final String? associateName;
@@ -198,6 +206,7 @@ class _$_IncludeUniversity implements _IncludeUniversity {
             const DeepCollectionEquality().equals(other.address, address));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -213,6 +222,13 @@ class _$_IncludeUniversity implements _IncludeUniversity {
   _$$_IncludeUniversityCopyWith<_$_IncludeUniversity> get copyWith =>
       __$$_IncludeUniversityCopyWithImpl<_$_IncludeUniversity>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_IncludeUniversityToJson(
+      this,
+    );
+  }
 }
 
 abstract class _IncludeUniversity implements IncludeUniversity {
@@ -223,6 +239,9 @@ abstract class _IncludeUniversity implements IncludeUniversity {
       final String? acronym,
       required final String type,
       required final String address}) = _$_IncludeUniversity;
+
+  factory _IncludeUniversity.fromJson(Map<String, dynamic> json) =
+      _$_IncludeUniversity.fromJson;
 
   @override
   String? get associateName;

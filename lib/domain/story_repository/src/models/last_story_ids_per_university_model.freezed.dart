@@ -14,11 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+LastStoryIdsPerUniversity _$LastStoryIdsPerUniversityFromJson(
+    Map<String, dynamic> json) {
+  return _LastStoryIdsPerUniversity.fromJson(json);
+}
+
 /// @nodoc
 mixin _$LastStoryIdsPerUniversity {
   int get universityId => throw _privateConstructorUsedError;
   int get lastStoryIdPerUniversity => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LastStoryIdsPerUniversityCopyWith<LastStoryIdsPerUniversity> get copyWith =>
       throw _privateConstructorUsedError;
@@ -102,10 +108,13 @@ class __$$_LastStoryIdsPerUniversityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_LastStoryIdsPerUniversity implements _LastStoryIdsPerUniversity {
   const _$_LastStoryIdsPerUniversity(
       {required this.universityId, required this.lastStoryIdPerUniversity});
+
+  factory _$_LastStoryIdsPerUniversity.fromJson(Map<String, dynamic> json) =>
+      _$$_LastStoryIdsPerUniversityFromJson(json);
 
   @override
   final int universityId;
@@ -128,6 +137,7 @@ class _$_LastStoryIdsPerUniversity implements _LastStoryIdsPerUniversity {
                 other.lastStoryIdPerUniversity, lastStoryIdPerUniversity));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -139,6 +149,13 @@ class _$_LastStoryIdsPerUniversity implements _LastStoryIdsPerUniversity {
   _$$_LastStoryIdsPerUniversityCopyWith<_$_LastStoryIdsPerUniversity>
       get copyWith => __$$_LastStoryIdsPerUniversityCopyWithImpl<
           _$_LastStoryIdsPerUniversity>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LastStoryIdsPerUniversityToJson(
+      this,
+    );
+  }
 }
 
 abstract class _LastStoryIdsPerUniversity implements LastStoryIdsPerUniversity {
@@ -146,6 +163,9 @@ abstract class _LastStoryIdsPerUniversity implements LastStoryIdsPerUniversity {
           {required final int universityId,
           required final int lastStoryIdPerUniversity}) =
       _$_LastStoryIdsPerUniversity;
+
+  factory _LastStoryIdsPerUniversity.fromJson(Map<String, dynamic> json) =
+      _$_LastStoryIdsPerUniversity.fromJson;
 
   @override
   int get universityId;

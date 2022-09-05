@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Chat _$ChatFromJson(Map<String, dynamic> json) {
+  return _Chat.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Chat {
   int get from => throw _privateConstructorUsedError;
@@ -22,6 +26,7 @@ mixin _$Chat {
   List<Message> get messages => throw _privateConstructorUsedError;
   dynamic get action => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChatCopyWith<Chat> get copyWith => throw _privateConstructorUsedError;
 }
@@ -139,7 +144,7 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Chat implements _Chat {
   const _$_Chat(
       {required this.from,
@@ -147,6 +152,8 @@ class _$_Chat implements _Chat {
       required this.toUser,
       required this.messages,
       required this.action});
+
+  factory _$_Chat.fromJson(Map<String, dynamic> json) => _$$_ChatFromJson(json);
 
   @override
   final int from;
@@ -176,6 +183,7 @@ class _$_Chat implements _Chat {
             const DeepCollectionEquality().equals(other.action, action));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -189,6 +197,13 @@ class _$_Chat implements _Chat {
   @override
   _$$_ChatCopyWith<_$_Chat> get copyWith =>
       __$$_ChatCopyWithImpl<_$_Chat>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ChatToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Chat implements Chat {
@@ -198,6 +213,8 @@ abstract class _Chat implements Chat {
       required final User toUser,
       required final List<Message> messages,
       required final dynamic action}) = _$_Chat;
+
+  factory _Chat.fromJson(Map<String, dynamic> json) = _$_Chat.fromJson;
 
   @override
   int get from;

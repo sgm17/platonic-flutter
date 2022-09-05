@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+Meet _$MeetFromJson(Map<String, dynamic> json) {
+  return _Meet.fromJson(json);
+}
+
 /// @nodoc
 mixin _$Meet {
   int get id => throw _privateConstructorUsedError;
@@ -28,6 +32,7 @@ mixin _$Meet {
   String get universityName => throw _privateConstructorUsedError;
   String? get universityFaculty => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MeetCopyWith<Meet> get copyWith => throw _privateConstructorUsedError;
 }
@@ -213,7 +218,7 @@ class __$$_MeetCopyWithImpl<$Res> extends _$MeetCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_Meet implements _Meet {
   const _$_Meet(
       {required this.id,
@@ -227,6 +232,8 @@ class _$_Meet implements _Meet {
       this.universityAcronym,
       required this.universityName,
       this.universityFaculty});
+
+  factory _$_Meet.fromJson(Map<String, dynamic> json) => _$$_MeetFromJson(json);
 
   @override
   final int id;
@@ -280,6 +287,7 @@ class _$_Meet implements _Meet {
                 .equals(other.universityFaculty, universityFaculty));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -299,6 +307,13 @@ class _$_Meet implements _Meet {
   @override
   _$$_MeetCopyWith<_$_Meet> get copyWith =>
       __$$_MeetCopyWithImpl<_$_Meet>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_MeetToJson(
+      this,
+    );
+  }
 }
 
 abstract class _Meet implements Meet {
@@ -314,6 +329,8 @@ abstract class _Meet implements Meet {
       final String? universityAcronym,
       required final String universityName,
       final String? universityFaculty}) = _$_Meet;
+
+  factory _Meet.fromJson(Map<String, dynamic> json) = _$_Meet.fromJson;
 
   @override
   int get id;
