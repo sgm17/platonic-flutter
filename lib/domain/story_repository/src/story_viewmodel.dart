@@ -1,5 +1,5 @@
 import 'package:platonic/domain/story_repository/story_repository.dart';
-import '../../api_repository/src/api_data.dart';
+import '../../api_data.dart';
 import 'models/models.dart';
 
 class StoryViewmodel implements StoryRepository {

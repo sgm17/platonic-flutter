@@ -25,6 +25,11 @@ const List<Map<String, dynamic>> bottomNavigationItems = [
     "to": BottomNavigationState.chat,
     "fill": Icons.chat_bubble,
     "outline": Icons.chat_bubble_outline
+  },
+  {
+    "to": BottomNavigationState.profile,
+    "fill": Icons.person,
+    "outline": Icons.person_outline
   }
 ];
 
@@ -37,12 +42,19 @@ class BottomNavigation extends ConsumerWidget {
 
     return BottomNavigationBar(
       currentIndex: BottomNavigationState.values.indexOf(currentIndex),
-      backgroundColor: Colors.white,
+      onTap: (index) => ref.read(bottomNavigationProvider.notifier).state =
+          BottomNavigationState.values.elementAt(index),
       items: bottomNavigationItems
           .map((Map<String, dynamic> bottomNavigationItem) {
         return BottomNavigationBarItem(
-            activeIcon: bottomNavigationItem["outline"],
-            icon: bottomNavigationItem["fill"],
+            activeIcon: Icon(
+              bottomNavigationItem["outline"],
+              color: Colors.black,
+            ),
+            icon: Icon(
+              bottomNavigationItem["fill"],
+              color: Colors.black,
+            ),
             label: '');
       }).toList(),
     );
