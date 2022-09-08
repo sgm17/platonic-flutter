@@ -6,14 +6,15 @@ import '../../../domain/chat_repository/src/models/models.dart';
 import 'package:flutter/material.dart';
 
 class ChatPanel extends ConsumerWidget {
-  const ChatPanel({Key? key, required this.chats}) : super(key: key);
+  const ChatPanel({
+    Key? key,
+    required this.chatPanelProperties,
+  }) : super(key: key);
 
-  final List<Chat> chats;
+  final ChatPanelProperties chatPanelProperties;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
-
     return Column(
       children: [
         Container(
@@ -24,7 +25,7 @@ class ChatPanel extends ConsumerWidget {
               border: Border(
                   bottom: BorderSide(
                       width: 1, color: Color.fromRGBO(221, 221, 221, 1)))),
-          child: Text(user.asData?.value.username ?? 'null',
+          child: Text(chatPanelProperties.myUsername,
               textAlign: TextAlign.center,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
@@ -33,13 +34,13 @@ class ChatPanel extends ConsumerWidget {
         ),
         Expanded(
             child: ListView.builder(
-                itemCount: chats.length,
+                itemCount: chatPanelProperties.chats.length,
                 itemBuilder: ((context, index) {
-                  final chat = chats[index];
+                  final chat = chatPanelProperties.chats[index];
                   final lastTimeOnline = DateTime.fromMillisecondsSinceEpoch(
                       chat.toUser.lastTimeOnline);
                   return InkWell(
-                    onTap: () => print('object'),
+                    onTap: () => chatPanelProperties.setActiveChat(chat),
                     child: Container(
                       padding: const EdgeInsets.all(16),
                       height: 70,
@@ -105,4 +106,12 @@ class ChatPanel extends ConsumerWidget {
       ],
     );
   }
+}
+
+class ChatPanelProperties {
+  final List<Chat> chats;
+  final String myUsername;
+  final Function setActiveChat;
+
+  ChatPanelProperties(this.chats, this.myUsername, this.setActiveChat);
 }
