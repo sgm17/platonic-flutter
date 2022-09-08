@@ -45,33 +45,47 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
   @override
   Widget build(BuildContext context) {
     final backgroundColor = ref.watch(backgroundColorProvider);
-    final content = bodyController.text.isEmpty;
+    final content = bodyController.text.isNotEmpty;
+    final width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      body: Stack(
+    return Container(
+      color: backgroundColor,
+      width: double.infinity,
+      height: double.infinity,
+      child: Stack(
+        fit: StackFit.expand,
         alignment: Alignment.center,
         children: [
-          TextField(
-            textAlign: TextAlign.center,
-            controller: bodyController,
-            maxLength: 175,
-            style: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontStyle: FontStyle.italic,
-                fontSize: 32),
-            decoration: const InputDecoration(
-                fillColor: Colors.transparent,
-                border: InputBorder.none,
-                hintText: "tap to write",
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
-                  fontSize: 32,
-                ),
-                counter: SizedBox.shrink()),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Center(
+              child: TextField(
+                onChanged: (value) =>
+                    value.isEmpty || value.length == 1 ? setState(() {}) : null,
+                textInputAction: TextInputAction.newline,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
+                textAlign: TextAlign.center,
+                controller: bodyController,
+                maxLength: 175,
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 32),
+                decoration: const InputDecoration(
+                    fillColor: Colors.transparent,
+                    border: InputBorder.none,
+                    hintText: "tap to write",
+                    hintStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 32,
+                    ),
+                    counter: SizedBox.shrink()),
+              ),
+            ),
           ),
           !content
               ? Positioned(
@@ -114,9 +128,10 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                       ),
                       Container(
                         alignment: Alignment.center,
-                        height: 80 - 4,
-                        width: 80 - 4,
-                        decoration: const BoxDecoration(
+                        height: 70,
+                        width: 70,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(35),
                           color: Colors.white,
                         ),
                         child: Text(
@@ -140,9 +155,11 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                     child: InkWell(
                       onTap: () => print('object'),
                       child: Container(
+                        decoration:
+                            const BoxDecoration(color: Colors.transparent),
                         alignment: Alignment.center,
                         height: 40,
-                        width: double.infinity,
+                        width: width - 32,
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: const Text('publish crush',
                             style:

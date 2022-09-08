@@ -29,8 +29,10 @@ class _AppScreen extends ConsumerState<AppScreen> {
     final bottomNavigationState = ref.watch(bottomNavigationProvider);
 
     return Scaffold(
-      body: _widgetOptions.elementAt(
-          BottomNavigationState.values.indexOf(bottomNavigationState)),
+      body: SafeArea(
+        child: _widgetOptions.elementAt(
+            BottomNavigationState.values.indexOf(bottomNavigationState)),
+      ),
       bottomNavigationBar: const BottomNavigation(),
     );
   }

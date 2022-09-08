@@ -26,11 +26,7 @@ class _ChatItemState extends ConsumerState<ChatItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: chatItemChild()),
-    );
+    return chatItemChild();
   }
 
   Widget chatItemChild() {

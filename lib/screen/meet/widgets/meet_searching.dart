@@ -7,7 +7,7 @@ class MeetSearching extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [Icon(Icons.search), Text('searching meet')],
+      children: const [Icon(Icons.search), Text('searching meet')],
     );
   }
 }

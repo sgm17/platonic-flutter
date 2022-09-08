@@ -27,38 +27,37 @@ class _MeetScreenState extends ConsumerState<MeetScreen> {
   Widget build(BuildContext context) {
     final meets = ref.watch(meetNotifierProvider);
 
-    return Scaffold(
-      body: meets.when(data: (MeetData meetData) {
-        final nodata = meetData.meets.isEmpty;
-        final active = meetData.meets
-            .where(
-                (meet) => meet.endsAt > DateTime.now().millisecondsSinceEpoch)
-            .isEmpty;
-        final searching = meetData.searching;
+    return meets.when(data: (MeetData meetData) {
+      final nodata = meetData.meets.isEmpty;
 
-        if (searching) {
-          return const MeetSearching();
-        }
+      final active = meetData.meets
+          .where((meet) => meet.endsAt > DateTime.now().millisecondsSinceEpoch)
+          .isNotEmpty;
+      final searching = meetData.searching;
 
-        if (nodata) {
-          return MeetWhat(
-              setPreferences: () => setState(() => preferences = true));
-        }
+      if (searching) {
+        return const MeetSearching();
+      }
 
-        if (active == false || preferences == true) {
-          return const MeetPreferences();
-        }
+      if (nodata) {
+        return MeetWhat(setPreferences: () {
+          setState(() => preferences = true);
+        });
+      }
 
-        return MeetCard(
-            meet: meetData.meets.firstWhere(
-                (meet) => meet.endsAt > DateTime.now().millisecondsSinceEpoch));
-      }, error: ((error, stackTrace) {
-        return Text(error.toString());
-      }), loading: () {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }),
-    );
+      if (active == false || preferences == true) {
+        return const MeetPreferences();
+      }
+
+      return MeetCard(
+          meet: meetData.meets.firstWhere(
+              (meet) => meet.endsAt > DateTime.now().millisecondsSinceEpoch));
+    }, error: ((error, stackTrace) {
+      return Text(error.toString());
+    }), loading: () {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    });
   }
 }

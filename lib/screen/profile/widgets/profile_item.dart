@@ -35,7 +35,9 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
         : "${widget.user.universityName} ${widget.user.universityAcronym != null ? "(${widget.user.universityAcronym})" : ''}";
 
     return Container(
+        color: const Color.fromRGBO(226, 47, 47, 1),
         padding: const EdgeInsets.symmetric(vertical: 16),
+        width: double.infinity,
         height: double.infinity,
         child: Stack(
           children: [

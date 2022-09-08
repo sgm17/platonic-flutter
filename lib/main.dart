@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/screen/app/app.dart';
-import 'package:platonic/screen/home/home.dart';
 import 'providers/university_provider/university_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

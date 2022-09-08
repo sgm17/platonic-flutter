@@ -48,11 +48,11 @@ class BottomNavigation extends ConsumerWidget {
           .map((Map<String, dynamic> bottomNavigationItem) {
         return BottomNavigationBarItem(
             activeIcon: Icon(
-              bottomNavigationItem["outline"],
+              bottomNavigationItem["fill"],
               color: Colors.black,
             ),
             icon: Icon(
-              bottomNavigationItem["fill"],
+              bottomNavigationItem["outline"],
               color: Colors.black,
             ),
             label: '');

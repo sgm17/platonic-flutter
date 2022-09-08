@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/domain/university_repository/src/models/models.dart';
 import 'package:platonic/domain/user_repository/src/models/models.dart';
 
 class MeetDropdown extends StatefulWidget {
@@ -11,32 +12,47 @@ class MeetDropdown extends StatefulWidget {
 }
 
 class _MeetDropdownState extends State<MeetDropdown> {
+  late dynamic dropDrownValue;
+
+  @override
+  void initState() {
+    super.initState();
+    dropDrownValue = widget.select.first;
+  }
+
   @override
   Widget build(BuildContext context) {
-    dynamic dropDrownValue = widget.select.first;
-
     return DropdownButton<dynamic>(
+        isExpanded: true,
         value: dropDrownValue,
         icon: const Icon(
           Icons.expand_more,
         ),
-        elevation: 16,
         style: const TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.w500,
-        ),
+            fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
         onChanged: (dynamic value) {
           setState(() {
             dropDrownValue = value;
           });
         },
         items: widget.select.map((s) {
-          final childText = s is Sex
-              ? s.name
-              : s.parentName
-                  ? "${s.parentName} ${s.acronym != null ? '(${s.acronym}), ' : ', '} ${s.name}"
-                  : "${s.name} ${s.acronym != null ? '(${s.acronym})' : ''}";
-          return DropdownMenuItem<dynamic>(value: s, child: Text(childText));
+          if (s is Sex) {
+            return DropdownMenuItem<Sex>(value: s, child: Text(s.name));
+          }
+
+          final universityName = s.parentName != null
+              ? "${s.parentName} ${s.acronym != null ? '(${s.acronym}), ' : ', '} ${s.name}"
+              : "${s.name} ${s.acronym != null ? '(${s.acronym})' : ''}";
+
+          return DropdownMenuItem<University>(
+              value: s,
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 4),
+                child: Text(
+                  universityName,
+                  textAlign: TextAlign.left,
+                ),
+              ));
         }).toList());
   }
 }

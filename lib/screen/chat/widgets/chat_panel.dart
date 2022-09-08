@@ -42,30 +42,33 @@ class ChatPanel extends ConsumerWidget {
                   return InkWell(
                     onTap: () => chatPanelProperties.setActiveChat(chat),
                     child: Container(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
                       height: 70,
                       width: double.infinity,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(
-                              height: 100,
-                              width: 100,
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(50),
-                                  child: Image.network(
-                                      chat.toUser.profileImage ?? ''))),
+                            height: 50,
+                            width: 50,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(25),
+                                child: Image.network(
+                                    chat.toUser.profileImage ?? '',
+                                    fit: BoxFit.cover)),
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(chat.toUser.username,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w500)),
+                                const SizedBox(height: 4),
                                 Row(
                                   children: [
                                     Text(

@@ -12,16 +12,14 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(userProvider);
 
-    return Scaffold(
-        backgroundColor: const Color.fromRGBO(226, 47, 47, 1),
-        body: user.when(data: (User user) {
-          return ProfileItem(user: user);
-        }, error: ((error, stackTrace) {
-          return Text(error.toString());
-        }), loading: () {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }));
+    return user.when(data: (User user) {
+      return ProfileItem(user: user);
+    }, error: ((error, stackTrace) {
+      return Text(error.toString());
+    }), loading: () {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    });
   }
 }

@@ -11,49 +11,47 @@ class MeetPreferences extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final universities = ref.watch(universitiesProvider);
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const Text(
-          'meet people from your university',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 36,
-              color: Color.fromRGBO(63, 66, 84, 1),
-              fontWeight: FontWeight.bold),
-        ),
-        const Text('preferences of the person you are looking for',
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            'meet people from your university',
+            textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 24,
+                fontSize: 36,
                 color: Color.fromRGBO(63, 66, 84, 1),
-                fontWeight: FontWeight.w500),
-            textAlign: TextAlign.center),
-        Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: MeetDropdown(select: universities)),
-        Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: const MeetDropdown(select: Sex.values)),
-        InkWell(
-            onTap: () => print('object'),
-            child: Container(
-              width: double.infinity,
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 14.4),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color: const Color.fromRGBO(226, 47, 47, 1),
-              ),
-              child: const Text(
-                'start searching',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontSize: 12.8),
-              ),
-            ))
-      ],
+                fontWeight: FontWeight.bold),
+          ),
+          const Text('preferences of the person you are looking for',
+              style: TextStyle(
+                  fontSize: 24,
+                  color: Color.fromRGBO(63, 66, 84, 1),
+                  fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center),
+          MeetDropdown(select: universities),
+          const MeetDropdown(select: Sex.values),
+          Material(
+            borderRadius: BorderRadius.circular(6),
+            color: const Color.fromRGBO(226, 47, 47, 1),
+            child: InkWell(
+                onTap: () => print('object'),
+                child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 14.4),
+                  decoration: const BoxDecoration(color: Colors.transparent),
+                  child: const Text(
+                    'start searching',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontSize: 12.8),
+                  ),
+                )),
+          )
+        ],
+      ),
     );
   }
 }

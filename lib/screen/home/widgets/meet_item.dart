@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:platonic/domain/meet_repository/src/models/models.dart';
 import 'package:platonic/screen/home/widgets/meet_countdown.dart';
@@ -14,6 +16,7 @@ class MeetItem extends StatefulWidget {
 
 class _MeetItemState extends State<MeetItem> {
   late bool active;
+  late Timer timer;
 
   @override
   void initState() {
@@ -22,8 +25,17 @@ class _MeetItemState extends State<MeetItem> {
         DateTime.now().millisecondsSinceEpoch;
     active = difference > 0;
 
-    Future.delayed(Duration(milliseconds: difference),
-        (() => setState(() => active = false)));
+    timer = Timer(Duration(milliseconds: difference), () {
+      setState(() {
+        active = false;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -172,8 +184,11 @@ class _MeetItemState extends State<MeetItem> {
           top: 16 + 400 * .3 - 50,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(50),
-            child: Image.network(widget.meetItemProperties.meet.profileImage,
-                fit: BoxFit.cover, width: 100, height: 100),
+            child: Image.network(
+                'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png',
+                fit: BoxFit.cover,
+                width: 100,
+                height: 100),
           ),
         )
       ],
