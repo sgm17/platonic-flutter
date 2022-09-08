@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MeetWhat extends StatelessWidget {
-  const MeetWhat({Key? key}) : super(key: key);
+  const MeetWhat({Key? key, required this.setPreferences}) : super(key: key);
+
+  final Function setPreferences;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class MeetWhat extends StatelessWidget {
               fontSize: 16,
             )),
         InkWell(
-          onTap: () => print('object'),
+          onTap: () => setPreferences,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 8),
             width: double.infinity,

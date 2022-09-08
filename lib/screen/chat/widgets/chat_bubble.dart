@@ -1,0 +1,134 @@
+import 'package:flutter/material.dart';
+import 'package:platonic/screen/home/widgets/widgets.dart';
+import '../../../domain/chat_repository/src/models/models.dart';
+import '../../../domain/user_repository/src/models/models.dart';
+
+class ChatBubble extends StatelessWidget {
+  const ChatBubble({Key? key, required this.chatBubbleProperties})
+      : super(key: key);
+
+  final ChatBubbleProperties chatBubbleProperties;
+
+  @override
+  Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final messageTimestamp = DateTime.fromMillisecondsSinceEpoch(
+        chatBubbleProperties.message.timestamp);
+
+    if (!chatBubbleProperties.sender) {
+      return Container(
+        padding:
+            EdgeInsets.symmetric(vertical: chatBubbleProperties.pastMe ? 4 : 8),
+        width: width * .7,
+        alignment: Alignment.centerLeft,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: 30,
+              height: 30,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network(
+                    chatBubbleProperties.user.profileImage ?? '',
+                    fit: BoxFit.cover,
+                  )),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Padding(
+                padding: const EdgeInsets.all(12.8),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                          width: 1,
+                          color: const Color.fromRGBO(221, 221, 221, 1))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        chatBubbleProperties.message.body,
+                        textAlign: TextAlign.left,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 11.2),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text(
+                          "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
+                          style: const TextStyle(
+                              color: Colors.grey,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 9.6),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return Container(
+      padding:
+          EdgeInsets.symmetric(vertical: chatBubbleProperties.pastMe ? 4 : 8),
+      width: width * .7,
+      alignment: Alignment.centerRight,
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 12.8),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromRGBO(239, 239, 239, 1)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(chatBubbleProperties.message.body,
+                    textAlign: TextAlign.right,
+                    style: const TextStyle(
+                        fontSize: 11.2, fontWeight: FontWeight.w500)),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                      "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
+                      style: const TextStyle(
+                          fontSize: 9.6,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey)),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 3),
+            child: SizedBox(
+              height: 14,
+              width: 14,
+              child: Image.asset(
+                chatBubbleProperties.message.read == null
+                    ? 'assets/images/chat-check-white.png'
+                    : 'assets/images/chat-check.png',
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ChatBubbleProperties {
+  final User user;
+  final Message message;
+  final bool sender;
+  final bool pastMe;
+
+  ChatBubbleProperties(this.user, this.message, this.sender, this.pastMe);
+}

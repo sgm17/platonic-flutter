@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:platonic/screen/home/widgets/meet_item.dart';
 
 class MeetCountdown extends StatefulWidget {
-  const MeetCountdown({Key? key, required this.endsAt}) : super(key: key);
+  const MeetCountdown(
+      {Key? key, required this.endsAt, this.fontSize, this.textAlign})
+      : super(key: key);
   final int endsAt;
-
+  final double? fontSize;
+  final TextAlign? textAlign;
   @override
   State<MeetCountdown> createState() => _MeetCountdownState();
 }
@@ -46,10 +49,10 @@ class _MeetCountdownState extends State<MeetCountdown> {
 
     return Text(
         "the meet ends in ${days.toTimeDigit()}:${hours.toTimeDigit()}:${minutes.toTimeDigit()}:${seconds.toTimeDigit()}",
-        style: const TextStyle(
-            fontSize: 12.8,
+        style: TextStyle(
+            fontSize: widget.fontSize ?? 12.8,
             fontWeight: FontWeight.w500,
-            color: Color.fromRGBO(155, 155, 155, 1)),
-        textAlign: TextAlign.center);
+            color: const Color.fromRGBO(155, 155, 155, 1)),
+        textAlign: widget.textAlign ?? TextAlign.center);
   }
 }

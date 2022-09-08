@@ -4,7 +4,7 @@ import 'package:platonic/domain/meet_repository/src/models/models.dart';
 import '../../domain/meet_repository/meet_repository.dart';
 
 final meetNotifierProvider =
-    StateNotifierProvider<MeetNotifier, AsyncValue<List<Meet>>>((ref) {
+    StateNotifierProvider<MeetNotifier, AsyncValue<MeetData>>((ref) {
   return MeetNotifier(ref.read);
 });
 
@@ -12,7 +12,7 @@ final meetViewmodelProvider = Provider<MeetViewmodel>((ref) {
   return MeetViewmodel();
 });
 
-class MeetNotifier extends StateNotifier<AsyncValue<List<Meet>>> {
+class MeetNotifier extends StateNotifier<AsyncValue<MeetData>> {
   final Reader _read;
 
   MeetNotifier(this._read) : super(const AsyncValue.loading()) {
