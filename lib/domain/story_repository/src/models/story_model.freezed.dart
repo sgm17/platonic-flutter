@@ -26,7 +26,8 @@ mixin _$Story {
   String get profileImage => throw _privateConstructorUsedError;
   String? get facultyName => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
-  String get backgroundColor => throw _privateConstructorUsedError;
+  @ColorSerialiser()
+  Color get backgroundColor => throw _privateConstructorUsedError;
   int get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +46,7 @@ abstract class $StoryCopyWith<$Res> {
       String profileImage,
       String? facultyName,
       String body,
-      String backgroundColor,
+      @ColorSerialiser() Color backgroundColor,
       int createdAt});
 }
 
@@ -96,7 +97,7 @@ class _$StoryCopyWithImpl<$Res> implements $StoryCopyWith<$Res> {
       backgroundColor: backgroundColor == freezed
           ? _value.backgroundColor
           : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -117,7 +118,7 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
       String profileImage,
       String? facultyName,
       String body,
-      String backgroundColor,
+      @ColorSerialiser() Color backgroundColor,
       int createdAt});
 }
 
@@ -169,7 +170,7 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res>
       backgroundColor: backgroundColor == freezed
           ? _value.backgroundColor
           : backgroundColor // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Color,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -188,7 +189,7 @@ class _$_Story implements _Story {
       required this.profileImage,
       this.facultyName,
       required this.body,
-      required this.backgroundColor,
+      @ColorSerialiser() required this.backgroundColor,
       required this.createdAt});
 
   factory _$_Story.fromJson(Map<String, dynamic> json) =>
@@ -207,7 +208,8 @@ class _$_Story implements _Story {
   @override
   final String body;
   @override
-  final String backgroundColor;
+  @ColorSerialiser()
+  final Color backgroundColor;
   @override
   final int createdAt;
 
@@ -268,7 +270,7 @@ abstract class _Story implements Story {
       required final String profileImage,
       final String? facultyName,
       required final String body,
-      required final String backgroundColor,
+      @ColorSerialiser() required final Color backgroundColor,
       required final int createdAt}) = _$_Story;
 
   factory _Story.fromJson(Map<String, dynamic> json) = _$_Story.fromJson;
@@ -286,7 +288,8 @@ abstract class _Story implements Story {
   @override
   String get body;
   @override
-  String get backgroundColor;
+  @ColorSerialiser()
+  Color get backgroundColor;
   @override
   int get createdAt;
   @override

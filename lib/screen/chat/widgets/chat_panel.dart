@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/user_provider/user_notifier.dart';
 import 'package:platonic/screen/home/widgets/widgets.dart';
-
 import '../../../domain/chat_repository/src/models/models.dart';
 import 'package:flutter/material.dart';
 

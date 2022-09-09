@@ -11,7 +11,6 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     final messageTimestamp = DateTime.fromMillisecondsSinceEpoch(
         chatBubbleProperties.message.timestamp);
 
@@ -19,94 +18,101 @@ class ChatBubble extends StatelessWidget {
       return Container(
         padding:
             EdgeInsets.symmetric(vertical: chatBubbleProperties.pastMe ? 4 : 8),
-        width: width * .7,
         alignment: Alignment.centerLeft,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 30,
-              height: 30,
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(
-                    chatBubbleProperties.user.profileImage ?? '',
-                    fit: BoxFit.cover,
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Padding(
-                padding: const EdgeInsets.all(12.8),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                          width: 1,
-                          color: const Color.fromRGBO(221, 221, 221, 1))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        chatBubbleProperties.message.body,
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 11.2),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4.0),
-                        child: Text(
-                          "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
+        child: Padding(
+          padding: const EdgeInsets.only(right: 64.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 30,
+                height: 30,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.network(
+                      chatBubbleProperties.user.profileImage ?? '',
+                      fit: BoxFit.cover,
+                    )),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(12.8),
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                            width: 1,
+                            color: const Color.fromRGBO(221, 221, 221, 1))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          chatBubbleProperties.message.body,
+                          textAlign: TextAlign.left,
                           style: const TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 9.6),
+                              fontWeight: FontWeight.w500, fontSize: 11.2),
                         ),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4.0),
+                          child: Text(
+                            "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
+                            style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 9.6),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }
 
     return Container(
+      alignment: Alignment.centerRight,
       padding:
           EdgeInsets.symmetric(vertical: chatBubbleProperties.pastMe ? 4 : 8),
-      width: width * .7,
-      alignment: Alignment.centerRight,
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 12.8),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color.fromRGBO(239, 239, 239, 1)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(chatBubbleProperties.message.body,
-                    textAlign: TextAlign.right,
-                    style: const TextStyle(
-                        fontSize: 11.2, fontWeight: FontWeight.w500)),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                      "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
-                      style: const TextStyle(
-                          fontSize: 9.6,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.grey)),
-                )
-              ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 64),
+              child: Container(
+                padding: const EdgeInsets.all(12.8),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color.fromRGBO(239, 239, 239, 1)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(chatBubbleProperties.message.body,
+                        textAlign: TextAlign.right,
+                        style: const TextStyle(
+                            fontSize: 11.2, fontWeight: FontWeight.w500)),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
+                      child: Text(
+                          "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
+                          style: const TextStyle(
+                              fontSize: 9.6,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey)),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 3),
+            padding: const EdgeInsets.only(left: 4, bottom: 12.4),
             child: SizedBox(
               height: 14,
               width: 14,

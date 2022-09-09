@@ -27,36 +27,52 @@ class _ChatInputState extends State<ChatInput> {
     return Container(
       alignment: Alignment.center,
       height: 60,
-      width: double.infinity,
       color: Colors.white,
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(
-                    width: 1, color: const Color.fromRGBO(221, 221, 221, 1)),
-                borderRadius: BorderRadius.circular(8)),
-            height: 40,
-            child: TextField(
-              controller: _messageController,
-              style: const TextStyle(
-                fontSize: 12.8,
-                fontWeight: FontWeight.w500,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                height: 40,
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        width: 1,
+                        color: const Color.fromRGBO(221, 221, 221, 1)),
+                    borderRadius: BorderRadius.circular(8)),
+                child: TextField(
+                  textAlign: TextAlign.left,
+                  controller: _messageController,
+                  maxLength: 100,
+                  style: const TextStyle(
+                    fontSize: 12.8,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  decoration: const InputDecoration(
+                      contentPadding:
+                          EdgeInsets.only(bottom: 10, left: 8, right: 8),
+                      counter: SizedBox.shrink(),
+                      fillColor: Colors.transparent,
+                      border: InputBorder.none,
+                      hintText: 'type a message...',
+                      hintStyle: TextStyle(
+                          fontSize: 12.8, fontWeight: FontWeight.w500)),
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          InkWell(
-            onTap: () => print('object'),
-            child: const Icon(
-              Icons.send,
-              size: 30,
+            const SizedBox(
+              width: 16,
             ),
-          )
-        ],
+            InkWell(
+              onTap: () => print('object'),
+              child: const Icon(
+                Icons.send,
+                size: 30,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

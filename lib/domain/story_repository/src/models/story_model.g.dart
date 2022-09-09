@@ -13,7 +13,8 @@ _$_Story _$$_StoryFromJson(Map<String, dynamic> json) => _$_Story(
       profileImage: json['profileImage'] as String,
       facultyName: json['facultyName'] as String?,
       body: json['body'] as String,
-      backgroundColor: json['backgroundColor'] as String,
+      backgroundColor:
+          const ColorSerialiser().fromJson(json['backgroundColor'] as int),
       createdAt: json['createdAt'] as int,
     );
 
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$_StoryToJson(_$_Story instance) => <String, dynamic>{
       'profileImage': instance.profileImage,
       'facultyName': instance.facultyName,
       'body': instance.body,
-      'backgroundColor': instance.backgroundColor,
+      'backgroundColor':
+          const ColorSerialiser().toJson(instance.backgroundColor),
       'createdAt': instance.createdAt,
     };

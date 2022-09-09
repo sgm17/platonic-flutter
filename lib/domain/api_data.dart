@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:platonic/domain/chat_repository/src/models/models.dart';
 import 'package:platonic/domain/story_repository/src/models/story_model.dart';
 import 'package:platonic/domain/university_repository/src/models/models.dart';
@@ -71,7 +72,7 @@ final List<Chat> chats = [
               'https://i.pinimg.com/474x/fa/ba/54/faba5498b3167071dc93e22f3ce1e22a.jpg',
           body:
               'em sembla molt interessant el que fas la veritt, nose como ho faria jo. es molt divertit aixo xd aviam com ho solociones perro jajaja . en senbla que amb el dom es pot fo',
-          backgroundColor: 'cyan',
+          backgroundColor: Colors.cyan,
           createdAt: DateTime.now().millisecondsSinceEpoch),
       toUser: User(
           id: 3,
@@ -124,7 +125,8 @@ final List<Chat> chats = [
             timestamp: DateTime.now().millisecondsSinceEpoch - 1700000),
         Message(
             id: 5,
-            body: 'ahahaahah okk',
+            body:
+                'ahahaahah okk wrthrtshbtebtenbtntgrbthrqgregrhbtrhbtrhwbaghtrhbqggrqhbthbrehrehrhb',
             from: 3,
             to: 1,
             read: false,
@@ -276,7 +278,7 @@ final List<CustomApi> apiStories = [
           profileImage: 'https://picsum.photos/100/100',
           body:
               "He visto a una chica en la biblioteca de humanidades que me he enamorado, creo que es mi crush ahora mismo jejejeje",
-          backgroundColor: 'green',
+          backgroundColor: Colors.green,
           facultyName: 'Facultat de Medicina',
           createdAt: DateTime.now().millisecondsSinceEpoch - 100000),
       Story(
@@ -287,7 +289,7 @@ final List<CustomApi> apiStories = [
               'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
           body:
               "He visto a un chico en la facultad de ingenieria que era alto y morena, me gustaría saber quien es jejeje",
-          backgroundColor: 'blue',
+          backgroundColor: Colors.blue,
           createdAt: DateTime.now().millisecondsSinceEpoch - 100000),
       Story(
           id: 3,
@@ -297,7 +299,7 @@ final List<CustomApi> apiStories = [
               'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
           body:
               "Estoy buscando a gente para hacer un equipo de baloncesto, por favor contactadme si vosotros igual",
-          backgroundColor: 'green',
+          backgroundColor: Colors.green,
           createdAt: DateTime.now().millisecondsSinceEpoch - 90000),
       Story(
           id: 4,
@@ -307,7 +309,7 @@ final List<CustomApi> apiStories = [
               'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
           body:
               "que locura es esta app, se esta petando bastante la verdad y que me alegro jejjajaajaj",
-          backgroundColor: 'brown',
+          backgroundColor: Colors.brown,
           createdAt: DateTime.now().millisecondsSinceEpoch - 85000),
     ],
   ),
@@ -342,7 +344,7 @@ final List<CustomApi> apiStories = [
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body:
                 'jaja soy roberto carlos un latino muy sexy y estoy buscando a una buena moza jejeeje',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 6,
@@ -352,7 +354,7 @@ final List<CustomApi> apiStories = [
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body:
                 'estoy q este año me saco la carrera ya veras ,solo hay q echarle mil y una horas',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 7,
@@ -362,7 +364,7 @@ final List<CustomApi> apiStories = [
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body:
                 'budno chavales q esto ya se termina al fina, despues de dedicarle mil y una horas',
-            backgroundColor: 'orange',
+            backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 8,
@@ -372,7 +374,7 @@ final List<CustomApi> apiStories = [
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body:
                 'que gupo es esto jajaj la verdad despues de dedicarle mil y una horas',
-            backgroundColor: 'orange',
+            backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -394,7 +396,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'apapapsasuifei paspapito manda jjaj y tsnto jdoer horas',
-            backgroundColor: 'orange',
+            backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 10,
@@ -403,7 +405,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'trmeenodo cualo que me gasto esq no se puede ser mejor',
-            backgroundColor: 'blue',
+            backgroundColor: Colors.blue,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -426,7 +428,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'gerlpglgrglalrleagvrgv',
-            backgroundColor: 'blue',
+            backgroundColor: Colors.blue,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 12,
@@ -436,7 +438,7 @@ final List<CustomApi> apiStories = [
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body:
                 'kelapasadkakl elfkleklfwlknlkdklwafklkl eaeknfleklnfnklalknef',
-            backgroundColor: 'purple',
+            backgroundColor: Colors.purple,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -458,7 +460,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'kelapasadkaerag gregeragrg',
-            backgroundColor: 'orange',
+            backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 14,
@@ -467,7 +469,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -488,7 +490,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 16,
@@ -497,7 +499,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -518,7 +520,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'blue',
+            backgroundColor: Colors.blue,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 18,
@@ -527,7 +529,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'purple',
+            backgroundColor: Colors.purple,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -549,7 +551,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'orange',
+            backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 20,
@@ -558,7 +560,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'gray',
+            backgroundColor: Colors.grey,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -580,7 +582,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'gray',
+            backgroundColor: Colors.grey,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 22,
@@ -589,7 +591,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -611,7 +613,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'brown',
+            backgroundColor: Colors.brown,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 24,
@@ -620,7 +622,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'blue',
+            backgroundColor: Colors.blue,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -642,7 +644,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 26,
@@ -651,7 +653,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'orange',
+            backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -673,7 +675,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'red',
+            backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 28,
@@ -682,7 +684,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'green',
+            backgroundColor: Colors.green,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ]),
   CustomApi(
@@ -705,7 +707,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'purple',
+            backgroundColor: Colors.purple,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
             id: 30,
@@ -714,7 +716,7 @@ final List<CustomApi> apiStories = [
             profileImage:
                 'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
             body: 'eragerg4rqgg4g524g24 gregeragrg',
-            backgroundColor: 'green',
+            backgroundColor: Colors.green,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000)
       ])
 ];
