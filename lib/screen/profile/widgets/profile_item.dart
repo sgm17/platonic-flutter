@@ -111,14 +111,17 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                         fontWeight: FontWeight.w500,
                         fontSize: 14.4,
                       ),
+                      maxLines: 1,
                       decoration: InputDecoration(
                           isDense: true,
                           contentPadding: const EdgeInsets.symmetric(
                               horizontal: 0, vertical: 0),
                           fillColor: Colors.transparent,
                           border: InputBorder.none,
-                          hintText:
-                              widget.user.universityFaculty ?? 'faculty name',
+                          hintText: edit
+                              ? 'type your faculty name...'
+                              : widget.user.universityFaculty ??
+                                  'type your faculty name...',
                           hintStyle: const TextStyle(
                             color: Color.fromRGBO(63, 66, 84, 1),
                             fontWeight: FontWeight.w500,

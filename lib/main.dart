@@ -9,7 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final universities = await getUniversities();
+  final universities = await getUniversities(
+      userUniversityCenter: [41.50613010080779, 2.103939945863225]);
   final sharedPreferences = await SharedPreferences.getInstance();
   runApp(ProviderScope(overrides: [
     universitiesProvider.overrideWithValue(universities),

@@ -4,7 +4,7 @@ import 'models/models.dart';
 
 class StoryViewmodel implements StoryRepository {
   @override
-  Future<HomeStory> retrieveInitial() {
+  Future<HomeStory> retrieveInitial() async {
     return Future.delayed(const Duration(seconds: 1), () {
       return HomeStory(
           lastStoryIdsPerUniversity: apiLastStoriesPerUni,
@@ -14,20 +14,15 @@ class StoryViewmodel implements StoryRepository {
   }
 
   @override
-  Future<HomeStory> retrieveStories(int universityId) {
+  Future<HomeStory> retrieveStories(int universityId) async {
     return Future.delayed(const Duration(seconds: 1), () {
+      final apiStoryPerUniversityIndex = apiStories.indexWhere((apiStory) {
+        return apiStory.university.id == universityId;
+      });
       return HomeStory(
           lastStoryIdsPerUniversity: apiLastStoriesPerUni,
-          university: apiStories
-              .firstWhere(
-                  (customApi) => customApi.university.id == universityId)
-              .university,
-          stories: apiStories
-              .firstWhere(
-                  (customApi) => customApi.university.id == universityId)
-              .stories
-              .map((story) => story)
-              .toList());
+          university: apiStories[apiStoryPerUniversityIndex].university,
+          stories: apiStories[apiStoryPerUniversityIndex].stories);
     });
   }
 }

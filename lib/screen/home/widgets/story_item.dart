@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/screen/home/widgets/story_image.dart';
+import 'package:platonic/screen/instastory/widgets/insta_story.dart';
+import 'package:platonic/screen/instastory/widgets/insta_story_item.dart';
 import '../../../domain/university_repository/src/models/models.dart';
+import '../../../providers/story_provider/story_notifier.dart';
 
-class StoryItem extends StatelessWidget {
+class StoryItem extends ConsumerWidget {
   const StoryItem({Key? key, required this.storyItemProperties})
       : super(key: key);
 
   final StoryItemProperties storyItemProperties;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: EdgeInsets.only(
           left: storyItemProperties.first ? 32 : 8,
@@ -20,7 +24,13 @@ class StoryItem extends StatelessWidget {
         children: [
           InkWell(
             borderRadius: BorderRadius.circular(5.0),
-            onTap: () => print('object'),
+            onTap: () async {
+              final universityId = storyItemProperties.university.id;
+
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      InstaStory(universityId: universityId)));
+            },
             child: Container(
               alignment: Alignment.center,
               width: 60,
@@ -49,7 +59,8 @@ class StoryItem extends StatelessWidget {
                             UniversityImage.values.firstWhere((uni) =>
                                 uni.name ==
                                 storyItemProperties.university.image
-                                    .split('.')[0]))))),
+                                    .split('.')[0]))),
+                        fit: BoxFit.cover)),
               ),
             ),
           ),

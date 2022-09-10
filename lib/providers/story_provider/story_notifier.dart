@@ -13,7 +13,6 @@ final storyViewModelProvider = Provider<StoryViewmodel>((ref) {
 
 class StoryNotifier extends StateNotifier<AsyncValue<HomeStory>> {
   final Reader _read;
-  late HomeStory _homeStory;
 
   StoryNotifier(this._read) : super(const AsyncValue.loading()) {
     _initializeStoryNotifier();
@@ -22,5 +21,12 @@ class StoryNotifier extends StateNotifier<AsyncValue<HomeStory>> {
   Future<void> _initializeStoryNotifier() async {
     final homeStory = await _read(storyViewModelProvider).retrieveInitial();
     state = AsyncValue.data(homeStory);
+  }
+
+  Future<HomeStory> storiesPerUniversityId(int universityId) async {
+    final homeStory =
+        await _read(storyViewModelProvider).retrieveStories(universityId);
+    state = AsyncValue.data(homeStory);
+    return homeStory;
   }
 }

@@ -175,7 +175,7 @@ class ChatConversation extends StatelessWidget {
               },
             ),
           ),
-          ChatInput()
+          const ChatInput()
         ],
       ),
     );
