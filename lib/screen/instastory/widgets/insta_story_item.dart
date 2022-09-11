@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/insta_story_provider/insta_story_provider.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/providers/university_provider/university_provider.dart';
 import 'package:platonic/screen/home/widgets/story_scroll.dart';
@@ -10,16 +10,6 @@ import '../../../domain/university_repository/src/models/models.dart';
 import 'dart:async';
 
 enum StoryAction { play, pause }
-
-final actualUniversityIdStateProvider =
-    StateProvider.autoDispose<int>((ref) => -1);
-final actualStoryIndexProvider = StateProvider.autoDispose<int>((ref) => 0);
-final storyActionProvider =
-    StateProvider.autoDispose<StoryAction>((ref) => StoryAction.play);
-final homeStoryProvider =
-    Provider.autoDispose<HomeStory>((ref) => throw UnimplementedError());
-final storyControllerProvider =
-    Provider.autoDispose<StoryController>((ref) => throw UnimplementedError());
 
 class InstaStoryItem extends ConsumerStatefulWidget {
   const InstaStoryItem({Key? key}) : super(key: key);

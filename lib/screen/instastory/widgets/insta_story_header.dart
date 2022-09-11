@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/insta_story_provider/insta_story_provider.dart';
 import 'package:platonic/screen/home/widgets/widgets.dart';
 import 'widgets.dart';
 

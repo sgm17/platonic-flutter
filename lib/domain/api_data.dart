@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:platonic/domain/chat_repository/src/models/models.dart';
-import 'package:platonic/domain/story_repository/src/models/story_model.dart';
 import 'package:platonic/domain/university_repository/src/models/models.dart';
-import 'package:platonic/domain/university_repository/src/models/university_model.dart';
-
 import 'meet_repository/src/models/models.dart';
 import 'story_repository/src/models/models.dart';
 import 'user_repository/src/models/models.dart';

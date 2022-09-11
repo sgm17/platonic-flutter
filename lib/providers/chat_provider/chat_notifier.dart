@@ -14,7 +14,7 @@ final chatViewmodelProvider = Provider<ChatViewmodel>((ref) {
 class ChatNotifier extends StateNotifier<AsyncValue<List<Chat>>> {
   final Reader _read;
 
-  ChatNotifier(this._read) : super(AsyncValue.loading()) {
+  ChatNotifier(this._read) : super(const AsyncValue.loading()) {
     _initializeChatNotifier();
   }
 

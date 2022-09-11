@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/screen/app/app.dart';
+import 'package:platonic/screen/leaflet/widgets/leaflet_map.dart';
 import 'providers/university_provider/university_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -30,7 +31,7 @@ class Platonic extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily:
               GoogleFonts.montserrat(fontWeight: FontWeight.w500).fontFamily),
-      home: const AppScreen(),
+      home: const LeafletMap(),
     );
   }
 }

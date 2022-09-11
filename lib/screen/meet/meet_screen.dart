@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/meet_provider/meet_provider.dart';
-import 'package:platonic/screen/meet/widgets/meet_card.dart';
-import 'package:platonic/screen/meet/widgets/meet_preferences.dart';
-import 'package:platonic/screen/meet/widgets/meet_searching.dart';
-import 'package:platonic/screen/meet/widgets/meet_what.dart';
+import 'package:platonic/screen/meet/widgets/widgets.dart';
 import '../../domain/meet_repository/src/models/models.dart';
 
 class MeetScreen extends ConsumerStatefulWidget {

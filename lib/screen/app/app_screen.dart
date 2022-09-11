@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/app_provider/app_provider.dart';
+import 'widgets/widgets.dart';
 import '../chat/chat.dart';
 import '../create/create.dart';
 import '../home/home.dart';
 import '../meet/meet.dart';
 import '../profile/profile.dart';
-import 'widgets/widgets.dart';
 
 class AppScreen extends ConsumerStatefulWidget {
   const AppScreen({Key? key}) : super(key: key);

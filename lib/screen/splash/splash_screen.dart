@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:platonic/screen/splash/widgets/logo.dart';
+import 'package:platonic/screen/splash/widgets/widgets.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);

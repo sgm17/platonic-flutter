@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/insta_story_provider/insta_story_provider.dart';
 import 'package:platonic/providers/story_provider/story_notifier.dart';
 import 'package:platonic/screen/instastory/widgets/widgets.dart';
 import 'package:story_view/controller/story_controller.dart';
-import '../../../domain/story_repository/src/models/models.dart';
+import '../../domain/story_repository/src/models/models.dart';
 
 class InstaStory extends ConsumerStatefulWidget {
   const InstaStory({Key? key, required this.universityId}) : super(key: key);

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/screen/home/widgets/story_image.dart';
-import 'package:platonic/screen/instastory/widgets/insta_story.dart';
-import 'package:platonic/screen/instastory/widgets/insta_story_item.dart';
+import 'package:platonic/screen/instastory/insta_story_screen.dart';
 import '../../../domain/university_repository/src/models/models.dart';
-import '../../../providers/story_provider/story_notifier.dart';
 
 class StoryItem extends ConsumerWidget {
   const StoryItem({Key? key, required this.storyItemProperties})

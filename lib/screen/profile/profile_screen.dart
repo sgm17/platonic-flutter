@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/user_provider/user_notifier.dart';
-import 'package:platonic/screen/profile/widgets/profile_item.dart';
+import 'package:platonic/screen/profile/widgets/widgets.dart';
 
 import '../../domain/user_repository/src/models/models.dart';
 
