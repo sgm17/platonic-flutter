@@ -18,10 +18,18 @@ class LeafletMap extends ConsumerWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasData) {
+                final features = snapshot.data;
                 return FlutterMap(
                   options: MapOptions(
+                      onTap: (tapPosition, point) {
+                        features
+                            ?.map((feature) => feature.geometry.coordinates);
+                      },
+                      keepAlive: true,
                       center: LatLng(41.50613010080779, 2.103939945863225),
-                      zoom: 13),
+                      zoom: 13,
+                      minZoom: 13,
+                      interactiveFlags: InteractiveFlag.none),
                   nonRotatedChildren: [
                     AttributionWidget.defaultWidget(
                       source: 'OpenStreetMap contributors',
@@ -32,24 +40,27 @@ class LeafletMap extends ConsumerWidget {
                     TileLayer(
                       urlTemplate:
                           'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                      userAgentPackageName: 'com.example.app',
+                      userAgentPackageName: 'com.invelex.platonic',
                     ),
                     PolygonLayer(
-                        polygons: snapshot.data!.map((feature) {
-                      return Polygon(
-                          labelPlacement: PolygonLabelPlacement.polylabel,
-                          label: feature.properties.name,
-                          borderStrokeWidth: 4,
-                          borderColor: Colors.orange,
-                          isFilled: true,
-                          color: Colors.orangeAccent,
-                          labelStyle: TextStyle(
-                              color: Colors.grey, fontWeight: FontWeight.w500),
-                          points: feature.geometry.coordinates[0]
-                              .map((coordinate) =>
-                                  LatLng(coordinate[1], coordinate[0]))
-                              .toList());
-                    }).toList())
+                        polygons: features?.map((feature) {
+                              return Polygon(
+                                  labelPlacement:
+                                      PolygonLabelPlacement.polylabel,
+                                  label: feature.properties.name,
+                                  borderStrokeWidth: 4,
+                                  borderColor: Colors.orange,
+                                  isFilled: true,
+                                  color: Colors.orangeAccent,
+                                  labelStyle: const TextStyle(
+                                      color: Colors.grey,
+                                      fontWeight: FontWeight.w500),
+                                  points: feature.geometry.coordinates[0]
+                                      .map((coordinate) =>
+                                          LatLng(coordinate[1], coordinate[0]))
+                                      .toList());
+                            }).toList() ??
+                            [])
                   ],
                 );
               } else {
