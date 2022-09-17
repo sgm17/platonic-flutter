@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:platonic/domain/university_repository/src/models/models.dart';
-import 'package:platonic/domain/university_repository/src/models/university_model.dart';
 
 final universitiesProvider =
     Provider<List<University>>((ref) => throw UnimplementedError());
