@@ -11,7 +11,7 @@ _$_Story _$$_StoryFromJson(Map<String, dynamic> json) => _$_Story(
       userId: json['userId'] as int,
       username: json['username'] as String,
       profileImage: json['profileImage'] as String,
-      facultyName: json['facultyName'] as String?,
+      facultyName: json['facultyName'] as String,
       body: json['body'] as String,
       backgroundColor:
           const ColorSerialiser().fromJson(json['backgroundColor'] as int),

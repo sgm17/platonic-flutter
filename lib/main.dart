@@ -3,16 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/screen/app/app.dart';
-import 'package:platonic/screen/login/login.dart';
-import 'package:platonic/screen/register/register.dart';
 import 'providers/university_provider/university_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final universities = await getUniversities(
-      userUniversityCenter: [41.50613010080779, 2.103939945863225]);
+  final universities = await getUniversities();
   final sharedPreferences = await SharedPreferences.getInstance();
   runApp(ProviderScope(overrides: [
     universitiesProvider.overrideWithValue(universities),
@@ -32,7 +29,7 @@ class Platonic extends StatelessWidget {
           primarySwatch: Colors.blue,
           fontFamily:
               GoogleFonts.montserrat(fontWeight: FontWeight.w500).fontFamily),
-      home: const Login(),
+      home: const AppScreen(),
     );
   }
 }

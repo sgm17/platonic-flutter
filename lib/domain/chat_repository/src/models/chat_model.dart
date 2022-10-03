@@ -11,7 +11,7 @@ abstract class Chat with _$Chat {
       required int to,
       required User toUser,
       required List<Message> messages,
-      required dynamic action}) = _Chat;
+      required List<dynamic> action}) = _Chat;
 
   factory Chat.fromJson(Map<String, Object?> json) => _$ChatFromJson(json);
 }

@@ -13,7 +13,7 @@ _$_Chat _$$_ChatFromJson(Map<String, dynamic> json) => _$_Chat(
       messages: (json['messages'] as List<dynamic>)
           .map((e) => Message.fromJson(e as Map<String, dynamic>))
           .toList(),
-      action: json['action'],
+      action: json['action'] as List<dynamic>,
     );
 
 Map<String, dynamic> _$$_ChatToJson(_$_Chat instance) => <String, dynamic>{

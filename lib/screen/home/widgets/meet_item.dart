@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:platonic/domain/meet_repository/src/models/models.dart';
+import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/home/widgets/meet_countdown.dart';
 
 class MeetItem extends StatefulWidget {
@@ -46,11 +47,7 @@ class _MeetItemState extends State<MeetItem> {
     final facultyText =
         "${meet.universityParentName != null ? meet.universityName : ''} ${meet.universityFaculty ?? ''}";
     final startedAt = DateTime.fromMillisecondsSinceEpoch(meet.startedAt);
-    final start =
-        "${startedAt.day.toTimeDigit()}/${startedAt.month.toTimeDigit()}/${startedAt.year.toTimeDigit()} ${startedAt.hour.toTimeDigit()}:${startedAt.minute.toTimeDigit()}";
     final endsAt = DateTime.fromMillisecondsSinceEpoch(meet.endsAt);
-    final ends =
-        "${endsAt.day.toTimeDigit()}/${endsAt.month.toTimeDigit()}/${endsAt.year.toTimeDigit()} ${endsAt.hour.toTimeDigit()}:${endsAt.minute.toTimeDigit()}";
     return Stack(
       alignment: Alignment.topCenter,
       children: [
@@ -129,7 +126,7 @@ class _MeetItemState extends State<MeetItem> {
                                       fontWeight: FontWeight.w400))
                               : const SizedBox.shrink(),
                           Text(
-                            "$start - $ends",
+                            "${startedAt.toDate()} - ${endsAt.toDate()}",
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.8,
@@ -202,10 +199,4 @@ class MeetItemProperties {
   final Meet meet;
 
   MeetItemProperties(this.first, this.last, this.meet);
-}
-
-extension NumberExtension on int {
-  String toTimeDigit() {
-    return this >= 10 ? toString() : "0${toString()}";
-  }
 }

@@ -21,16 +21,11 @@ University _$UniversityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$University {
   int get id => throw _privateConstructorUsedError;
-  String? get acronym => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  String? get associateName => throw _privateConstructorUsedError;
-  String? get parentName => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String get address => throw _privateConstructorUsedError;
-  String get simple => throw _privateConstructorUsedError;
-  List<double> get center => throw _privateConstructorUsedError;
+  String get simpleName => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
-  List<IncludeUniversity>? get includes => throw _privateConstructorUsedError;
+  List<double> get coordinates => throw _privateConstructorUsedError;
+  List<UniversityFaculties> get faculties => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,16 +40,11 @@ abstract class $UniversityCopyWith<$Res> {
       _$UniversityCopyWithImpl<$Res>;
   $Res call(
       {int id,
-      String? acronym,
-      String type,
-      String? associateName,
-      String? parentName,
       String name,
-      String address,
-      String simple,
-      List<double> center,
+      String simpleName,
       String image,
-      List<IncludeUniversity>? includes});
+      List<double> coordinates,
+      List<UniversityFaculties> faculties});
 }
 
 /// @nodoc
@@ -68,62 +58,37 @@ class _$UniversityCopyWithImpl<$Res> implements $UniversityCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? acronym = freezed,
-    Object? type = freezed,
-    Object? associateName = freezed,
-    Object? parentName = freezed,
     Object? name = freezed,
-    Object? address = freezed,
-    Object? simple = freezed,
-    Object? center = freezed,
+    Object? simpleName = freezed,
     Object? image = freezed,
-    Object? includes = freezed,
+    Object? coordinates = freezed,
+    Object? faculties = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      acronym: acronym == freezed
-          ? _value.acronym
-          : acronym // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      associateName: associateName == freezed
-          ? _value.associateName
-          : associateName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parentName: parentName == freezed
-          ? _value.parentName
-          : parentName // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      simpleName: simpleName == freezed
+          ? _value.simpleName
+          : simpleName // ignore: cast_nullable_to_non_nullable
               as String,
-      simple: simple == freezed
-          ? _value.simple
-          : simple // ignore: cast_nullable_to_non_nullable
-              as String,
-      center: center == freezed
-          ? _value.center
-          : center // ignore: cast_nullable_to_non_nullable
-              as List<double>,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      includes: includes == freezed
-          ? _value.includes
-          : includes // ignore: cast_nullable_to_non_nullable
-              as List<IncludeUniversity>?,
+      coordinates: coordinates == freezed
+          ? _value.coordinates
+          : coordinates // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      faculties: faculties == freezed
+          ? _value.faculties
+          : faculties // ignore: cast_nullable_to_non_nullable
+              as List<UniversityFaculties>,
     ));
   }
 }
@@ -137,16 +102,11 @@ abstract class _$$_UniversityCopyWith<$Res>
   @override
   $Res call(
       {int id,
-      String? acronym,
-      String type,
-      String? associateName,
-      String? parentName,
       String name,
-      String address,
-      String simple,
-      List<double> center,
+      String simpleName,
       String image,
-      List<IncludeUniversity>? includes});
+      List<double> coordinates,
+      List<UniversityFaculties> faculties});
 }
 
 /// @nodoc
@@ -162,62 +122,37 @@ class __$$_UniversityCopyWithImpl<$Res> extends _$UniversityCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? acronym = freezed,
-    Object? type = freezed,
-    Object? associateName = freezed,
-    Object? parentName = freezed,
     Object? name = freezed,
-    Object? address = freezed,
-    Object? simple = freezed,
-    Object? center = freezed,
+    Object? simpleName = freezed,
     Object? image = freezed,
-    Object? includes = freezed,
+    Object? coordinates = freezed,
+    Object? faculties = freezed,
   }) {
     return _then(_$_University(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      acronym: acronym == freezed
-          ? _value.acronym
-          : acronym // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: type == freezed
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      associateName: associateName == freezed
-          ? _value.associateName
-          : associateName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      parentName: parentName == freezed
-          ? _value.parentName
-          : parentName // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
-          ? _value.address
-          : address // ignore: cast_nullable_to_non_nullable
+      simpleName: simpleName == freezed
+          ? _value.simpleName
+          : simpleName // ignore: cast_nullable_to_non_nullable
               as String,
-      simple: simple == freezed
-          ? _value.simple
-          : simple // ignore: cast_nullable_to_non_nullable
-              as String,
-      center: center == freezed
-          ? _value._center
-          : center // ignore: cast_nullable_to_non_nullable
-              as List<double>,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      includes: includes == freezed
-          ? _value._includes
-          : includes // ignore: cast_nullable_to_non_nullable
-              as List<IncludeUniversity>?,
+      coordinates: coordinates == freezed
+          ? _value._coordinates
+          : coordinates // ignore: cast_nullable_to_non_nullable
+              as List<double>,
+      faculties: faculties == freezed
+          ? _value._faculties
+          : faculties // ignore: cast_nullable_to_non_nullable
+              as List<UniversityFaculties>,
     ));
   }
 }
@@ -227,18 +162,13 @@ class __$$_UniversityCopyWithImpl<$Res> extends _$UniversityCopyWithImpl<$Res>
 class _$_University implements _University {
   const _$_University(
       {required this.id,
-      this.acronym,
-      required this.type,
-      this.associateName,
-      this.parentName,
       required this.name,
-      required this.address,
-      required this.simple,
-      required final List<double> center,
+      required this.simpleName,
       required this.image,
-      final List<IncludeUniversity>? includes})
-      : _center = center,
-        _includes = includes;
+      required final List<double> coordinates,
+      required final List<UniversityFaculties> faculties})
+      : _coordinates = coordinates,
+        _faculties = faculties;
 
   factory _$_University.fromJson(Map<String, dynamic> json) =>
       _$$_UniversityFromJson(json);
@@ -246,40 +176,28 @@ class _$_University implements _University {
   @override
   final int id;
   @override
-  final String? acronym;
-  @override
-  final String type;
-  @override
-  final String? associateName;
-  @override
-  final String? parentName;
-  @override
   final String name;
   @override
-  final String address;
-  @override
-  final String simple;
-  final List<double> _center;
-  @override
-  List<double> get center {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_center);
-  }
-
+  final String simpleName;
   @override
   final String image;
-  final List<IncludeUniversity>? _includes;
+  final List<double> _coordinates;
   @override
-  List<IncludeUniversity>? get includes {
-    final value = _includes;
-    if (value == null) return null;
+  List<double> get coordinates {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
+    return EqualUnmodifiableListView(_coordinates);
+  }
+
+  final List<UniversityFaculties> _faculties;
+  @override
+  List<UniversityFaculties> get faculties {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_faculties);
   }
 
   @override
   String toString() {
-    return 'University(id: $id, acronym: $acronym, type: $type, associateName: $associateName, parentName: $parentName, name: $name, address: $address, simple: $simple, center: $center, image: $image, includes: $includes)';
+    return 'University(id: $id, name: $name, simpleName: $simpleName, image: $image, coordinates: $coordinates, faculties: $faculties)';
   }
 
   @override
@@ -288,18 +206,14 @@ class _$_University implements _University {
         (other.runtimeType == runtimeType &&
             other is _$_University &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.acronym, acronym) &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality()
-                .equals(other.associateName, associateName) &&
-            const DeepCollectionEquality()
-                .equals(other.parentName, parentName) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.simple, simple) &&
-            const DeepCollectionEquality().equals(other._center, _center) &&
+            const DeepCollectionEquality()
+                .equals(other.simpleName, simpleName) &&
             const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality().equals(other._includes, _includes));
+            const DeepCollectionEquality()
+                .equals(other._coordinates, _coordinates) &&
+            const DeepCollectionEquality()
+                .equals(other._faculties, _faculties));
   }
 
   @JsonKey(ignore: true)
@@ -307,16 +221,11 @@ class _$_University implements _University {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(acronym),
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(associateName),
-      const DeepCollectionEquality().hash(parentName),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(simple),
-      const DeepCollectionEquality().hash(_center),
+      const DeepCollectionEquality().hash(simpleName),
       const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(_includes));
+      const DeepCollectionEquality().hash(_coordinates),
+      const DeepCollectionEquality().hash(_faculties));
 
   @JsonKey(ignore: true)
   @override
@@ -334,16 +243,11 @@ class _$_University implements _University {
 abstract class _University implements University {
   const factory _University(
       {required final int id,
-      final String? acronym,
-      required final String type,
-      final String? associateName,
-      final String? parentName,
       required final String name,
-      required final String address,
-      required final String simple,
-      required final List<double> center,
+      required final String simpleName,
       required final String image,
-      final List<IncludeUniversity>? includes}) = _$_University;
+      required final List<double> coordinates,
+      required final List<UniversityFaculties> faculties}) = _$_University;
 
   factory _University.fromJson(Map<String, dynamic> json) =
       _$_University.fromJson;
@@ -351,25 +255,15 @@ abstract class _University implements University {
   @override
   int get id;
   @override
-  String? get acronym;
-  @override
-  String get type;
-  @override
-  String? get associateName;
-  @override
-  String? get parentName;
-  @override
   String get name;
   @override
-  String get address;
-  @override
-  String get simple;
-  @override
-  List<double> get center;
+  String get simpleName;
   @override
   String get image;
   @override
-  List<IncludeUniversity>? get includes;
+  List<double> get coordinates;
+  @override
+  List<UniversityFaculties> get faculties;
   @override
   @JsonKey(ignore: true)
   _$$_UniversityCopyWith<_$_University> get copyWith =>

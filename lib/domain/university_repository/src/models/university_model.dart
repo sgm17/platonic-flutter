@@ -7,16 +7,11 @@ part 'university_model.g.dart';
 abstract class University with _$University {
   const factory University(
       {required int id,
-      String? acronym,
-      required String type,
-      String? associateName,
-      String? parentName,
       required String name,
-      required String address,
-      required String simple,
-      required List<double> center,
+      required String simpleName,
       required String image,
-      List<IncludeUniversity>? includes}) = _University;
+      required List<double> coordinates,
+      required List<UniversityFaculties> faculties}) = _University;
 
   factory University.fromJson(Map<String, Object?> json) =>
       _$UniversityFromJson(json);

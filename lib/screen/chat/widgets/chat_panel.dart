@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/home/widgets/widgets.dart';
 import '../../../domain/chat_repository/src/models/models.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +89,7 @@ class ChatPanel extends ConsumerWidget {
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 12.8))),
                                     Text(
-                                      "${lastTimeOnline.day.toTimeDigit()}/${lastTimeOnline.month.toTimeDigit()}/${lastTimeOnline.year.toTimeDigit()} ${lastTimeOnline.hour.toTimeDigit()}:${lastTimeOnline.minute.toTimeDigit()}",
+                                      lastTimeOnline.toDate(),
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 12.8,

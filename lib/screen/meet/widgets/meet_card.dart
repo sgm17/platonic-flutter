@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/home/widgets/meet_countdown.dart';
-import 'package:platonic/screen/home/widgets/widgets.dart';
 import '../../../domain/meet_repository/src/models/models.dart';
 
 class MeetCard extends ConsumerWidget {
@@ -99,15 +99,13 @@ class MeetCard extends ConsumerWidget {
                                         fontSize: 13.6,
                                         color: Color.fromRGBO(63, 66, 84, 1)))
                                 : const SizedBox.shrink(),
-                            Text(
-                                "stated at: ${startedAt.day.toTimeDigit()}/${startedAt.month.toTimeDigit()}/${startedAt.year.toTimeDigit()} ${startedAt.hour.toTimeDigit()}:${startedAt.minute.toTimeDigit()}",
+                            Text("stated at: ${startedAt.toDate()}",
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Color.fromRGBO(63, 66, 84, 1),
                                     fontWeight: FontWeight.w500,
                                     fontSize: 13.6)),
-                            Text(
-                                "ends at: ${endsAt.day.toTimeDigit()}/${endsAt.month.toTimeDigit()}/${endsAt.year.toTimeDigit()} ${endsAt.hour.toTimeDigit()}:${endsAt.minute.toTimeDigit()}",
+                            Text("ends at: ${endsAt.toDate()}",
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     color: Color.fromRGBO(63, 66, 84, 1),

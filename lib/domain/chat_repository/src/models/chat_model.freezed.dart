@@ -24,7 +24,7 @@ mixin _$Chat {
   int get to => throw _privateConstructorUsedError;
   User get toUser => throw _privateConstructorUsedError;
   List<Message> get messages => throw _privateConstructorUsedError;
-  dynamic get action => throw _privateConstructorUsedError;
+  List<dynamic> get action => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,11 @@ abstract class $ChatCopyWith<$Res> {
   factory $ChatCopyWith(Chat value, $Res Function(Chat) then) =
       _$ChatCopyWithImpl<$Res>;
   $Res call(
-      {int from, int to, User toUser, List<Message> messages, dynamic action});
+      {int from,
+      int to,
+      User toUser,
+      List<Message> messages,
+      List<dynamic> action});
 
   $UserCopyWith<$Res> get toUser;
 }
@@ -77,7 +81,7 @@ class _$ChatCopyWithImpl<$Res> implements $ChatCopyWith<$Res> {
       action: action == freezed
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as List<dynamic>,
     ));
   }
 
@@ -95,7 +99,11 @@ abstract class _$$_ChatCopyWith<$Res> implements $ChatCopyWith<$Res> {
       __$$_ChatCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int from, int to, User toUser, List<Message> messages, dynamic action});
+      {int from,
+      int to,
+      User toUser,
+      List<Message> messages,
+      List<dynamic> action});
 
   @override
   $UserCopyWith<$Res> get toUser;
@@ -138,7 +146,7 @@ class __$$_ChatCopyWithImpl<$Res> extends _$ChatCopyWithImpl<$Res>
       action: action == freezed
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as List<dynamic>,
     ));
   }
 }
@@ -164,7 +172,7 @@ class _$_Chat implements _Chat {
   @override
   final List<Message> messages;
   @override
-  final dynamic action;
+  final List<dynamic> action;
 
   @override
   String toString() {
@@ -212,7 +220,7 @@ abstract class _Chat implements Chat {
       required final int to,
       required final User toUser,
       required final List<Message> messages,
-      required final dynamic action}) = _$_Chat;
+      required final List<dynamic> action}) = _$_Chat;
 
   factory _Chat.fromJson(Map<String, dynamic> json) = _$_Chat.fromJson;
 
@@ -225,7 +233,7 @@ abstract class _Chat implements Chat {
   @override
   List<Message> get messages;
   @override
-  dynamic get action;
+  List<dynamic> get action;
   @override
   @JsonKey(ignore: true)
   _$$_ChatCopyWith<_$_Chat> get copyWith => throw _privateConstructorUsedError;

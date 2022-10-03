@@ -61,16 +61,19 @@ final List<Chat> chats = [
   Chat(
       to: 3,
       from: 1,
-      action: Story(
-          id: 1,
-          userId: 3,
-          username: 'sergigarciiaa',
-          profileImage:
-              'https://i.pinimg.com/474x/fa/ba/54/faba5498b3167071dc93e22f3ce1e22a.jpg',
-          body:
-              'em sembla molt interessant el que fas la veritt, nose como ho faria jo. es molt divertit aixo xd aviam com ho solociones perro jajaja . en senbla que amb el dom es pot fo',
-          backgroundColor: Colors.cyan,
-          createdAt: DateTime.now().millisecondsSinceEpoch),
+      action: [
+        Story(
+            id: 1,
+            userId: 3,
+            username: 'sergigarciiaa',
+            profileImage:
+                'https://i.pinimg.com/474x/fa/ba/54/faba5498b3167071dc93e22f3ce1e22a.jpg',
+            body:
+                'em sembla molt interessant el que fas la veritt, nose como ho faria jo. es molt divertit aixo xd aviam com ho solociones perro jajaja . en senbla que amb el dom es pot fo',
+            backgroundColor: Colors.cyan,
+            facultyName: "Facultad de Historia",
+            createdAt: DateTime.now().millisecondsSinceEpoch)
+      ],
       toUser: User(
           id: 3,
           username: 'pepegarcia',
@@ -174,16 +177,18 @@ final List<Chat> chats = [
   Chat(
       from: 1,
       to: 4,
-      action: Meet(
-          id: 1,
-          userId: 4,
-          username: 'robert lewandoski',
-          profileImage:
-              'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
-          messagesCount: 14,
-          endsAt: DateTime.now().millisecondsSinceEpoch + 1000000,
-          startedAt: DateTime.now().millisecondsSinceEpoch,
-          universityName: 'Campus de Bellaterra'),
+      action: [
+        Meet(
+            id: 1,
+            userId: 4,
+            username: 'robert lewandoski',
+            profileImage:
+                'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
+            messagesCount: 14,
+            endsAt: DateTime.now().millisecondsSinceEpoch + 1000000,
+            startedAt: DateTime.now().millisecondsSinceEpoch,
+            universityName: 'Campus de Bellaterra')
+      ],
       toUser: User(
           id: 4,
           username: 'robert lewandoski',
@@ -258,15 +263,12 @@ class CustomApi {
 final List<CustomApi> apiStories = [
   CustomApi(
     university: const University(
-        id: 35,
-        parentName: "Universitat Autònoma de Barcelona",
-        acronym: "UAB",
-        type: "campus",
-        name: "Campus de Bellaterra",
-        address: "Plaça Cívica, 08193 Bellaterra, Barcelona",
-        simple: "uab bellaterra",
+        id: 10,
+        name: "Universidad Autónoma de Barcelona",
+        simpleName: "uab",
         image: "uab.png",
-        center: [41.50613010080779, 2.103939945863225]),
+        coordinates: [],
+        faculties: []),
     stories: [
       Story(
           id: 1,
@@ -279,6 +281,7 @@ final List<CustomApi> apiStories = [
           facultyName: 'Facultat de Medicina',
           createdAt: DateTime.now().millisecondsSinceEpoch - 100000),
       Story(
+          facultyName: "Facultat d'Enginyeria",
           id: 2,
           userId: 2,
           username: 'lauramariagarciiaa',
@@ -289,6 +292,7 @@ final List<CustomApi> apiStories = [
           backgroundColor: Colors.blue,
           createdAt: DateTime.now().millisecondsSinceEpoch - 100000),
       Story(
+          facultyName: "Facultat d'Enginyeria",
           id: 3,
           userId: 2,
           username: 'mariarobledojaja',
@@ -299,6 +303,7 @@ final List<CustomApi> apiStories = [
           backgroundColor: Colors.green,
           createdAt: DateTime.now().millisecondsSinceEpoch - 90000),
       Story(
+          facultyName: "Facultat d'Enginyeria",
           id: 4,
           userId: 2,
           username: 'victorberni',
@@ -312,28 +317,15 @@ final List<CustomApi> apiStories = [
   ),
   CustomApi(
       university: const University(
-          id: 11,
-          parentName: "Universitat Internacional de Catalunya",
-          acronym: "UIC",
-          type: "campus",
-          name: "Campus Barcelona",
-          address: "C. de la Immaculada, 22, 08017 Barcelona",
-          simple: "uic barcelona",
+          id: 87,
+          name: "Universitat Internacional de Catalunya",
+          simpleName: "uic",
           image: "uic.png",
-          includes: [
-            IncludeUniversity(
-                parentName: "Universitat Internacional de Catalunya",
-                name: "Edificis Delta i Gamma",
-                type: "campus",
-                acronym: "UIC",
-                address: "Carrer de Terré, 11-19, 08017 Barcelona")
-          ],
-          center: [
-            41.40575017098406,
-            2.123592202116646
-          ]),
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 5,
             userId: 2,
             username: 'robertocarlos',
@@ -344,6 +336,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 6,
             userId: 2,
             username: 'jaumesoburats',
@@ -354,6 +347,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 7,
             userId: 2,
             username: 'papadopaulos',
@@ -364,6 +358,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 8,
             userId: 2,
             username: 'cataclismo',
@@ -376,17 +371,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 58,
-          parentName: "Universitat de Vic",
-          acronym: "UVic",
-          type: "campus",
-          name: "Masia de la Torre dels Frares",
-          address: "Carrer d’en Perot Rocaguinarda, 17, 08500 Vic, Barcelona",
-          simple: "uvic masia",
-          image: "uvic.jpg",
-          center: [41.93138433479263, 2.245997677972732]),
+          id: 50,
+          name: "Universidad de Vic-Universidad Central de Catalunya",
+          simpleName: "uvic",
+          image: "uvic.jpeg",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 9,
             userId: 2,
             username: 'papasito',
@@ -396,6 +389,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 10,
             userId: 2,
             username: 'papadopaulos',
@@ -407,18 +401,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 1,
-          parentName: "Universitat Politècnica de Catalunya",
-          acronym: "UPC",
-          type: "campus",
-          name: "Barcelona-Campus Diagonal Nord",
-          address:
-              "Edifici PO (Poliesportiu) - Campus Nord, Carrer de Jordi Girona, 1-3, 08034 Barcelona",
-          simple: "upc diagonal nord",
+          id: 71,
+          name: "Universidad Politécnica de Catalunya",
+          simpleName: "upc",
           image: "upc.png",
-          center: [41.388378440945935, 2.1132922874645637]),
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 11,
             userId: 2,
             username: 'royer',
@@ -428,6 +419,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.blue,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 12,
             userId: 2,
             username: 'mamasitaaa',
@@ -440,17 +432,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 45,
-          parentName: "Universitat Pompeu Fabra",
-          acronym: "UPF",
-          type: "campus",
-          name: "Campus Ciutadella",
-          address: "Carrer de Ramon Trias Fargas, 25, 27, 08005 Barcelona",
-          simple: "upf ciutadella",
+          id: 74,
+          name: "Universidad Pompeu Fabra",
+          simpleName: "upf",
           image: "upf.png",
-          center: [41.38963997926792, 2.1903685995772175]),
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 13,
             userId: 2,
             username: 'dcaniwest',
@@ -460,6 +450,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 14,
             userId: 2,
             username: 'katasusts',
@@ -471,16 +462,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 119,
-          type: "school",
-          parentName: "Davinci Escola d'Art",
-          name: "Davinci Barcelona",
-          address: "C/ de Roger de Llúria, 104, Principal, 1a, 08037 Barcelona",
-          simple: "davinci barcelona",
-          image: "davinci.jpg",
-          center: [41.396340948318155, 2.1650192958778196]),
+          id: 43,
+          name: "Universidad de Murcia",
+          simpleName: "um",
+          image: "um.jfif",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 15,
             userId: 2,
             username: 'katasusts',
@@ -490,6 +480,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 16,
             userId: 2,
             username: 'rreagrgrgr',
@@ -501,16 +492,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 114,
-          type: "faculties",
-          parentName: "Fundació Conservatori Liceu",
-          name: "Conservatori Superior de Música del Liceu",
-          address: "Carrer Nou de la Rambla, 88, 08001 Barcelona",
-          simple: "conservatori liceu",
-          image: "liceu.jpg",
-          center: [41.37628744069495, 2.171033399576811]),
+          id: 46,
+          name: "Universidad de Salamanca",
+          simpleName: "usal",
+          image: "usal.png",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 17,
             userId: 2,
             username: 'h5twh6w4',
@@ -520,6 +510,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.blue,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 18,
             userId: 2,
             username: 'wrtthtyt5h56wth',
@@ -531,17 +522,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 10,
-          type: "school",
-          associateName: "Universitat Politècnica de Catalunya",
-          parentName: "Euncet University Business School",
-          name: "Euncet Campus Terrassa",
-          simple: "euncet terrassa",
-          address: "Camí del Mas Rubial, 1, 08225 Terrassa, Barcelona",
-          image: "euncet.jpg",
-          center: [41.59987394767506, 2.0153469977335408]),
+          id: 55,
+          name: "Universidad Europea de Canarias",
+          simpleName: "uec",
+          image: "ue.png",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 19,
             userId: 2,
             username: 'wth5twht2h',
@@ -551,6 +540,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.orange,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 20,
             userId: 2,
             username: 'rh5yhq4g4qg',
@@ -562,17 +552,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 49,
-          associateName: "Universitat Pompeu Fabra",
-          parentName: "TecnoCampus Mataró",
-          name: "Fundació TecnoCampus Mataró-Maresme",
-          type: "campus",
-          simple: "tecnocampus",
-          address: "Passatge d'Adolf Comeron, 10, 08302 Mataró, Barcelona",
-          image: "tecnocampus.png",
-          center: [41.527334949198426, 2.433311226956721]),
+          id: 56,
+          name: "Universidad Europea de Madrid",
+          simpleName: "uem",
+          image: "ue.png",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 21,
             userId: 2,
             username: 'w4htyhtwg4g',
@@ -582,6 +570,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.grey,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 22,
             userId: 2,
             username: '4htwgrwgw',
@@ -593,17 +582,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 65,
-          parentName: "Universitat de Girona",
-          acronym: "UdG",
-          type: "campus",
-          name: "Campus Barri Vell",
-          address: "17004 Girona",
-          simple: "udg barri vell",
+          id: 32,
+          name: "Universitat de Girona",
+          simpleName: "udg",
           image: "udg.jpg",
-          center: [41.98602709472981, 2.827869764855122]),
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 23,
             userId: 2,
             username: 'aegvgagrtbt',
@@ -613,6 +600,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.brown,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 24,
             userId: 2,
             username: 'eg3g5g4wf43f',
@@ -624,17 +612,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 50,
-          parentName: "Universitat de Lleida",
-          acronym: "UDL",
-          type: "campus",
-          name: "Campus de Cappont",
-          address: "C/ de Jaume II, 71, 25001 Lleida",
-          simple: "udl cappont",
-          image: "udl.png",
-          center: [41.60739965767477, 0.6241617568764151]),
+          id: 20,
+          name: "Universidad de A Coruña",
+          simpleName: "udc",
+          image: "udc.png",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 25,
             userId: 2,
             username: 'ggrgtf3af3',
@@ -644,6 +630,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 26,
             userId: 2,
             username: 'awgrg5a3f',
@@ -655,17 +642,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 77,
-          associateName: "Universitat Ramon Llull",
-          parentName: "Blanquerna",
-          type: "faculties",
-          name: "Facultat de Psicologia, Ciències de l'Educació i de l'Esport",
-          address: "Carrer del Císter, 34, 08022 Barcelona",
-          simple: "blanquerna psicologia",
-          image: "blanquerna.jpg",
-          center: [41.41158152154075, 2.1328822130708005]),
+          id: 72,
+          name: "Universidad Politécnica de Madrid",
+          simpleName: "upm",
+          image: "upm.jpg",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 27,
             userId: 2,
             username: 'wfegga',
@@ -675,6 +660,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.red,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 28,
             userId: 2,
             username: 'fe3g4vqaf',
@@ -686,18 +672,15 @@ final List<CustomApi> apiStories = [
       ]),
   CustomApi(
       university: const University(
-          id: 83,
-          parentName: "ESADE",
-          associateName: "Universitat Ramon Llull",
-          type: "campus",
-          name: "Campus Barcelona - Sant Cugat",
-          address:
-              "Avinguda de la Torre Blanca, 59, 08172 Sant Cugat del Vallès, Barcelona",
-          simple: "esade sant cugat",
-          image: "esade.jpg",
-          center: [41.46730832952267, 2.09138082471557]),
+          id: 51,
+          name: "Universidad de Vigo",
+          simpleName: "uvigo",
+          image: "uvigo.png",
+          coordinates: [],
+          faculties: []),
       stories: [
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 29,
             userId: 2,
             username: 'afwawergaae',
@@ -707,6 +690,7 @@ final List<CustomApi> apiStories = [
             backgroundColor: Colors.purple,
             createdAt: DateTime.now().millisecondsSinceEpoch - 80000),
         Story(
+            facultyName: "Facultat d'Enginyeria",
             id: 30,
             userId: 2,
             username: 'fweEDEVERG',

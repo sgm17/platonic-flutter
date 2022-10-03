@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/chat/widgets/chat_action.dart';
 import 'package:platonic/screen/chat/widgets/chat_bubble.dart';
 import 'package:platonic/screen/chat/widgets/chat_input.dart';
@@ -126,9 +127,6 @@ class ChatConversation extends StatelessWidget {
                         pastMessageDate.day != actualMessageDate.day
                     : false;
 
-                final dateText =
-                    "${actualMessageDate.year.toTimeDigit()}/${actualMessageDate.month.toTimeDigit()}/${actualMessageDate.day.toTimeDigit()} ${actualMessageDate.hour.toTimeDigit()}:${actualMessageDate.minute.toTimeDigit()}";
-
                 final chatBubbleProperties = ChatBubbleProperties(
                     chatConversationProperties.chat.toUser,
                     message,
@@ -139,7 +137,7 @@ class ChatConversation extends StatelessWidget {
                   return Column(
                     children: [
                       Text(
-                        dateText,
+                        actualMessageDate.toDate(),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 13.6, fontWeight: FontWeight.w500),
@@ -158,7 +156,7 @@ class ChatConversation extends StatelessWidget {
                   return Column(
                     children: [
                       Text(
-                        dateText,
+                        actualMessageDate.toDate(),
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 13.6, fontWeight: FontWeight.w500),

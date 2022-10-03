@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/providers/insta_story_provider/insta_story_provider.dart';
 import 'package:platonic/screen/home/widgets/widgets.dart';
 import 'widgets.dart';
@@ -17,8 +18,6 @@ class InstaStoryHeader extends ConsumerWidget {
     final actualStory = homeStory.stories.elementAt(actualStoryIndex);
     final timestamp =
         DateTime.fromMillisecondsSinceEpoch(actualStory.createdAt);
-    final university =
-        "${homeStory.university?.parentName != null ? "${homeStory.university?.parentName}, ${homeStory.university?.name}" : "${homeStory.university?.name}"} ${homeStory.university?.acronym != null ? "(${homeStory.university?.acronym})" : ''}";
 
     final width = MediaQuery.of(context).size.width;
 
@@ -51,8 +50,7 @@ class InstaStoryHeader extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                      "${actualStory.username} ${timestamp.day.toTimeDigit()}/${timestamp.month.toTimeDigit()}/${timestamp.year.toTimeDigit()} ${timestamp.hour.toTimeDigit()}:${timestamp.minute.toTimeDigit()}",
+                  Text("${actualStory.username} ${timestamp.toDate()}",
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 10.4,
@@ -60,7 +58,7 @@ class InstaStoryHeader extends ConsumerWidget {
                   const SizedBox(
                     height: 2,
                   ),
-                  Text(university,
+                  Text(actualStory.facultyName,
                       style: const TextStyle(
                           color: Colors.white,
                           fontSize: 10.4,

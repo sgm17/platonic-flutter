@@ -10,7 +10,7 @@ abstract class Story with _$Story {
       required int userId,
       required String username,
       required String profileImage,
-      String? facultyName,
+      required String facultyName,
       required String body,
       @ColorSerialiser() required Color backgroundColor,
       required int createdAt}) = _Story;

@@ -1,4 +1,3 @@
-export 'include_university_model.dart';
+export 'university_faculties_model.dart';
 export 'university_model.dart';
-export 'university_feature_model.dart';
-export 'university_geometry_model.dart';
+export 'university_study_model.dart';

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/home/widgets/meet_item.dart';
 
 class MeetCountdown extends StatefulWidget {
@@ -47,8 +48,7 @@ class _MeetCountdownState extends State<MeetCountdown> {
     final minutes = ((difference % (1000 * 60 * 60)) / (1000 * 60)).floor();
     final seconds = ((difference % (1000 * 60)) / 1000).floor();
 
-    return Text(
-        "the meet ends in ${days.toTimeDigit()}:${hours.toTimeDigit()}:${minutes.toTimeDigit()}:${seconds.toTimeDigit()}",
+    return Text("the meet ends in ${toTime(days, hours, minutes, seconds)}",
         style: TextStyle(
             fontSize: widget.fontSize ?? 12.8,
             fontWeight: FontWeight.w500,

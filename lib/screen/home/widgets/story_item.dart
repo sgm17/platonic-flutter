@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/screen/home/widgets/story_image.dart';
 import 'package:platonic/screen/instastory/insta_story_screen.dart';
 import '../../../domain/university_repository/src/models/models.dart';
 
@@ -14,8 +13,8 @@ class StoryItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: EdgeInsets.only(
-          left: storyItemProperties.first ? 32 : 8,
-          right: storyItemProperties.last ? 32 : 8),
+          left: storyItemProperties.first ? 16 : 10,
+          right: storyItemProperties.last ? 16 : 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -53,25 +52,22 @@ class StoryItem extends ConsumerWidget {
                         : Border.all(width: 2.0, color: Colors.transparent),
                     color: const Color.fromRGBO(252, 252, 252, 1),
                     image: DecorationImage(
-                        image: AssetImage(getUniversityImage(
-                            UniversityImage.values.firstWhere((uni) =>
-                                uni.name ==
-                                storyItemProperties.university.image
-                                    .split('.')[0]))),
-                        fit: BoxFit.cover)),
+                        image: AssetImage(
+                            "assets/images/uni/${storyItemProperties.university.image}"),
+                        fit: BoxFit.contain)),
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8),
-            child: SizedBox(
-              width: 60,
-              child: Text(storyItemProperties.university.simple,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 10.4,
-                  )),
-            ),
+          const SizedBox(
+            height: 8,
+          ),
+          SizedBox(
+            width: 60,
+            child: Text(storyItemProperties.university.simpleName,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 10.4,
+                )),
           )
         ],
       ),

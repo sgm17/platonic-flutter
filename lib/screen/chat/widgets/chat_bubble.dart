@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/home/widgets/widgets.dart';
 import '../../../domain/chat_repository/src/models/models.dart';
 import '../../../domain/user_repository/src/models/models.dart';
@@ -57,7 +58,7 @@ class ChatBubble extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 4.0),
                           child: Text(
-                            "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
+                            messageTimestamp.toChatBubble(),
                             style: const TextStyle(
                                 color: Colors.grey,
                                 fontWeight: FontWeight.w500,
@@ -99,8 +100,7 @@ class ChatBubble extends StatelessWidget {
                             fontSize: 11.2, fontWeight: FontWeight.w500)),
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
-                      child: Text(
-                          "${messageTimestamp.hour.toTimeDigit()}:${messageTimestamp.minute.toTimeDigit()}",
+                      child: Text(messageTimestamp.toChatBubble(),
                           style: const TextStyle(
                               fontSize: 9.6,
                               fontWeight: FontWeight.w500,

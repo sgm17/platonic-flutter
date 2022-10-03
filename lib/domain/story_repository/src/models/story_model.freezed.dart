@@ -24,7 +24,7 @@ mixin _$Story {
   int get userId => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
   String get profileImage => throw _privateConstructorUsedError;
-  String? get facultyName => throw _privateConstructorUsedError;
+  String get facultyName => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
   @ColorSerialiser()
   Color get backgroundColor => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $StoryCopyWith<$Res> {
       int userId,
       String username,
       String profileImage,
-      String? facultyName,
+      String facultyName,
       String body,
       @ColorSerialiser() Color backgroundColor,
       int createdAt});
@@ -89,7 +89,7 @@ class _$StoryCopyWithImpl<$Res> implements $StoryCopyWith<$Res> {
       facultyName: facultyName == freezed
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
@@ -116,7 +116,7 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
       int userId,
       String username,
       String profileImage,
-      String? facultyName,
+      String facultyName,
       String body,
       @ColorSerialiser() Color backgroundColor,
       int createdAt});
@@ -162,7 +162,7 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res>
       facultyName: facultyName == freezed
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       body: body == freezed
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
@@ -187,7 +187,7 @@ class _$_Story implements _Story {
       required this.userId,
       required this.username,
       required this.profileImage,
-      this.facultyName,
+      required this.facultyName,
       required this.body,
       @ColorSerialiser() required this.backgroundColor,
       required this.createdAt});
@@ -204,7 +204,7 @@ class _$_Story implements _Story {
   @override
   final String profileImage;
   @override
-  final String? facultyName;
+  final String facultyName;
   @override
   final String body;
   @override
@@ -268,7 +268,7 @@ abstract class _Story implements Story {
       required final int userId,
       required final String username,
       required final String profileImage,
-      final String? facultyName,
+      required final String facultyName,
       required final String body,
       @ColorSerialiser() required final Color backgroundColor,
       required final int createdAt}) = _$_Story;
@@ -284,7 +284,7 @@ abstract class _Story implements Story {
   @override
   String get profileImage;
   @override
-  String? get facultyName;
+  String get facultyName;
   @override
   String get body;
   @override
