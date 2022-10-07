@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
   const RegisterForm({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
     return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(8)),
+            color: AppColors.white, borderRadius: BorderRadius.circular(8)),
         child: Form(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,7 +40,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                 'Platonic',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Color.fromRGBO(226, 47, 47, 1),
+                    color: AppColors.mainColor,
                     fontFamily: 'Retrokia',
                     fontSize: 48,
                     fontWeight: FontWeight.w500),
@@ -49,7 +50,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20,
-                    color: Colors.grey,
+                    color: AppColors.grey,
                     fontWeight: FontWeight.w400),
               ),
               Column(
@@ -59,9 +60,8 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                     height: 40,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(
-                            width: 1,
-                            color: const Color.fromRGBO(239, 239, 239, 1))),
+                        border:
+                            Border.all(width: 1, color: AppColors.strongWhite)),
                     child: TextFormField(
                       textAlign: TextAlign.left,
                       textInputAction: TextInputAction.next,
@@ -78,7 +78,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                         hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey),
+                            color: AppColors.grey),
                       ),
                     ),
                   ),
@@ -90,9 +90,8 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                     height: 40,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(
-                            width: 1,
-                            color: const Color.fromRGBO(239, 239, 239, 1))),
+                        border:
+                            Border.all(width: 1, color: AppColors.strongWhite)),
                     child: TextFormField(
                       textAlign: TextAlign.left,
                       textInputAction: TextInputAction.next,
@@ -109,7 +108,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                         hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey),
+                            color: AppColors.grey),
                       ),
                     ),
                   ),
@@ -121,9 +120,8 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                     height: 40,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(
-                            width: 1,
-                            color: const Color.fromRGBO(239, 239, 239, 1))),
+                        border:
+                            Border.all(width: 1, color: AppColors.strongWhite)),
                     child: TextFormField(
                       obscureText: true,
                       textAlign: TextAlign.left,
@@ -141,7 +139,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                         hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey),
+                            color: AppColors.grey),
                       ),
                     ),
                   ),
@@ -153,9 +151,8 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                     height: 40,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(
-                            width: 1,
-                            color: const Color.fromRGBO(239, 239, 239, 1))),
+                        border:
+                            Border.all(width: 1, color: AppColors.strongWhite)),
                     child: TextFormField(
                       obscureText: true,
                       textAlign: TextAlign.left,
@@ -173,7 +170,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                         hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey),
+                            color: AppColors.grey),
                       ),
                     ),
                   ),
@@ -182,7 +179,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                   ),
                   Material(
                     borderRadius: BorderRadius.circular(6),
-                    color: const Color.fromRGBO(226, 47, 47, 1),
+                    color: AppColors.mainColor,
                     child: InkWell(
                       onTap: () => print('object'),
                       child: Container(
@@ -191,7 +188,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                         child: const Text('select area',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.white,
+                                color: AppColors.white,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 16)),
                       ),
@@ -202,7 +199,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
               const Text(
                 'by registering you accept our conditions of use. Get more information about how we use your information in our privacy policy, as well as the use we make of cookies in our cookie policy',
                 style: TextStyle(
-                    color: Colors.grey,
+                    color: AppColors.grey,
                     fontSize: 11.2,
                     fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,

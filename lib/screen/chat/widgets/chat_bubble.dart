@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
 import '../../../domain/chat_repository/src/models/models.dart';
 import '../../../domain/user_repository/src/models/models.dart';
@@ -40,11 +41,10 @@ class ChatBubble extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.all(12.8),
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.white,
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            width: 1,
-                            color: const Color.fromRGBO(221, 221, 221, 1))),
+                        border:
+                            Border.all(width: 1, color: AppColors.strongWhite)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -59,7 +59,7 @@ class ChatBubble extends StatelessWidget {
                           child: Text(
                             messageTimestamp.toChatBubble(),
                             style: const TextStyle(
-                                color: Colors.grey,
+                                color: AppColors.grey,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 9.6),
                           ),
@@ -89,7 +89,7 @@ class ChatBubble extends StatelessWidget {
                 padding: const EdgeInsets.all(12.8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromRGBO(239, 239, 239, 1)),
+                    color: AppColors.strongWhite),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -103,7 +103,7 @@ class ChatBubble extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 9.6,
                               fontWeight: FontWeight.w500,
-                              color: Colors.grey)),
+                              color: AppColors.grey)),
                     )
                   ],
                 ),

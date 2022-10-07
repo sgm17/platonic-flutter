@@ -1,9 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/domain/meet_repository/src/models/models.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/home/widgets/meet_countdown.dart';
+import 'dart:async';
 
 class MeetItem extends StatefulWidget {
   const MeetItem({Key? key, required this.meetItemProperties})
@@ -55,12 +55,12 @@ class _MeetItemState extends State<MeetItem> {
           width: 280,
           height: 400,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(6.0),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, .4),
-                    offset: Offset(2, 2),
+                    color: AppColors.black.withOpacity(.4),
+                    offset: const Offset(2, 2),
                     blurRadius: 8,
                     spreadRadius: 1)
               ]),
@@ -81,19 +81,10 @@ class _MeetItemState extends State<MeetItem> {
                     gradient: active
                         ? const LinearGradient(
                             end: Alignment.topRight,
-                            colors: [
-                                Color.fromRGBO(226, 47, 47, 1),
-                                Color.fromRGBO(239, 0, 83, 1),
-                                Color.fromRGBO(236, 0, 129, 1),
-                                Color.fromRGBO(209, 0, 185, 1),
-                                Color.fromRGBO(135, 0, 242, 1)
-                              ])
+                            colors: AppColors.meetCardColors)
                         : const LinearGradient(
                             end: Alignment.topRight,
-                            colors: [
-                                Color.fromRGBO(73, 64, 64, 1),
-                                Color.fromRGBO(27, 17, 17, 1)
-                              ])),
+                            colors: AppColors.meetCardDisabledColors)),
               ),
               Container(
                   padding: const EdgeInsets.all(16),
@@ -114,7 +105,7 @@ class _MeetItemState extends State<MeetItem> {
                           Text(universityText,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
-                                  color: Color.fromRGBO(155, 155, 155, 1),
+                                  color: AppColors.meetCountdown,
                                   fontSize: 11.2,
                                   fontWeight: FontWeight.w400)),
                           facultyText != " "
@@ -122,7 +113,7 @@ class _MeetItemState extends State<MeetItem> {
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                       fontSize: 10.4,
-                                      color: Color.fromRGBO(155, 155, 155, 1),
+                                      color: AppColors.meetCountdown,
                                       fontWeight: FontWeight.w400))
                               : const SizedBox.shrink(),
                           Text(
@@ -130,7 +121,7 @@ class _MeetItemState extends State<MeetItem> {
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12.8,
-                                color: Color.fromRGBO(155, 155, 155, 1)),
+                                color: AppColors.meetCountdown),
                             textAlign: TextAlign.center,
                           ),
                           active
@@ -140,13 +131,12 @@ class _MeetItemState extends State<MeetItem> {
                                   style: const TextStyle(
                                       fontSize: 12.8,
                                       fontWeight: FontWeight.w500,
-                                      color: Color.fromRGBO(155, 155, 155, 1)),
+                                      color: AppColors.meetCountdown),
                                   textAlign: TextAlign.center),
                           Material(
                             borderRadius: BorderRadius.circular(6),
-                            color: active
-                                ? const Color.fromRGBO(226, 47, 47, 1)
-                                : Colors.grey,
+                            color:
+                                active ? AppColors.mainColor : AppColors.grey,
                             child: InkWell(
                               onTap: active ? () => print('object') : null,
                               child: Container(
@@ -162,7 +152,7 @@ class _MeetItemState extends State<MeetItem> {
                                   active ? 'start meeting' : 'continue meeting',
                                   style: const TextStyle(
                                       fontSize: 12,
-                                      color: Colors.white,
+                                      color: AppColors.white,
                                       fontWeight: FontWeight.w500),
                                   textAlign: TextAlign.center,
                                 ),

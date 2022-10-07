@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
 import '../../../domain/chat_repository/src/models/models.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,7 @@ class ChatPanel extends ConsumerWidget {
           width: double.infinity,
           decoration: const BoxDecoration(
               border: Border(
-                  bottom: BorderSide(
-                      width: 1, color: Color.fromRGBO(221, 221, 221, 1)))),
+                  bottom: BorderSide(width: 1, color: AppColors.strongWhite))),
           child: Text(chatPanelProperties.myUsername,
               textAlign: TextAlign.center,
               style: const TextStyle(
@@ -78,7 +78,7 @@ class ChatPanel extends ConsumerWidget {
                                       style: const TextStyle(
                                           fontSize: 12.8,
                                           fontWeight: FontWeight.w500,
-                                          color: Colors.grey),
+                                          color: AppColors.grey),
                                     ),
                                     const Padding(
                                         padding:
@@ -92,7 +92,7 @@ class ChatPanel extends ConsumerWidget {
                                       style: const TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 12.8,
-                                          color: Colors.grey),
+                                          color: AppColors.grey),
                                     )
                                   ],
                                 )

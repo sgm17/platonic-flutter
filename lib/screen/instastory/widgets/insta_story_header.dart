@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/providers/insta_story_provider/insta_story_provider.dart';
 import 'widgets.dart';
@@ -33,7 +34,7 @@ class InstaStoryHeader extends ConsumerWidget {
               height: 40,
               padding: const EdgeInsets.all(1),
               decoration: BoxDecoration(
-                  border: Border.all(width: 2, color: Colors.white),
+                  border: Border.all(width: 2, color: AppColors.white),
                   borderRadius: BorderRadius.circular(20)),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
@@ -51,7 +52,7 @@ class InstaStoryHeader extends ConsumerWidget {
                 children: [
                   Text("${actualStory.username} ${timestamp.toDate()}",
                       style: const TextStyle(
-                          color: Colors.white,
+                          color: AppColors.white,
                           fontSize: 10.4,
                           fontWeight: FontWeight.w500)),
                   const SizedBox(
@@ -59,7 +60,7 @@ class InstaStoryHeader extends ConsumerWidget {
                   ),
                   Text(actualStory.facultyName,
                       style: const TextStyle(
-                          color: Colors.white,
+                          color: AppColors.white,
                           fontSize: 10.4,
                           fontWeight: FontWeight.w500))
                 ],
@@ -80,12 +81,12 @@ class InstaStoryHeader extends ConsumerWidget {
                     ? const Icon(
                         Icons.pause,
                         size: 30,
-                        color: Colors.white,
+                        color: AppColors.white,
                       )
                     : const Icon(
                         Icons.play_arrow,
                         size: 30,
-                        color: Colors.white,
+                        color: AppColors.white,
                       ),
               ),
             ),
@@ -97,7 +98,7 @@ class InstaStoryHeader extends ConsumerWidget {
               width: 30,
               child: Icon(
                 Icons.report_gmailerrorred_outlined,
-                color: Colors.white,
+                color: AppColors.white,
                 size: 25,
               ),
             )

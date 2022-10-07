@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/home/widgets/meet_countdown.dart';
 import '../../../domain/meet_repository/src/models/models.dart';
@@ -19,7 +20,7 @@ class MeetCard extends ConsumerWidget {
     final endsAt = DateTime.fromMillisecondsSinceEpoch(meet.endsAt);
 
     return Container(
-      color: const Color.fromRGBO(239, 239, 239, 1),
+      color: AppColors.strongWhite,
       width: double.infinity,
       height: double.infinity,
       child: Column(
@@ -29,7 +30,7 @@ class MeetCard extends ConsumerWidget {
             'you are meeting ${meet.username}',
             style: const TextStyle(
                 fontSize: 3 * 16,
-                color: Color.fromRGBO(63, 66, 84, 1),
+                color: AppColors.navyBlueTitle,
                 fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
@@ -39,10 +40,10 @@ class MeetCard extends ConsumerWidget {
               alignment: Alignment.center,
               children: [
                 Container(
-                  decoration: const BoxDecoration(boxShadow: [
+                  decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, .4),
-                        offset: Offset(2, 2),
+                        color: AppColors.black.withOpacity(.4),
+                        offset: const Offset(2, 2),
                         blurRadius: 8,
                         spreadRadius: 1)
                   ]),
@@ -55,13 +56,7 @@ class MeetCard extends ConsumerWidget {
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(
                                 end: Alignment.topRight,
-                                colors: [
-                                  Color.fromRGBO(226, 47, 47, 1),
-                                  Color.fromRGBO(239, 0, 83, 1),
-                                  Color.fromRGBO(236, 0, 129, 1),
-                                  Color.fromRGBO(209, 0, 185, 1),
-                                  Color.fromRGBO(135, 0, 242, 1)
-                                ]),
+                                colors: AppColors.meetCardColors),
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(6),
                                 topRight: Radius.circular(6))),
@@ -71,7 +66,7 @@ class MeetCard extends ConsumerWidget {
                         height: 400 - 400 * .3,
                         width: double.infinity,
                         decoration: const BoxDecoration(
-                            color: Colors.white,
+                            color: AppColors.white,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(6),
                                 bottomRight: Radius.circular(6))),
@@ -90,25 +85,25 @@ class MeetCard extends ConsumerWidget {
                                 style: const TextStyle(
                                     fontSize: 14.4,
                                     fontWeight: FontWeight.bold,
-                                    color: Color.fromRGBO(63, 66, 84, 1))),
+                                    color: AppColors.navyBlueTitle)),
                             meet.universityFaculty != null
                                 ? Text(meet.universityFaculty!,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 13.6,
-                                        color: Color.fromRGBO(63, 66, 84, 1)))
+                                        color: AppColors.navyBlueTitle))
                                 : const SizedBox.shrink(),
                             Text("stated at: ${startedAt.toDate()}",
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
-                                    color: Color.fromRGBO(63, 66, 84, 1),
+                                    color: AppColors.navyBlueTitle,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 13.6)),
                             Text("ends at: ${endsAt.toDate()}",
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
-                                    color: Color.fromRGBO(63, 66, 84, 1),
+                                    color: AppColors.navyBlueTitle,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 13.6)),
                             MeetCountdown(
@@ -117,7 +112,7 @@ class MeetCard extends ConsumerWidget {
                               textAlign: TextAlign.left,
                             ),
                             Material(
-                              color: const Color.fromRGBO(63, 66, 84, 1),
+                              color: AppColors.navyBlueTitle,
                               borderRadius: BorderRadius.circular(6),
                               child: InkWell(
                                 onTap: () => print('object'),
@@ -132,7 +127,7 @@ class MeetCard extends ConsumerWidget {
                                     'direct message',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        fontSize: 12, color: Colors.white),
+                                        fontSize: 12, color: AppColors.white),
                                   ),
                                 ),
                               ),
@@ -151,7 +146,7 @@ class MeetCard extends ConsumerWidget {
                     width: 100,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        border: Border.all(width: 3, color: Colors.white),
+                        border: Border.all(width: 3, color: AppColors.white),
                         image: DecorationImage(
                             image: NetworkImage(meet.profileImage))),
                   ),

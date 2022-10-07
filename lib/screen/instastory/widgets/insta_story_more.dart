@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 
 class InstaStoryMore extends ConsumerWidget {
   const InstaStoryMore({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class InstaStoryMore extends ConsumerWidget {
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.white,
+                          color: AppColors.white,
                           width: 1,
                         ),
                         borderRadius: BorderRadius.circular(30)),
@@ -40,11 +41,11 @@ class InstaStoryMore extends ConsumerWidget {
                             hintStyle: TextStyle(
                                 fontSize: 12.8,
                                 fontWeight: FontWeight.w500,
-                                color: Colors.white)),
+                                color: AppColors.white)),
                         style: const TextStyle(
                             fontSize: 12.8,
                             fontWeight: FontWeight.w500,
-                            color: Colors.white)),
+                            color: AppColors.white)),
                   ),
                 ),
                 const SizedBox(
@@ -55,7 +56,7 @@ class InstaStoryMore extends ConsumerWidget {
                   child: const Icon(
                     Icons.send,
                     size: 30,
-                    color: Colors.white,
+                    color: AppColors.white,
                   ),
                 )
               ],

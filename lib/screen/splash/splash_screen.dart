@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/screen/splash/widgets/widgets.dart';
 
 class Splash extends StatelessWidget {
@@ -6,6 +7,6 @@ class Splash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(backgroundColor: Colors.white, body: Logo());
+    return const Scaffold(backgroundColor: AppColors.white, body: Logo());
   }
 }

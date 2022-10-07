@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:platonic/appcolors.dart';
 import '../../../domain/user_repository/src/models/models.dart';
 
 class ProfileItem extends ConsumerStatefulWidget {
@@ -54,7 +55,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
     final ImagePicker _picker = ImagePicker();
 
     return Container(
-        color: const Color.fromRGBO(226, 47, 47, 1),
+        color: AppColors.mainColor,
         width: double.infinity,
         height: double.infinity,
         child: Stack(
@@ -64,13 +65,13 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
               decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: const [
+                  color: AppColors.white,
+                  boxShadow: [
                     BoxShadow(
-                        offset: Offset(5, 7),
+                        offset: const Offset(5, 7),
                         blurRadius: 20,
                         spreadRadius: 2,
-                        color: Color.fromRGBO(0, 0, 0, .4))
+                        color: AppColors.black.withOpacity(.4))
                   ],
                   borderRadius: BorderRadius.circular(30)),
               child: Padding(
@@ -84,7 +85,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                     Text(
                       "@${widget.user.username}",
                       style: const TextStyle(
-                          color: Color.fromRGBO(63, 66, 84, 1),
+                          color: AppColors.navyBlueTitle,
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
@@ -107,7 +108,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                       maxLength: 40,
                       enabled: edit,
                       style: const TextStyle(
-                        color: Color.fromRGBO(63, 66, 84, 1),
+                        color: AppColors.navyBlueTitle,
                         fontWeight: FontWeight.w500,
                         fontSize: 14.4,
                       ),
@@ -123,7 +124,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                               : widget.user.universityFaculty ??
                                   'type your faculty name...',
                           hintStyle: const TextStyle(
-                            color: Color.fromRGBO(63, 66, 84, 1),
+                            color: AppColors.navyBlueTitle,
                             fontWeight: FontWeight.w500,
                             fontSize: 14.4,
                           ),
@@ -145,8 +146,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(6),
                               border: Border.all(
-                                  width: 1,
-                                  color: const Color.fromRGBO(63, 66, 84, 1)),
+                                  width: 1, color: AppColors.navyBlueTitle),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -155,13 +155,13 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                                 Text(profileStatPropery.statValueString,
                                     style: const TextStyle(
                                         fontSize: 12.8,
-                                        color: Colors.black,
+                                        color: AppColors.black,
                                         fontWeight: FontWeight.bold),
                                     textAlign: TextAlign.center),
                                 Text(profileStatPropery.statLabel,
                                     style: const TextStyle(
                                         fontSize: 12.8,
-                                        color: Color.fromRGBO(63, 66, 84, 1),
+                                        color: AppColors.navyBlueTitle,
                                         fontWeight: FontWeight.w400),
                                     textAlign: TextAlign.center)
                               ],
@@ -174,7 +174,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                       height: 24,
                     ),
                     Material(
-                      color: const Color.fromRGBO(63, 66, 84, 1),
+                      color: AppColors.navyBlueTitle,
                       borderRadius: BorderRadius.circular(6),
                       child: InkWell(
                         onTap: () => setState(() {
@@ -190,7 +190,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   fontSize: 12,
-                                  color: Colors.white,
+                                  color: AppColors.white,
                                   fontWeight: FontWeight.w500)),
                         ),
                       ),
@@ -238,13 +238,13 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                         height: 100,
                         decoration: BoxDecoration(
                             color: image == null
-                                ? const Color.fromRGBO(0, 0, 0, .4)
+                                ? AppColors.black.withOpacity(.4)
                                 : null,
                             borderRadius: BorderRadius.circular(30)),
                         child: image == null
                             ? const Icon(
                                 Icons.camera_alt,
-                                color: Colors.black,
+                                color: AppColors.black,
                               )
                             : null,
                       ),

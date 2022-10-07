@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 
 import '../../../providers/app_provider/app_provider.dart';
 
@@ -49,11 +50,11 @@ class BottomNavigation extends ConsumerWidget {
         return BottomNavigationBarItem(
             activeIcon: Icon(
               bottomNavigationItem["fill"],
-              color: Colors.black,
+              color: AppColors.black,
             ),
             icon: Icon(
               bottomNavigationItem["outline"],
-              color: Colors.black,
+              color: AppColors.black,
             ),
             label: '');
       }).toList(),

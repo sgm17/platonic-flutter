@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
+import 'package:platonic/providers/create_provider/create_provider.dart';
 import '../../providers/app_provider/app_provider.dart';
 import 'widgets/widgets.dart';
 import '../chat/chat.dart';
@@ -16,12 +18,15 @@ class AppScreen extends ConsumerStatefulWidget {
 }
 
 class _AppScreen extends ConsumerState<AppScreen> {
-  static const List<Widget> _widgetOptions = [
-    HomeScreen(),
-    CreateScreen(),
-    MeetScreen(),
-    ChatScreen(),
-    ProfileScreen()
+  static final List<Widget> _widgetOptions = [
+    const HomeScreen(),
+    ProviderScope(overrides: [
+      backgroundColorsProvider
+          .overrideWithValue(AppColors.createBackgroundColors)
+    ], child: const CreateScreen()),
+    const MeetScreen(),
+    const ChatScreen(),
+    const ProfileScreen()
   ];
 
   @override

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 
 import '../../../domain/story_repository/src/models/models.dart';
 
@@ -29,7 +30,7 @@ class ChatAction extends StatelessWidget {
                 style: const TextStyle(
                     fontWeight: FontWeight.w500,
                     fontSize: 10.4,
-                    color: Colors.white),
+                    color: AppColors.white),
               ),
             ),
             const SizedBox(height: 10),
@@ -46,7 +47,7 @@ class ChatAction extends StatelessWidget {
               width: 177,
               child: Divider(
                 thickness: 2,
-                color: Color.fromRGBO(221, 221, 221, 1),
+                color: AppColors.strongWhite,
               ),
             ),
             const SizedBox(
@@ -83,7 +84,7 @@ class ChatAction extends StatelessWidget {
                   width: 177,
                   child: Divider(
                     thickness: 2,
-                    color: Color.fromRGBO(221, 221, 221, 1),
+                    color: AppColors.strongWhite,
                   ),
                 ),
                 const SizedBox(

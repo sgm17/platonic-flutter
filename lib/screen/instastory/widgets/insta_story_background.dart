@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/providers/insta_story_provider/insta_story_provider.dart';
 import 'dart:async';
 
@@ -51,7 +52,7 @@ class _InstaStoryBackgroundState extends ConsumerState<InstaStoryBackground> {
       child: Container(
         width: double.infinity,
         height: double.infinity,
-        color: const Color.fromRGBO(0, 0, 0, .4),
+        color: AppColors.black.withOpacity(.4),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -33,7 +34,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
           'Platonic',
           textAlign: TextAlign.center,
           style: TextStyle(
-              color: Color.fromRGBO(226, 47, 47, 1),
+              color: AppColors.mainColor,
               fontFamily: 'Retrokia',
               fontSize: 48,
               fontWeight: FontWeight.w500),
@@ -42,12 +43,12 @@ class _LoginFormState extends ConsumerState<LoginForm> {
           'platonic allows you to create posts to search for your crush and find new people from your university',
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: 28, color: Colors.grey, fontWeight: FontWeight.w400),
+              fontSize: 28, color: AppColors.grey, fontWeight: FontWeight.w400),
         ),
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: Colors.white),
+              borderRadius: BorderRadius.circular(8), color: AppColors.white),
           child: Column(
             children: [
               Container(
@@ -55,9 +56,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 height: 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(
-                        width: 1,
-                        color: const Color.fromRGBO(239, 239, 239, 1))),
+                    border: Border.all(width: 1, color: AppColors.strongWhite)),
                 child: TextFormField(
                   textAlign: TextAlign.left,
                   textInputAction: TextInputAction.next,
@@ -74,7 +73,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                     hintStyle: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: Colors.grey),
+                        color: AppColors.grey),
                   ),
                 ),
               ),
@@ -86,9 +85,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 height: 40,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(
-                        width: 1,
-                        color: const Color.fromRGBO(239, 239, 239, 1))),
+                    border: Border.all(width: 1, color: AppColors.strongWhite)),
                 child: TextFormField(
                   obscureText: true,
                   textAlign: TextAlign.left,
@@ -106,7 +103,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                     hintStyle: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
-                        color: Colors.grey),
+                        color: AppColors.grey),
                   ),
                 ),
               ),
@@ -115,7 +112,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
               ),
               Material(
                 borderRadius: BorderRadius.circular(6),
-                color: const Color.fromRGBO(226, 47, 47, 1),
+                color: AppColors.mainColor,
                 child: InkWell(
                   onTap: () => print('object'),
                   child: Container(
@@ -124,7 +121,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                     child: const Text('log in',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.white,
+                            color: AppColors.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 16)),
                   ),
@@ -137,7 +134,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 'have you forgot your password?',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    color: Color.fromRGBO(226, 47, 47, 1),
+                    color: AppColors.mainColor,
                     fontWeight: FontWeight.w500,
                     fontSize: 12),
               ),
@@ -146,14 +143,14 @@ class _LoginFormState extends ConsumerState<LoginForm> {
               ),
               const Divider(
                 thickness: 1,
-                color: Color.fromRGBO(234, 234, 234, 1),
+                color: AppColors.strongWhite,
               ),
               const SizedBox(
                 height: 40,
               ),
               Material(
                 borderRadius: BorderRadius.circular(6),
-                color: const Color.fromRGBO(66, 183, 42, 1),
+                color: AppColors.userOnline,
                 child: InkWell(
                   onTap: () => print('object'),
                   child: Container(
@@ -163,7 +160,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                     child: const Text('create new account',
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Colors.white,
+                            color: AppColors.white,
                             fontWeight: FontWeight.w500,
                             fontSize: 16)),
                   ),

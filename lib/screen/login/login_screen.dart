@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 
 import 'widgets/widgets.dart';
 
@@ -10,7 +11,7 @@ class Login extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return const Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromRGBO(237, 240, 245, 1),
+      backgroundColor: AppColors.strongWhite,
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 112, horizontal: 16),
         child: LoginForm(),

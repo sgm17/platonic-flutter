@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/domain/university_repository/src/models/models.dart';
 import 'package:platonic/domain/user_repository/src/models/models.dart';
 
@@ -29,7 +30,7 @@ class _MeetDropdownState extends State<MeetDropdown> {
           Icons.expand_more,
         ),
         style: const TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+            fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.black),
         onChanged: (dynamic value) {
           setState(() {
             dropDrownValue = value;

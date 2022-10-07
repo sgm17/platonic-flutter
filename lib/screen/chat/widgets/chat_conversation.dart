@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/chat/widgets/chat_action.dart';
 import 'package:platonic/screen/chat/widgets/chat_bubble.dart';
@@ -22,10 +23,9 @@ class ChatConversation extends StatelessWidget {
               height: 52,
               width: double.infinity,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: AppColors.white,
                 border: Border(
-                    bottom: BorderSide(
-                        width: 1, color: Color.fromRGBO(221, 221, 221, 1))),
+                    bottom: BorderSide(width: 1, color: AppColors.strongWhite)),
               ),
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -33,7 +33,7 @@ class ChatConversation extends StatelessWidget {
                     InkWell(
                       onTap: () => chatConversationProperties.setActive(),
                       child: const Icon(Icons.arrow_back_ios,
-                          size: 20, color: Colors.black),
+                          size: 20, color: AppColors.black),
                     ),
                     Row(
                       children: [
@@ -70,8 +70,8 @@ class ChatConversation extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       color: chatConversationProperties
                                               .chat.toUser.online
-                                          ? const Color.fromRGBO(70, 233, 65, 1)
-                                          : Colors.red),
+                                          ? AppColors.userOnline
+                                          : AppColors.mainColor),
                                 ),
                               ),
                             ),
@@ -87,8 +87,8 @@ class ChatConversation extends StatelessWidget {
                                     fontWeight: FontWeight.w500,
                                     color: chatConversationProperties
                                             .chat.toUser.online
-                                        ? const Color.fromRGBO(70, 233, 65, 1)
-                                        : Colors.red))
+                                        ? AppColors.userOnline
+                                        : AppColors.mainColor))
                           ],
                         ),
                       ],
@@ -96,7 +96,7 @@ class ChatConversation extends StatelessWidget {
                     InkWell(
                       onTap: () => print('object'),
                       child: const Icon(Icons.block,
-                          size: 20, color: Colors.black),
+                          size: 20, color: AppColors.black),
                     ),
                   ])),
           Expanded(

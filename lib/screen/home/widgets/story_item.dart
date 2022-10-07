@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/screen/instastory/insta_story_screen.dart';
 import '../../../domain/university_repository/src/models/models.dart';
 
@@ -34,23 +35,18 @@ class StoryItem extends ConsumerWidget {
               height: 60,
               padding: const EdgeInsets.all(2),
               decoration: BoxDecoration(
-                  color: !storyItemProperties.content ? Colors.white : null,
+                  color: !storyItemProperties.content ? AppColors.white : null,
                   borderRadius: BorderRadius.circular(30.0),
                   gradient: storyItemProperties.content
-                      ? const LinearGradient(colors: [
-                          Color.fromRGBO(218, 51, 148, 1),
-                          Color.fromRGBO(224, 60, 103, 1),
-                          Color.fromRGBO(243, 117, 59, 1),
-                          Color.fromRGBO(249, 155, 74, 1)
-                        ])
+                      ? const LinearGradient(colors: AppColors.storyItemColors)
                       : null),
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30.0),
                     border: storyItemProperties.content
-                        ? Border.all(width: 2.0, color: Colors.white)
+                        ? Border.all(width: 2.0, color: AppColors.white)
                         : Border.all(width: 2.0, color: Colors.transparent),
-                    color: const Color.fromRGBO(252, 252, 252, 1),
+                    color: AppColors.strongWhite,
                     image: DecorationImage(
                         image: AssetImage(
                             "assets/images/uni/${storyItemProperties.university.image}"),

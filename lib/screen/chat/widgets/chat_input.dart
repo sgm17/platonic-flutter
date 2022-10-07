@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 
 class ChatInput extends StatefulWidget {
   const ChatInput({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _ChatInputState extends State<ChatInput> {
     return Container(
       alignment: Alignment.center,
       height: 60,
-      color: Colors.white,
+      color: AppColors.white,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
@@ -37,9 +38,7 @@ class _ChatInputState extends State<ChatInput> {
                 alignment: Alignment.center,
                 height: 40,
                 decoration: BoxDecoration(
-                    border: Border.all(
-                        width: 1,
-                        color: const Color.fromRGBO(221, 221, 221, 1)),
+                    border: Border.all(width: 1, color: AppColors.strongWhite),
                     borderRadius: BorderRadius.circular(8)),
                 child: TextField(
                   textAlign: TextAlign.left,

@@ -1,24 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final backgroundColorProvider = StateProvider<Color>((ref) {
-  return backgroundColors.first;
-});
-
-const List<Color> backgroundColors = [
-  Colors.blue,
-  Colors.red,
-  Colors.green,
-  Colors.orange,
-  Colors.pink,
-  Color.fromRGBO(128, 128, 0, 1),
-  Colors.teal,
-  Color.fromRGBO(238, 130, 238, 1),
-  Colors.purple,
-  Colors.grey,
-  Colors.brown,
-  Colors.cyan
-];
+import 'package:platonic/appcolors.dart';
+import '../../providers/create_provider/create_provider.dart';
 
 class CreateScreen extends ConsumerStatefulWidget {
   const CreateScreen({Key? key}) : super(key: key);
@@ -44,7 +27,8 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final backgroundColor = ref.watch(backgroundColorProvider);
+    final backgroundColors = ref.watch(backgroundColorsProvider);
+    final backgroundColor = ref.watch(backgroundProvider);
     final content = bodyController.text.isNotEmpty;
     final width = MediaQuery.of(context).size.width;
 
@@ -69,7 +53,7 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                 controller: bodyController,
                 maxLength: 175,
                 style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.white,
                     fontWeight: FontWeight.bold,
                     fontStyle: FontStyle.italic,
                     fontSize: 32),
@@ -78,7 +62,7 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                     border: InputBorder.none,
                     hintText: "tap to write",
                     hintStyle: TextStyle(
-                      color: Colors.white,
+                      color: AppColors.white,
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
                       fontSize: 32,
@@ -96,7 +80,7 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                       final int actualBackgorundIndex =
                           backgroundColors.indexOf(backgroundColor);
 
-                      ref.read(backgroundColorProvider.notifier).state =
+                      ref.read(backgroundProvider.notifier).state =
                           actualBackgorundIndex < backgroundColors.length - 1
                               ? backgroundColors[actualBackgorundIndex + 1]
                               : backgroundColors[0];
@@ -106,7 +90,7 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                       height: 40,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(width: 2, color: Colors.white),
+                          border: Border.all(width: 2, color: AppColors.white),
                           color: backgroundColor),
                     ),
                   ),
@@ -124,7 +108,8 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(40),
                             color: Colors.transparent,
-                            border: Border.all(width: 2, color: Colors.white)),
+                            border:
+                                Border.all(width: 2, color: AppColors.white)),
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -132,7 +117,7 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                         width: 70,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(35),
-                          color: Colors.white,
+                          color: AppColors.white,
                         ),
                         child: Text(
                           'Aa',
@@ -150,7 +135,7 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
               ? Positioned(
                   bottom: 16,
                   child: Material(
-                    color: const Color.fromRGBO(54, 46, 46, 1),
+                    color: AppColors.createStory,
                     borderRadius: BorderRadius.circular(20),
                     child: InkWell(
                       onTap: () => print('object'),
@@ -162,8 +147,8 @@ class _CreateScreenState extends ConsumerState<CreateScreen> {
                         width: width - 32,
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: const Text('publish crush',
-                            style:
-                                TextStyle(color: Colors.white, fontSize: 16)),
+                            style: TextStyle(
+                                color: AppColors.white, fontSize: 16)),
                       ),
                     ),
                   ))

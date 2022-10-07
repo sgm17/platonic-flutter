@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:platonic/appcolors.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
 
 class MeetCountdown extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MeetCountdownState extends State<MeetCountdown> {
         style: TextStyle(
             fontSize: widget.fontSize ?? 12.8,
             fontWeight: FontWeight.w500,
-            color: const Color.fromRGBO(155, 155, 155, 1)),
+            color: AppColors.meetCountdown),
         textAlign: widget.textAlign ?? TextAlign.center);
   }
 }
