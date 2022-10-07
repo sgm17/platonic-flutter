@@ -1,26 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/domain/meet_repository/src/models/models.dart';
-
-import '../../domain/meet_repository/meet_repository.dart';
-
-final meetNotifierProvider =
-    StateNotifierProvider<MeetNotifier, AsyncValue<MeetData>>((ref) {
-  return MeetNotifier(ref.read);
-});
-
-final meetViewmodelProvider = Provider<MeetViewmodel>((ref) {
-  return MeetViewmodel();
-});
-
-class MeetNotifier extends StateNotifier<AsyncValue<MeetData>> {
-  final Reader _read;
-
-  MeetNotifier(this._read) : super(const AsyncValue.loading()) {
-    _initializeMeetNotifier();
-  }
-
-  void _initializeMeetNotifier() async {
-    final meets = await (_read(meetViewmodelProvider).retrieveMeets(1));
-    state = AsyncValue.data(meets);
-  }
-}
+export 'meet_notifier_provider.dart';
+export 'meet_notifier.dart';
+export 'meet_viewmodel_provider.dart';

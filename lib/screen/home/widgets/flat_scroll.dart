@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/domain/api_data.dart';
 import 'package:platonic/domain/flat_repository/src/models/models.dart';
-import 'package:platonic/providers/flat_provider/flat_notifier.dart';
-
+import '../../../providers/flat_provider/flat_provider.dart';
 import 'widgets.dart';
 
 class FlatScroll extends ConsumerWidget {

@@ -1,15 +1,6 @@
-import 'package:platonic/domain/flat_repository/flat_repository.dart';
 import '../../domain/flat_repository/src/models/models.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-final flatNotifierProvider =
-    StateNotifierProvider<FlatNotifier, AsyncValue<List<Flat>>>((ref) {
-  return FlatNotifier(ref.read);
-});
-
-final flatViewmodelProvider = Provider<FlatViewmodel>((ref) {
-  return FlatViewmodel();
-});
+import 'flat_provider.dart';
 
 class FlatNotifier extends StateNotifier<AsyncValue<List<Flat>>> {
   final Reader _read;

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
-import 'package:platonic/screen/home/widgets/meet_item.dart';
 
 class MeetCountdown extends StatefulWidget {
   const MeetCountdown(

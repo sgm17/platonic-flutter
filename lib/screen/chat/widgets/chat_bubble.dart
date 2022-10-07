@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:platonic/extensions/timestamp_extension.dart';
-import 'package:platonic/screen/home/widgets/widgets.dart';
 import '../../../domain/chat_repository/src/models/models.dart';
 import '../../../domain/user_repository/src/models/models.dart';
 

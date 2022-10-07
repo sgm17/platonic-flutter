@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
-import 'package:platonic/providers/story_provider/story_notifier.dart';
 import 'package:platonic/providers/university_provider/university_provider.dart';
 import '../../../domain/story_repository/src/models/models.dart';
+import '../../../providers/shared_preferences_provider/shared_preferences_viewmodel_provider.dart';
+import '../../../providers/story_provider/story_provider.dart';
 import 'story_item.dart';
 
 class StoryScroll extends ConsumerWidget {
@@ -12,7 +12,7 @@ class StoryScroll extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storyProvider = ref.watch(storyNotifierProvider);
-    final universities = ref.watch(universitiesProvider);
+    final universities = ref.watch(universityProvider);
     final sharedPreferencesViewmodel =
         ref.watch(sharedPreferencesViewmodelProvider);
 

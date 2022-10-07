@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/insta_story_provider/insta_story_provider.dart';
-import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/providers/university_provider/university_provider.dart';
 import 'package:platonic/screen/home/widgets/story_scroll.dart';
 import 'package:story_view/story_view.dart';
 import '../../../domain/story_repository/src/models/models.dart';
 import '../../../domain/university_repository/src/models/models.dart';
 import 'dart:async';
+
+import '../../../providers/shared_preferences_provider/shared_preferences_viewmodel_provider.dart';
 
 enum StoryAction { play, pause }
 
@@ -42,7 +43,7 @@ class _InstaStoryItemState extends ConsumerState<InstaStoryItem> {
   Widget build(BuildContext context) {
     final sharedPreferencesViewmodel =
         ref.watch(sharedPreferencesViewmodelProvider);
-    final universities = ref.watch(universitiesProvider);
+    final universities = ref.watch(universityProvider);
     final homeStory = ref.watch(homeStoryProvider);
     final storyController = ref.watch(storyControllerProvider);
 

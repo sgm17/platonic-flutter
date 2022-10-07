@@ -9,7 +9,7 @@ class MeetPreferences extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final universities = ref.watch(universitiesProvider);
+    final universities = ref.watch(universityProvider);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),

@@ -3,7 +3,6 @@ import 'package:platonic/extensions/timestamp_extension.dart';
 import 'package:platonic/screen/chat/widgets/chat_action.dart';
 import 'package:platonic/screen/chat/widgets/chat_bubble.dart';
 import 'package:platonic/screen/chat/widgets/chat_input.dart';
-import 'package:platonic/screen/home/widgets/widgets.dart';
 import '../../../domain/chat_repository/src/models/models.dart';
 
 class ChatConversation extends StatelessWidget {

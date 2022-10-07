@@ -1,15 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/chat_repository/chat_repository.dart';
 import '../../domain/chat_repository/src/models/models.dart';
-
-final chatNotifierProvider =
-    StateNotifierProvider<ChatNotifier, AsyncValue<List<Chat>>>((ref) {
-  return ChatNotifier(ref.read);
-});
-
-final chatViewmodelProvider = Provider<ChatViewmodel>((ref) {
-  return ChatViewmodel();
-});
+import 'chat_provider.dart';
 
 class ChatNotifier extends StateNotifier<AsyncValue<List<Chat>>> {
   final Reader _read;

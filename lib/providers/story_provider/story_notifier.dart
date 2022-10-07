@@ -1,15 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domain/story_repository/src/models/models.dart';
-import 'package:platonic/domain/story_repository/story_repository.dart';
-
-final storyNotifierProvider =
-    StateNotifierProvider<StoryNotifier, AsyncValue<HomeStory>>((ref) {
-  return StoryNotifier(ref.read);
-});
-
-final storyViewModelProvider = Provider<StoryViewmodel>((ref) {
-  return StoryViewmodel();
-});
+import 'story_provider.dart';
 
 class StoryNotifier extends StateNotifier<AsyncValue<HomeStory>> {
   final Reader _read;
