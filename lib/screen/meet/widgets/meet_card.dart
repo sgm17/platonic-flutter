@@ -20,7 +20,7 @@ class MeetCard extends ConsumerWidget {
     final endsAt = DateTime.fromMillisecondsSinceEpoch(meet.endsAt);
 
     return Container(
-      color: AppColors.strongWhite,
+      color: AppColors.white,
       width: double.infinity,
       height: double.infinity,
       child: Column(

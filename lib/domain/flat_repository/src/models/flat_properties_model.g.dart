@@ -90,7 +90,7 @@ const _$HeatingTypeEnumMap = {
 };
 
 const _$FloorLocationEnumMap = {
-  FloorLocation.ground: 'ground',
+  FloorLocation.low: 'low',
   FloorLocation.attic: 'attic',
   FloorLocation.floor: 'floor',
 };

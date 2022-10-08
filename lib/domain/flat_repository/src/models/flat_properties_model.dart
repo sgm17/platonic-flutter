@@ -41,7 +41,7 @@ enum HeatingType { naturalGas, gasoil, none }
 
 enum FlatOrientation { north, est, west, south }
 
-enum FloorLocation { ground, attic, floor }
+enum FloorLocation { low, attic, floor }
 
 enum EnergyCertificate { a, b, c, d, e, f, g, inProcess, notIndicated }
 

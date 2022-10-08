@@ -4,12 +4,15 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color grey = Colors.grey;
   static const Color white = Colors.white;
+  static const Color transparent = Colors.transparent;
   static const Color mainColor = Color.fromRGBO(226, 47, 47, 1);
   static const Color navyBlueTitle = Color.fromRGBO(63, 66, 84, 1);
   static const Color strongWhite = Color.fromRGBO(221, 221, 221, 1);
+  static const Color softWhite = Color.fromRGBO(242, 242, 242, 1);
   static const Color userOnline = Color.fromRGBO(70, 233, 65, 1);
   static const Color createStory = Color.fromRGBO(54, 46, 46, 1);
   static const Color meetCountdown = Color.fromRGBO(155, 155, 155, 1);
+  static const Color loadingImage = Color.fromRGBO(200, 200, 200, 1);
 
   static const List<Color> meetCardDisabledColors = [
     Color.fromRGBO(73, 64, 64, 1),

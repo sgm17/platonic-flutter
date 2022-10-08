@@ -46,7 +46,7 @@ class StoryItem extends ConsumerWidget {
                     border: storyItemProperties.content
                         ? Border.all(width: 2.0, color: AppColors.white)
                         : Border.all(width: 2.0, color: Colors.transparent),
-                    color: AppColors.strongWhite,
+                    color: AppColors.white,
                     image: DecorationImage(
                         image: AssetImage(
                             "assets/images/uni/${storyItemProperties.university.image}"),

@@ -12,7 +12,9 @@ class ChatScreen extends ConsumerWidget {
     final chats = ref.watch(chatNotifierProvider);
 
     return chats.when(data: (List<Chat> chats) {
-      return ChatItem(chats: chats);
+      return ProviderScope(
+          overrides: [chatListProvider.overrideWithValue(chats)],
+          child: const ChatItem());
     }, error: (error, stackTrace) {
       return Text(error.toString());
     }, loading: () {

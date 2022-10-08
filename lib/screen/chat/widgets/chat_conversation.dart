@@ -145,7 +145,7 @@ class ChatConversation extends StatelessWidget {
                         height: 16,
                       ),
                       ChatAction(
-                          action: chatConversationProperties.chat.action),
+                          action: chatConversationProperties.chat.action.first),
                       ChatBubble(chatBubbleProperties: chatBubbleProperties)
                     ],
                   );

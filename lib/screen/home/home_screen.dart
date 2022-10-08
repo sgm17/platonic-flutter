@@ -22,7 +22,8 @@ class HomeScreen extends ConsumerWidget {
           ),
           Expanded(
             child: Container(
-              color: AppColors.strongWhite,
+              color: AppColors.softWhite,
+              child: const FlatScroll(),
             ),
           )
         ]);
