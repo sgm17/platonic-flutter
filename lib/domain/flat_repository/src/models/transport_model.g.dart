@@ -7,26 +7,31 @@ part of 'transport_model.dart';
 // **************************************************************************
 
 _$_Transport _$$_TransportFromJson(Map<String, dynamic> json) => _$_Transport(
-      universityId: json['universityId'] as int,
       name: json['name'] as String,
+      directionName: json['directionName'] as String?,
+      destinationName: json['destinationName'] as String?,
+      durationMinutes: json['durationMinutes'] as int,
+      stops: json['stops'] as int?,
       acronym: json['acronym'] as String?,
       vehicle: $enumDecode(_$VehicleEnumMap, json['vehicle']),
-      transportCoordinates: (json['transportCoordinates'] as List<dynamic>)
-          .map((e) => (e as num).toDouble())
+      points: (json['points'] as List<dynamic>)
+          .map((e) =>
+              (e as List<dynamic>).map((e) => (e as num).toDouble()).toList())
           .toList(),
-      frequencyTransportMinutes: json['frequencyTransportMinutes'] as int?,
       color: _$JsonConverterFromJson<int, Color>(
           json['color'], const ColorSerialiser().fromJson),
     );
 
 Map<String, dynamic> _$$_TransportToJson(_$_Transport instance) =>
     <String, dynamic>{
-      'universityId': instance.universityId,
       'name': instance.name,
+      'directionName': instance.directionName,
+      'destinationName': instance.destinationName,
+      'durationMinutes': instance.durationMinutes,
+      'stops': instance.stops,
       'acronym': instance.acronym,
       'vehicle': _$VehicleEnumMap[instance.vehicle]!,
-      'transportCoordinates': instance.transportCoordinates,
-      'frequencyTransportMinutes': instance.frequencyTransportMinutes,
+      'points': instance.points,
       'color': _$JsonConverterToJson<int, Color>(
           instance.color, const ColorSerialiser().toJson),
     };

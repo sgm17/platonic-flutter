@@ -6,12 +6,14 @@ part 'transport_model.g.dart';
 @freezed
 abstract class Transport with _$Transport {
   const factory Transport({
-    required int universityId,
     required String name,
+    String? directionName,
+    String? destinationName,
+    required int durationMinutes,
+    int? stops,
     String? acronym,
     required Vehicle vehicle,
-    required List<double> transportCoordinates,
-    int? frequencyTransportMinutes,
+    required List<List<double>> points,
     @ColorSerialiser() Color? color,
   }) = _Transport;
 

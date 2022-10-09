@@ -10,6 +10,7 @@ _$_RealEstateLessor _$$_RealEstateLessorFromJson(Map<String, dynamic> json) =>
     _$_RealEstateLessor(
       id: json['id'] as int,
       telephone: json['telephone'] as String,
+      name: json['name'] as String,
       realEstateName: json['realEstateName'] as String,
       flatReference: json['flatReference'] as int,
       realEstateWebsite: json['realEstateWebsite'] as String,
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_RealEstateLessorToJson(_$_RealEstateLessor instance) =>
     <String, dynamic>{
       'id': instance.id,
       'telephone': instance.telephone,
+      'name': instance.name,
       'realEstateName': instance.realEstateName,
       'flatReference': instance.flatReference,
       'realEstateWebsite': instance.realEstateWebsite,

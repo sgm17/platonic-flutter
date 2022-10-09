@@ -22,6 +22,7 @@ RealEstateLessor _$RealEstateLessorFromJson(Map<String, dynamic> json) {
 mixin _$RealEstateLessor {
   int get id => throw _privateConstructorUsedError;
   String get telephone => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get realEstateName => throw _privateConstructorUsedError;
   int get flatReference => throw _privateConstructorUsedError;
   String get realEstateWebsite => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $RealEstateLessorCopyWith<$Res> {
   $Res call(
       {int id,
       String telephone,
+      String name,
       String realEstateName,
       int flatReference,
       String realEstateWebsite,
@@ -62,6 +64,7 @@ class _$RealEstateLessorCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? telephone = freezed,
+    Object? name = freezed,
     Object? realEstateName = freezed,
     Object? flatReference = freezed,
     Object? realEstateWebsite = freezed,
@@ -76,6 +79,10 @@ class _$RealEstateLessorCopyWithImpl<$Res>
       telephone: telephone == freezed
           ? _value.telephone
           : telephone // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       realEstateName: realEstateName == freezed
           ? _value.realEstateName
@@ -111,6 +118,7 @@ abstract class _$$_RealEstateLessorCopyWith<$Res>
   $Res call(
       {int id,
       String telephone,
+      String name,
       String realEstateName,
       int flatReference,
       String realEstateWebsite,
@@ -133,6 +141,7 @@ class __$$_RealEstateLessorCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? telephone = freezed,
+    Object? name = freezed,
     Object? realEstateName = freezed,
     Object? flatReference = freezed,
     Object? realEstateWebsite = freezed,
@@ -147,6 +156,10 @@ class __$$_RealEstateLessorCopyWithImpl<$Res>
       telephone: telephone == freezed
           ? _value.telephone
           : telephone // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
               as String,
       realEstateName: realEstateName == freezed
           ? _value.realEstateName
@@ -178,6 +191,7 @@ class _$_RealEstateLessor implements _RealEstateLessor {
   const _$_RealEstateLessor(
       {required this.id,
       required this.telephone,
+      required this.name,
       required this.realEstateName,
       required this.flatReference,
       required this.realEstateWebsite,
@@ -192,6 +206,8 @@ class _$_RealEstateLessor implements _RealEstateLessor {
   @override
   final String telephone;
   @override
+  final String name;
+  @override
   final String realEstateName;
   @override
   final int flatReference;
@@ -204,7 +220,7 @@ class _$_RealEstateLessor implements _RealEstateLessor {
 
   @override
   String toString() {
-    return 'RealEstateLessor(id: $id, telephone: $telephone, realEstateName: $realEstateName, flatReference: $flatReference, realEstateWebsite: $realEstateWebsite, realEstateCity: $realEstateCity, realEstateLogo: $realEstateLogo)';
+    return 'RealEstateLessor(id: $id, telephone: $telephone, name: $name, realEstateName: $realEstateName, flatReference: $flatReference, realEstateWebsite: $realEstateWebsite, realEstateCity: $realEstateCity, realEstateLogo: $realEstateLogo)';
   }
 
   @override
@@ -214,6 +230,7 @@ class _$_RealEstateLessor implements _RealEstateLessor {
             other is _$_RealEstateLessor &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.telephone, telephone) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.realEstateName, realEstateName) &&
             const DeepCollectionEquality()
@@ -232,6 +249,7 @@ class _$_RealEstateLessor implements _RealEstateLessor {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(telephone),
+      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(realEstateName),
       const DeepCollectionEquality().hash(flatReference),
       const DeepCollectionEquality().hash(realEstateWebsite),
@@ -255,6 +273,7 @@ abstract class _RealEstateLessor implements RealEstateLessor {
   const factory _RealEstateLessor(
       {required final int id,
       required final String telephone,
+      required final String name,
       required final String realEstateName,
       required final int flatReference,
       required final String realEstateWebsite,
@@ -268,6 +287,8 @@ abstract class _RealEstateLessor implements RealEstateLessor {
   int get id;
   @override
   String get telephone;
+  @override
+  String get name;
   @override
   String get realEstateName;
   @override

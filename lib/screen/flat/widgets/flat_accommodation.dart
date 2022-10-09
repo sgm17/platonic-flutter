@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import '../../../domain/flat_repository/src/models/models.dart';
-import '../../../providers/flat_provider/flat_item_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/appcolors.dart';
 
 class FlatAccommodation extends ConsumerWidget {
-  const FlatAccommodation({Key? key, this.showAllProperties = false})
+  const FlatAccommodation(
+      {Key? key, this.showAllProperties = false, required this.flat})
       : super(key: key);
 
   final bool showAllProperties;
+  final Flat flat;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flat = ref.watch(flatItemProvider);
     final props = flat.flatProperties;
 
     if (showAllProperties == false) {
@@ -59,29 +59,31 @@ class FlatAccommodation extends ConsumerWidget {
       );
     }
 
-    return Column(children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const Text(
         'what is in this accommodation?',
         style: TextStyle(fontSize: 20, color: AppColors.navyBlueTitle),
       ),
       const SizedBox(
-        height: 6,
+        height: 16,
       ),
       const Text(
         'flat properties',
         style: TextStyle(fontSize: 16, color: AppColors.navyBlueTitle),
       ),
       const SizedBox(
-        height: 6,
+        height: 16,
       ),
       _buildRooms(props.rooms),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 3.0),
-        child: Divider(
-          color: AppColors.strongWhite,
-          thickness: 1,
-        ),
-      ),
+      props.rooms != null
+          ? const Padding(
+              padding: EdgeInsets.symmetric(vertical: 3.0),
+              child: Divider(
+                color: AppColors.strongWhite,
+                thickness: 1,
+              ),
+            )
+          : const SizedBox.shrink(),
       _buildBathrooms(props.bathrooms),
       const Padding(
         padding: EdgeInsets.symmetric(vertical: 3.0),
@@ -162,12 +164,15 @@ class FlatAccommodation extends ConsumerWidget {
           thickness: 1,
         ),
       ),
+      const SizedBox(
+        height: 16,
+      ),
       const Text(
         'flat services',
         style: TextStyle(fontSize: 16, color: AppColors.navyBlueTitle),
       ),
       const SizedBox(
-        height: 6,
+        height: 16,
       ),
       _buildElevator(props.elevator),
       const Padding(
@@ -209,12 +214,15 @@ class FlatAccommodation extends ConsumerWidget {
           thickness: 1,
         ),
       ),
+      const SizedBox(
+        height: 16,
+      ),
       const Text(
         'building properties',
         style: TextStyle(fontSize: 16, color: AppColors.navyBlueTitle),
       ),
       const SizedBox(
-        height: 6,
+        height: 16,
       ),
       _buildBuiltMeters(props.builtMeters),
       const Padding(
@@ -225,29 +233,25 @@ class FlatAccommodation extends ConsumerWidget {
         ),
       ),
       _buildUtilMeters(props.utilMeters),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 3.0),
-        child: Divider(
-          color: AppColors.strongWhite,
-          thickness: 1,
-        ),
-      ),
+      props.utilMeters != null
+          ? const Padding(
+              padding: EdgeInsets.symmetric(vertical: 3.0),
+              child: Divider(
+                color: AppColors.strongWhite,
+                thickness: 1,
+              ),
+            )
+          : const SizedBox.shrink(),
       _buildBuiltYear(props.builtYear),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 3.0),
-        child: Divider(
-          color: AppColors.strongWhite,
-          thickness: 1,
-        ),
-      ),
-      _buildFloor(props.floorLocation, props.floor),
-      const Padding(
-        padding: EdgeInsets.symmetric(vertical: 3.0),
-        child: Divider(
-          color: AppColors.strongWhite,
-          thickness: 1,
-        ),
-      ),
+      props.builtYear != null
+          ? const Padding(
+              padding: EdgeInsets.symmetric(vertical: 3.0),
+              child: Divider(
+                color: AppColors.strongWhite,
+                thickness: 1,
+              ),
+            )
+          : const SizedBox.shrink(),
       _buildFloor(props.floorLocation, props.floor),
       const Padding(
         padding: EdgeInsets.symmetric(vertical: 3.0),
@@ -625,7 +629,7 @@ class FlatAccommodation extends ConsumerWidget {
         const SizedBox(
           width: 6,
         ),
-        Text("$disposition disposition",
+        Text("${disposition.name} disposition",
             style:
                 const TextStyle(fontSize: 14, color: AppColors.navyBlueTitle))
       ],
@@ -645,8 +649,10 @@ class FlatAccommodation extends ConsumerWidget {
           width: 6,
         ),
         Text(
-            flatOrientation.map((e) => e.name).toList().join(', ') +
-                ' orientation',
+            flatOrientation.isEmpty
+                ? 'unspecified orientation'
+                : flatOrientation.map((e) => e.name).toList().join(', ') +
+                    ' orientation',
             style:
                 const TextStyle(fontSize: 14, color: AppColors.navyBlueTitle))
       ],
@@ -754,27 +760,19 @@ class FlatAccommodation extends ConsumerWidget {
 Widget _buildRooms(int? rooms) {
   if (rooms == null) return const SizedBox.shrink();
 
-  return Column(
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      const SizedBox(
-        height: 6,
+      const Icon(
+        Icons.bed_outlined,
+        size: 20,
+        color: AppColors.navyBlueTitle,
       ),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Icon(
-            Icons.bed_outlined,
-            size: 20,
-            color: AppColors.navyBlueTitle,
-          ),
-          const SizedBox(
-            width: 6,
-          ),
-          Text('$rooms rooms',
-              style:
-                  const TextStyle(fontSize: 14, color: AppColors.navyBlueTitle))
-        ],
-      )
+      const SizedBox(
+        width: 6,
+      ),
+      Text('$rooms rooms',
+          style: const TextStyle(fontSize: 14, color: AppColors.navyBlueTitle))
     ],
   );
 }
@@ -782,27 +780,19 @@ Widget _buildRooms(int? rooms) {
 Widget _buildUtilMeters(int? utilMeters) {
   if (utilMeters == null) return const SizedBox.shrink();
 
-  return Column(
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: [
+      const Icon(
+        Icons.construction_outlined,
+        color: AppColors.navyBlueTitle,
+        size: 20,
+      ),
       const SizedBox(
-        height: 6,
+        width: 6,
       ),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Icon(
-            Icons.construction_outlined,
-            color: AppColors.navyBlueTitle,
-            size: 20,
-          ),
-          const SizedBox(
-            width: 6,
-          ),
-          Text('$utilMeters useful m2',
-              style: const TextStyle(
-                  fontSize: 14, color: AppColors.navyBlueTitle)),
-        ],
-      ),
+      Text('$utilMeters useful m2',
+          style: const TextStyle(fontSize: 14, color: AppColors.navyBlueTitle)),
     ],
   );
 }

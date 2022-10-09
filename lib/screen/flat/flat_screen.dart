@@ -204,13 +204,17 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const FlatAccommodation(),
+                    FlatAccommodation(
+                      flat: flat,
+                    ),
                     const SizedBox(
                       height: 16,
                     ),
                     InkWell(
                       onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const FlatPropertiesScreen())),
+                          builder: (context) => FlatPropertiesScreen(
+                                flat: flat,
+                              ))),
                       child: Container(
                         alignment: Alignment.center,
                         width: double.infinity,
@@ -260,9 +264,7 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    ProviderScope(
-                        overrides: [flatItemProvider.overrideWithValue(flat)],
-                        child: const FlatReviews()),
+                    const FlatReviews(),
                     const SizedBox(
                       height: 16,
                     ),
@@ -273,13 +275,9 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const FlatLesser(),
+                    const FlatLessor(),
                     const SizedBox(
                       height: 16,
-                    ),
-                    const Divider(
-                      thickness: 1,
-                      color: AppColors.strongWhite,
                     ),
                   ],
                 ),

@@ -24,7 +24,7 @@ abstract class Flat with _$Flat {
       int? maxTenants,
       required List<User> tenants,
       required List<University> nearUniversities,
-      required List<Transport> nearTransports,
+      required List<UniversityTransport> universityTransports,
       required List<Review> reviews}) = _Flat;
 
   factory Flat.fromJson(Map<String, Object?> json) => _$FlatFromJson(json);

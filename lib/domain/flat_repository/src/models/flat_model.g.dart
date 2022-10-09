@@ -33,8 +33,8 @@ _$_Flat _$$_FlatFromJson(Map<String, dynamic> json) => _$_Flat(
       nearUniversities: (json['nearUniversities'] as List<dynamic>)
           .map((e) => University.fromJson(e as Map<String, dynamic>))
           .toList(),
-      nearTransports: (json['nearTransports'] as List<dynamic>)
-          .map((e) => Transport.fromJson(e as Map<String, dynamic>))
+      universityTransports: (json['universityTransports'] as List<dynamic>)
+          .map((e) => UniversityTransport.fromJson(e as Map<String, dynamic>))
           .toList(),
       reviews: (json['reviews'] as List<dynamic>)
           .map((e) => Review.fromJson(e as Map<String, dynamic>))
@@ -58,6 +58,6 @@ Map<String, dynamic> _$$_FlatToJson(_$_Flat instance) => <String, dynamic>{
       'maxTenants': instance.maxTenants,
       'tenants': instance.tenants,
       'nearUniversities': instance.nearUniversities,
-      'nearTransports': instance.nearTransports,
+      'universityTransports': instance.universityTransports,
       'reviews': instance.reviews,
     };

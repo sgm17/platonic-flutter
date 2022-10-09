@@ -5,3 +5,4 @@ export 'particular_lessor_model.dart';
 export 'real_estate_lessor_model.dart';
 export 'flat_properties_model.dart';
 export 'flat_image_model.dart';
+export 'university_transport_model.dart';

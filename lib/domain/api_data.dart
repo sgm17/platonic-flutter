@@ -25,7 +25,7 @@ final List<Meet> meets = [
   Meet(
       id: 1,
       userId: 2,
-      username: 'laura',
+      username: 'Laura',
       profileImage: 'https://picsum.photos/100/100',
       messagesCount: 13,
       endsAt: DateTime.now().millisecondsSinceEpoch + 172800000,

@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domain/flat_repository/src/models/flat_model.dart';
 import 'package:platonic/screen/flat/widgets/flat_accommodation.dart';
 
 class FlatPropertiesScreen extends ConsumerWidget {
-  const FlatPropertiesScreen({Key? key}) : super(key: key);
+  const FlatPropertiesScreen({Key? key, required this.flat}) : super(key: key);
+
+  final Flat flat;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: const [
-            Padding(
-              padding: EdgeInsets.fromLTRB(16, 20, 0, 0),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.fromLTRB(16, 16, 0, 16),
               child: Icon(Icons.keyboard_arrow_left_outlined, size: 30),
             ),
-            SingleChildScrollView(
-              child: FlatAccommodation(
-                showAllProperties: true,
+            Expanded(
+              child: SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                child: FlatAccommodation(
+                  showAllProperties: true,
+                  flat: flat,
+                ),
               ),
             ),
           ],

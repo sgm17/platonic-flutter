@@ -1,4 +1,4 @@
-import 'package:platonic/domain/flats_data.dart';
+import 'package:platonic/domain/flat_data.dart';
 import 'package:platonic/domain/flat_repository/flat_repository.dart';
 import 'package:platonic/domain/flat_repository/src/models/flat_model.dart';
 

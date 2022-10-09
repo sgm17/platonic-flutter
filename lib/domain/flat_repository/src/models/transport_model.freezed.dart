@@ -20,12 +20,14 @@ Transport _$TransportFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Transport {
-  int get universityId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get directionName => throw _privateConstructorUsedError;
+  String? get destinationName => throw _privateConstructorUsedError;
+  int get durationMinutes => throw _privateConstructorUsedError;
+  int? get stops => throw _privateConstructorUsedError;
   String? get acronym => throw _privateConstructorUsedError;
   Vehicle get vehicle => throw _privateConstructorUsedError;
-  List<double> get transportCoordinates => throw _privateConstructorUsedError;
-  int? get frequencyTransportMinutes => throw _privateConstructorUsedError;
+  List<List<double>> get points => throw _privateConstructorUsedError;
   @ColorSerialiser()
   Color? get color => throw _privateConstructorUsedError;
 
@@ -40,12 +42,14 @@ abstract class $TransportCopyWith<$Res> {
   factory $TransportCopyWith(Transport value, $Res Function(Transport) then) =
       _$TransportCopyWithImpl<$Res>;
   $Res call(
-      {int universityId,
-      String name,
+      {String name,
+      String? directionName,
+      String? destinationName,
+      int durationMinutes,
+      int? stops,
       String? acronym,
       Vehicle vehicle,
-      List<double> transportCoordinates,
-      int? frequencyTransportMinutes,
+      List<List<double>> points,
       @ColorSerialiser() Color? color});
 }
 
@@ -59,23 +63,37 @@ class _$TransportCopyWithImpl<$Res> implements $TransportCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? universityId = freezed,
     Object? name = freezed,
+    Object? directionName = freezed,
+    Object? destinationName = freezed,
+    Object? durationMinutes = freezed,
+    Object? stops = freezed,
     Object? acronym = freezed,
     Object? vehicle = freezed,
-    Object? transportCoordinates = freezed,
-    Object? frequencyTransportMinutes = freezed,
+    Object? points = freezed,
     Object? color = freezed,
   }) {
     return _then(_value.copyWith(
-      universityId: universityId == freezed
-          ? _value.universityId
-          : universityId // ignore: cast_nullable_to_non_nullable
-              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      directionName: directionName == freezed
+          ? _value.directionName
+          : directionName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      destinationName: destinationName == freezed
+          ? _value.destinationName
+          : destinationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      durationMinutes: durationMinutes == freezed
+          ? _value.durationMinutes
+          : durationMinutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      stops: stops == freezed
+          ? _value.stops
+          : stops // ignore: cast_nullable_to_non_nullable
+              as int?,
       acronym: acronym == freezed
           ? _value.acronym
           : acronym // ignore: cast_nullable_to_non_nullable
@@ -84,14 +102,10 @@ class _$TransportCopyWithImpl<$Res> implements $TransportCopyWith<$Res> {
           ? _value.vehicle
           : vehicle // ignore: cast_nullable_to_non_nullable
               as Vehicle,
-      transportCoordinates: transportCoordinates == freezed
-          ? _value.transportCoordinates
-          : transportCoordinates // ignore: cast_nullable_to_non_nullable
-              as List<double>,
-      frequencyTransportMinutes: frequencyTransportMinutes == freezed
-          ? _value.frequencyTransportMinutes
-          : frequencyTransportMinutes // ignore: cast_nullable_to_non_nullable
-              as int?,
+      points: points == freezed
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as List<List<double>>,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -107,12 +121,14 @@ abstract class _$$_TransportCopyWith<$Res> implements $TransportCopyWith<$Res> {
       __$$_TransportCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int universityId,
-      String name,
+      {String name,
+      String? directionName,
+      String? destinationName,
+      int durationMinutes,
+      int? stops,
       String? acronym,
       Vehicle vehicle,
-      List<double> transportCoordinates,
-      int? frequencyTransportMinutes,
+      List<List<double>> points,
       @ColorSerialiser() Color? color});
 }
 
@@ -128,23 +144,37 @@ class __$$_TransportCopyWithImpl<$Res> extends _$TransportCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? universityId = freezed,
     Object? name = freezed,
+    Object? directionName = freezed,
+    Object? destinationName = freezed,
+    Object? durationMinutes = freezed,
+    Object? stops = freezed,
     Object? acronym = freezed,
     Object? vehicle = freezed,
-    Object? transportCoordinates = freezed,
-    Object? frequencyTransportMinutes = freezed,
+    Object? points = freezed,
     Object? color = freezed,
   }) {
     return _then(_$_Transport(
-      universityId: universityId == freezed
-          ? _value.universityId
-          : universityId // ignore: cast_nullable_to_non_nullable
-              as int,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      directionName: directionName == freezed
+          ? _value.directionName
+          : directionName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      destinationName: destinationName == freezed
+          ? _value.destinationName
+          : destinationName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      durationMinutes: durationMinutes == freezed
+          ? _value.durationMinutes
+          : durationMinutes // ignore: cast_nullable_to_non_nullable
+              as int,
+      stops: stops == freezed
+          ? _value.stops
+          : stops // ignore: cast_nullable_to_non_nullable
+              as int?,
       acronym: acronym == freezed
           ? _value.acronym
           : acronym // ignore: cast_nullable_to_non_nullable
@@ -153,14 +183,10 @@ class __$$_TransportCopyWithImpl<$Res> extends _$TransportCopyWithImpl<$Res>
           ? _value.vehicle
           : vehicle // ignore: cast_nullable_to_non_nullable
               as Vehicle,
-      transportCoordinates: transportCoordinates == freezed
-          ? _value._transportCoordinates
-          : transportCoordinates // ignore: cast_nullable_to_non_nullable
-              as List<double>,
-      frequencyTransportMinutes: frequencyTransportMinutes == freezed
-          ? _value.frequencyTransportMinutes
-          : frequencyTransportMinutes // ignore: cast_nullable_to_non_nullable
-              as int?,
+      points: points == freezed
+          ? _value._points
+          : points // ignore: cast_nullable_to_non_nullable
+              as List<List<double>>,
       color: color == freezed
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
@@ -173,42 +199,48 @@ class __$$_TransportCopyWithImpl<$Res> extends _$TransportCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Transport implements _Transport {
   const _$_Transport(
-      {required this.universityId,
-      required this.name,
+      {required this.name,
+      this.directionName,
+      this.destinationName,
+      required this.durationMinutes,
+      this.stops,
       this.acronym,
       required this.vehicle,
-      required final List<double> transportCoordinates,
-      this.frequencyTransportMinutes,
+      required final List<List<double>> points,
       @ColorSerialiser() this.color})
-      : _transportCoordinates = transportCoordinates;
+      : _points = points;
 
   factory _$_Transport.fromJson(Map<String, dynamic> json) =>
       _$$_TransportFromJson(json);
 
   @override
-  final int universityId;
-  @override
   final String name;
+  @override
+  final String? directionName;
+  @override
+  final String? destinationName;
+  @override
+  final int durationMinutes;
+  @override
+  final int? stops;
   @override
   final String? acronym;
   @override
   final Vehicle vehicle;
-  final List<double> _transportCoordinates;
+  final List<List<double>> _points;
   @override
-  List<double> get transportCoordinates {
+  List<List<double>> get points {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_transportCoordinates);
+    return EqualUnmodifiableListView(_points);
   }
 
-  @override
-  final int? frequencyTransportMinutes;
   @override
   @ColorSerialiser()
   final Color? color;
 
   @override
   String toString() {
-    return 'Transport(universityId: $universityId, name: $name, acronym: $acronym, vehicle: $vehicle, transportCoordinates: $transportCoordinates, frequencyTransportMinutes: $frequencyTransportMinutes, color: $color)';
+    return 'Transport(name: $name, directionName: $directionName, destinationName: $destinationName, durationMinutes: $durationMinutes, stops: $stops, acronym: $acronym, vehicle: $vehicle, points: $points, color: $color)';
   }
 
   @override
@@ -216,15 +248,17 @@ class _$_Transport implements _Transport {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Transport &&
-            const DeepCollectionEquality()
-                .equals(other.universityId, universityId) &&
             const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.directionName, directionName) &&
+            const DeepCollectionEquality()
+                .equals(other.destinationName, destinationName) &&
+            const DeepCollectionEquality()
+                .equals(other.durationMinutes, durationMinutes) &&
+            const DeepCollectionEquality().equals(other.stops, stops) &&
             const DeepCollectionEquality().equals(other.acronym, acronym) &&
             const DeepCollectionEquality().equals(other.vehicle, vehicle) &&
-            const DeepCollectionEquality()
-                .equals(other._transportCoordinates, _transportCoordinates) &&
-            const DeepCollectionEquality().equals(
-                other.frequencyTransportMinutes, frequencyTransportMinutes) &&
+            const DeepCollectionEquality().equals(other._points, _points) &&
             const DeepCollectionEquality().equals(other.color, color));
   }
 
@@ -232,12 +266,14 @@ class _$_Transport implements _Transport {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(universityId),
       const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(directionName),
+      const DeepCollectionEquality().hash(destinationName),
+      const DeepCollectionEquality().hash(durationMinutes),
+      const DeepCollectionEquality().hash(stops),
       const DeepCollectionEquality().hash(acronym),
       const DeepCollectionEquality().hash(vehicle),
-      const DeepCollectionEquality().hash(_transportCoordinates),
-      const DeepCollectionEquality().hash(frequencyTransportMinutes),
+      const DeepCollectionEquality().hash(_points),
       const DeepCollectionEquality().hash(color));
 
   @JsonKey(ignore: true)
@@ -255,29 +291,35 @@ class _$_Transport implements _Transport {
 
 abstract class _Transport implements Transport {
   const factory _Transport(
-      {required final int universityId,
-      required final String name,
+      {required final String name,
+      final String? directionName,
+      final String? destinationName,
+      required final int durationMinutes,
+      final int? stops,
       final String? acronym,
       required final Vehicle vehicle,
-      required final List<double> transportCoordinates,
-      final int? frequencyTransportMinutes,
+      required final List<List<double>> points,
       @ColorSerialiser() final Color? color}) = _$_Transport;
 
   factory _Transport.fromJson(Map<String, dynamic> json) =
       _$_Transport.fromJson;
 
   @override
-  int get universityId;
-  @override
   String get name;
+  @override
+  String? get directionName;
+  @override
+  String? get destinationName;
+  @override
+  int get durationMinutes;
+  @override
+  int? get stops;
   @override
   String? get acronym;
   @override
   Vehicle get vehicle;
   @override
-  List<double> get transportCoordinates;
-  @override
-  int? get frequencyTransportMinutes;
+  List<List<double>> get points;
   @override
   @ColorSerialiser()
   Color? get color;

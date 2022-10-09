@@ -39,6 +39,7 @@ class FlatReviews extends ConsumerWidget {
           ),
           Expanded(
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               itemCount: flat.reviews.length,
               itemBuilder: (context, index) {

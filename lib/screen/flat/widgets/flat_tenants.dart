@@ -42,7 +42,7 @@ class FlatTenants extends ConsumerWidget {
           ),
           Expanded(
             child: ListView.builder(
-              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
               itemCount: flat.tenants.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
@@ -76,7 +76,7 @@ class FlatTenants extends ConsumerWidget {
                   backgroundImage:
                       AssetImage('assets/images/defaultprofile.jpg'),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 6,
                 ),
                 Column(

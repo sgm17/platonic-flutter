@@ -7,6 +7,7 @@ abstract class RealEstateLessor with _$RealEstateLessor {
   const factory RealEstateLessor(
       {required int id,
       required String telephone,
+      required String name,
       required String realEstateName,
       required int flatReference,
       required String realEstateWebsite,

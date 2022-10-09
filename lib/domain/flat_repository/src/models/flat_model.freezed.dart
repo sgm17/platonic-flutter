@@ -36,7 +36,8 @@ mixin _$Flat {
   int? get maxTenants => throw _privateConstructorUsedError;
   List<User> get tenants => throw _privateConstructorUsedError;
   List<University> get nearUniversities => throw _privateConstructorUsedError;
-  List<Transport> get nearTransports => throw _privateConstructorUsedError;
+  List<UniversityTransport> get universityTransports =>
+      throw _privateConstructorUsedError;
   List<Review> get reviews => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,7 +66,7 @@ abstract class $FlatCopyWith<$Res> {
       int? maxTenants,
       List<User> tenants,
       List<University> nearUniversities,
-      List<Transport> nearTransports,
+      List<UniversityTransport> universityTransports,
       List<Review> reviews});
 
   $FlatPropertiesCopyWith<$Res> get flatProperties;
@@ -97,7 +98,7 @@ class _$FlatCopyWithImpl<$Res> implements $FlatCopyWith<$Res> {
     Object? maxTenants = freezed,
     Object? tenants = freezed,
     Object? nearUniversities = freezed,
-    Object? nearTransports = freezed,
+    Object? universityTransports = freezed,
     Object? reviews = freezed,
   }) {
     return _then(_value.copyWith(
@@ -165,10 +166,10 @@ class _$FlatCopyWithImpl<$Res> implements $FlatCopyWith<$Res> {
           ? _value.nearUniversities
           : nearUniversities // ignore: cast_nullable_to_non_nullable
               as List<University>,
-      nearTransports: nearTransports == freezed
-          ? _value.nearTransports
-          : nearTransports // ignore: cast_nullable_to_non_nullable
-              as List<Transport>,
+      universityTransports: universityTransports == freezed
+          ? _value.universityTransports
+          : universityTransports // ignore: cast_nullable_to_non_nullable
+              as List<UniversityTransport>,
       reviews: reviews == freezed
           ? _value.reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -206,7 +207,7 @@ abstract class _$$_FlatCopyWith<$Res> implements $FlatCopyWith<$Res> {
       int? maxTenants,
       List<User> tenants,
       List<University> nearUniversities,
-      List<Transport> nearTransports,
+      List<UniversityTransport> universityTransports,
       List<Review> reviews});
 
   @override
@@ -240,7 +241,7 @@ class __$$_FlatCopyWithImpl<$Res> extends _$FlatCopyWithImpl<$Res>
     Object? maxTenants = freezed,
     Object? tenants = freezed,
     Object? nearUniversities = freezed,
-    Object? nearTransports = freezed,
+    Object? universityTransports = freezed,
     Object? reviews = freezed,
   }) {
     return _then(_$_Flat(
@@ -308,10 +309,10 @@ class __$$_FlatCopyWithImpl<$Res> extends _$FlatCopyWithImpl<$Res>
           ? _value._nearUniversities
           : nearUniversities // ignore: cast_nullable_to_non_nullable
               as List<University>,
-      nearTransports: nearTransports == freezed
-          ? _value._nearTransports
-          : nearTransports // ignore: cast_nullable_to_non_nullable
-              as List<Transport>,
+      universityTransports: universityTransports == freezed
+          ? _value._universityTransports
+          : universityTransports // ignore: cast_nullable_to_non_nullable
+              as List<UniversityTransport>,
       reviews: reviews == freezed
           ? _value._reviews
           : reviews // ignore: cast_nullable_to_non_nullable
@@ -340,14 +341,14 @@ class _$_Flat implements _Flat {
       this.maxTenants,
       required final List<User> tenants,
       required final List<University> nearUniversities,
-      required final List<Transport> nearTransports,
+      required final List<UniversityTransport> universityTransports,
       required final List<Review> reviews})
       : _ubication = ubication,
         _coordinates = coordinates,
         _images = images,
         _tenants = tenants,
         _nearUniversities = nearUniversities,
-        _nearTransports = nearTransports,
+        _universityTransports = universityTransports,
         _reviews = reviews;
 
   factory _$_Flat.fromJson(Map<String, dynamic> json) => _$$_FlatFromJson(json);
@@ -409,11 +410,11 @@ class _$_Flat implements _Flat {
     return EqualUnmodifiableListView(_nearUniversities);
   }
 
-  final List<Transport> _nearTransports;
+  final List<UniversityTransport> _universityTransports;
   @override
-  List<Transport> get nearTransports {
+  List<UniversityTransport> get universityTransports {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_nearTransports);
+    return EqualUnmodifiableListView(_universityTransports);
   }
 
   final List<Review> _reviews;
@@ -425,7 +426,7 @@ class _$_Flat implements _Flat {
 
   @override
   String toString() {
-    return 'Flat(lessor: $lessor, title: $title, ubication: $ubication, coordinates: $coordinates, flatProperties: $flatProperties, hood: $hood, city: $city, monthlyPrice: $monthlyPrice, dipositAmount: $dipositAmount, dipositMinimumMonths: $dipositMinimumMonths, garagePriceIncluded: $garagePriceIncluded, garagePrice: $garagePrice, images: $images, maxTenants: $maxTenants, tenants: $tenants, nearUniversities: $nearUniversities, nearTransports: $nearTransports, reviews: $reviews)';
+    return 'Flat(lessor: $lessor, title: $title, ubication: $ubication, coordinates: $coordinates, flatProperties: $flatProperties, hood: $hood, city: $city, monthlyPrice: $monthlyPrice, dipositAmount: $dipositAmount, dipositMinimumMonths: $dipositMinimumMonths, garagePriceIncluded: $garagePriceIncluded, garagePrice: $garagePrice, images: $images, maxTenants: $maxTenants, tenants: $tenants, nearUniversities: $nearUniversities, universityTransports: $universityTransports, reviews: $reviews)';
   }
 
   @override
@@ -460,7 +461,7 @@ class _$_Flat implements _Flat {
             const DeepCollectionEquality()
                 .equals(other._nearUniversities, _nearUniversities) &&
             const DeepCollectionEquality()
-                .equals(other._nearTransports, _nearTransports) &&
+                .equals(other._universityTransports, _universityTransports) &&
             const DeepCollectionEquality().equals(other._reviews, _reviews));
   }
 
@@ -484,7 +485,7 @@ class _$_Flat implements _Flat {
       const DeepCollectionEquality().hash(maxTenants),
       const DeepCollectionEquality().hash(_tenants),
       const DeepCollectionEquality().hash(_nearUniversities),
-      const DeepCollectionEquality().hash(_nearTransports),
+      const DeepCollectionEquality().hash(_universityTransports),
       const DeepCollectionEquality().hash(_reviews));
 
   @JsonKey(ignore: true)
@@ -518,7 +519,7 @@ abstract class _Flat implements Flat {
       final int? maxTenants,
       required final List<User> tenants,
       required final List<University> nearUniversities,
-      required final List<Transport> nearTransports,
+      required final List<UniversityTransport> universityTransports,
       required final List<Review> reviews}) = _$_Flat;
 
   factory _Flat.fromJson(Map<String, dynamic> json) = _$_Flat.fromJson;
@@ -556,7 +557,7 @@ abstract class _Flat implements Flat {
   @override
   List<University> get nearUniversities;
   @override
-  List<Transport> get nearTransports;
+  List<UniversityTransport> get universityTransports;
   @override
   List<Review> get reviews;
   @override
