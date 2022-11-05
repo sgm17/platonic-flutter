@@ -8,14 +8,15 @@ class FlatHero extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flatCarousel = ref.watch(flatCarouselProvider);
+    final flat = ref.watch(flatItemProvider);
+    final flatCarousel = flat.images;
 
     return CarouselSlider.builder(
       options: CarouselOptions(
           height: 250,
           viewportFraction: 1,
           onPageChanged: (index, reason) =>
-              ref.read(flatImageIndexProvider.notifier).state = index),
+              ref.read(flatItemImageIndexProvider.notifier).state = index),
       itemCount: flatCarousel.length,
       itemBuilder: (context, index, realIndex) {
         final flatImage = flatCarousel[index];
@@ -24,7 +25,7 @@ class FlatHero extends ConsumerWidget {
           width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/flat/${flatImage.image}"),
+                  image: AssetImage("assets/images/flat/$flatImage"),
                   fit: BoxFit.cover)),
         );
       },

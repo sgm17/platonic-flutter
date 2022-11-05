@@ -6,20 +6,17 @@ import 'story_repository/src/models/models.dart';
 import 'user_repository/src/models/models.dart';
 
 final User user = User(
-    id: 1,
-    username: "sergigarciiaa",
-    sex: Sex.male,
-    lastTimeOnline: DateTime.now().millisecondsSinceEpoch,
-    universityId: 35,
-    universityName: "Campus de Bellaterra",
-    universityParentName: "Universitat Autònoma de Barcelona",
-    universityAcronym: "UAB",
-    universityFaculty: "Facultat de medicina",
-    likesGiven: 100,
-    repliesGiven: 200,
-    totalChats: 300,
-    online: true,
-    center: [41.50613010080779, 2.103939945863225]);
+  id: 1,
+  username: "sergigarciiaa",
+  sex: Sex.male,
+  lastTimeOnline: DateTime.now().millisecondsSinceEpoch,
+  universityId: 35,
+  universityName: "Universitat Autònoma de Barcelona",
+  universityFaculty: const UniversityFaculty(
+      facultyName: "Facultat de medicina",
+      studies: [UniversityStudy(name: "Grau de Medicina", courses: 6)]),
+  online: true,
+);
 
 final List<Meet> meets = [
   Meet(
@@ -30,10 +27,10 @@ final List<Meet> meets = [
       messagesCount: 13,
       endsAt: DateTime.now().millisecondsSinceEpoch + 172800000,
       startedAt: DateTime.now().millisecondsSinceEpoch,
-      universityParentName: 'Universitat Autònoma de Barcelona',
-      universityName: 'Campus de Bellaterra',
-      universityAcronym: 'UAB',
-      universityFaculty: 'Facultat de Medicina'),
+      universityName: 'Universitat Autònoma de Barcelona',
+      universityFaculty: const UniversityFaculty(
+          facultyName: 'Facultat de Medicina',
+          studies: [UniversityStudy(name: 'Grau en Medicina', courses: 6)])),
   Meet(
       id: 2,
       userId: 3,
@@ -42,10 +39,12 @@ final List<Meet> meets = [
       messagesCount: 1,
       endsAt: DateTime.now().millisecondsSinceEpoch + 172800000,
       startedAt: DateTime.now().millisecondsSinceEpoch,
-      universityParentName: 'Universitat Politècnica de Catalunya',
-      universityName: 'Campus de Sant Cugat del Vallès',
-      universityAcronym: 'UPC',
-      universityFaculty: "Facultat d'Enginyeria"),
+      universityName: 'Universitat Politècnica de Catalunya',
+      universityFaculty: const UniversityFaculty(
+          facultyName: "Facultat d'Enginyeria",
+          studies: [
+            UniversityStudy(courses: 4, name: "Enginyeria de Telecomunicacions")
+          ])),
   Meet(
       id: 3,
       userId: 4,
@@ -54,7 +53,10 @@ final List<Meet> meets = [
       messagesCount: 14,
       endsAt: DateTime.now().millisecondsSinceEpoch + 60000,
       startedAt: DateTime.now().millisecondsSinceEpoch,
-      universityName: 'Universitat de Girona')
+      universityName: 'Universitat de Girona',
+      universityFaculty: const UniversityFaculty(
+          facultyName: 'Facultat de Geografia',
+          studies: [UniversityStudy(name: 'Grau de Geografia', courses: 4)]))
 ];
 
 final List<Chat> chats = [
@@ -75,22 +77,19 @@ final List<Chat> chats = [
             createdAt: DateTime.now().millisecondsSinceEpoch)
       ],
       toUser: User(
-          id: 3,
-          username: 'pepegarcia',
-          profileImage:
-              'https://i.pinimg.com/474x/fa/ba/54/faba5498b3167071dc93e22f3ce1e22a.jpg',
-          sex: Sex.male,
-          online: false,
-          lastTimeOnline: DateTime.now().millisecondsSinceEpoch,
-          universityId: 35,
-          universityParentName: 'Universitat Autònoma de Barcelona',
-          universityName: 'Campus de Bellaterra',
-          universityFaculty: 'Facultat de Medicina',
-          universityAcronym: 'UAB',
-          likesGiven: 12,
-          repliesGiven: 15,
-          totalChats: 15,
-          center: [41.50613010080779, 2.103939945863225]),
+        id: 3,
+        username: 'pepegarcia',
+        profileImage:
+            'https://i.pinimg.com/474x/fa/ba/54/faba5498b3167071dc93e22f3ce1e22a.jpg',
+        sex: Sex.male,
+        online: false,
+        lastTimeOnline: DateTime.now().millisecondsSinceEpoch,
+        universityId: 35,
+        universityName: 'Universitat Autònoma de Barcelona',
+        universityFaculty: const UniversityFaculty(
+            facultyName: 'Facultat de Medicina',
+            studies: [UniversityStudy(name: 'Grau en Medicina', courses: 6)]),
+      ),
       messages: [
         Message(
             id: 1,
@@ -187,23 +186,27 @@ final List<Chat> chats = [
             messagesCount: 14,
             endsAt: DateTime.now().millisecondsSinceEpoch + 1000000,
             startedAt: DateTime.now().millisecondsSinceEpoch,
-            universityName: 'Campus de Bellaterra')
+            universityName: 'Campus de Bellaterra',
+            universityFaculty: const UniversityFaculty(
+                facultyName: "Facultat d'Enginyeria",
+                studies: [
+                  UniversityStudy(
+                      name: 'Enginyeria de Telecomunicacions', courses: 6)
+                ]))
       ],
       toUser: User(
-          id: 4,
-          username: 'robert lewandoski',
-          profileImage:
-              'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
-          sex: Sex.male,
-          online: true,
-          lastTimeOnline: DateTime.now().millisecondsSinceEpoch,
-          universityId: 83,
-          universityParentName: "ESADE",
-          universityName: "Campus Barcelona - Sant Cugat",
-          likesGiven: 14,
-          repliesGiven: 15,
-          totalChats: 24,
-          center: [41.46730832952267, 2.09138082471557]),
+        id: 4,
+        username: 'robert lewandoski',
+        profileImage:
+            'https://media.springernature.com/w580h326/nature-cms/uploads/collections/Networks-Collection-img-final-f2c265a59e457f48645e2aa3ff90e942.jpg',
+        sex: Sex.male,
+        online: true,
+        lastTimeOnline: DateTime.now().millisecondsSinceEpoch,
+        universityId: 83,
+        universityName: "Campus Barcelona - Sant Cugat",
+        universityFaculty:
+            const UniversityFaculty(facultyName: "ESADE", studies: []),
+      ),
       messages: [
         Message(
             id: 12,

@@ -25,7 +25,7 @@ mixin _$University {
   String get simpleName => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   List<double> get coordinates => throw _privateConstructorUsedError;
-  List<UniversityFaculties> get faculties => throw _privateConstructorUsedError;
+  List<UniversityFaculty> get faculties => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +44,7 @@ abstract class $UniversityCopyWith<$Res> {
       String simpleName,
       String image,
       List<double> coordinates,
-      List<UniversityFaculties> faculties});
+      List<UniversityFaculty> faculties});
 }
 
 /// @nodoc
@@ -88,7 +88,7 @@ class _$UniversityCopyWithImpl<$Res> implements $UniversityCopyWith<$Res> {
       faculties: faculties == freezed
           ? _value.faculties
           : faculties // ignore: cast_nullable_to_non_nullable
-              as List<UniversityFaculties>,
+              as List<UniversityFaculty>,
     ));
   }
 }
@@ -106,7 +106,7 @@ abstract class _$$_UniversityCopyWith<$Res>
       String simpleName,
       String image,
       List<double> coordinates,
-      List<UniversityFaculties> faculties});
+      List<UniversityFaculty> faculties});
 }
 
 /// @nodoc
@@ -152,7 +152,7 @@ class __$$_UniversityCopyWithImpl<$Res> extends _$UniversityCopyWithImpl<$Res>
       faculties: faculties == freezed
           ? _value._faculties
           : faculties // ignore: cast_nullable_to_non_nullable
-              as List<UniversityFaculties>,
+              as List<UniversityFaculty>,
     ));
   }
 }
@@ -166,7 +166,7 @@ class _$_University implements _University {
       required this.simpleName,
       required this.image,
       required final List<double> coordinates,
-      required final List<UniversityFaculties> faculties})
+      required final List<UniversityFaculty> faculties})
       : _coordinates = coordinates,
         _faculties = faculties;
 
@@ -188,9 +188,9 @@ class _$_University implements _University {
     return EqualUnmodifiableListView(_coordinates);
   }
 
-  final List<UniversityFaculties> _faculties;
+  final List<UniversityFaculty> _faculties;
   @override
-  List<UniversityFaculties> get faculties {
+  List<UniversityFaculty> get faculties {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_faculties);
   }
@@ -247,7 +247,7 @@ abstract class _University implements University {
       required final String simpleName,
       required final String image,
       required final List<double> coordinates,
-      required final List<UniversityFaculties> faculties}) = _$_University;
+      required final List<UniversityFaculty> faculties}) = _$_University;
 
   factory _University.fromJson(Map<String, dynamic> json) =
       _$_University.fromJson;
@@ -263,7 +263,7 @@ abstract class _University implements University {
   @override
   List<double> get coordinates;
   @override
-  List<UniversityFaculties> get faculties;
+  List<UniversityFaculty> get faculties;
   @override
   @JsonKey(ignore: true)
   _$$_UniversityCopyWith<_$_University> get copyWith =>

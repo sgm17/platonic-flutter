@@ -16,7 +16,7 @@ _$_University _$$_UniversityFromJson(Map<String, dynamic> json) =>
           .map((e) => (e as num).toDouble())
           .toList(),
       faculties: (json['faculties'] as List<dynamic>)
-          .map((e) => UniversityFaculties.fromJson(e as Map<String, dynamic>))
+          .map((e) => UniversityFaculty.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

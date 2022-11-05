@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:platonic/domain/university_repository/src/models/models.dart';
 part 'meet_model.freezed.dart';
 part 'meet_model.g.dart';
 
@@ -12,10 +13,8 @@ abstract class Meet with _$Meet {
     required int messagesCount,
     required int endsAt,
     required int startedAt,
-    String? universityParentName,
-    String? universityAcronym,
     required String universityName,
-    String? universityFaculty,
+    required UniversityFaculty universityFaculty,
   }) = _Meet;
 
   factory Meet.fromJson(Map<String, Object?> json) => _$MeetFromJson(json);

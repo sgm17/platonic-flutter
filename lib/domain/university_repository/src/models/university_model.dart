@@ -11,7 +11,7 @@ abstract class University with _$University {
       required String simpleName,
       required String image,
       required List<double> coordinates,
-      required List<UniversityFaculties> faculties}) = _University;
+      required List<UniversityFaculty> faculties}) = _University;
 
   static University emptyUniversity() {
     return const University(

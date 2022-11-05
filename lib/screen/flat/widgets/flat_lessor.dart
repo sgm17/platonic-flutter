@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/appcolors.dart';
 import 'package:platonic/providers/flat_provider/flat_item_provider.dart';
-
 import '../../../domain/flat_repository/src/models/models.dart';
 
 class FlatLessor extends ConsumerWidget {
   const FlatLessor({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final lessor = ref.watch(flatItemProvider).lessor;
+    final flat = ref.watch(flatItemProvider);
+    final lessor = flat.lessor;
 
     if (lessor is ParticularLessor) {
       return Column(

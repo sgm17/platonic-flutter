@@ -27,10 +27,8 @@ mixin _$Meet {
   int get messagesCount => throw _privateConstructorUsedError;
   int get endsAt => throw _privateConstructorUsedError;
   int get startedAt => throw _privateConstructorUsedError;
-  String? get universityParentName => throw _privateConstructorUsedError;
-  String? get universityAcronym => throw _privateConstructorUsedError;
   String get universityName => throw _privateConstructorUsedError;
-  String? get universityFaculty => throw _privateConstructorUsedError;
+  UniversityFaculty get universityFaculty => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,10 +47,10 @@ abstract class $MeetCopyWith<$Res> {
       int messagesCount,
       int endsAt,
       int startedAt,
-      String? universityParentName,
-      String? universityAcronym,
       String universityName,
-      String? universityFaculty});
+      UniversityFaculty universityFaculty});
+
+  $UniversityFacultyCopyWith<$Res> get universityFaculty;
 }
 
 /// @nodoc
@@ -72,8 +70,6 @@ class _$MeetCopyWithImpl<$Res> implements $MeetCopyWith<$Res> {
     Object? messagesCount = freezed,
     Object? endsAt = freezed,
     Object? startedAt = freezed,
-    Object? universityParentName = freezed,
-    Object? universityAcronym = freezed,
     Object? universityName = freezed,
     Object? universityFaculty = freezed,
   }) {
@@ -106,14 +102,6 @@ class _$MeetCopyWithImpl<$Res> implements $MeetCopyWith<$Res> {
           ? _value.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      universityParentName: universityParentName == freezed
-          ? _value.universityParentName
-          : universityParentName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      universityAcronym: universityAcronym == freezed
-          ? _value.universityAcronym
-          : universityAcronym // ignore: cast_nullable_to_non_nullable
-              as String?,
       universityName: universityName == freezed
           ? _value.universityName
           : universityName // ignore: cast_nullable_to_non_nullable
@@ -121,8 +109,15 @@ class _$MeetCopyWithImpl<$Res> implements $MeetCopyWith<$Res> {
       universityFaculty: universityFaculty == freezed
           ? _value.universityFaculty
           : universityFaculty // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as UniversityFaculty,
     ));
+  }
+
+  @override
+  $UniversityFacultyCopyWith<$Res> get universityFaculty {
+    return $UniversityFacultyCopyWith<$Res>(_value.universityFaculty, (value) {
+      return _then(_value.copyWith(universityFaculty: value));
+    });
   }
 }
 
@@ -139,10 +134,11 @@ abstract class _$$_MeetCopyWith<$Res> implements $MeetCopyWith<$Res> {
       int messagesCount,
       int endsAt,
       int startedAt,
-      String? universityParentName,
-      String? universityAcronym,
       String universityName,
-      String? universityFaculty});
+      UniversityFaculty universityFaculty});
+
+  @override
+  $UniversityFacultyCopyWith<$Res> get universityFaculty;
 }
 
 /// @nodoc
@@ -163,8 +159,6 @@ class __$$_MeetCopyWithImpl<$Res> extends _$MeetCopyWithImpl<$Res>
     Object? messagesCount = freezed,
     Object? endsAt = freezed,
     Object? startedAt = freezed,
-    Object? universityParentName = freezed,
-    Object? universityAcronym = freezed,
     Object? universityName = freezed,
     Object? universityFaculty = freezed,
   }) {
@@ -197,14 +191,6 @@ class __$$_MeetCopyWithImpl<$Res> extends _$MeetCopyWithImpl<$Res>
           ? _value.startedAt
           : startedAt // ignore: cast_nullable_to_non_nullable
               as int,
-      universityParentName: universityParentName == freezed
-          ? _value.universityParentName
-          : universityParentName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      universityAcronym: universityAcronym == freezed
-          ? _value.universityAcronym
-          : universityAcronym // ignore: cast_nullable_to_non_nullable
-              as String?,
       universityName: universityName == freezed
           ? _value.universityName
           : universityName // ignore: cast_nullable_to_non_nullable
@@ -212,7 +198,7 @@ class __$$_MeetCopyWithImpl<$Res> extends _$MeetCopyWithImpl<$Res>
       universityFaculty: universityFaculty == freezed
           ? _value.universityFaculty
           : universityFaculty // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as UniversityFaculty,
     ));
   }
 }
@@ -228,10 +214,8 @@ class _$_Meet implements _Meet {
       required this.messagesCount,
       required this.endsAt,
       required this.startedAt,
-      this.universityParentName,
-      this.universityAcronym,
       required this.universityName,
-      this.universityFaculty});
+      required this.universityFaculty});
 
   factory _$_Meet.fromJson(Map<String, dynamic> json) => _$$_MeetFromJson(json);
 
@@ -250,17 +234,13 @@ class _$_Meet implements _Meet {
   @override
   final int startedAt;
   @override
-  final String? universityParentName;
-  @override
-  final String? universityAcronym;
-  @override
   final String universityName;
   @override
-  final String? universityFaculty;
+  final UniversityFaculty universityFaculty;
 
   @override
   String toString() {
-    return 'Meet(id: $id, userId: $userId, username: $username, profileImage: $profileImage, messagesCount: $messagesCount, endsAt: $endsAt, startedAt: $startedAt, universityParentName: $universityParentName, universityAcronym: $universityAcronym, universityName: $universityName, universityFaculty: $universityFaculty)';
+    return 'Meet(id: $id, userId: $userId, username: $username, profileImage: $profileImage, messagesCount: $messagesCount, endsAt: $endsAt, startedAt: $startedAt, universityName: $universityName, universityFaculty: $universityFaculty)';
   }
 
   @override
@@ -278,10 +258,6 @@ class _$_Meet implements _Meet {
             const DeepCollectionEquality().equals(other.endsAt, endsAt) &&
             const DeepCollectionEquality().equals(other.startedAt, startedAt) &&
             const DeepCollectionEquality()
-                .equals(other.universityParentName, universityParentName) &&
-            const DeepCollectionEquality()
-                .equals(other.universityAcronym, universityAcronym) &&
-            const DeepCollectionEquality()
                 .equals(other.universityName, universityName) &&
             const DeepCollectionEquality()
                 .equals(other.universityFaculty, universityFaculty));
@@ -298,8 +274,6 @@ class _$_Meet implements _Meet {
       const DeepCollectionEquality().hash(messagesCount),
       const DeepCollectionEquality().hash(endsAt),
       const DeepCollectionEquality().hash(startedAt),
-      const DeepCollectionEquality().hash(universityParentName),
-      const DeepCollectionEquality().hash(universityAcronym),
       const DeepCollectionEquality().hash(universityName),
       const DeepCollectionEquality().hash(universityFaculty));
 
@@ -325,10 +299,8 @@ abstract class _Meet implements Meet {
       required final int messagesCount,
       required final int endsAt,
       required final int startedAt,
-      final String? universityParentName,
-      final String? universityAcronym,
       required final String universityName,
-      final String? universityFaculty}) = _$_Meet;
+      required final UniversityFaculty universityFaculty}) = _$_Meet;
 
   factory _Meet.fromJson(Map<String, dynamic> json) = _$_Meet.fromJson;
 
@@ -347,13 +319,9 @@ abstract class _Meet implements Meet {
   @override
   int get startedAt;
   @override
-  String? get universityParentName;
-  @override
-  String? get universityAcronym;
-  @override
   String get universityName;
   @override
-  String? get universityFaculty;
+  UniversityFaculty get universityFaculty;
   @override
   @JsonKey(ignore: true)
   _$$_MeetCopyWith<_$_Meet> get copyWith => throw _privateConstructorUsedError;

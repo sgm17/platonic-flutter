@@ -11,15 +11,15 @@ class MeetScroll extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final meetProvider = ref.watch(meetNotifierProvider);
 
-    return meetProvider.when(data: (MeetData meetData) {
+    return meetProvider.when(data: (List<Meet> meets) {
       return ListView.builder(
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        itemCount: meetData.meets.length,
+        itemCount: meets.length,
         itemBuilder: (context, index) {
-          final meet = meetData.meets[index];
+          final meet = meets[index];
           final first = index == 0;
-          final last = meetData.meets.length - 1 == index;
+          final last = meets.length - 1 == index;
           final meetItemProperties = MeetItemProperties(first, last, meet);
 
           return MeetItem(meetItemProperties: meetItemProperties);

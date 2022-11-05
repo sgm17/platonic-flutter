@@ -3,7 +3,7 @@ import 'package:platonic/domain/flat_repository/flat_repository.dart';
 import 'package:platonic/domain/flat_repository/src/models/flat_model.dart';
 
 class FlatViewmodel implements FlatRepository {
-  static const FLATS_PER_REQUEST = 10;
+  static const FLATS_PER_REQUEST = 1;
 
   @override
   Future<List<Flat>> retrieveFlatsPerIndex(int lastIndex) {

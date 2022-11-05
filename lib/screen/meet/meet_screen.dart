@@ -13,6 +13,7 @@ class MeetScreen extends ConsumerStatefulWidget {
 
 class _MeetScreenState extends ConsumerState<MeetScreen> {
   late bool preferences;
+  final searching = true;
 
   @override
   void initState() {
@@ -24,30 +25,29 @@ class _MeetScreenState extends ConsumerState<MeetScreen> {
   Widget build(BuildContext context) {
     final meets = ref.watch(meetNotifierProvider);
 
-    return meets.when(data: (MeetData meetData) {
-      final nodata = meetData.meets.isEmpty;
+    return meets.when(data: (List<Meet> meets) {
+      final nodata = meets.isEmpty;
 
-      final active = meetData.meets
+      final active = meets
           .where((meet) => meet.endsAt > DateTime.now().millisecondsSinceEpoch)
           .isNotEmpty;
-      final searching = meetData.searching;
 
       if (searching) {
         return const MeetSearching();
       }
 
-      if (nodata) {
+      /*  if (nodata) {
         return MeetWhat(setPreferences: () {
           setState(() => preferences = true);
         });
-      }
+      } */
 
       if (active == false || preferences == true) {
         return const MeetPreferences();
       }
 
       return MeetCard(
-          meet: meetData.meets.firstWhere(
+          meet: meets.firstWhere(
               (meet) => meet.endsAt > DateTime.now().millisecondsSinceEpoch));
     }, error: ((error, stackTrace) {
       return Text(error.toString());

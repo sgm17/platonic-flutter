@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/appcolors.dart';
-import 'package:platonic/providers/flat_provider/flat_item_provider.dart';
 import 'package:platonic/providers/flat_provider/flat_provider.dart';
-import 'package:platonic/screen/flat/widgets/flat_properties_screen.dart';
+import 'package:platonic/screen/flat_properties/flat_properties_screen.dart';
 import 'package:platonic/screen/flat/widgets/widgets.dart';
 import '../../domain/flat_repository/src/models/models.dart';
 
 class FlatScreen extends ConsumerWidget {
-  const FlatScreen({Key? key}) : super(key: key);
+  const FlatScreen({Key? key, required this.flat}) : super(key: key);
+
+  final Flat flat;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final flat = ref.watch(flatItemProvider);
-    final flatPageCurrentImage = ref.watch(flatImageIndexProvider);
+    final flatIndexCurrentImageIndex = ref.watch(flatItemImageIndexProvider);
 
     return Scaffold(
         body: SafeArea(
@@ -24,9 +24,9 @@ class FlatScreen extends ConsumerWidget {
             child: Column(children: [
           Stack(
             children: [
-              ProviderScope(overrides: [
-                flatCarouselProvider.overrideWithValue(flat.images)
-              ], child: const FlatHero()),
+              ProviderScope(
+                  overrides: [flatItemProvider.overrideWithValue(flat)],
+                  child: const FlatHero()),
               Positioned(
                   top: 16,
                   left: 16,
@@ -91,7 +91,7 @@ class FlatScreen extends ConsumerWidget {
                         color: AppColors.black.withOpacity(.6),
                         borderRadius: BorderRadius.circular(4)),
                     child: Text(
-                      "${flatPageCurrentImage + 1} / ${flat.images.length}",
+                      "${flatIndexCurrentImageIndex + 1} / ${flat.images.length}",
                       style: const TextStyle(
                           color: AppColors.white,
                           fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class FlatScreen extends ConsumerWidget {
                       width: 6,
                     ),
                     Text(
-                      "${flat.reviews.length} evaluations",
+                      "${flat.reviews.length} ${flat.reviews.length > 1 ? "evaluations" : "evaluation"}",
                       style: const TextStyle(
                           color: AppColors.navyBlueTitle,
                           fontSize: 14,
@@ -204,9 +204,9 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    FlatAccommodation(
-                      flat: flat,
-                    ),
+                    ProviderScope(
+                        overrides: [flatItemProvider.overrideWithValue(flat)],
+                        child: const FlatAccommodation()),
                     const SizedBox(
                       height: 16,
                     ),
@@ -242,7 +242,9 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const FlatTenants(),
+                    ProviderScope(
+                        overrides: [flatItemProvider.overrideWithValue(flat)],
+                        child: const FlatTenants()),
                     const SizedBox(
                       height: 16,
                     ),
@@ -253,7 +255,9 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const FlatLocation(),
+                    ProviderScope(
+                        overrides: [flatItemProvider.overrideWithValue(flat)],
+                        child: const FlatLocation()),
                     const SizedBox(
                       height: 16,
                     ),
@@ -264,7 +268,9 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const FlatReviews(),
+                    ProviderScope(
+                        overrides: [flatItemProvider.overrideWithValue(flat)],
+                        child: const FlatReviews()),
                     const SizedBox(
                       height: 16,
                     ),
@@ -275,7 +281,9 @@ class FlatScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    const FlatLessor(),
+                    ProviderScope(
+                        overrides: [flatItemProvider.overrideWithValue(flat)],
+                        child: const FlatLessor()),
                     const SizedBox(
                       height: 16,
                     ),

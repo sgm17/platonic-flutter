@@ -42,10 +42,7 @@ class _MeetItemState extends State<MeetItem> {
   @override
   Widget build(BuildContext context) {
     final meet = widget.meetItemProperties.meet;
-    final universityText =
-        "${meet.universityParentName ?? meet.universityName} ${meet.universityAcronym ?? ''}";
-    final facultyText =
-        "${meet.universityParentName != null ? meet.universityName : ''} ${meet.universityFaculty ?? ''}";
+
     final startedAt = DateTime.fromMillisecondsSinceEpoch(meet.startedAt);
     final endsAt = DateTime.fromMillisecondsSinceEpoch(meet.endsAt);
     return Stack(
@@ -102,20 +99,18 @@ class _MeetItemState extends State<MeetItem> {
                                 fontWeight: FontWeight.bold, fontSize: 28),
                             textAlign: TextAlign.center,
                           ),
-                          Text(universityText,
+                          Text(meet.universityName,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: AppColors.meetCountdown,
                                   fontSize: 11.2,
                                   fontWeight: FontWeight.w400)),
-                          facultyText != " "
-                              ? Text(facultyText,
-                                  textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                      fontSize: 10.4,
-                                      color: AppColors.meetCountdown,
-                                      fontWeight: FontWeight.w400))
-                              : const SizedBox.shrink(),
+                          Text(meet.universityFaculty.facultyName,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 10.4,
+                                  color: AppColors.meetCountdown,
+                                  fontWeight: FontWeight.w400)),
                           Text(
                             "${startedAt.toDate()} - ${endsAt.toDate()}",
                             style: const TextStyle(

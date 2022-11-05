@@ -2,7 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domain/meet_repository/src/models/models.dart';
 import 'meet_provider.dart';
 
-class MeetNotifier extends StateNotifier<AsyncValue<MeetData>> {
+class MeetNotifier extends StateNotifier<AsyncValue<List<Meet>>> {
   final Reader _read;
 
   MeetNotifier(this._read) : super(const AsyncValue.loading()) {

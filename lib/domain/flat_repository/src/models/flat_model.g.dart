@@ -23,9 +23,8 @@ _$_Flat _$$_FlatFromJson(Map<String, dynamic> json) => _$_Flat(
       dipositMinimumMonths: json['dipositMinimumMonths'] as int?,
       garagePriceIncluded: json['garagePriceIncluded'] as bool?,
       garagePrice: json['garagePrice'] as int?,
-      images: (json['images'] as List<dynamic>)
-          .map((e) => FlatImage.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      images:
+          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
       maxTenants: json['maxTenants'] as int?,
       tenants: (json['tenants'] as List<dynamic>)
           .map((e) => User.fromJson(e as Map<String, dynamic>))

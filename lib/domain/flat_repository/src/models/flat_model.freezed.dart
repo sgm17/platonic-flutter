@@ -32,7 +32,7 @@ mixin _$Flat {
   int? get dipositMinimumMonths => throw _privateConstructorUsedError;
   bool? get garagePriceIncluded => throw _privateConstructorUsedError;
   int? get garagePrice => throw _privateConstructorUsedError;
-  List<FlatImage> get images => throw _privateConstructorUsedError;
+  List<String> get images => throw _privateConstructorUsedError;
   int? get maxTenants => throw _privateConstructorUsedError;
   List<User> get tenants => throw _privateConstructorUsedError;
   List<University> get nearUniversities => throw _privateConstructorUsedError;
@@ -62,7 +62,7 @@ abstract class $FlatCopyWith<$Res> {
       int? dipositMinimumMonths,
       bool? garagePriceIncluded,
       int? garagePrice,
-      List<FlatImage> images,
+      List<String> images,
       int? maxTenants,
       List<User> tenants,
       List<University> nearUniversities,
@@ -153,7 +153,7 @@ class _$FlatCopyWithImpl<$Res> implements $FlatCopyWith<$Res> {
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<FlatImage>,
+              as List<String>,
       maxTenants: maxTenants == freezed
           ? _value.maxTenants
           : maxTenants // ignore: cast_nullable_to_non_nullable
@@ -203,7 +203,7 @@ abstract class _$$_FlatCopyWith<$Res> implements $FlatCopyWith<$Res> {
       int? dipositMinimumMonths,
       bool? garagePriceIncluded,
       int? garagePrice,
-      List<FlatImage> images,
+      List<String> images,
       int? maxTenants,
       List<User> tenants,
       List<University> nearUniversities,
@@ -296,7 +296,7 @@ class __$$_FlatCopyWithImpl<$Res> extends _$FlatCopyWithImpl<$Res>
       images: images == freezed
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<FlatImage>,
+              as List<String>,
       maxTenants: maxTenants == freezed
           ? _value.maxTenants
           : maxTenants // ignore: cast_nullable_to_non_nullable
@@ -337,7 +337,7 @@ class _$_Flat implements _Flat {
       this.dipositMinimumMonths,
       this.garagePriceIncluded,
       this.garagePrice,
-      required final List<FlatImage> images,
+      required final List<String> images,
       this.maxTenants,
       required final List<User> tenants,
       required final List<University> nearUniversities,
@@ -387,9 +387,9 @@ class _$_Flat implements _Flat {
   final bool? garagePriceIncluded;
   @override
   final int? garagePrice;
-  final List<FlatImage> _images;
+  final List<String> _images;
   @override
-  List<FlatImage> get images {
+  List<String> get images {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
@@ -515,7 +515,7 @@ abstract class _Flat implements Flat {
       final int? dipositMinimumMonths,
       final bool? garagePriceIncluded,
       final int? garagePrice,
-      required final List<FlatImage> images,
+      required final List<String> images,
       final int? maxTenants,
       required final List<User> tenants,
       required final List<University> nearUniversities,
@@ -549,7 +549,7 @@ abstract class _Flat implements Flat {
   @override
   int? get garagePrice;
   @override
-  List<FlatImage> get images;
+  List<String> get images;
   @override
   int? get maxTenants;
   @override

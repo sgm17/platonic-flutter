@@ -12,10 +12,6 @@ class MeetCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final universityName = meet.universityParentName != null
-        ? "${meet.universityParentName} ${meet.universityAcronym != null ? "(${meet.universityAcronym}), " : ", "} ${meet.universityName}"
-        : "${meet.universityName} ${meet.universityAcronym != null ? "(${meet.universityAcronym})" : ""}";
-
     final startedAt = DateTime.fromMillisecondsSinceEpoch(meet.startedAt);
     final endsAt = DateTime.fromMillisecondsSinceEpoch(meet.endsAt);
 
@@ -80,14 +76,14 @@ class MeetCard extends ConsumerWidget {
                                   fontWeight: FontWeight.bold, fontSize: 27.2),
                               textAlign: TextAlign.left,
                             ),
-                            Text(universityName,
+                            Text(meet.universityName,
                                 textAlign: TextAlign.left,
                                 style: const TextStyle(
                                     fontSize: 14.4,
                                     fontWeight: FontWeight.bold,
                                     color: AppColors.navyBlueTitle)),
                             meet.universityFaculty != null
-                                ? Text(meet.universityFaculty!,
+                                ? Text(meet.universityFaculty.facultyName,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,

@@ -1,9 +1,9 @@
-import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platonic/appcolors.dart';
 import '../../../domain/user_repository/src/models/models.dart';
+import 'dart:io';
 
 class ProfileItem extends ConsumerStatefulWidget {
   const ProfileItem({Key? key, required this.user}) : super(key: key);
@@ -15,7 +15,7 @@ class ProfileItem extends ConsumerStatefulWidget {
 }
 
 class _ProfileItemState extends ConsumerState<ProfileItem> {
-  late bool edit;
+  late bool edit = false;
   late TextEditingController facultyNameController;
   late List<ProfileStatProperties> profileStatPropertiesItems;
   late XFile? image;
@@ -26,18 +26,6 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
     edit = false;
     facultyNameController = TextEditingController();
     image = null;
-
-    profileStatPropertiesItems = [
-      ProfileStatProperties(
-          profileStatItem: ProfileStatItem.likes,
-          statValue: widget.user.likesGiven),
-      ProfileStatProperties(
-          profileStatItem: ProfileStatItem.total,
-          statValue: widget.user.totalChats),
-      ProfileStatProperties(
-          profileStatItem: ProfileStatItem.replies,
-          statValue: widget.user.repliesGiven),
-    ];
   }
 
   @override
@@ -48,10 +36,6 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
 
   @override
   Widget build(BuildContext context) {
-    final universityName = widget.user.universityParentName != null
-        ? "${widget.user.universityParentName} ${widget.user.universityAcronym != null ? "(${widget.user.universityAcronym}), " : ', '} ${widget.user.universityName}"
-        : "${widget.user.universityName} ${widget.user.universityAcronym != null ? "(${widget.user.universityAcronym})" : ''}";
-
     final ImagePicker _picker = ImagePicker();
 
     return Container(
@@ -94,7 +78,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                       height: 24,
                     ),
                     Text(
-                      universityName,
+                      widget.user.universityName,
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 16),
                       textAlign: TextAlign.center,
@@ -121,8 +105,7 @@ class _ProfileItemState extends ConsumerState<ProfileItem> {
                           border: InputBorder.none,
                           hintText: edit
                               ? 'type your faculty name...'
-                              : widget.user.universityFaculty ??
-                                  'type your faculty name...',
+                              : widget.user.universityFaculty.facultyName,
                           hintStyle: const TextStyle(
                             color: AppColors.navyBlueTitle,
                             fontWeight: FontWeight.w500,

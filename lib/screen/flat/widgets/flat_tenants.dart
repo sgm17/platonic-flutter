@@ -10,9 +10,8 @@ class FlatTenants extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flat = ref.watch(flatItemProvider);
-
     return SizedBox(
-      height: 422,
+      height: 246,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,7 +23,7 @@ class FlatTenants extends ConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("${flat.tenants.length} / ${flat.maxTenants}",
+              Text("${flat.tenants.length} / ${flat.maxTenants} tenants",
                   style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
@@ -40,7 +39,8 @@ class FlatTenants extends ConsumerWidget {
               ),
             ],
           ),
-          Expanded(
+          SizedBox(
+            height: 150,
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
               itemCount: flat.tenants.length,
@@ -60,16 +60,15 @@ class FlatTenants extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: Container(
-        height: 236,
         width: 300,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: AppColors.strongWhite)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 const CircleAvatar(
                   radius: 25,
@@ -88,13 +87,16 @@ class FlatTenants extends ConsumerWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 14)),
                     const SizedBox(
-                      height: 6,
+                      height: 4,
                     ),
-                    Text(tenant.universityName,
-                        style: const TextStyle(
-                            color: AppColors.navyBlueTitle,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 13)),
+                    SizedBox(
+                      width: 200,
+                      child: Text(tenant.universityName,
+                          style: const TextStyle(
+                              color: AppColors.navyBlueTitle,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13)),
+                    ),
                   ],
                 ),
               ],

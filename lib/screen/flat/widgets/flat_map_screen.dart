@@ -1,23 +1,27 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/flat_provider/flat_provider.dart';
 import '../../../domain/flat_repository/src/models/models.dart';
 import 'package:platonic/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-class FlatMapScreen extends StatelessWidget {
-  const FlatMapScreen(
-      {Key? key, required this.flat, required this.universityTransport})
-      : super(key: key);
-  final Flat flat;
-  final UniversityTransport universityTransport;
+class FlatMapScreen extends ConsumerWidget {
+  const FlatMapScreen({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final flat = ref.watch(flatItemProvider);
+    final universityTransport =
+        ref.watch(flatLocationProvider(flat.universityTransports));
+
     return Scaffold(
         body: SafeArea(
             child: Stack(
       children: [
         FlutterMap(
             options: MapOptions(
+              maxZoom: 18,
               center: LatLng(flat.coordinates[0], flat.coordinates[1]),
             ),
             children: _buildMapChildren(flat, universityTransport)),

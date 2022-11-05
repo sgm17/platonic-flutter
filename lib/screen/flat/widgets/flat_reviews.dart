@@ -5,14 +5,15 @@ import 'package:platonic/domain/flat_repository/src/models/models.dart';
 import 'package:platonic/providers/flat_provider/flat_item_provider.dart';
 
 class FlatReviews extends ConsumerWidget {
-  const FlatReviews({Key? key}) : super(key: key);
+  const FlatReviews({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flat = ref.watch(flatItemProvider);
-
     return SizedBox(
-      height: 422,
+      height: 350,
       child: Column(
         children: [
           Row(
@@ -58,7 +59,6 @@ class FlatReviews extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 16),
       child: Container(
-        height: 236,
         width: 300,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(

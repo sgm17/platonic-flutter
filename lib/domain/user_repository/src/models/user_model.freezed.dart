@@ -27,14 +27,8 @@ mixin _$User {
   bool get online => throw _privateConstructorUsedError;
   int get lastTimeOnline => throw _privateConstructorUsedError;
   int get universityId => throw _privateConstructorUsedError;
-  String? get universityParentName => throw _privateConstructorUsedError;
   String get universityName => throw _privateConstructorUsedError;
-  String? get universityFaculty => throw _privateConstructorUsedError;
-  String? get universityAcronym => throw _privateConstructorUsedError;
-  int get likesGiven => throw _privateConstructorUsedError;
-  int get repliesGiven => throw _privateConstructorUsedError;
-  int get totalChats => throw _privateConstructorUsedError;
-  List<double> get center => throw _privateConstructorUsedError;
+  UniversityFaculty get universityFaculty => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,14 +47,10 @@ abstract class $UserCopyWith<$Res> {
       bool online,
       int lastTimeOnline,
       int universityId,
-      String? universityParentName,
       String universityName,
-      String? universityFaculty,
-      String? universityAcronym,
-      int likesGiven,
-      int repliesGiven,
-      int totalChats,
-      List<double> center});
+      UniversityFaculty universityFaculty});
+
+  $UniversityFacultyCopyWith<$Res> get universityFaculty;
 }
 
 /// @nodoc
@@ -80,14 +70,8 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? online = freezed,
     Object? lastTimeOnline = freezed,
     Object? universityId = freezed,
-    Object? universityParentName = freezed,
     Object? universityName = freezed,
     Object? universityFaculty = freezed,
-    Object? universityAcronym = freezed,
-    Object? likesGiven = freezed,
-    Object? repliesGiven = freezed,
-    Object? totalChats = freezed,
-    Object? center = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -118,10 +102,6 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.universityId
           : universityId // ignore: cast_nullable_to_non_nullable
               as int,
-      universityParentName: universityParentName == freezed
-          ? _value.universityParentName
-          : universityParentName // ignore: cast_nullable_to_non_nullable
-              as String?,
       universityName: universityName == freezed
           ? _value.universityName
           : universityName // ignore: cast_nullable_to_non_nullable
@@ -129,28 +109,15 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       universityFaculty: universityFaculty == freezed
           ? _value.universityFaculty
           : universityFaculty // ignore: cast_nullable_to_non_nullable
-              as String?,
-      universityAcronym: universityAcronym == freezed
-          ? _value.universityAcronym
-          : universityAcronym // ignore: cast_nullable_to_non_nullable
-              as String?,
-      likesGiven: likesGiven == freezed
-          ? _value.likesGiven
-          : likesGiven // ignore: cast_nullable_to_non_nullable
-              as int,
-      repliesGiven: repliesGiven == freezed
-          ? _value.repliesGiven
-          : repliesGiven // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalChats: totalChats == freezed
-          ? _value.totalChats
-          : totalChats // ignore: cast_nullable_to_non_nullable
-              as int,
-      center: center == freezed
-          ? _value.center
-          : center // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as UniversityFaculty,
     ));
+  }
+
+  @override
+  $UniversityFacultyCopyWith<$Res> get universityFaculty {
+    return $UniversityFacultyCopyWith<$Res>(_value.universityFaculty, (value) {
+      return _then(_value.copyWith(universityFaculty: value));
+    });
   }
 }
 
@@ -167,14 +134,11 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       bool online,
       int lastTimeOnline,
       int universityId,
-      String? universityParentName,
       String universityName,
-      String? universityFaculty,
-      String? universityAcronym,
-      int likesGiven,
-      int repliesGiven,
-      int totalChats,
-      List<double> center});
+      UniversityFaculty universityFaculty});
+
+  @override
+  $UniversityFacultyCopyWith<$Res> get universityFaculty;
 }
 
 /// @nodoc
@@ -195,14 +159,8 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? online = freezed,
     Object? lastTimeOnline = freezed,
     Object? universityId = freezed,
-    Object? universityParentName = freezed,
     Object? universityName = freezed,
     Object? universityFaculty = freezed,
-    Object? universityAcronym = freezed,
-    Object? likesGiven = freezed,
-    Object? repliesGiven = freezed,
-    Object? totalChats = freezed,
-    Object? center = freezed,
   }) {
     return _then(_$_User(
       id: id == freezed
@@ -233,10 +191,6 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.universityId
           : universityId // ignore: cast_nullable_to_non_nullable
               as int,
-      universityParentName: universityParentName == freezed
-          ? _value.universityParentName
-          : universityParentName // ignore: cast_nullable_to_non_nullable
-              as String?,
       universityName: universityName == freezed
           ? _value.universityName
           : universityName // ignore: cast_nullable_to_non_nullable
@@ -244,27 +198,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
       universityFaculty: universityFaculty == freezed
           ? _value.universityFaculty
           : universityFaculty // ignore: cast_nullable_to_non_nullable
-              as String?,
-      universityAcronym: universityAcronym == freezed
-          ? _value.universityAcronym
-          : universityAcronym // ignore: cast_nullable_to_non_nullable
-              as String?,
-      likesGiven: likesGiven == freezed
-          ? _value.likesGiven
-          : likesGiven // ignore: cast_nullable_to_non_nullable
-              as int,
-      repliesGiven: repliesGiven == freezed
-          ? _value.repliesGiven
-          : repliesGiven // ignore: cast_nullable_to_non_nullable
-              as int,
-      totalChats: totalChats == freezed
-          ? _value.totalChats
-          : totalChats // ignore: cast_nullable_to_non_nullable
-              as int,
-      center: center == freezed
-          ? _value._center
-          : center // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as UniversityFaculty,
     ));
   }
 }
@@ -280,15 +214,8 @@ class _$_User implements _User {
       required this.online,
       required this.lastTimeOnline,
       required this.universityId,
-      this.universityParentName,
       required this.universityName,
-      this.universityFaculty,
-      this.universityAcronym,
-      required this.likesGiven,
-      required this.repliesGiven,
-      required this.totalChats,
-      required final List<double> center})
-      : _center = center;
+      required this.universityFaculty});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -307,29 +234,13 @@ class _$_User implements _User {
   @override
   final int universityId;
   @override
-  final String? universityParentName;
-  @override
   final String universityName;
   @override
-  final String? universityFaculty;
-  @override
-  final String? universityAcronym;
-  @override
-  final int likesGiven;
-  @override
-  final int repliesGiven;
-  @override
-  final int totalChats;
-  final List<double> _center;
-  @override
-  List<double> get center {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_center);
-  }
+  final UniversityFaculty universityFaculty;
 
   @override
   String toString() {
-    return 'User(id: $id, username: $username, profileImage: $profileImage, sex: $sex, online: $online, lastTimeOnline: $lastTimeOnline, universityId: $universityId, universityParentName: $universityParentName, universityName: $universityName, universityFaculty: $universityFaculty, universityAcronym: $universityAcronym, likesGiven: $likesGiven, repliesGiven: $repliesGiven, totalChats: $totalChats, center: $center)';
+    return 'User(id: $id, username: $username, profileImage: $profileImage, sex: $sex, online: $online, lastTimeOnline: $lastTimeOnline, universityId: $universityId, universityName: $universityName, universityFaculty: $universityFaculty)';
   }
 
   @override
@@ -348,20 +259,9 @@ class _$_User implements _User {
             const DeepCollectionEquality()
                 .equals(other.universityId, universityId) &&
             const DeepCollectionEquality()
-                .equals(other.universityParentName, universityParentName) &&
-            const DeepCollectionEquality()
                 .equals(other.universityName, universityName) &&
             const DeepCollectionEquality()
-                .equals(other.universityFaculty, universityFaculty) &&
-            const DeepCollectionEquality()
-                .equals(other.universityAcronym, universityAcronym) &&
-            const DeepCollectionEquality()
-                .equals(other.likesGiven, likesGiven) &&
-            const DeepCollectionEquality()
-                .equals(other.repliesGiven, repliesGiven) &&
-            const DeepCollectionEquality()
-                .equals(other.totalChats, totalChats) &&
-            const DeepCollectionEquality().equals(other._center, _center));
+                .equals(other.universityFaculty, universityFaculty));
   }
 
   @JsonKey(ignore: true)
@@ -375,14 +275,8 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(online),
       const DeepCollectionEquality().hash(lastTimeOnline),
       const DeepCollectionEquality().hash(universityId),
-      const DeepCollectionEquality().hash(universityParentName),
       const DeepCollectionEquality().hash(universityName),
-      const DeepCollectionEquality().hash(universityFaculty),
-      const DeepCollectionEquality().hash(universityAcronym),
-      const DeepCollectionEquality().hash(likesGiven),
-      const DeepCollectionEquality().hash(repliesGiven),
-      const DeepCollectionEquality().hash(totalChats),
-      const DeepCollectionEquality().hash(_center));
+      const DeepCollectionEquality().hash(universityFaculty));
 
   @JsonKey(ignore: true)
   @override
@@ -406,14 +300,8 @@ abstract class _User implements User {
       required final bool online,
       required final int lastTimeOnline,
       required final int universityId,
-      final String? universityParentName,
       required final String universityName,
-      final String? universityFaculty,
-      final String? universityAcronym,
-      required final int likesGiven,
-      required final int repliesGiven,
-      required final int totalChats,
-      required final List<double> center}) = _$_User;
+      required final UniversityFaculty universityFaculty}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -432,21 +320,9 @@ abstract class _User implements User {
   @override
   int get universityId;
   @override
-  String? get universityParentName;
-  @override
   String get universityName;
   @override
-  String? get universityFaculty;
-  @override
-  String? get universityAcronym;
-  @override
-  int get likesGiven;
-  @override
-  int get repliesGiven;
-  @override
-  int get totalChats;
-  @override
-  List<double> get center;
+  UniversityFaculty get universityFaculty;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;

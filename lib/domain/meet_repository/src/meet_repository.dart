@@ -1,5 +1,5 @@
 import 'models/models.dart';
 
 abstract class MeetRepository {
-  Future<MeetData> retrieveMeets(int userId);
+  Future<List<Meet>> retrieveMeets(int userId);
 }

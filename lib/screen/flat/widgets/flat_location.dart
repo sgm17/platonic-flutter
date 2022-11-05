@@ -3,24 +3,24 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:platonic/appcolors.dart';
-import 'package:platonic/providers/flat_provider/flat_item_provider.dart';
-import 'package:platonic/providers/flat_provider/flat_location_university_provider.dart';
+import 'package:platonic/providers/flat_provider/flat_provider.dart';
 import 'package:platonic/screen/flat/widgets/flat_map_screen.dart';
 import '../../../domain/flat_repository/src/models/models.dart';
-import '../../../providers/flat_provider/flat_provider.dart';
 
 class FlatLocation extends ConsumerWidget {
-  const FlatLocation({Key? key}) : super(key: key);
+  const FlatLocation({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flat = ref.watch(flatItemProvider);
-    final flatLocationUniversity = ref
-        .watch(flatLocationUniversityProvider(flat.universityTransports.first));
+    final flatLocationUniversity =
+        ref.watch(flatLocationProvider(flat.universityTransports));
     final mapController = ref.watch(flatMapControllerProvider);
 
     return SizedBox(
-      height: 570,
+      height: 587,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,26 +41,25 @@ class FlatLocation extends ConsumerWidget {
                 final universityTransport = flat.universityTransports[index];
                 return Padding(
                   padding: const EdgeInsets.only(right: 16.0),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(
-                            color: universityTransport == flatLocationUniversity
-                                ? AppColors.strongWhite
-                                : AppColors.softWhite)),
-                    width: 365,
-                    child: InkWell(
-                      onTap: () {
-                        ref
-                            .read(flatLocationUniversityProvider(
-                                    flat.universityTransports.first)
-                                .notifier)
-                            .state = universityTransport;
-                        mapController.move(
-                            LatLng(flat.coordinates[0], flat.coordinates[1]),
-                            13);
-                      },
+                  child: InkWell(
+                    onTap: () {
+                      ref
+                          .read(flatLocationProvider(flat.universityTransports)
+                              .notifier)
+                          .state = universityTransport;
+                      mapController.move(
+                          LatLng(flat.coordinates[0], flat.coordinates[1]), 13);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(
+                              color:
+                                  universityTransport == flatLocationUniversity
+                                      ? AppColors.strongWhite
+                                      : AppColors.softWhite)),
+                      width: 300,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -106,11 +105,10 @@ class FlatLocation extends ConsumerWidget {
                     mapController: mapController,
                     options: MapOptions(
                       zoom: 11,
+                      maxZoom: 18,
                       onTap: (tapPosition, point) {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => FlatMapScreen(
-                                flat: flat,
-                                universityTransport: flatLocationUniversity)));
+                            builder: (context) => const FlatMapScreen()));
                       },
                       center: LatLng(flat.coordinates[0], flat.coordinates[1]),
                     ),

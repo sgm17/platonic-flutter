@@ -20,7 +20,7 @@ abstract class Flat with _$Flat {
       int? dipositMinimumMonths,
       bool? garagePriceIncluded,
       int? garagePrice,
-      required List<FlatImage> images,
+      required List<String> images,
       int? maxTenants,
       required List<User> tenants,
       required List<University> nearUniversities,

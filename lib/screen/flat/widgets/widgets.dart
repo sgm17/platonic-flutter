@@ -5,4 +5,3 @@ export 'flat_reviews.dart';
 export 'flat_lessor.dart';
 export 'flat_tenants.dart';
 export 'flat_map_screen.dart';
-export 'flat_properties_screen.dart';

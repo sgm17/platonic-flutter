@@ -14,37 +14,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UniversityFaculties _$UniversityFacultiesFromJson(Map<String, dynamic> json) {
-  return _UniversityFaculties.fromJson(json);
+UniversityFaculty _$UniversityFacultyFromJson(Map<String, dynamic> json) {
+  return _UniversityFaculty.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UniversityFaculties {
+mixin _$UniversityFaculty {
   String get facultyName => throw _privateConstructorUsedError;
   List<UniversityStudy> get studies => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UniversityFacultiesCopyWith<UniversityFaculties> get copyWith =>
+  $UniversityFacultyCopyWith<UniversityFaculty> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UniversityFacultiesCopyWith<$Res> {
-  factory $UniversityFacultiesCopyWith(
-          UniversityFaculties value, $Res Function(UniversityFaculties) then) =
-      _$UniversityFacultiesCopyWithImpl<$Res>;
+abstract class $UniversityFacultyCopyWith<$Res> {
+  factory $UniversityFacultyCopyWith(
+          UniversityFaculty value, $Res Function(UniversityFaculty) then) =
+      _$UniversityFacultyCopyWithImpl<$Res>;
   $Res call({String facultyName, List<UniversityStudy> studies});
 }
 
 /// @nodoc
-class _$UniversityFacultiesCopyWithImpl<$Res>
-    implements $UniversityFacultiesCopyWith<$Res> {
-  _$UniversityFacultiesCopyWithImpl(this._value, this._then);
+class _$UniversityFacultyCopyWithImpl<$Res>
+    implements $UniversityFacultyCopyWith<$Res> {
+  _$UniversityFacultyCopyWithImpl(this._value, this._then);
 
-  final UniversityFaculties _value;
+  final UniversityFaculty _value;
   // ignore: unused_field
-  final $Res Function(UniversityFaculties) _then;
+  final $Res Function(UniversityFaculty) _then;
 
   @override
   $Res call({
@@ -65,32 +65,32 @@ class _$UniversityFacultiesCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_UniversityFacultiesCopyWith<$Res>
-    implements $UniversityFacultiesCopyWith<$Res> {
-  factory _$$_UniversityFacultiesCopyWith(_$_UniversityFaculties value,
-          $Res Function(_$_UniversityFaculties) then) =
-      __$$_UniversityFacultiesCopyWithImpl<$Res>;
+abstract class _$$_UniversityFacultyCopyWith<$Res>
+    implements $UniversityFacultyCopyWith<$Res> {
+  factory _$$_UniversityFacultyCopyWith(_$_UniversityFaculty value,
+          $Res Function(_$_UniversityFaculty) then) =
+      __$$_UniversityFacultyCopyWithImpl<$Res>;
   @override
   $Res call({String facultyName, List<UniversityStudy> studies});
 }
 
 /// @nodoc
-class __$$_UniversityFacultiesCopyWithImpl<$Res>
-    extends _$UniversityFacultiesCopyWithImpl<$Res>
-    implements _$$_UniversityFacultiesCopyWith<$Res> {
-  __$$_UniversityFacultiesCopyWithImpl(_$_UniversityFaculties _value,
-      $Res Function(_$_UniversityFaculties) _then)
-      : super(_value, (v) => _then(v as _$_UniversityFaculties));
+class __$$_UniversityFacultyCopyWithImpl<$Res>
+    extends _$UniversityFacultyCopyWithImpl<$Res>
+    implements _$$_UniversityFacultyCopyWith<$Res> {
+  __$$_UniversityFacultyCopyWithImpl(
+      _$_UniversityFaculty _value, $Res Function(_$_UniversityFaculty) _then)
+      : super(_value, (v) => _then(v as _$_UniversityFaculty));
 
   @override
-  _$_UniversityFaculties get _value => super._value as _$_UniversityFaculties;
+  _$_UniversityFaculty get _value => super._value as _$_UniversityFaculty;
 
   @override
   $Res call({
     Object? facultyName = freezed,
     Object? studies = freezed,
   }) {
-    return _then(_$_UniversityFaculties(
+    return _then(_$_UniversityFaculty(
       facultyName: facultyName == freezed
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
@@ -105,13 +105,13 @@ class __$$_UniversityFacultiesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UniversityFaculties implements _UniversityFaculties {
-  const _$_UniversityFaculties(
+class _$_UniversityFaculty implements _UniversityFaculty {
+  const _$_UniversityFaculty(
       {required this.facultyName, required final List<UniversityStudy> studies})
       : _studies = studies;
 
-  factory _$_UniversityFaculties.fromJson(Map<String, dynamic> json) =>
-      _$$_UniversityFacultiesFromJson(json);
+  factory _$_UniversityFaculty.fromJson(Map<String, dynamic> json) =>
+      _$$_UniversityFacultyFromJson(json);
 
   @override
   final String facultyName;
@@ -124,14 +124,14 @@ class _$_UniversityFaculties implements _UniversityFaculties {
 
   @override
   String toString() {
-    return 'UniversityFaculties(facultyName: $facultyName, studies: $studies)';
+    return 'UniversityFaculty(facultyName: $facultyName, studies: $studies)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UniversityFaculties &&
+            other is _$_UniversityFaculty &&
             const DeepCollectionEquality()
                 .equals(other.facultyName, facultyName) &&
             const DeepCollectionEquality().equals(other._studies, _studies));
@@ -146,25 +146,25 @@ class _$_UniversityFaculties implements _UniversityFaculties {
 
   @JsonKey(ignore: true)
   @override
-  _$$_UniversityFacultiesCopyWith<_$_UniversityFaculties> get copyWith =>
-      __$$_UniversityFacultiesCopyWithImpl<_$_UniversityFaculties>(
+  _$$_UniversityFacultyCopyWith<_$_UniversityFaculty> get copyWith =>
+      __$$_UniversityFacultyCopyWithImpl<_$_UniversityFaculty>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UniversityFacultiesToJson(
+    return _$$_UniversityFacultyToJson(
       this,
     );
   }
 }
 
-abstract class _UniversityFaculties implements UniversityFaculties {
-  const factory _UniversityFaculties(
+abstract class _UniversityFaculty implements UniversityFaculty {
+  const factory _UniversityFaculty(
       {required final String facultyName,
-      required final List<UniversityStudy> studies}) = _$_UniversityFaculties;
+      required final List<UniversityStudy> studies}) = _$_UniversityFaculty;
 
-  factory _UniversityFaculties.fromJson(Map<String, dynamic> json) =
-      _$_UniversityFaculties.fromJson;
+  factory _UniversityFaculty.fromJson(Map<String, dynamic> json) =
+      _$_UniversityFaculty.fromJson;
 
   @override
   String get facultyName;
@@ -172,6 +172,6 @@ abstract class _UniversityFaculties implements UniversityFaculties {
   List<UniversityStudy> get studies;
   @override
   @JsonKey(ignore: true)
-  _$$_UniversityFacultiesCopyWith<_$_UniversityFaculties> get copyWith =>
+  _$$_UniversityFacultyCopyWith<_$_UniversityFaculty> get copyWith =>
       throw _privateConstructorUsedError;
 }
