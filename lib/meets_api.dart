@@ -1,5 +1,5 @@
 import 'package:platonic/users_api.dart';
-import 'domain/meet_repository/src/models/models.dart';
+import 'package:platonic/domains/meet_repository/src/models/models.dart';
 
 const List<MeetsScroll> meets = [
   MeetsScroll(appUser: otherUser),

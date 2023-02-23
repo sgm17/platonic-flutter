@@ -1,22 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/university_provider/src/providers/universities_provider.dart';
-import 'package:platonic/screens/MatchScreen.dart';
-import 'package:platonic/screens/ProfileScreen.dart';
-import 'package:platonic/screens/SplashScreen.dart';
-import 'package:platonic/screens/StartScreen.dart';
-import 'package:platonic/screens/SettingsScreen.dart';
-import 'package:platonic/screens/RegisterDetailScreen.dart';
-import 'package:platonic/screens/CreateScreen.dart';
-import 'package:platonic/screens/ChatScreen.dart';
-import 'package:platonic/screens/HomeScreen.dart';
-import 'package:platonic/screens/StoryScreen.dart';
+import 'package:platonic/providers/university_provider/universities_provider.dart';
+import 'package:platonic/screens/match_screen/match_screen.dart';
+import 'package:platonic/screens/profile_screen/profile_screen.dart';
+import 'package:platonic/screens/splash_screen/splash_screen.dart';
+import 'package:platonic/screens/start_screen/start_screen.dart';
+import 'package:platonic/screens/settings_screen/settings_screen.dart';
+import 'package:platonic/screens/register_detail_screen/register_detail_screen.dart';
+import 'package:platonic/screens/create_screen/create_screen.dart';
+import 'package:platonic/screens/chat_screen/chat_screen.dart';
+import 'package:platonic/screens/home_screen/home_screen.dart';
+import 'package:platonic/screens/story_screen/story_screen.dart';
+import 'package:platonic/screens/profile_screen/other_profile_screen.dart';
+import 'package:platonic/screens/auth_screen/auth_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'domain/university_repository/src/models/models.dart';
 import 'providers/shared_preferences_provider/shared_preferences_provider.dart';
-import 'screens/AuthScreen.dart';
-import 'screens/OtherProfileScreen.dart';
+import 'package:platonic/domains/university_repository/university_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,7 @@ class PlatonicApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Platonic',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

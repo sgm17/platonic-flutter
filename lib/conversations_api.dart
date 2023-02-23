@@ -1,24 +1,23 @@
 import 'package:platonic/users_api.dart';
-
-import 'domain/chat_repository/src/models/models.dart';
+import 'package:platonic/domains/chat_repository/chat_repository.dart';
 
 final List<Message> messages = [
-  const Message(
+  Message(
       message: '''Missatge dia 12 - 23:15''',
       timestamp: 1676243700000,
-      isSender: true),
-  const Message(
+      toUid: otherUser.uid),
+  Message(
       message: '''Missatge dia 12 - 23:55''',
       timestamp: 1676246100000,
-      isSender: false),
-  const Message(
+      toUid: otherUser.uid),
+  Message(
       message: '''Missatge dia 13 - 00:04''',
       timestamp: 1676246640000,
-      isSender: true),
-  const Message(
+      toUid: otherUser.uid),
+  Message(
       message: '''Missatge dia 13 - 23:05''',
       timestamp: 1676329500000,
-      isSender: false),
+      toUid: otherUser.uid),
 ].reversed.toList();
 
 final List<Conversation> conversations = [

@@ -1,6 +1,6 @@
 // USER STUDYING IN ESCUELA DE INGENIERIA
-import 'domain/university_repository/src/models/models.dart';
-import 'domain/user_repository/src/models/models.dart';
+import 'package:platonic/domains/university_repository/src/models/models.dart';
+import 'package:platonic/domains/user_repository/src/models/models.dart';
 
 const AppUser otherUser = AppUser(
   uid: '2',

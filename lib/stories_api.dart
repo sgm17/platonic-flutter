@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:platonic/domain/university_repository/src/models/models.dart';
-import 'package:platonic/domain/user_repository/src/models/app_user_model.dart';
-import 'domain/story_repository/src/models/models.dart';
+import 'package:platonic/domains/university_repository/src/models/models.dart';
+import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
+import 'package:platonic/domains/story_repository/story_repository.dart';
 import 'users_api.dart';
 
 // THIS IS MY USER
