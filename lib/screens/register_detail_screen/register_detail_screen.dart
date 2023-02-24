@@ -22,8 +22,8 @@ class RegisterDetailScreenState extends ConsumerState<RegisterDetailScreen> {
   Future<void> toggleFinishRegister() async {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      final registerDetailState = ref.watch(registerDetailProvider);
-      final meetSettingsState = ref.watch(meetSettingsProvider);
+      final registerDetailState = ref.read(registerDetailProvider);
+      final meetSettingsState = ref.read(meetSettingsProvider);
 
       // Print registerDetailState
       print(registerDetailState);

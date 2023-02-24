@@ -30,10 +30,10 @@ class PasswordAuthInput extends ConsumerWidget {
         onSaved: (newValue) {
           if (isLogin) {
             ref.read(userLoginProvider.notifier).state =
-                ref.watch(userLoginProvider).copyWith(password: newValue);
+                ref.read(userLoginProvider).copyWith(password: newValue);
           } else {
             ref.read(userRegisterProvider.notifier).state =
-                ref.watch(userRegisterProvider).copyWith(password: newValue);
+                ref.read(userRegisterProvider).copyWith(password: newValue);
           }
         },
         validator: validatePassword,

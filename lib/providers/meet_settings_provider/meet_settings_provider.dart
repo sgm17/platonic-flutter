@@ -4,7 +4,7 @@ import 'package:platonic/domains/meet_settings_repository/src/models/meet_settin
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 
 final meetSettingsProvider = StateProvider<MeetSettings>((ref) {
-  final sharedPreferences = ref.watch(sharedPreferencesProvider);
+  final sharedPreferences = ref.read(sharedPreferencesProvider);
 
   final json = sharedPreferences.getString(MEET_SETTINGS_KEY);
 

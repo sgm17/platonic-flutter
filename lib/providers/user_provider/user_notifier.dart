@@ -111,8 +111,8 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
     if (user != null) {
       try {
-        final registerDetailState = ref.watch(registerDetailProvider);
-        final meetSettingsState = ref.watch(meetSettingsProvider);
+        final registerDetailState = ref.read(registerDetailProvider);
+        final meetSettingsState = ref.read(meetSettingsProvider);
 
         // No problem if no cloudToken, it will get later
         final cloudToken = await firebaseMessaging.getToken();
@@ -132,7 +132,7 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
             meetSettings: meetSettingsState);
 
         final AppUser appUser = await ref
-            .watch(userViewmodelProvider)
+            .read(userViewmodelProvider)
             .registerAndRetrieveProfile(
                 tokenId: tokenId, userBackendRegister: userBackendRegister);
 
@@ -162,8 +162,8 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
   Future<void> userSignInWithEmailAndPassword() async {
     try {
-      final email = ref.watch(userLoginProvider).email!;
-      final password = ref.watch(userLoginProvider).password!;
+      final email = ref.read(userLoginProvider).email!;
+      final password = ref.read(userLoginProvider).password!;
 
       // Sign in with email and password
       await firebaseAuth.signInWithEmailAndPassword(

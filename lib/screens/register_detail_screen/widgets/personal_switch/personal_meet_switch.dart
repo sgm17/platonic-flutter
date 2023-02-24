@@ -12,17 +12,15 @@ class PersonalMeetSwitch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(registerDetailProvider);
-
     EdgeInsets containerMargin =
-        ref.watch(registerDetailProvider).sex == Sex.male
+        ref.read(registerDetailProvider).sex == Sex.male
             ? const EdgeInsets.only(right: 132.0, top: 2.0)
             : const EdgeInsets.only(top: 2.0, left: 132.0);
     return GestureDetector(
       onTap: () => ref.read(registerDetailProvider.notifier).state = ref
-          .watch(registerDetailProvider)
+          .read(registerDetailProvider)
           .copyWith(
-              sex: ref.watch(registerDetailProvider).sex == Sex.male
+              sex: ref.read(registerDetailProvider).sex == Sex.male
                   ? Sex.female
                   : Sex.male),
       child: Container(

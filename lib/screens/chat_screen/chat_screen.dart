@@ -11,7 +11,7 @@ class ChatScreen extends ConsumerWidget {
   const ChatScreen({super.key});
 
   void _toggleSend({required WidgetRef ref, required String message}) {
-    final activeConversation = ref.watch(activeConversationProvider);
+    final activeConversation = ref.read(activeConversationProvider);
 
     final updatedConversation = activeConversation.copyWith(
       messages: [

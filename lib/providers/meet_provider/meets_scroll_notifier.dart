@@ -7,7 +7,7 @@ class MeetsScrollNotifier extends StateNotifier<AsyncValue<List<MeetsScroll>>> {
 
   MeetsScrollNotifier(this.ref)
       : super(const AsyncValue<List<MeetsScroll>>.loading()) {
-    ref.watch(meetViewmodelProvider).retrieveMeetScroll().then((meets) {
+    ref.read(meetViewmodelProvider).retrieveMeetScroll().then((meets) {
       state = AsyncValue.data(meets);
     }).catchError((e) {
       state = AsyncValue.error(e, StackTrace.current);

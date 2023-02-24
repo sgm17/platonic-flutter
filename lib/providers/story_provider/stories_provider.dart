@@ -4,6 +4,6 @@ import 'package:platonic/providers/story_provider/providers.dart';
 
 final storiesProvider =
     StateNotifierProvider<StoriesNotifier, AsyncValue<List<Story>>>((ref) {
-  final faculty = ref.watch(activeFacultyProvider);
+  final faculty = ref.read(activeFacultyProvider);
   return StoriesNotifier(ref, faculty);
 });

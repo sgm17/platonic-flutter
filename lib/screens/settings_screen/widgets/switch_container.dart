@@ -12,11 +12,10 @@ class SwitchContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final meetSettingsState = ref.watch(meetSettingsProvider);
-
     return GestureDetector(
-      onTap: () => ref.read(meetSettingsProvider.notifier).state =
-          meetSettingsState.copyWith(meetStatus: !meetSettingsState.meetStatus),
+      onTap: () => ref.read(meetSettingsProvider.notifier).state = ref
+          .read(meetSettingsProvider)
+          .copyWith(meetStatus: !ref.read(meetSettingsProvider).meetStatus),
       child: SizedBox(
         width: 45.0,
         height: 25.0,
@@ -46,7 +45,7 @@ class SwitchContainer extends ConsumerWidget {
                         child: SizedBox(
                           width: width,
                           height: height,
-                          child: meetSettingsState.meetStatus
+                          child: ref.read(meetSettingsProvider).meetStatus
                               ? SwitchBlueBackground()
                               : SwitchWhiteBackground(),
                         ))
@@ -70,7 +69,7 @@ class SwitchContainer extends ConsumerWidget {
                       (constraints.maxHeight * percentHeight) / 17.0;
 
                   Matrix4 matrix4 = Matrix4.translationValues(
-                      meetSettingsState.meetStatus
+                      ref.read(meetSettingsProvider).meetStatus
                           ? constraints.maxWidth * 0.5333333333333333
                           : constraints.maxWidth * 0.5333333333333333 / 5,
                       constraints.maxHeight * 0.16,

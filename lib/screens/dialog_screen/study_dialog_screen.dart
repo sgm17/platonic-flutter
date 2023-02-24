@@ -21,16 +21,15 @@ class StudyDialogScreen extends ConsumerWidget {
     final universitiesList = ref.watch(universitiesProvider);
     final searchBarState = ref.watch(searchBarProvider);
 
-    List<Study> studies = ref.watch(registerDetailProvider).university !=
-                null &&
-            ref.watch(registerDetailProvider).faculty != null
+    List<Study> studies = ref.read(registerDetailProvider).university != null &&
+            ref.read(registerDetailProvider).faculty != null
         ? universitiesList
             .firstWhere((e) =>
-                e.university == ref.watch(registerDetailProvider).university)
+                e.university == ref.read(registerDetailProvider).university)
             .faculties
             .firstWhere((e) =>
                 e.convertToFaculty() ==
-                ref.watch(registerDetailProvider).faculty)
+                ref.read(registerDetailProvider).faculty)
             .studies
         : [];
 
@@ -76,12 +75,12 @@ class StudyDialogScreen extends ConsumerWidget {
                     return GestureDetector(
                       onTap: () =>
                           ref.read(registerDetailProvider.notifier).state = ref
-                              .watch(registerDetailProvider)
+                              .read(registerDetailProvider)
                               .copyWith(study: studies[index]),
                       child: OptionSelected(
                         isBlue: true,
                         isSelected: studies[index] ==
-                            ref.watch(registerDetailProvider).study,
+                            ref.read(registerDetailProvider).study,
                         name: studies[index].name,
                       ),
                     );

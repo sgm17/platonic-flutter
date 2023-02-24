@@ -31,10 +31,10 @@ class EmailAuthInput extends ConsumerWidget {
         onSaved: (newValue) {
           if (isLogin) {
             ref.read(userLoginProvider.notifier).state =
-                ref.watch(userLoginProvider).copyWith(email: newValue);
+                ref.read(userLoginProvider).copyWith(email: newValue);
           } else {
             ref.read(userRegisterProvider.notifier).state =
-                ref.watch(userRegisterProvider).copyWith(email: newValue);
+                ref.read(userRegisterProvider).copyWith(email: newValue);
           }
         },
         validator: validateEmail,

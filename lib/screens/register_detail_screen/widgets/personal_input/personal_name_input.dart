@@ -27,7 +27,7 @@ class PersonalNameInput extends ConsumerWidget {
       onSaved: (newValue) {
         if (newValue != null) {
           final updatedState =
-              ref.watch(registerDetailProvider).copyWith(name: newValue);
+              ref.read(registerDetailProvider).copyWith(name: newValue);
           ref.read(registerDetailProvider.notifier).state = updatedState;
         }
       },

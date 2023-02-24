@@ -16,7 +16,7 @@ class RegisterScreen extends ConsumerWidget {
     Future<void> toggleContinueWithEmail() async {
       if (formKey.currentState!.validate()) {
         formKey.currentState!.save();
-        final registerState = ref.watch(userRegisterProvider);
+        final registerState = ref.read(userRegisterProvider);
 
         // Print UserRegisterData
         print(registerState);

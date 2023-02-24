@@ -16,7 +16,7 @@ class LoginScreen extends ConsumerWidget {
         formKey.currentState!.save();
 
         // Firebase login user
-        await ref.watch(userProvider.notifier).userSignInWithEmailAndPassword();
+        await ref.read(userProvider.notifier).userSignInWithEmailAndPassword();
 
         // Fire onAuthStateChanges(User? user) and redirect to HomeScreen()
       }
