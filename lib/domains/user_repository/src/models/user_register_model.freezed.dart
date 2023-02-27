@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserRegister _$UserRegisterFromJson(Map<String, dynamic> json) {
-  return _UserRegister.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UserRegister {
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserRegisterCopyWith<UserRegister> get copyWith =>
       throw _privateConstructorUsedError;
@@ -106,12 +101,9 @@ class __$$_UserRegisterCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_UserRegister implements _UserRegister {
   const _$_UserRegister({this.email, this.password});
-
-  factory _$_UserRegister.fromJson(Map<String, dynamic> json) =>
-      _$$_UserRegisterFromJson(json);
 
   @override
   final String? email;
@@ -133,7 +125,6 @@ class _$_UserRegister implements _UserRegister {
                 other.password == password));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
@@ -142,21 +133,11 @@ class _$_UserRegister implements _UserRegister {
   @pragma('vm:prefer-inline')
   _$$_UserRegisterCopyWith<_$_UserRegister> get copyWith =>
       __$$_UserRegisterCopyWithImpl<_$_UserRegister>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_UserRegisterToJson(
-      this,
-    );
-  }
 }
 
 abstract class _UserRegister implements UserRegister {
   const factory _UserRegister({final String? email, final String? password}) =
       _$_UserRegister;
-
-  factory _UserRegister.fromJson(Map<String, dynamic> json) =
-      _$_UserRegister.fromJson;
 
   @override
   String? get email;

@@ -17,7 +17,7 @@ class MeetItem extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () {
-        ref.read(otherUserProvider.notifier).state = meetState.appUser;
+        ref.read(otherUserProvider.notifier).state = meetState.user;
         Navigator.pushNamed(context, '/OtherProfileScreen');
       },
       child: SizedBox(
@@ -51,7 +51,7 @@ class MeetItem extends ConsumerWidget {
                           width: width,
                           height: height,
                           child: MeetBackground(
-                            backgroundImage: meetState.appUser.profileImage!,
+                            backgroundImage: meetState.user.profileImage,
                           ),
                         ))
                   ]);
@@ -80,7 +80,7 @@ class MeetItem extends ConsumerWidget {
                           width: width,
                           height: height,
                           child: MeetTitle(
-                            name: meetState.appUser.name,
+                            name: meetState.user.name,
                           ),
                         ))
                   ]);

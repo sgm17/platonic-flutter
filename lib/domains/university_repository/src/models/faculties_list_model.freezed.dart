@@ -14,16 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-FacultiesList _$FacultiesListFromJson(Map<String, dynamic> json) {
-  return _FacultiesList.fromJson(json);
-}
-
 /// @nodoc
 mixin _$FacultiesList {
+  int get id => throw _privateConstructorUsedError;
   String get facultyName => throw _privateConstructorUsedError;
   List<Study> get studies => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FacultiesListCopyWith<FacultiesList> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,7 +31,7 @@ abstract class $FacultiesListCopyWith<$Res> {
           FacultiesList value, $Res Function(FacultiesList) then) =
       _$FacultiesListCopyWithImpl<$Res, FacultiesList>;
   @useResult
-  $Res call({String facultyName, List<Study> studies});
+  $Res call({int id, String facultyName, List<Study> studies});
 }
 
 /// @nodoc
@@ -51,10 +47,15 @@ class _$FacultiesListCopyWithImpl<$Res, $Val extends FacultiesList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? facultyName = null,
     Object? studies = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       facultyName: null == facultyName
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
@@ -75,7 +76,7 @@ abstract class _$$_FacultiesListCopyWith<$Res>
       __$$_FacultiesListCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String facultyName, List<Study> studies});
+  $Res call({int id, String facultyName, List<Study> studies});
 }
 
 /// @nodoc
@@ -89,10 +90,15 @@ class __$$_FacultiesListCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? facultyName = null,
     Object? studies = null,
   }) {
     return _then(_$_FacultiesList(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       facultyName: null == facultyName
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
@@ -106,15 +112,17 @@ class __$$_FacultiesListCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_FacultiesList implements _FacultiesList {
+
+class _$_FacultiesList extends _FacultiesList {
   const _$_FacultiesList(
-      {required this.facultyName, required final List<Study> studies})
-      : _studies = studies;
+      {required this.id,
+      required this.facultyName,
+      required final List<Study> studies})
+      : _studies = studies,
+        super._();
 
-  factory _$_FacultiesList.fromJson(Map<String, dynamic> json) =>
-      _$$_FacultiesListFromJson(json);
-
+  @override
+  final int id;
   @override
   final String facultyName;
   final List<Study> _studies;
@@ -127,7 +135,7 @@ class _$_FacultiesList implements _FacultiesList {
 
   @override
   String toString() {
-    return 'FacultiesList(facultyName: $facultyName, studies: $studies)';
+    return 'FacultiesList(id: $id, facultyName: $facultyName, studies: $studies)';
   }
 
   @override
@@ -135,43 +143,32 @@ class _$_FacultiesList implements _FacultiesList {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FacultiesList &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.facultyName, facultyName) ||
                 other.facultyName == facultyName) &&
             const DeepCollectionEquality().equals(other._studies, _studies));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, facultyName, const DeepCollectionEquality().hash(_studies));
+  int get hashCode => Object.hash(runtimeType, id, facultyName,
+      const DeepCollectionEquality().hash(_studies));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_FacultiesListCopyWith<_$_FacultiesList> get copyWith =>
       __$$_FacultiesListCopyWithImpl<_$_FacultiesList>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_FacultiesListToJson(
-      this,
-    );
-  }
-
-  @override
-  Faculty convertToFaculty() {
-    return Faculty(facultyName: facultyName);
-  }
 }
 
-abstract class _FacultiesList implements FacultiesList {
+abstract class _FacultiesList extends FacultiesList {
   const factory _FacultiesList(
-      {required final String facultyName,
+      {required final int id,
+      required final String facultyName,
       required final List<Study> studies}) = _$_FacultiesList;
+  const _FacultiesList._() : super._();
 
-  factory _FacultiesList.fromJson(Map<String, dynamic> json) =
-      _$_FacultiesList.fromJson;
-
+  @override
+  int get id;
   @override
   String get facultyName;
   @override

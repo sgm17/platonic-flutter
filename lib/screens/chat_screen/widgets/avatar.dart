@@ -6,7 +6,7 @@ import 'package:platonic/helpers/mask/mask.dart';
   */
 class Avatar extends StatelessWidget {
   final double width, height;
-  final String profileImage;
+  final String? profileImage;
 
   const Avatar(
       {Key? key,
@@ -35,14 +35,21 @@ class Avatar extends StatelessWidget {
               child: Mask.fromSVGPath(
                 'M35 17.5C35 27.165 27.165 35 17.5 35C7.83502 35 0 27.165 0 17.5C0 7.83502 7.83502 0 17.5 0C27.165 0 35 7.83502 35 17.5Z',
                 offset: const Offset(0.0, 0.0),
-                child: Image.network(
-                  profileImage,
-                  color: null,
-                  fit: BoxFit.cover,
-                  width: 35.0,
-                  height: 35.0,
-                  colorBlendMode: BlendMode.dstATop,
-                ),
+                child: profileImage == null
+                    ? Image.asset(
+                        'assets/images/default_avatar.jpg',
+                        fit: BoxFit.cover,
+                        width: 35.0,
+                        height: 35.0,
+                        colorBlendMode: BlendMode.dstATop,
+                      )
+                    : Image.network(
+                        profileImage!,
+                        fit: BoxFit.cover,
+                        width: 35.0,
+                        height: 35.0,
+                        colorBlendMode: BlendMode.dstATop,
+                      ),
               ),
             )
           ]),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
@@ -51,7 +52,7 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
         body: SafeArea(
             child: userState.when(
           data: (AppUser user) {
-            if (user.uid == AppUser.emptyUser.uid) {
+            if (user.uid == '') {
               // No user in the backend
               return const RegisterDetailScreen();
             } else {

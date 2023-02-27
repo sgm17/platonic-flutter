@@ -24,8 +24,9 @@ class StoryItem extends ConsumerWidget {
         height: 135.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            image: DecorationImage(
-                image: AssetImage(storyState.backgroundImage!),
+            image: const DecorationImage(
+                image: AssetImage(
+                    "assets/images/36c0815a7435b728898d67811e50214f1bff69e4.png"),
                 fit: BoxFit.cover)),
         child: Stack(
             fit: StackFit.expand,
@@ -56,8 +57,7 @@ class StoryItem extends ConsumerWidget {
                         scaleX: scaleX,
                         scaleY: scaleY,
                         scaleZ: 1,
-                        child:
-                            StoryAvatar(url: storyState.appUser.profileImage!))
+                        child: StoryAvatar(url: storyState.user.profileImage))
                   ]);
                 }),
               ),

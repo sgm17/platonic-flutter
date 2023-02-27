@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/meet_settings_provider/meet_settings_provider.dart';
-import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
-import 'package:platonic/screens/dialog_screen/university_dialog_screen.dart';
+import 'package:platonic/providers/dialog_provider/is_meet_settings_dialog_provider.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/settings_screen/widgets/widgets.dart';
 
 /* Frame meet
@@ -13,7 +12,19 @@ class RegisterDetailMeet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final meetSettingsState = ref.watch(meetSettingsProvider);
+    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+
+    void toggleUniversity() {
+      ref.read(isMeetSettingsDialogProvider.notifier).state = true;
+
+      Navigator.pushNamed(context, '/UniversityDialogScreen');
+    }
+
+    void toggleFaculty() {
+      ref.read(isMeetSettingsDialogProvider.notifier).state = true;
+
+      Navigator.pushNamed(context, '/FacultyDialogScreen');
+    }
 
     return SizedBox(
       height: 138.0,
@@ -28,12 +39,12 @@ class RegisterDetailMeet extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: SettingsSelect(
-            placeholder: meetSettingsState.universityToMeet?.name ??
-                'Your university to meet',
+            placeholder: userRegisterDetailState.universityToMeet != null &&
+                    userRegisterDetailState.universityToMeet!.name.isNotEmpty
+                ? userRegisterDetailState.universityToMeet!.name
+                : 'Your university to meet',
             title: '''University to meet''',
-            settingsDialog: const UniversityDialogScreen(
-              isMeetSettings: true,
-            ),
+            toggleDialog: toggleUniversity,
           ),
         ),
         const SizedBox(
@@ -42,13 +53,12 @@ class RegisterDetailMeet extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: SettingsSelect(
-            placeholder: meetSettingsState.facultiesToMeet.isNotEmpty
-                ? '${meetSettingsState.facultiesToMeet.first.facultyName} +${meetSettingsState.facultiesToMeet.length - 1}'
+            placeholder: userRegisterDetailState.facultiesToMeet != null &&
+                    userRegisterDetailState.facultiesToMeet!.isNotEmpty
+                ? '${userRegisterDetailState.facultiesToMeet!.first.facultyName} +${userRegisterDetailState.facultiesToMeet!.length - 1}'
                 : 'Your faculties to meet',
             title: '''Faculties to meet''',
-            settingsDialog: const FacultyDialogScreen(
-              isMeetSettings: true,
-            ),
+            toggleDialog: toggleFaculty,
           ),
         )
       ]),

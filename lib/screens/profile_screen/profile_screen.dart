@@ -19,7 +19,9 @@ class ProfileScreen extends ConsumerWidget {
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
         body: SafeArea(
           child: userState.when(
-            data: (AppUser user) {
+            data: (AppUser? user) {
+              if (user == null) return const SizedBox.shrink();
+
               return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -39,7 +41,7 @@ class ProfileScreen extends ConsumerWidget {
                       SizedBox(
                         height: 110.0,
                         child: UserAvatar(
-                          profileImage: user.profileImage!,
+                          profileImage: user.profileImage,
                         ),
                       ),
                       const SizedBox(

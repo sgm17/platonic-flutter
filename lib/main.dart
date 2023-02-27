@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/university_provider/universities_provider.dart';
+import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
+import 'package:platonic/screens/dialog_screen/study_dialog_screen.dart';
+import 'package:platonic/screens/dialog_screen/university_dialog_screen.dart';
 import 'package:platonic/screens/match_screen/match_screen.dart';
 import 'package:platonic/screens/profile_screen/profile_screen.dart';
 import 'package:platonic/screens/splash_screen/splash_screen.dart';
@@ -16,15 +18,12 @@ import 'package:platonic/screens/profile_screen/other_profile_screen.dart';
 import 'package:platonic/screens/auth_screen/auth_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/shared_preferences_provider/shared_preferences_provider.dart';
-import 'package:platonic/domains/university_repository/university_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final universityList = await UniversitiesList.getUniversities();
   final sharedPreferenches = await SharedPreferences.getInstance();
   runApp(ProviderScope(overrides: [
-    universitiesProvider.overrideWithValue(universityList),
     sharedPreferencesProvider.overrideWithValue(sharedPreferenches)
   ], child: const PlatonicApp()));
 }
@@ -54,6 +53,9 @@ class PlatonicApp extends StatelessWidget {
         '/ChatScreen': (context) => const ChatScreen(),
         '/HomeScreen': (context) => const HomeScreen(),
         '/MatchScreen': (context) => const MatchScreen(),
+        '/UniversityDialogScreen': (context) => const UniversityDialogScreen(),
+        '/FacultyDialogScreen': (context) => const FacultyDialogScreen(),
+        '/StudyDialogScreen': (context) => const StudyDialogScreen(),
       },
     );
   }

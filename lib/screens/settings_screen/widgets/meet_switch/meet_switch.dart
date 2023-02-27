@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
-import 'package:platonic/providers/meet_settings_provider/meet_settings_provider.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/settings_screen/widgets/widgets.dart';
 
 class MeetSwitch extends ConsumerWidget {
@@ -9,16 +9,16 @@ class MeetSwitch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final meetSettingsState = ref.watch(meetSettingsProvider);
+    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
 
-    EdgeInsets containerMargin = meetSettingsState.sexToMeet == Sex.male
+    EdgeInsets containerMargin = userRegisterDetailState.sexToMeet == Sex.male
         ? const EdgeInsets.only(right: 111.22222137451172, top: 2.0)
         : const EdgeInsets.only(top: 2.0, left: 111.22222137451172);
 
     return GestureDetector(
-      onTap: () => ref.read(meetSettingsProvider.notifier).state =
-          meetSettingsState.copyWith(
-              sexToMeet: meetSettingsState.sexToMeet == Sex.male
+      onTap: () => ref.read(userRegisterDetailProvider.notifier).state =
+          userRegisterDetailState.copyWith(
+              sexToMeet: userRegisterDetailState.sexToMeet == Sex.male
                   ? Sex.female
                   : Sex.male),
       child: Container(

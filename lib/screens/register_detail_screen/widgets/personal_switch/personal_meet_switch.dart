@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
-import 'package:platonic/providers/register_detail_provider/register_detail_provider.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/register_detail_screen/widgets/widgets.dart';
 
 /* Group meet switch
@@ -13,14 +13,14 @@ class PersonalMeetSwitch extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     EdgeInsets containerMargin =
-        ref.read(registerDetailProvider).sex == Sex.male
+        ref.read(userRegisterDetailProvider).sex == Sex.male
             ? const EdgeInsets.only(right: 132.0, top: 2.0)
             : const EdgeInsets.only(top: 2.0, left: 132.0);
     return GestureDetector(
-      onTap: () => ref.read(registerDetailProvider.notifier).state = ref
-          .read(registerDetailProvider)
+      onTap: () => ref.read(userRegisterDetailProvider.notifier).state = ref
+          .read(userRegisterDetailProvider)
           .copyWith(
-              sex: ref.read(registerDetailProvider).sex == Sex.male
+              sex: ref.read(userRegisterDetailProvider).sex == Sex.male
                   ? Sex.female
                   : Sex.male),
       child: Container(

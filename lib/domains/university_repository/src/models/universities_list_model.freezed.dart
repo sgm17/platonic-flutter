@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UniversitiesList {
+  int get id => throw _privateConstructorUsedError;
   University get university => throw _privateConstructorUsedError;
   List<FacultiesList> get faculties => throw _privateConstructorUsedError;
 
@@ -30,7 +31,7 @@ abstract class $UniversitiesListCopyWith<$Res> {
           UniversitiesList value, $Res Function(UniversitiesList) then) =
       _$UniversitiesListCopyWithImpl<$Res, UniversitiesList>;
   @useResult
-  $Res call({University university, List<FacultiesList> faculties});
+  $Res call({int id, University university, List<FacultiesList> faculties});
 
   $UniversityCopyWith<$Res> get university;
 }
@@ -48,10 +49,15 @@ class _$UniversitiesListCopyWithImpl<$Res, $Val extends UniversitiesList>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? university = null,
     Object? faculties = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       university: null == university
           ? _value.university
           : university // ignore: cast_nullable_to_non_nullable
@@ -80,7 +86,7 @@ abstract class _$$_UniversitiesListCopyWith<$Res>
       __$$_UniversitiesListCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({University university, List<FacultiesList> faculties});
+  $Res call({int id, University university, List<FacultiesList> faculties});
 
   @override
   $UniversityCopyWith<$Res> get university;
@@ -97,10 +103,15 @@ class __$$_UniversitiesListCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? university = null,
     Object? faculties = null,
   }) {
     return _then(_$_UniversitiesList(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       university: null == university
           ? _value.university
           : university // ignore: cast_nullable_to_non_nullable
@@ -115,11 +126,16 @@ class __$$_UniversitiesListCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UniversitiesList implements _UniversitiesList {
+class _$_UniversitiesList extends _UniversitiesList {
   const _$_UniversitiesList(
-      {required this.university, required final List<FacultiesList> faculties})
-      : _faculties = faculties;
+      {required this.id,
+      required this.university,
+      required final List<FacultiesList> faculties})
+      : _faculties = faculties,
+        super._();
 
+  @override
+  final int id;
   @override
   final University university;
   final List<FacultiesList> _faculties;
@@ -132,7 +148,7 @@ class _$_UniversitiesList implements _UniversitiesList {
 
   @override
   String toString() {
-    return 'UniversitiesList(university: $university, faculties: $faculties)';
+    return 'UniversitiesList(id: $id, university: $university, faculties: $faculties)';
   }
 
   @override
@@ -140,6 +156,7 @@ class _$_UniversitiesList implements _UniversitiesList {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UniversitiesList &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.university, university) ||
                 other.university == university) &&
             const DeepCollectionEquality()
@@ -147,8 +164,8 @@ class _$_UniversitiesList implements _UniversitiesList {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, university, const DeepCollectionEquality().hash(_faculties));
+  int get hashCode => Object.hash(runtimeType, id, university,
+      const DeepCollectionEquality().hash(_faculties));
 
   @JsonKey(ignore: true)
   @override
@@ -157,11 +174,15 @@ class _$_UniversitiesList implements _UniversitiesList {
       __$$_UniversitiesListCopyWithImpl<_$_UniversitiesList>(this, _$identity);
 }
 
-abstract class _UniversitiesList implements UniversitiesList {
+abstract class _UniversitiesList extends UniversitiesList {
   const factory _UniversitiesList(
-      {required final University university,
+      {required final int id,
+      required final University university,
       required final List<FacultiesList> faculties}) = _$_UniversitiesList;
+  const _UniversitiesList._() : super._();
 
+  @override
+  int get id;
   @override
   University get university;
   @override

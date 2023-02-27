@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class UserAvatar extends StatelessWidget {
   const UserAvatar({super.key, required this.profileImage});
 
-  final String profileImage;
+  final String? profileImage;
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,19 @@ class UserAvatar extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(5.0),
         child: ClipOval(
-          child: Image.network(
-            profileImage,
-            width: 100.0,
-            height: 100.0,
-            fit: BoxFit.cover,
-          ),
+          child: profileImage == null
+              ? Image.asset(
+                  'assets/images/default_avatar.jpg',
+                  width: 100.0,
+                  height: 100.0,
+                  fit: BoxFit.cover,
+                )
+              : Image.network(
+                  profileImage!,
+                  width: 100.0,
+                  height: 100.0,
+                  fit: BoxFit.cover,
+                ),
         ),
       ),
     );

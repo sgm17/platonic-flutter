@@ -8,7 +8,7 @@ class StoriesScrollNotifier
 
   StoriesScrollNotifier(this.ref)
       : super(const AsyncValue<List<StoriesScroll>>.loading()) {
-    ref.read(storyViewmodelProvider).retrieveStoriesScroll().then((stories) {
+    ref.read(storyViewmodelProvider).getStoriesScroll().then((stories) {
       state = AsyncValue.data(stories);
     }).catchError((e) {
       state = AsyncValue.error(e, StackTrace.current);

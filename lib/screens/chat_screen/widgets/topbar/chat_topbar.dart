@@ -34,7 +34,7 @@ class ChatTopbar extends ConsumerWidget {
             width: 40.0,
             height: 40.0,
             child: Avatar(
-              profileImage: appUser.profileImage!,
+              profileImage: appUser.profileImage,
               width: 40.0,
               height: 40.0,
             ),

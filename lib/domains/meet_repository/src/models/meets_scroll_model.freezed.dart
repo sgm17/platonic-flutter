@@ -14,15 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MeetsScroll _$MeetsScrollFromJson(Map<String, dynamic> json) {
-  return _MeetsScroll.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MeetsScroll {
-  AppUser get appUser => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  AppUser get user => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MeetsScrollCopyWith<MeetsScroll> get copyWith =>
       throw _privateConstructorUsedError;
@@ -34,9 +30,9 @@ abstract class $MeetsScrollCopyWith<$Res> {
           MeetsScroll value, $Res Function(MeetsScroll) then) =
       _$MeetsScrollCopyWithImpl<$Res, MeetsScroll>;
   @useResult
-  $Res call({AppUser appUser});
+  $Res call({int id, AppUser user});
 
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -52,21 +48,26 @@ class _$MeetsScrollCopyWithImpl<$Res, $Val extends MeetsScroll>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
   }) {
     return _then(_value.copyWith(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AppUserCopyWith<$Res> get appUser {
-    return $AppUserCopyWith<$Res>(_value.appUser, (value) {
-      return _then(_value.copyWith(appUser: value) as $Val);
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -79,10 +80,10 @@ abstract class _$$_MeetsScrollCopyWith<$Res>
       __$$_MeetsScrollCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppUser appUser});
+  $Res call({int id, AppUser user});
 
   @override
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -96,31 +97,35 @@ class __$$_MeetsScrollCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
   }) {
     return _then(_$_MeetsScroll(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_MeetsScroll implements _MeetsScroll {
-  const _$_MeetsScroll({required this.appUser});
 
-  factory _$_MeetsScroll.fromJson(Map<String, dynamic> json) =>
-      _$$_MeetsScrollFromJson(json);
+class _$_MeetsScroll extends _MeetsScroll {
+  const _$_MeetsScroll({required this.id, required this.user}) : super._();
 
   @override
-  final AppUser appUser;
+  final int id;
+  @override
+  final AppUser user;
 
   @override
   String toString() {
-    return 'MeetsScroll(appUser: $appUser)';
+    return 'MeetsScroll(id: $id, user: $user)';
   }
 
   @override
@@ -128,35 +133,29 @@ class _$_MeetsScroll implements _MeetsScroll {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MeetsScroll &&
-            (identical(other.appUser, appUser) || other.appUser == appUser));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user, user) || other.user == user));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, appUser);
+  int get hashCode => Object.hash(runtimeType, id, user);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_MeetsScrollCopyWith<_$_MeetsScroll> get copyWith =>
       __$$_MeetsScrollCopyWithImpl<_$_MeetsScroll>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_MeetsScrollToJson(
-      this,
-    );
-  }
 }
 
-abstract class _MeetsScroll implements MeetsScroll {
-  const factory _MeetsScroll({required final AppUser appUser}) = _$_MeetsScroll;
-
-  factory _MeetsScroll.fromJson(Map<String, dynamic> json) =
-      _$_MeetsScroll.fromJson;
+abstract class _MeetsScroll extends MeetsScroll {
+  const factory _MeetsScroll(
+      {required final int id, required final AppUser user}) = _$_MeetsScroll;
+  const _MeetsScroll._() : super._();
 
   @override
-  AppUser get appUser;
+  int get id;
+  @override
+  AppUser get user;
   @override
   @JsonKey(ignore: true)
   _$$_MeetsScrollCopyWith<_$_MeetsScroll> get copyWith =>

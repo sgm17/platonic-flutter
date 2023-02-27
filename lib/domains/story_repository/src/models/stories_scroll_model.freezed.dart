@@ -14,17 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StoriesScroll _$StoriesScrollFromJson(Map<String, dynamic> json) {
-  return _StoriesScroll.fromJson(json);
-}
-
 /// @nodoc
 mixin _$StoriesScroll {
-  AppUser get appUser => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  AppUser get user => throw _privateConstructorUsedError;
   Faculty get faculty => throw _privateConstructorUsedError;
-  String? get backgroundImage => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $StoriesScrollCopyWith<StoriesScroll> get copyWith =>
       throw _privateConstructorUsedError;
@@ -36,9 +31,9 @@ abstract class $StoriesScrollCopyWith<$Res> {
           StoriesScroll value, $Res Function(StoriesScroll) then) =
       _$StoriesScrollCopyWithImpl<$Res, StoriesScroll>;
   @useResult
-  $Res call({AppUser appUser, Faculty faculty, String? backgroundImage});
+  $Res call({int id, AppUser user, Faculty faculty});
 
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
   $FacultyCopyWith<$Res> get faculty;
 }
 
@@ -55,31 +50,31 @@ class _$StoriesScrollCopyWithImpl<$Res, $Val extends StoriesScroll>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? faculty = null,
-    Object? backgroundImage = freezed,
   }) {
     return _then(_value.copyWith(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       faculty: null == faculty
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
               as Faculty,
-      backgroundImage: freezed == backgroundImage
-          ? _value.backgroundImage
-          : backgroundImage // ignore: cast_nullable_to_non_nullable
-              as String?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AppUserCopyWith<$Res> get appUser {
-    return $AppUserCopyWith<$Res>(_value.appUser, (value) {
-      return _then(_value.copyWith(appUser: value) as $Val);
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
@@ -100,10 +95,10 @@ abstract class _$$_StoriesScrollCopyWith<$Res>
       __$$_StoriesScrollCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppUser appUser, Faculty faculty, String? backgroundImage});
+  $Res call({int id, AppUser user, Faculty faculty});
 
   @override
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
   @override
   $FacultyCopyWith<$Res> get faculty;
 }
@@ -119,50 +114,44 @@ class __$$_StoriesScrollCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? faculty = null,
-    Object? backgroundImage = freezed,
   }) {
     return _then(_$_StoriesScroll(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       faculty: null == faculty
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
               as Faculty,
-      backgroundImage: freezed == backgroundImage
-          ? _value.backgroundImage
-          : backgroundImage // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_StoriesScroll implements _StoriesScroll {
-  const _$_StoriesScroll(
-      {required this.appUser,
-      required this.faculty,
-      this.backgroundImage =
-          "assets/images/36c0815a7435b728898d67811e50214f1bff69e4.png"});
 
-  factory _$_StoriesScroll.fromJson(Map<String, dynamic> json) =>
-      _$$_StoriesScrollFromJson(json);
+class _$_StoriesScroll extends _StoriesScroll {
+  const _$_StoriesScroll(
+      {required this.id, required this.user, required this.faculty})
+      : super._();
 
   @override
-  final AppUser appUser;
+  final int id;
+  @override
+  final AppUser user;
   @override
   final Faculty faculty;
-  @override
-  @JsonKey()
-  final String? backgroundImage;
 
   @override
   String toString() {
-    return 'StoriesScroll(appUser: $appUser, faculty: $faculty, backgroundImage: $backgroundImage)';
+    return 'StoriesScroll(id: $id, user: $user, faculty: $faculty)';
   }
 
   @override
@@ -170,46 +159,34 @@ class _$_StoriesScroll implements _StoriesScroll {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_StoriesScroll &&
-            (identical(other.appUser, appUser) || other.appUser == appUser) &&
-            (identical(other.faculty, faculty) || other.faculty == faculty) &&
-            (identical(other.backgroundImage, backgroundImage) ||
-                other.backgroundImage == backgroundImage));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user, user) || other.user == user) &&
+            (identical(other.faculty, faculty) || other.faculty == faculty));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, appUser, faculty, backgroundImage);
+  int get hashCode => Object.hash(runtimeType, id, user, faculty);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_StoriesScrollCopyWith<_$_StoriesScroll> get copyWith =>
       __$$_StoriesScrollCopyWithImpl<_$_StoriesScroll>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_StoriesScrollToJson(
-      this,
-    );
-  }
 }
 
-abstract class _StoriesScroll implements StoriesScroll {
+abstract class _StoriesScroll extends StoriesScroll {
   const factory _StoriesScroll(
-      {required final AppUser appUser,
-      required final Faculty faculty,
-      final String? backgroundImage}) = _$_StoriesScroll;
-
-  factory _StoriesScroll.fromJson(Map<String, dynamic> json) =
-      _$_StoriesScroll.fromJson;
+      {required final int id,
+      required final AppUser user,
+      required final Faculty faculty}) = _$_StoriesScroll;
+  const _StoriesScroll._() : super._();
 
   @override
-  AppUser get appUser;
+  int get id;
+  @override
+  AppUser get user;
   @override
   Faculty get faculty;
-  @override
-  String? get backgroundImage;
   @override
   @JsonKey(ignore: true)
   _$$_StoriesScrollCopyWith<_$_StoriesScroll> get copyWith =>

@@ -4,15 +4,25 @@ import 'package:platonic/domains/user_repository/src/models/app_user_model.dart'
 part 'conversation_model.freezed.dart';
 part 'conversation_model.g.dart';
 
-@freezed
+@JsonSerializable(
+  createToJson: true,
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+  anyMap: true,
+  checked: true,
+)
+@Freezed(toJson: false, fromJson: false)
 class Conversation with _$Conversation {
+  const Conversation._();
+
   const factory Conversation(
-      {required AppUser appUser,
+      {required int id,
+      required AppUser user,
       required List<Message> messages}) = _Conversation;
 
   static const Conversation emptyConversation =
-      Conversation(appUser: AppUser.emptyUser, messages: []);
+      Conversation(id: 0, user: AppUser.emptyUser, messages: []);
 
-  factory Conversation.fromJson(Map<String, Object?> json) =>
+  factory Conversation.fromJson(Map<String, dynamic> json) =>
       _$ConversationFromJson(json);
 }

@@ -6,17 +6,24 @@ part of 'stories_scroll_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StoriesScroll _$$_StoriesScrollFromJson(Map<String, dynamic> json) =>
-    _$_StoriesScroll(
-      appUser: AppUser.fromJson(json['appUser'] as Map<String, dynamic>),
-      faculty: Faculty.fromJson(json['faculty'] as Map<String, dynamic>),
-      backgroundImage: json['backgroundImage'] as String? ??
-          "assets/images/36c0815a7435b728898d67811e50214f1bff69e4.png",
+StoriesScroll _$StoriesScrollFromJson(Map json) => $checkedCreate(
+      'StoriesScroll',
+      json,
+      ($checkedConvert) {
+        final val = StoriesScroll(
+          id: $checkedConvert('id', (v) => v as int),
+          user: $checkedConvert('user',
+              (v) => AppUser.fromJson(Map<String, dynamic>.from(v as Map))),
+          faculty: $checkedConvert('faculty',
+              (v) => Faculty.fromJson(Map<String, dynamic>.from(v as Map))),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$_StoriesScrollToJson(_$_StoriesScroll instance) =>
+Map<String, dynamic> _$StoriesScrollToJson(StoriesScroll instance) =>
     <String, dynamic>{
-      'appUser': instance.appUser,
-      'faculty': instance.faculty,
-      'backgroundImage': instance.backgroundImage,
+      'id': instance.id,
+      'user': instance.user.toJson(),
+      'faculty': instance.faculty.toJson(),
     };

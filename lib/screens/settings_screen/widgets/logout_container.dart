@@ -14,7 +14,7 @@ class LogoutContainer extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
-          BoxShadow(
+          const BoxShadow(
             color: Color.fromARGB(63, 0, 0, 0),
             offset: Offset(0.0, 4.0),
             blurRadius: 4.0,
@@ -24,7 +24,7 @@ class LogoutContainer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Container(
-          color: Color.fromARGB(255, 63, 141, 253),
+          color: const Color.fromARGB(255, 63, 141, 253),
         ),
       ),
     );

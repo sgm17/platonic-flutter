@@ -6,14 +6,24 @@ part of 'messages_scroll_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MessagesScroll _$$_MessagesScrollFromJson(Map<String, dynamic> json) =>
-    _$_MessagesScroll(
-      appUser: AppUser.fromJson(json['appUser'] as Map<String, dynamic>),
-      lastMessage: json['lastMessage'] as String,
+MessagesScroll _$MessagesScrollFromJson(Map json) => $checkedCreate(
+      'MessagesScroll',
+      json,
+      ($checkedConvert) {
+        final val = MessagesScroll(
+          id: $checkedConvert('id', (v) => v as int),
+          user: $checkedConvert('user',
+              (v) => AppUser.fromJson(Map<String, dynamic>.from(v as Map))),
+          lastMessage: $checkedConvert('last_message', (v) => v as String),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'lastMessage': 'last_message'},
     );
 
-Map<String, dynamic> _$$_MessagesScrollToJson(_$_MessagesScroll instance) =>
+Map<String, dynamic> _$MessagesScrollToJson(MessagesScroll instance) =>
     <String, dynamic>{
-      'appUser': instance.appUser,
-      'lastMessage': instance.lastMessage,
+      'id': instance.id,
+      'user': instance.user.toJson(),
+      'last_message': instance.lastMessage,
     };

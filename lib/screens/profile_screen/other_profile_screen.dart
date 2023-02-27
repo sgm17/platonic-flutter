@@ -36,7 +36,7 @@ class OtherProfileScreen extends ConsumerWidget {
                   SizedBox(
                     height: 110.0,
                     child: UserAvatar(
-                      profileImage: user.profileImage!,
+                      profileImage: user.profileImage,
                     ),
                   ),
                   const SizedBox(

@@ -27,7 +27,7 @@ class MessageItem extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20.0),
             color: const Color.fromARGB(255, 43, 45, 46)),
         child: Row(children: [
-          MessageImage(profileImage: conversationState.appUser.profileImage!),
+          MessageImage(profileImage: conversationState.user.profileImage),
           const SizedBox(
             width: 16.0,
           ),
@@ -36,7 +36,7 @@ class MessageItem extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MessageTitle(
-                name: conversationState.appUser.name,
+                name: conversationState.user.name,
               ),
               MessageBody(
                 lastMessage: conversationState.messages.first.message,

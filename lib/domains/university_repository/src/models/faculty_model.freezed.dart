@@ -14,15 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Faculty _$FacultyFromJson(Map<String, dynamic> json) {
-  return _Faculty.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Faculty {
+  int get id => throw _privateConstructorUsedError;
   String get facultyName => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FacultyCopyWith<Faculty> get copyWith => throw _privateConstructorUsedError;
 }
@@ -32,7 +28,7 @@ abstract class $FacultyCopyWith<$Res> {
   factory $FacultyCopyWith(Faculty value, $Res Function(Faculty) then) =
       _$FacultyCopyWithImpl<$Res, Faculty>;
   @useResult
-  $Res call({String facultyName});
+  $Res call({int id, String facultyName});
 }
 
 /// @nodoc
@@ -48,9 +44,14 @@ class _$FacultyCopyWithImpl<$Res, $Val extends Faculty>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? facultyName = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       facultyName: null == facultyName
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
@@ -66,7 +67,7 @@ abstract class _$$_FacultyCopyWith<$Res> implements $FacultyCopyWith<$Res> {
       __$$_FacultyCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String facultyName});
+  $Res call({int id, String facultyName});
 }
 
 /// @nodoc
@@ -79,9 +80,14 @@ class __$$_FacultyCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? facultyName = null,
   }) {
     return _then(_$_Faculty(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       facultyName: null == facultyName
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
@@ -91,19 +97,18 @@ class __$$_FacultyCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_Faculty implements _Faculty {
-  const _$_Faculty({required this.facultyName});
 
-  factory _$_Faculty.fromJson(Map<String, dynamic> json) =>
-      _$$_FacultyFromJson(json);
+class _$_Faculty extends _Faculty {
+  const _$_Faculty({required this.id, required this.facultyName}) : super._();
 
+  @override
+  final int id;
   @override
   final String facultyName;
 
   @override
   String toString() {
-    return 'Faculty(facultyName: $facultyName)';
+    return 'Faculty(id: $id, facultyName: $facultyName)';
   }
 
   @override
@@ -111,33 +116,28 @@ class _$_Faculty implements _Faculty {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Faculty &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.facultyName, facultyName) ||
                 other.facultyName == facultyName));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, facultyName);
+  int get hashCode => Object.hash(runtimeType, id, facultyName);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_FacultyCopyWith<_$_Faculty> get copyWith =>
       __$$_FacultyCopyWithImpl<_$_Faculty>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_FacultyToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Faculty implements Faculty {
-  const factory _Faculty({required final String facultyName}) = _$_Faculty;
+abstract class _Faculty extends Faculty {
+  const factory _Faculty(
+      {required final int id, required final String facultyName}) = _$_Faculty;
+  const _Faculty._() : super._();
 
-  factory _Faculty.fromJson(Map<String, dynamic> json) = _$_Faculty.fromJson;
-
+  @override
+  int get id;
   @override
   String get facultyName;
   @override

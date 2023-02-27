@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/helpers/transform/transform.dart';
-import 'package:platonic/providers/meet_settings_provider/meet_settings_provider.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/settings_screen/widgets/widgets.dart';
 
 /* Component switch
@@ -12,10 +12,15 @@ class SwitchContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+
     return GestureDetector(
-      onTap: () => ref.read(meetSettingsProvider.notifier).state = ref
-          .read(meetSettingsProvider)
-          .copyWith(meetStatus: !ref.read(meetSettingsProvider).meetStatus),
+      onTap: () {
+        final meetStatus = userRegisterDetailState.meetStatus;
+        if (meetStatus == null) return;
+        ref.read(userRegisterDetailProvider.notifier).state =
+            userRegisterDetailState.copyWith(meetStatus: !meetStatus);
+      },
       child: SizedBox(
         width: 45.0,
         height: 25.0,
@@ -45,9 +50,11 @@ class SwitchContainer extends ConsumerWidget {
                         child: SizedBox(
                           width: width,
                           height: height,
-                          child: ref.read(meetSettingsProvider).meetStatus
+                          child: userRegisterDetailState.meetStatus == null
                               ? SwitchBlueBackground()
-                              : SwitchWhiteBackground(),
+                              : userRegisterDetailState.meetStatus!
+                                  ? SwitchBlueBackground()
+                                  : SwitchWhiteBackground(),
                         ))
                   ]);
                 }),
@@ -69,9 +76,11 @@ class SwitchContainer extends ConsumerWidget {
                       (constraints.maxHeight * percentHeight) / 17.0;
 
                   Matrix4 matrix4 = Matrix4.translationValues(
-                      ref.read(meetSettingsProvider).meetStatus
+                      userRegisterDetailState.meetStatus == null
                           ? constraints.maxWidth * 0.5333333333333333
-                          : constraints.maxWidth * 0.5333333333333333 / 5,
+                          : userRegisterDetailState.meetStatus!
+                              ? constraints.maxWidth * 0.5333333333333333
+                              : constraints.maxWidth * 0.5333333333333333 / 5,
                       constraints.maxHeight * 0.16,
                       0);
 

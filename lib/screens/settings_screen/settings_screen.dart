@@ -15,48 +15,47 @@ class SettingsScreen extends StatelessWidget {
     return const Scaffold(
         backgroundColor: Color.fromARGB(255, 27, 26, 29),
         body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(16.0),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SizedBox(
-                width: 35.0,
-                height: 35.0,
-                child: BackButtonContainer(),
+            child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            SizedBox(
+              width: 35.0,
+              height: 35.0,
+              child: BackButtonContainer(),
+            ),
+            SizedBox(
+              height: 22.0,
+            ),
+            SizedBox(
+              width: 289.0,
+              height: 34.0,
+              child: AuthenticationTitleText(
+                title: '''Meet Settings''',
               ),
-              SizedBox(
-                height: 22.0,
-              ),
-              SizedBox(
-                width: 289.0,
-                height: 34.0,
-                child: AuthenticationTitleText(
-                  title: '''Meet Settings''',
-                ),
-              ),
-              SizedBox(
-                height: 22.0,
-              ),
-              SizedBox(
-                height: 178.0,
-                child: SettingsForm(),
-              ),
-              SizedBox(
-                height: 22.0,
-              ),
-              SizedBox(
-                height: 56.0,
-                child: MeetDescription(),
-              ),
-              SizedBox(
-                height: 37.0,
-              ),
-              SizedBox(
-                height: 38.0,
-                child: LogoutButton(),
-              ),
-            ]),
-          ),
-        ));
+            ),
+            SizedBox(
+              height: 22.0,
+            ),
+            SizedBox(
+              height: 178.0,
+              child: SettingsForm(),
+            ),
+            SizedBox(
+              height: 22.0,
+            ),
+            SizedBox(
+              height: 56.0,
+              child: MeetDescription(),
+            ),
+            SizedBox(
+              height: 37.0,
+            ),
+            SizedBox(
+              height: 38.0,
+              child: LogoutButton(),
+            ),
+          ]),
+        )));
   }
 }

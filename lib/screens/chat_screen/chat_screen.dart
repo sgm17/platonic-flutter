@@ -10,16 +10,17 @@ import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
 class ChatScreen extends ConsumerWidget {
   const ChatScreen({super.key});
 
-  void _toggleSend({required WidgetRef ref, required String message}) {
+  Message createMessage({required String message}) {
+    return Message(
+        id: 0, message: message, userId: 0, createdAt: DateTime.now());
+  }
+
+  void toggleSend({required WidgetRef ref, required String message}) {
     final activeConversation = ref.read(activeConversationProvider);
 
     final updatedConversation = activeConversation.copyWith(
       messages: [
-        Message(
-          message: message,
-          timestamp: DateTime.now().millisecondsSinceEpoch,
-          toUid: activeConversation.appUser.uid,
-        ),
+        createMessage(message: message),
         ...activeConversation.messages,
       ],
     );
@@ -39,80 +40,87 @@ class ChatScreen extends ConsumerWidget {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
         body: SafeArea(
-          child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SizedBox(
-                height: 40.0,
-                child: ChatTopbar(
-                  appUser: activeConversationState.appUser,
-                ),
-              ),
-            ),
-            Expanded(
-              child: ListView.separated(
-                reverse: true,
-                padding: const EdgeInsets.only(
-                    left: 16.0, right: 16.0, bottom: 16.0),
-                itemCount: messages.length,
-                itemBuilder: (context, index) {
-                  final children = <Widget>[];
+          child: FutureBuilder(
+              future: ref
+                  .read(conversationsScrollProvider.notifier)
+                  .retrieveAllConversationsMessages(activeConversationState),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                  ));
+                }
 
-                  if (index == messages.length - 1 ||
-                      DateTime.fromMillisecondsSinceEpoch(
-                                  messages[index].timestamp,
-                                  isUtc: true)
-                              .day !=
-                          DateTime.fromMillisecondsSinceEpoch(
-                                  messages[index + 1].timestamp,
-                                  isUtc: true)
-                              .day) {
-                    children.add(ChatTimestampText(
-                      timestamp: messages[index].timestamp,
-                    ));
-                    children.add(const SizedBox(height: 8.0));
-                  }
+                return Column(children: [
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SizedBox(
+                      height: 40.0,
+                      child: ChatTopbar(
+                        appUser: activeConversationState.user,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.separated(
+                      reverse: true,
+                      padding: const EdgeInsets.only(
+                          left: 16.0, right: 16.0, bottom: 16.0),
+                      itemCount: messages.length,
+                      itemBuilder: (context, index) {
+                        final children = <Widget>[];
 
-                  children.add(messages[index]
-                          .imSender(activeConversationState.appUser.uid)
-                      ? SendedMessage(text: messages[index].message)
-                      : ReceivedMessage(
-                          text: messages[index].message,
-                          profileImage:
-                              activeConversationState.appUser.profileImage!,
-                        ));
+                        if (index == messages.length - 1 ||
+                            messages[index].createdAt.day !=
+                                messages[index + 1].createdAt.day) {
+                          children.add(ChatTimestampText(
+                            timestamp: messages[index].createdAt,
+                          ));
+                          children.add(const SizedBox(height: 8.0));
+                        }
 
-                  return Column(
-                    crossAxisAlignment: messages[index]
-                            .imSender(activeConversationState.appUser.uid)
-                        ? CrossAxisAlignment.end
-                        : CrossAxisAlignment.start,
-                    children: children,
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return messages[index]
-                              .imSender(activeConversationState.appUser.uid) ==
-                          messages[index + 1]
-                              .imSender(activeConversationState.appUser.uid)
-                      ? const SizedBox(height: 8.0)
-                      : const SizedBox(height: 16.0);
-                },
-              ),
-            ),
-            const SizedBox(
-              height: 1.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: ChatBottombar(
-                  toggleSend: ({required String message}) =>
-                      _toggleSend(message: message, ref: ref)),
-            ),
-            const SizedBox(
-              height: 16.0,
-            )
-          ]),
+                        children.add(messages[index].userId !=
+                                activeConversationState.user.id
+                            ? SendedMessage(text: messages[index].message)
+                            : ReceivedMessage(
+                                text: messages[index].message,
+                                profileImage:
+                                    activeConversationState.user.profileImage,
+                              ));
+
+                        return Column(
+                          crossAxisAlignment: messages[index].userId !=
+                                  activeConversationState.user.id
+                              ? CrossAxisAlignment.end
+                              : CrossAxisAlignment.start,
+                          children: children,
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return messages[index].id !=
+                                    activeConversationState.user.id &&
+                                messages[index + 1].id !=
+                                    activeConversationState.user.id
+                            ? const SizedBox(height: 8.0)
+                            : const SizedBox(height: 16.0);
+                      },
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 1.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: ChatBottombar(
+                        toggleSend: ({required String message}) =>
+                            toggleSend(message: message, ref: ref)),
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  )
+                ]);
+              }),
         ));
   }
 }

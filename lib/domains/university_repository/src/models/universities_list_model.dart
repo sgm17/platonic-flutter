@@ -1,39 +1,27 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:platonic/domains/university_repository/src/models/faculties_list_model.dart';
 import 'package:platonic/domains/university_repository/src/models/models.dart';
 part 'universities_list_model.freezed.dart';
+part 'universities_list_model.g.dart';
 
-@freezed
+@JsonSerializable(
+  createToJson: true,
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+  anyMap: true,
+  checked: true,
+)
+@Freezed(toJson: false, fromJson: false)
 class UniversitiesList with _$UniversitiesList {
+  const UniversitiesList._();
+
   const factory UniversitiesList(
-      {required University university,
+      {required int id,
+      required University university,
       required List<FacultiesList> faculties}) = _UniversitiesList;
 
-  static Future<List<UniversitiesList>> getUniversities() async {
-    final data =
-        await rootBundle.loadString('assets/universities/universities.json');
-    final json = await jsonDecode(data) as List<dynamic>;
+  factory UniversitiesList.fromJson(Map<String, dynamic> json) =>
+      _$UniversitiesListFromJson(json);
 
-    final universities = json.map((e) => UniversitiesList.fromJson(e)).toList();
-
-    return universities;
-  }
-
-  factory UniversitiesList.fromJson(Map<String, dynamic> json) {
-    final facultiesJson = json['faculties'] as List<dynamic>;
-    final faculties = facultiesJson
-        .map((facultyJson) =>
-            FacultiesList.fromJson(facultyJson as Map<String, dynamic>))
-        .toList();
-
-    return UniversitiesList(
-      university: University(
-          id: json['id'] as int,
-          name: json['name'] as String,
-          simpleName: json['simpleName'] as String),
-      faculties: faculties,
-    );
-  }
+  Map<String, dynamic> toJson() => _$UniversitiesListToJson(this);
 }

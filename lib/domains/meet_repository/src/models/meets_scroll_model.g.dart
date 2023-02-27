@@ -6,12 +6,21 @@ part of 'meets_scroll_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_MeetsScroll _$$_MeetsScrollFromJson(Map<String, dynamic> json) =>
-    _$_MeetsScroll(
-      appUser: AppUser.fromJson(json['appUser'] as Map<String, dynamic>),
+MeetsScroll _$MeetsScrollFromJson(Map json) => $checkedCreate(
+      'MeetsScroll',
+      json,
+      ($checkedConvert) {
+        final val = MeetsScroll(
+          id: $checkedConvert('id', (v) => v as int),
+          user: $checkedConvert('user',
+              (v) => AppUser.fromJson(Map<String, dynamic>.from(v as Map))),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$_MeetsScrollToJson(_$_MeetsScroll instance) =>
+Map<String, dynamic> _$MeetsScrollToJson(MeetsScroll instance) =>
     <String, dynamic>{
-      'appUser': instance.appUser,
+      'id': instance.id,
+      'user': instance.user.toJson(),
     };

@@ -1,20 +1,17 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/auth_provider/login_provider.dart';
-import 'package:platonic/providers/auth_provider/register_provider.dart';
-import 'package:platonic/providers/meet_settings_provider/meet_settings_provider.dart';
-import 'package:platonic/providers/register_detail_provider/register_detail_provider.dart';
-import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'package:platonic/providers/auth_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
-import 'dart:convert';
 import 'dart:async';
 
 class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
   final Ref ref;
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
+  String? tokenId;
 
   StreamSubscription<User?>? idTokenListener;
   StreamSubscription<String?>? cloudTokenListener;
@@ -47,18 +44,22 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
   Future<void> onAuthStateChanges(User? user) async {
     if (user != null) {
-      // User logged in and registered in backend
-      final tokenId = await user.getIdToken();
-
       try {
-        final AppUser? appUser = await ref
+        // User instance of firebase
+        final tokenId = await user.getIdToken();
+
+        // Get the profile from the backend
+        final appUser = await ref
             .read(userViewmodelProvider)
-            .loginAndRetrieveProfile(tokenId: tokenId);
+            .getAppUserProfile(tokenId: tokenId);
 
         if (appUser == null) {
           // Use temporal user until finishes the register
           state = const AsyncValue.data(AppUser.emptyUser);
         } else {
+          // State the preferences from the user
+          ref.read(userRegisterDetailProvider.notifier).state = appUser;
+
           // State the user from the backend server
           state = AsyncValue.data(appUser);
         }
@@ -76,21 +77,13 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
   }
 
   Future<void> onTokenIdChanges(User? user) async {
-    final tokenId = await user?.getIdToken();
+    final token = await user?.getIdToken();
 
-    if (tokenId == null) return;
+    if (token == null) return;
 
-    print('TokenId update state: $tokenId');
+    // print('tokenId update state: $token');
 
-    state = state.when(
-      data: (appUser) {
-        final updatedAppUser = appUser.copyWith(tokenId: tokenId);
-
-        return AsyncData(updatedAppUser);
-      },
-      loading: () => const AsyncValue.loading(),
-      error: (error, stackTrace) => AsyncError(error, stackTrace),
-    );
+    tokenId = token;
   }
 
   Future<void> onCloudTokenChanges(String? cloudToken) async {
@@ -106,37 +99,20 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
     }
   }
 
-  Future<void> userRegisterDetailAndMeetSettingsInBackend() async {
+  Future<void> userRegisterDetailInBackend() async {
     final user = firebaseAuth.currentUser;
 
     if (user != null) {
       try {
-        final registerDetailState = ref.read(registerDetailProvider);
-        final meetSettingsState = ref.read(meetSettingsProvider);
+        // Get the user register provider
+        final userRegisterState = ref.read(userRegisterDetailProvider);
 
-        // No problem if no cloudToken, it will get later
-        final cloudToken = await firebaseMessaging.getToken();
-
-        // tokenId will not be null and usefull for backend server
-        final tokenId = await user.getIdToken();
-
-        final UserBackendRegister userBackendRegister = UserBackendRegister(
-            uid: user.uid,
-            cloudToken: cloudToken,
-            name: registerDetailState.name!,
-            age: registerDetailState.age!,
-            sex: registerDetailState.sex,
-            university: registerDetailState.university!,
-            faculty: registerDetailState.faculty!,
-            study: registerDetailState.study!,
-            meetSettings: meetSettingsState);
-
-        final AppUser appUser = await ref
+        // Post the user to the backend server
+        final AppUser user = await ref
             .read(userViewmodelProvider)
-            .registerAndRetrieveProfile(
-                tokenId: tokenId, userBackendRegister: userBackendRegister);
+            .postUserRegisterDetailProfile(user: userRegisterState);
 
-        state = AsyncValue.data(appUser);
+        state = AsyncValue.data(user);
 
         idTokenListener ??=
             firebaseAuth.idTokenChanges().listen(onTokenIdChanges);
@@ -148,16 +124,6 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
     } else {
       state = const AsyncValue.loading();
     }
-  }
-
-  Future<void> storeMeetSettingsSharedPreferences() async {
-    final sharedPreferences = ref.read(sharedPreferencesProvider);
-
-    final meetSettingsState = ref.read(meetSettingsProvider);
-
-    final json = jsonEncode(meetSettingsState.toJson());
-
-    await sharedPreferences.setString(MEET_SETTINGS_KEY, json);
   }
 
   Future<void> userSignInWithEmailAndPassword() async {
@@ -187,6 +153,14 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
           email: email, password: password);
 
       // Fire method onAuthStateChanges(User? user)
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
+    }
+  }
+
+  Future<void> logoutUser() async {
+    try {
+      await firebaseAuth.signOut();
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
     }

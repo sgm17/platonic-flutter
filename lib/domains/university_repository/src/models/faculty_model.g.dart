@@ -6,11 +6,20 @@ part of 'faculty_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Faculty _$$_FacultyFromJson(Map<String, dynamic> json) => _$_Faculty(
-      facultyName: json['facultyName'] as String,
+Faculty _$FacultyFromJson(Map json) => $checkedCreate(
+      'Faculty',
+      json,
+      ($checkedConvert) {
+        final val = Faculty(
+          id: $checkedConvert('id', (v) => v as int),
+          facultyName: $checkedConvert('faculty_name', (v) => v as String),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'facultyName': 'faculty_name'},
     );
 
-Map<String, dynamic> _$$_FacultyToJson(_$_Faculty instance) =>
-    <String, dynamic>{
-      'facultyName': instance.facultyName,
+Map<String, dynamic> _$FacultyToJson(Faculty instance) => <String, dynamic>{
+      'id': instance.id,
+      'faculty_name': instance.facultyName,
     };

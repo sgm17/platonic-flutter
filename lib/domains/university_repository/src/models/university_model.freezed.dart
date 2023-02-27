@@ -14,17 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-University _$UniversityFromJson(Map<String, dynamic> json) {
-  return _University.fromJson(json);
-}
-
 /// @nodoc
 mixin _$University {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get simpleName => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UniversityCopyWith<University> get copyWith =>
       throw _privateConstructorUsedError;
@@ -117,13 +112,11 @@ class __$$_UniversityCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_University implements _University {
-  const _$_University(
-      {required this.id, required this.name, required this.simpleName});
 
-  factory _$_University.fromJson(Map<String, dynamic> json) =>
-      _$$_UniversityFromJson(json);
+class _$_University extends _University {
+  const _$_University(
+      {required this.id, required this.name, required this.simpleName})
+      : super._();
 
   @override
   final int id;
@@ -148,7 +141,6 @@ class _$_University implements _University {
                 other.simpleName == simpleName));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, simpleName);
 
@@ -157,23 +149,14 @@ class _$_University implements _University {
   @pragma('vm:prefer-inline')
   _$$_UniversityCopyWith<_$_University> get copyWith =>
       __$$_UniversityCopyWithImpl<_$_University>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_UniversityToJson(
-      this,
-    );
-  }
 }
 
-abstract class _University implements University {
+abstract class _University extends University {
   const factory _University(
       {required final int id,
       required final String name,
       required final String simpleName}) = _$_University;
-
-  factory _University.fromJson(Map<String, dynamic> json) =
-      _$_University.fromJson;
+  const _University._() : super._();
 
   @override
   int get id;

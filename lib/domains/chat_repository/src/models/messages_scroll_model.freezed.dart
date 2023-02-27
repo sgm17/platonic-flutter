@@ -14,16 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-MessagesScroll _$MessagesScrollFromJson(Map<String, dynamic> json) {
-  return _MessagesScroll.fromJson(json);
-}
-
 /// @nodoc
 mixin _$MessagesScroll {
-  AppUser get appUser => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  AppUser get user => throw _privateConstructorUsedError;
   String get lastMessage => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $MessagesScrollCopyWith<MessagesScroll> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,9 +31,9 @@ abstract class $MessagesScrollCopyWith<$Res> {
           MessagesScroll value, $Res Function(MessagesScroll) then) =
       _$MessagesScrollCopyWithImpl<$Res, MessagesScroll>;
   @useResult
-  $Res call({AppUser appUser, String lastMessage});
+  $Res call({int id, AppUser user, String lastMessage});
 
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -53,13 +49,18 @@ class _$MessagesScrollCopyWithImpl<$Res, $Val extends MessagesScroll>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? lastMessage = null,
   }) {
     return _then(_value.copyWith(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       lastMessage: null == lastMessage
           ? _value.lastMessage
@@ -70,9 +71,9 @@ class _$MessagesScrollCopyWithImpl<$Res, $Val extends MessagesScroll>
 
   @override
   @pragma('vm:prefer-inline')
-  $AppUserCopyWith<$Res> get appUser {
-    return $AppUserCopyWith<$Res>(_value.appUser, (value) {
-      return _then(_value.copyWith(appUser: value) as $Val);
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -85,10 +86,10 @@ abstract class _$$_MessagesScrollCopyWith<$Res>
       __$$_MessagesScrollCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppUser appUser, String lastMessage});
+  $Res call({int id, AppUser user, String lastMessage});
 
   @override
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -102,13 +103,18 @@ class __$$_MessagesScrollCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? lastMessage = null,
   }) {
     return _then(_$_MessagesScroll(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       lastMessage: null == lastMessage
           ? _value.lastMessage
@@ -119,21 +125,22 @@ class __$$_MessagesScrollCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_MessagesScroll implements _MessagesScroll {
-  const _$_MessagesScroll({required this.appUser, required this.lastMessage});
 
-  factory _$_MessagesScroll.fromJson(Map<String, dynamic> json) =>
-      _$$_MessagesScrollFromJson(json);
+class _$_MessagesScroll extends _MessagesScroll {
+  const _$_MessagesScroll(
+      {required this.id, required this.user, required this.lastMessage})
+      : super._();
 
   @override
-  final AppUser appUser;
+  final int id;
+  @override
+  final AppUser user;
   @override
   final String lastMessage;
 
   @override
   String toString() {
-    return 'MessagesScroll(appUser: $appUser, lastMessage: $lastMessage)';
+    return 'MessagesScroll(id: $id, user: $user, lastMessage: $lastMessage)';
   }
 
   @override
@@ -141,39 +148,33 @@ class _$_MessagesScroll implements _MessagesScroll {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MessagesScroll &&
-            (identical(other.appUser, appUser) || other.appUser == appUser) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.lastMessage, lastMessage) ||
                 other.lastMessage == lastMessage));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, appUser, lastMessage);
+  int get hashCode => Object.hash(runtimeType, id, user, lastMessage);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_MessagesScrollCopyWith<_$_MessagesScroll> get copyWith =>
       __$$_MessagesScrollCopyWithImpl<_$_MessagesScroll>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_MessagesScrollToJson(
-      this,
-    );
-  }
 }
 
-abstract class _MessagesScroll implements MessagesScroll {
+abstract class _MessagesScroll extends MessagesScroll {
   const factory _MessagesScroll(
-      {required final AppUser appUser,
+      {required final int id,
+      required final AppUser user,
       required final String lastMessage}) = _$_MessagesScroll;
-
-  factory _MessagesScroll.fromJson(Map<String, dynamic> json) =
-      _$_MessagesScroll.fromJson;
+  const _MessagesScroll._() : super._();
 
   @override
-  AppUser get appUser;
+  int get id;
+  @override
+  AppUser get user;
   @override
   String get lastMessage;
   @override

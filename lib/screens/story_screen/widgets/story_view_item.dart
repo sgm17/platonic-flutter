@@ -14,9 +14,7 @@ class StoryViewItem extends ConsumerWidget {
   String getTimeDifference() {
     final now = DateTime.now();
 
-    final dateTime =
-        DateTime.fromMillisecondsSinceEpoch(story.timestamp, isUtc: true);
-    final difference = now.difference(dateTime);
+    final difference = now.difference(story.createdAt);
 
     if (difference.inSeconds < 60) {
       return '${difference.inSeconds}s';
@@ -42,7 +40,7 @@ class StoryViewItem extends ConsumerWidget {
             child: Stack(alignment: Alignment.center, children: [
               Container(
                   decoration: BoxDecoration(
-                      gradient: story.backgroundGradient,
+                      gradient: story.backgroundGradientIndex,
                       borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(10.0),
                           bottomRight: Radius.circular(10.0)))),
@@ -54,7 +52,7 @@ class StoryViewItem extends ConsumerWidget {
                     Avatar(
                         width: 60.0,
                         height: 60.0,
-                        profileImage: story.appUser.profileImage!),
+                        profileImage: story.user.profileImage),
                     const SizedBox(
                       width: 10.0,
                     ),
@@ -62,7 +60,7 @@ class StoryViewItem extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          story.appUser.name,
+                          story.user.name,
                           style: const TextStyle(
                               color: Color.fromARGB(255, 255, 255, 255),
                               fontSize: 16.0,

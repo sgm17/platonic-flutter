@@ -14,16 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Conversation _$ConversationFromJson(Map<String, dynamic> json) {
-  return _Conversation.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Conversation {
-  AppUser get appUser => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  AppUser get user => throw _privateConstructorUsedError;
   List<Message> get messages => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ConversationCopyWith<Conversation> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,9 +31,9 @@ abstract class $ConversationCopyWith<$Res> {
           Conversation value, $Res Function(Conversation) then) =
       _$ConversationCopyWithImpl<$Res, Conversation>;
   @useResult
-  $Res call({AppUser appUser, List<Message> messages});
+  $Res call({int id, AppUser user, List<Message> messages});
 
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -53,13 +49,18 @@ class _$ConversationCopyWithImpl<$Res, $Val extends Conversation>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? messages = null,
   }) {
     return _then(_value.copyWith(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       messages: null == messages
           ? _value.messages
@@ -70,9 +71,9 @@ class _$ConversationCopyWithImpl<$Res, $Val extends Conversation>
 
   @override
   @pragma('vm:prefer-inline')
-  $AppUserCopyWith<$Res> get appUser {
-    return $AppUserCopyWith<$Res>(_value.appUser, (value) {
-      return _then(_value.copyWith(appUser: value) as $Val);
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -85,10 +86,10 @@ abstract class _$$_ConversationCopyWith<$Res>
       __$$_ConversationCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({AppUser appUser, List<Message> messages});
+  $Res call({int id, AppUser user, List<Message> messages});
 
   @override
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -102,13 +103,18 @@ class __$$_ConversationCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? messages = null,
   }) {
     return _then(_$_Conversation(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       messages: null == messages
           ? _value._messages
@@ -119,17 +125,19 @@ class __$$_ConversationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_Conversation implements _Conversation {
-  const _$_Conversation(
-      {required this.appUser, required final List<Message> messages})
-      : _messages = messages;
 
-  factory _$_Conversation.fromJson(Map<String, dynamic> json) =>
-      _$$_ConversationFromJson(json);
+class _$_Conversation extends _Conversation {
+  const _$_Conversation(
+      {required this.id,
+      required this.user,
+      required final List<Message> messages})
+      : _messages = messages,
+        super._();
 
   @override
-  final AppUser appUser;
+  final int id;
+  @override
+  final AppUser user;
   final List<Message> _messages;
   @override
   List<Message> get messages {
@@ -140,7 +148,7 @@ class _$_Conversation implements _Conversation {
 
   @override
   String toString() {
-    return 'Conversation(appUser: $appUser, messages: $messages)';
+    return 'Conversation(id: $id, user: $user, messages: $messages)';
   }
 
   @override
@@ -148,39 +156,33 @@ class _$_Conversation implements _Conversation {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Conversation &&
-            (identical(other.appUser, appUser) || other.appUser == appUser) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user, user) || other.user == user) &&
             const DeepCollectionEquality().equals(other._messages, _messages));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, appUser, const DeepCollectionEquality().hash(_messages));
+      runtimeType, id, user, const DeepCollectionEquality().hash(_messages));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_ConversationCopyWith<_$_Conversation> get copyWith =>
       __$$_ConversationCopyWithImpl<_$_Conversation>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ConversationToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Conversation implements Conversation {
+abstract class _Conversation extends Conversation {
   const factory _Conversation(
-      {required final AppUser appUser,
+      {required final int id,
+      required final AppUser user,
       required final List<Message> messages}) = _$_Conversation;
-
-  factory _Conversation.fromJson(Map<String, dynamic> json) =
-      _$_Conversation.fromJson;
+  const _Conversation._() : super._();
 
   @override
-  AppUser get appUser;
+  int get id;
+  @override
+  AppUser get user;
   @override
   List<Message> get messages;
   @override

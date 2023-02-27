@@ -2,13 +2,24 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'university_model.g.dart';
 part 'university_model.freezed.dart';
 
-@freezed
+@JsonSerializable(
+  createToJson: true,
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+  anyMap: true,
+  checked: true,
+)
+@Freezed(toJson: false, fromJson: false)
 class University with _$University {
+  const University._();
+
   const factory University(
       {required int id,
       required String name,
       required String simpleName}) = _University;
 
-  factory University.fromJson(Map<String, Object?> json) =>
+  factory University.fromJson(Map<String, dynamic> json) =>
       _$UniversityFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UniversityToJson(this);
 }

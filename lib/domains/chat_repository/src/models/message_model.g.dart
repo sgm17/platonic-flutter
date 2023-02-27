@@ -6,15 +6,25 @@ part of 'message_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Message _$$_MessageFromJson(Map<String, dynamic> json) => _$_Message(
-      message: json['message'] as String,
-      timestamp: json['timestamp'] as int,
-      toUid: json['toUid'] as String,
+Message _$MessageFromJson(Map json) => $checkedCreate(
+      'Message',
+      json,
+      ($checkedConvert) {
+        final val = Message(
+          id: $checkedConvert('id', (v) => v as int),
+          message: $checkedConvert('message', (v) => v as String),
+          userId: $checkedConvert('user_id', (v) => v as int),
+          createdAt: $checkedConvert('created_at',
+              (v) => const DateTimeConverter().fromJson(v as String)),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'userId': 'user_id', 'createdAt': 'created_at'},
     );
 
-Map<String, dynamic> _$$_MessageToJson(_$_Message instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
+      'id': instance.id,
       'message': instance.message,
-      'timestamp': instance.timestamp,
-      'toUid': instance.toUid,
+      'user_id': instance.userId,
+      'created_at': const DateTimeConverter().toJson(instance.createdAt),
     };

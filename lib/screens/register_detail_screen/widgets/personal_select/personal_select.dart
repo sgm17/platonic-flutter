@@ -6,13 +6,13 @@ import 'package:platonic/screens/register_detail_screen/widgets/widgets.dart';
   */
 class PersonalSelect extends StatelessWidget {
   final String placeholder, title;
-  final Widget personalDialog;
+  final Function() toggleDialog;
 
   const PersonalSelect(
       {Key? key,
       required this.placeholder,
       required this.title,
-      required this.personalDialog})
+      required this.toggleDialog})
       : super(key: key);
 
   @override
@@ -28,13 +28,35 @@ class PersonalSelect extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 258.0,
-          height: 38.0,
-          child: PersonalSelector(
-            placeholder: placeholder,
-            personalDialog: personalDialog,
-          ),
-        ),
+            width: 258.0,
+            height: 38.0,
+            child: GestureDetector(
+              onTap: toggleDialog,
+              child: Container(
+                width: 258.0,
+                height: 38.0,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: const Color.fromARGB(255, 43, 45, 46)),
+                child: Row(children: [
+                  const SizedBox(
+                    width: 9.0,
+                  ),
+                  Expanded(
+                      child: PersonalSelectPlaceholder(
+                    placeholder: placeholder,
+                  )),
+                  Container(
+                      alignment: Alignment.center,
+                      height: 21.0,
+                      width: 21.0,
+                      child: const PersonalSelectIcon()),
+                  const SizedBox(
+                    width: 5.0,
+                  ),
+                ]),
+              ),
+            )),
       ]),
     );
   }

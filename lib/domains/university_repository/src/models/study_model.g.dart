@@ -6,12 +6,21 @@ part of 'study_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Study _$$_StudyFromJson(Map<String, dynamic> json) => _$_Study(
-      name: json['name'] as String,
-      courses: json['courses'] as int,
+Study _$StudyFromJson(Map json) => $checkedCreate(
+      'Study',
+      json,
+      ($checkedConvert) {
+        final val = Study(
+          id: $checkedConvert('id', (v) => v as int),
+          name: $checkedConvert('name', (v) => v as String),
+          courses: $checkedConvert('courses', (v) => v as int),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$_StudyToJson(_$_Study instance) => <String, dynamic>{
+Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'courses': instance.courses,
     };

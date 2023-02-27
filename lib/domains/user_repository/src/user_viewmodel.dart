@@ -1,36 +1,30 @@
-import 'package:platonic/domains/user_repository/src/models/user_backend_register_model.dart';
-import 'package:platonic/stories_api.dart';
-import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/domains/user_repository/src/user_repository.dart';
+import 'package:platonic/providers/http_provider/providers.dart';
 
 class UserViewmodel implements UserRepository {
+  final Ref ref;
+
+  UserViewmodel({required this.ref});
+
+  // index
   @override
-  Future<AppUser?> loginAndRetrieveProfile({required String tokenId}) {
-    return Future.delayed(const Duration(seconds: 1), () => null/* myUser */);
+  Future<AppUser?> getAppUserProfile({required String tokenId}) {
+    return ref.read(httpViewmodelProvider).getIndexAppUser(tokenId: tokenId);
   }
 
+  // show
   @override
-  Future<AppUser> retrieveOtherProfile(
-      {required String tokenId, required AppUser appUser}) {
-    return Future.delayed(const Duration(seconds: 1), () => appUser);
+  Future<AppUser> getOtherUserProfile({required String otherUid}) {
+    return ref
+        .read(httpViewmodelProvider)
+        .getShowOtherAppUser(otherUid: otherUid);
   }
 
+  // create
   @override
-  Future<AppUser> registerAndRetrieveProfile(
-      {required String tokenId,
-      required UserBackendRegister userBackendRegister}) {
-    return Future.delayed(
-        const Duration(seconds: 1),
-        () => AppUser(
-            uid: userBackendRegister.uid,
-            name: userBackendRegister.name,
-            university: userBackendRegister.university,
-            study: userBackendRegister.study));
-  }
-
-  @override
-  Future<bool> updateCloudToken(
-      {required String tokenId, required String cloudToken}) {
-    return Future.delayed(const Duration(seconds: 1), () => true);
+  Future<AppUser> postUserRegisterDetailProfile({required AppUser user}) {
+    return ref.read(httpViewmodelProvider).postCreateAppUser(user: user);
   }
 }

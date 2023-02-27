@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/providers/register_detail_provider/register_detail_provider.dart';
-import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
-import 'package:platonic/screens/dialog_screen/study_dialog_screen.dart';
-import 'package:platonic/screens/dialog_screen/university_dialog_screen.dart';
+import 'package:platonic/providers/dialog_provider/is_meet_settings_dialog_provider.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/register_detail_screen/widgets/widgets.dart';
 
 /* Frame personal
@@ -14,7 +12,25 @@ class RegisterDetailPersonal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final registerDetailState = ref.watch(registerDetailProvider);
+    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+
+    void toggleUniversity() {
+      ref.read(isMeetSettingsDialogProvider.notifier).state = false;
+
+      Navigator.pushNamed(context, '/UniversityDialogScreen');
+    }
+
+    void toggleFaculty() {
+      ref.read(isMeetSettingsDialogProvider.notifier).state = false;
+
+      Navigator.pushNamed(context, '/FacultyDialogScreen');
+    }
+
+    void toggleStudy() {
+      ref.read(isMeetSettingsDialogProvider.notifier).state = false;
+
+      Navigator.pushNamed(context, '/StudyDialogScreen');
+    }
 
     return SizedBox(
       height: 303.0,
@@ -43,12 +59,11 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder:
-                registerDetailState.university?.name ?? 'Your university',
+            placeholder: userRegisterDetailState.university.name.isNotEmpty
+                ? userRegisterDetailState.university.name
+                : 'Your university',
             title: '''University''',
-            personalDialog: const UniversityDialogScreen(
-              isMeetSettings: false,
-            ),
+            toggleDialog: toggleUniversity,
           ),
         ),
         const SizedBox(
@@ -57,12 +72,11 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder:
-                registerDetailState.faculty?.facultyName ?? 'Your faculty',
+            placeholder: userRegisterDetailState.faculty.facultyName.isNotEmpty
+                ? userRegisterDetailState.faculty.facultyName
+                : 'Your faculty',
             title: '''Faculty''',
-            personalDialog: const FacultyDialogScreen(
-              isMeetSettings: false,
-            ),
+            toggleDialog: toggleFaculty,
           ),
         ),
         const SizedBox(
@@ -71,9 +85,11 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: registerDetailState.study?.name ?? 'Your studies',
+            placeholder: userRegisterDetailState.study.name.isNotEmpty
+                ? userRegisterDetailState.study.name
+                : 'Your studies',
             title: '''Studies''',
-            personalDialog: const StudyDialogScreen(),
+            toggleDialog: toggleStudy,
           ),
         )
       ]),

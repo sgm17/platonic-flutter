@@ -6,13 +6,13 @@ import 'package:platonic/screens/settings_screen/widgets/widgets.dart';
   */
 class SettingsSelect extends StatelessWidget {
   final String placeholder, title;
-  final Widget settingsDialog;
+  final Function() toggleDialog;
 
   const SettingsSelect(
       {Key? key,
       required this.placeholder,
       required this.title,
-      required this.settingsDialog})
+      required this.toggleDialog})
       : super(key: key);
 
   @override
@@ -30,10 +30,36 @@ class SettingsSelect extends StatelessWidget {
         const SizedBox(
           width: 21.0,
         ),
-        SettingsSelectChild(
-          settingsDialog: settingsDialog,
-          placeholder: placeholder,
-        ),
+        GestureDetector(
+          onTap: toggleDialog,
+          child: Container(
+            width: 221.0,
+            height: 37.9799919128418,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: const Color.fromARGB(255, 43, 45, 46),
+            ),
+            child: Row(children: [
+              const SizedBox(
+                width: 9.0,
+              ),
+              Expanded(
+                child: SettingsSelectPlaceholder(
+                  placeholder: placeholder,
+                ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                height: 21.0,
+                width: 21.0,
+                child: const SettingsSelectIcon(),
+              ),
+              const SizedBox(
+                width: 9.0,
+              ),
+            ]),
+          ),
+        )
       ]),
     );
   }

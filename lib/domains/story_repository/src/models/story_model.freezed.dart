@@ -14,23 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Story _$StoryFromJson(Map<String, dynamic> json) {
-  return _Story.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Story {
-  AppUser get appUser => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  AppUser get user => throw _privateConstructorUsedError;
   Faculty get faculty => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
-  int get timestamp => throw _privateConstructorUsedError;
+  @DateTimeConverter()
+  DateTime get createdAt => throw _privateConstructorUsedError;
   bool get favourite => throw _privateConstructorUsedError;
   bool get alreadyConversation => throw _privateConstructorUsedError;
   bool get ownStory => throw _privateConstructorUsedError;
   @LinearGradientConverter()
-  LinearGradient get backgroundGradient => throw _privateConstructorUsedError;
+  LinearGradient get backgroundGradientIndex =>
+      throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $StoryCopyWith<Story> get copyWith => throw _privateConstructorUsedError;
 }
@@ -41,16 +39,17 @@ abstract class $StoryCopyWith<$Res> {
       _$StoryCopyWithImpl<$Res, Story>;
   @useResult
   $Res call(
-      {AppUser appUser,
+      {int id,
+      AppUser user,
       Faculty faculty,
       String body,
-      int timestamp,
+      @DateTimeConverter() DateTime createdAt,
       bool favourite,
       bool alreadyConversation,
       bool ownStory,
-      @LinearGradientConverter() LinearGradient backgroundGradient});
+      @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
   $FacultyCopyWith<$Res> get faculty;
 }
 
@@ -67,19 +66,24 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? faculty = null,
     Object? body = null,
-    Object? timestamp = null,
+    Object? createdAt = null,
     Object? favourite = null,
     Object? alreadyConversation = null,
     Object? ownStory = null,
-    Object? backgroundGradient = null,
+    Object? backgroundGradientIndex = null,
   }) {
     return _then(_value.copyWith(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       faculty: null == faculty
           ? _value.faculty
@@ -89,10 +93,10 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       favourite: null == favourite
           ? _value.favourite
           : favourite // ignore: cast_nullable_to_non_nullable
@@ -105,18 +109,18 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
           ? _value.ownStory
           : ownStory // ignore: cast_nullable_to_non_nullable
               as bool,
-      backgroundGradient: null == backgroundGradient
-          ? _value.backgroundGradient
-          : backgroundGradient // ignore: cast_nullable_to_non_nullable
+      backgroundGradientIndex: null == backgroundGradientIndex
+          ? _value.backgroundGradientIndex
+          : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
               as LinearGradient,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AppUserCopyWith<$Res> get appUser {
-    return $AppUserCopyWith<$Res>(_value.appUser, (value) {
-      return _then(_value.copyWith(appUser: value) as $Val);
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 
@@ -136,17 +140,18 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {AppUser appUser,
+      {int id,
+      AppUser user,
       Faculty faculty,
       String body,
-      int timestamp,
+      @DateTimeConverter() DateTime createdAt,
       bool favourite,
       bool alreadyConversation,
       bool ownStory,
-      @LinearGradientConverter() LinearGradient backgroundGradient});
+      @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
   @override
-  $AppUserCopyWith<$Res> get appUser;
+  $AppUserCopyWith<$Res> get user;
   @override
   $FacultyCopyWith<$Res> get faculty;
 }
@@ -160,19 +165,24 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? appUser = null,
+    Object? id = null,
+    Object? user = null,
     Object? faculty = null,
     Object? body = null,
-    Object? timestamp = null,
+    Object? createdAt = null,
     Object? favourite = null,
     Object? alreadyConversation = null,
     Object? ownStory = null,
-    Object? backgroundGradient = null,
+    Object? backgroundGradientIndex = null,
   }) {
     return _then(_$_Story(
-      appUser: null == appUser
-          ? _value.appUser
-          : appUser // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
               as AppUser,
       faculty: null == faculty
           ? _value.faculty
@@ -182,10 +192,10 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      timestamp: null == timestamp
-          ? _value.timestamp
-          : timestamp // ignore: cast_nullable_to_non_nullable
-              as int,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
       favourite: null == favourite
           ? _value.favourite
           : favourite // ignore: cast_nullable_to_non_nullable
@@ -198,38 +208,40 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
           ? _value.ownStory
           : ownStory // ignore: cast_nullable_to_non_nullable
               as bool,
-      backgroundGradient: null == backgroundGradient
-          ? _value.backgroundGradient
-          : backgroundGradient // ignore: cast_nullable_to_non_nullable
+      backgroundGradientIndex: null == backgroundGradientIndex
+          ? _value.backgroundGradientIndex
+          : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
               as LinearGradient,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_Story implements _Story {
-  const _$_Story(
-      {required this.appUser,
+
+class _$_Story extends _Story {
+  _$_Story(
+      {required this.id,
+      required this.user,
       required this.faculty,
       required this.body,
-      required this.timestamp,
+      @DateTimeConverter() required this.createdAt,
       required this.favourite,
       required this.alreadyConversation,
       required this.ownStory,
-      @LinearGradientConverter() required this.backgroundGradient});
-
-  factory _$_Story.fromJson(Map<String, dynamic> json) =>
-      _$$_StoryFromJson(json);
+      @LinearGradientConverter() required this.backgroundGradientIndex})
+      : super._();
 
   @override
-  final AppUser appUser;
+  final int id;
+  @override
+  final AppUser user;
   @override
   final Faculty faculty;
   @override
   final String body;
   @override
-  final int timestamp;
+  @DateTimeConverter()
+  final DateTime createdAt;
   @override
   final bool favourite;
   @override
@@ -238,11 +250,11 @@ class _$_Story implements _Story {
   final bool ownStory;
   @override
   @LinearGradientConverter()
-  final LinearGradient backgroundGradient;
+  final LinearGradient backgroundGradientIndex;
 
   @override
   String toString() {
-    return 'Story(appUser: $appUser, faculty: $faculty, body: $body, timestamp: $timestamp, favourite: $favourite, alreadyConversation: $alreadyConversation, ownStory: $ownStory, backgroundGradient: $backgroundGradient)';
+    return 'Story(id: $id, user: $user, faculty: $faculty, body: $body, createdAt: $createdAt, favourite: $favourite, alreadyConversation: $alreadyConversation, ownStory: $ownStory, backgroundGradientIndex: $backgroundGradientIndex)';
   }
 
   @override
@@ -250,62 +262,69 @@ class _$_Story implements _Story {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Story &&
-            (identical(other.appUser, appUser) || other.appUser == appUser) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.faculty, faculty) || other.faculty == faculty) &&
             (identical(other.body, body) || other.body == body) &&
-            (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
             (identical(other.favourite, favourite) ||
                 other.favourite == favourite) &&
             (identical(other.alreadyConversation, alreadyConversation) ||
                 other.alreadyConversation == alreadyConversation) &&
             (identical(other.ownStory, ownStory) ||
                 other.ownStory == ownStory) &&
-            (identical(other.backgroundGradient, backgroundGradient) ||
-                other.backgroundGradient == backgroundGradient));
+            (identical(
+                    other.backgroundGradientIndex, backgroundGradientIndex) ||
+                other.backgroundGradientIndex == backgroundGradientIndex));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, appUser, faculty, body,
-      timestamp, favourite, alreadyConversation, ownStory, backgroundGradient);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      user,
+      faculty,
+      body,
+      createdAt,
+      favourite,
+      alreadyConversation,
+      ownStory,
+      backgroundGradientIndex);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$_StoryCopyWith<_$_Story> get copyWith =>
       __$$_StoryCopyWithImpl<_$_Story>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_StoryToJson(
-      this,
-    );
-  }
 }
 
-abstract class _Story implements Story {
-  const factory _Story(
-      {required final AppUser appUser,
+abstract class _Story extends Story {
+  factory _Story(
+      {required final int id,
+      required final AppUser user,
       required final Faculty faculty,
       required final String body,
-      required final int timestamp,
+      @DateTimeConverter()
+          required final DateTime createdAt,
       required final bool favourite,
       required final bool alreadyConversation,
       required final bool ownStory,
       @LinearGradientConverter()
-          required final LinearGradient backgroundGradient}) = _$_Story;
-
-  factory _Story.fromJson(Map<String, dynamic> json) = _$_Story.fromJson;
+          required final LinearGradient backgroundGradientIndex}) = _$_Story;
+  _Story._() : super._();
 
   @override
-  AppUser get appUser;
+  int get id;
+  @override
+  AppUser get user;
   @override
   Faculty get faculty;
   @override
   String get body;
   @override
-  int get timestamp;
+  @DateTimeConverter()
+  DateTime get createdAt;
   @override
   bool get favourite;
   @override
@@ -314,7 +333,7 @@ abstract class _Story implements Story {
   bool get ownStory;
   @override
   @LinearGradientConverter()
-  LinearGradient get backgroundGradient;
+  LinearGradient get backgroundGradientIndex;
   @override
   @JsonKey(ignore: true)
   _$$_StoryCopyWith<_$_Story> get copyWith =>

@@ -14,16 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserLogin _$UserLoginFromJson(Map<String, dynamic> json) {
-  return _UserLogin.fromJson(json);
-}
-
 /// @nodoc
 mixin _$UserLogin {
   String? get email => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UserLoginCopyWith<UserLogin> get copyWith =>
       throw _privateConstructorUsedError;
@@ -104,12 +99,9 @@ class __$$_UserLoginCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$_UserLogin implements _UserLogin {
   const _$_UserLogin({this.email, this.password});
-
-  factory _$_UserLogin.fromJson(Map<String, dynamic> json) =>
-      _$$_UserLoginFromJson(json);
 
   @override
   final String? email;
@@ -131,7 +123,6 @@ class _$_UserLogin implements _UserLogin {
                 other.password == password));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, email, password);
 
@@ -140,21 +131,11 @@ class _$_UserLogin implements _UserLogin {
   @pragma('vm:prefer-inline')
   _$$_UserLoginCopyWith<_$_UserLogin> get copyWith =>
       __$$_UserLoginCopyWithImpl<_$_UserLogin>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_UserLoginToJson(
-      this,
-    );
-  }
 }
 
 abstract class _UserLogin implements UserLogin {
   const factory _UserLogin({final String? email, final String? password}) =
       _$_UserLogin;
-
-  factory _UserLogin.fromJson(Map<String, dynamic> json) =
-      _$_UserLogin.fromJson;
 
   @override
   String? get email;

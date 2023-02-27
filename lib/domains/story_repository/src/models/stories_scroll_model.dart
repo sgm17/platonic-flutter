@@ -4,14 +4,25 @@ import 'package:platonic/domains/user_repository/user_repository.dart';
 part 'stories_scroll_model.freezed.dart';
 part 'stories_scroll_model.g.dart';
 
-@freezed
+@JsonSerializable(
+  createToJson: true,
+  fieldRename: FieldRename.snake,
+  explicitToJson: true,
+  anyMap: true,
+  checked: true,
+)
+@Freezed(toJson: false, fromJson: false)
 class StoriesScroll with _$StoriesScroll {
-  const factory StoriesScroll(
-      {required AppUser appUser,
-      required Faculty faculty,
-      @Default("assets/images/36c0815a7435b728898d67811e50214f1bff69e4.png")
-          String? backgroundImage}) = _StoriesScroll;
+  const StoriesScroll._();
 
-  factory StoriesScroll.fromJson(Map<String, Object?> json) =>
+  const factory StoriesScroll({
+    required int id,
+    required AppUser user,
+    required Faculty faculty,
+  }) = _StoriesScroll;
+
+  factory StoriesScroll.fromJson(Map<String, dynamic> json) =>
       _$StoriesScrollFromJson(json);
+
+  Map<String, dynamic> toJson() => _$StoriesScrollToJson(this);
 }

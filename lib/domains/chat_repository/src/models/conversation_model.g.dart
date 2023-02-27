@@ -6,16 +6,28 @@ part of 'conversation_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Conversation _$$_ConversationFromJson(Map<String, dynamic> json) =>
-    _$_Conversation(
-      appUser: AppUser.fromJson(json['appUser'] as Map<String, dynamic>),
-      messages: (json['messages'] as List<dynamic>)
-          .map((e) => Message.fromJson(e as Map<String, dynamic>))
-          .toList(),
+Conversation _$ConversationFromJson(Map json) => $checkedCreate(
+      'Conversation',
+      json,
+      ($checkedConvert) {
+        final val = Conversation(
+          id: $checkedConvert('id', (v) => v as int),
+          user: $checkedConvert('user',
+              (v) => AppUser.fromJson(Map<String, dynamic>.from(v as Map))),
+          messages: $checkedConvert(
+              'messages',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      Message.fromJson(Map<String, dynamic>.from(e as Map)))
+                  .toList()),
+        );
+        return val;
+      },
     );
 
-Map<String, dynamic> _$$_ConversationToJson(_$_Conversation instance) =>
+Map<String, dynamic> _$ConversationToJson(Conversation instance) =>
     <String, dynamic>{
-      'appUser': instance.appUser,
-      'messages': instance.messages,
+      'id': instance.id,
+      'user': instance.user.toJson(),
+      'messages': instance.messages.map((e) => e.toJson()).toList(),
     };

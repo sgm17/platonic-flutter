@@ -8,7 +8,8 @@ class ReceivedMessage extends StatelessWidget {
   const ReceivedMessage(
       {super.key, required this.text, required this.profileImage});
 
-  final String text, profileImage;
+  final String text;
+  final String? profileImage;
 
   @override
   Widget build(BuildContext context) {
