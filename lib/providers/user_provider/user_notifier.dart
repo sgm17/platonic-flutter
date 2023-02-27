@@ -104,13 +104,10 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
     if (user != null) {
       try {
-        // Get the user register provider
-        final userRegisterState = ref.read(userRegisterDetailProvider);
-
         // Post the user to the backend server
         final AppUser user = await ref
             .read(userViewmodelProvider)
-            .postUserRegisterDetailProfile(user: userRegisterState);
+            .postCreateUserRegisterDetail();
 
         state = AsyncValue.data(user);
 

@@ -36,6 +36,8 @@ class CreateScreen extends ConsumerWidget {
           backgroundGradientIndex: gradients[gradientIndexState]);
 
       await ref.read(storiesScrollProvider.notifier).createStory(story);
+
+      Navigator.pop(context);
     }
 
     return Scaffold(

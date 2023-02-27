@@ -8,7 +8,10 @@ class StoriesScrollNotifier
 
   StoriesScrollNotifier(this.ref)
       : super(const AsyncValue<List<StoriesScroll>>.loading()) {
-    ref.read(storyViewmodelProvider).getStoriesScroll().then((stories) {
+    ref
+        .read(storyViewmodelProvider)
+        .getIndexStoriesUniversity()
+        .then((stories) {
       state = AsyncValue.data(stories);
     }).catchError((e) {
       state = AsyncValue.error(e, StackTrace.current);
@@ -16,21 +19,28 @@ class StoriesScrollNotifier
   }
 
   Future<void> createStory(Story story) async {
-    final newStory =
-        await ref.read(storyViewmodelProvider).postStory(story: story);
+    final newStory = await ref
+        .read(storyViewmodelProvider)
+        .postCreateStoryFaculty(story: story);
 
     state = state.when(
-        data: (data) {
-          return AsyncValue.data(data
-              .map((e) => e.faculty == story.faculty
-                  ? StoriesScroll(
-                      id: newStory.id,
-                      user: newStory.user,
-                      faculty: newStory.faculty)
-                  : e)
-              .toList());
-        },
-        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-        loading: AsyncValue.loading);
+      data: (data) {
+        final updatedData = data.map((e) {
+          if (e.faculty.id == story.faculty.id) {
+            return StoriesScroll(
+              id: newStory.id,
+              user: newStory.user,
+              faculty: newStory.faculty,
+            );
+          } else {
+            return e;
+          }
+        }).toList();
+
+        return AsyncData(updatedData);
+      },
+      error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+      loading: () => const AsyncValue.loading(),
+    );
   }
 }

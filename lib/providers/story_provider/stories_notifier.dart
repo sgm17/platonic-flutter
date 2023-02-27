@@ -10,10 +10,7 @@ class StoriesNotifier extends StateNotifier<AsyncValue<List<Story>>> {
   }
 
   Future<void> initialize() async {
-    ref
-        .read(storyViewmodelProvider)
-        .getStories(facultyId: ref.read(activeFacultyProvider).id)
-        .then((stories) {
+    ref.read(storyViewmodelProvider).getShowStoriesFaculty().then((stories) {
       state = AsyncValue.data(stories);
     }).catchError((e) {
       state = AsyncValue.error(e, StackTrace.current);
@@ -23,7 +20,7 @@ class StoriesNotifier extends StateNotifier<AsyncValue<List<Story>>> {
   Future<void> toggleStoryFavourite({required int storyId}) async {
     final storyFavourite = await ref
         .read(storyViewmodelProvider)
-        .toggleStoryFavourite(storyId: storyId);
+        .putToggleStoryFavourite(storyId: storyId);
 
     final favouriteStoriesIdState = ref.read(favouriteStoriesIdProvider);
 

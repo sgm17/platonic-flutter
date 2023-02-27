@@ -17,6 +17,8 @@ abstract class HttpRepository {
   Future<AppUser> getShowOtherAppUser({required String otherUid});
   // POST /api/v1/users
   Future<AppUser> postCreateAppUser({required AppUser user});
+  // PUT /api/v1/users/uid
+  Future<AppUser> putUpdateAppUser({required AppUser user});
 
   // Meets
   // GET /api/v1/meets
@@ -24,13 +26,13 @@ abstract class HttpRepository {
 
   // Stories
   // GET /api/v1/stories
-  Future<List<StoriesScroll>> getIndexStoriesScroll();
+  Future<List<StoriesScroll>> getIndexStories();
   // GET /api/v1/stories/faculty_id
   Future<List<Story>> getShowStories({required int facultyId});
   // POST /api/v1/stories
   Future<Story> postCreateStory({required Story story});
-  // POST /api/v1/stories/story_id/toggle_favourite
-  Future<bool> postToggleFavouriteStory({required int storyId});
+  // PUT /api/v1/stories/story_id/toggle_favourite
+  Future<bool> putFavouriteStory({required int storyId});
 
   // Conversations
   // GET /api/v1/conversations

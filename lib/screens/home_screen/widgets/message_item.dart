@@ -15,7 +15,8 @@ class MessageItem extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () {
-        ref.read(activeConversationProvider.notifier).state = conversationState;
+        ref.read(activeConversationIdProvider.notifier).state =
+            conversationState.id;
         Navigator.pushNamed(context, '/ChatScreen');
       },
       child: Container(
@@ -39,7 +40,9 @@ class MessageItem extends ConsumerWidget {
                 name: conversationState.user.name,
               ),
               MessageBody(
-                lastMessage: conversationState.messages.first.message,
+                lastMessage: conversationState.messages.isEmpty
+                    ? 'Start a conversation'
+                    : conversationState.messages.first.message,
               ),
             ],
           ),

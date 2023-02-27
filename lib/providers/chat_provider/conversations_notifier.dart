@@ -23,36 +23,23 @@ class ConversationsScrollNotifier
     });
   }
 
-  void updateConversation(Conversation conversation) {
-    state = state.when(
-      data: (conversations) {
-        final updatedConversations = conversations.map((c) {
-          return c.user.uid == conversation.user.uid ? conversation : c;
-        }).toList();
-
-        return AsyncData(updatedConversations);
-      },
-      loading: () => const AsyncValue.loading(),
-      error: (error, stackTrace) => AsyncError(error, stackTrace),
-    );
-  }
-
-  Future<void> retrieveAllConversationsMessages(
-      Conversation conversation) async {
+  Future<List<Message>> retrieveAllConversationsMessages(
+      int conversationId) async {
     final messages = await ref
         .read(httpViewmodelProvider)
-        .getShowConversationsMessages(conversationId: conversation.id);
+        .getShowConversationsMessages(conversationId: conversationId);
 
     state = state.when(
         data: (conversations) {
           final updatedConversations = conversations
-              .map((e) => e.user.uid == conversation.user.uid
-                  ? conversation.copyWith(messages: messages)
-                  : e)
+              .map((e) =>
+                  e.id == conversationId ? e.copyWith(messages: messages) : e)
               .toList();
           return AsyncData(updatedConversations);
         },
         loading: () => const AsyncValue.loading(),
         error: (error, stackTrace) => AsyncError(error, stackTrace));
+
+    return messages;
   }
 }

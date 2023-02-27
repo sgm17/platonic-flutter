@@ -83,6 +83,25 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
+  Future<AppUser> putUpdateAppUser({required AppUser user}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+    final response = await http.put(
+        Uri.parse("$API_ENDPOINT/users/${user.uid}"),
+        headers: headers,
+        body: jsonEncode(user.toJson()));
+
+    if (response.statusCode == 201) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return AppUser.fromJson(data);
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
   Future<List<MeetsScroll>> getIndexMeetsScroll() async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
@@ -100,7 +119,7 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<List<StoriesScroll>> getIndexStoriesScroll() async {
+  Future<List<StoriesScroll>> getIndexStories() async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
@@ -143,7 +162,6 @@ class HttpViewmodel implements HttpRepository {
         headers: headers, body: jsonEncode(story.toJson()));
     if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
-      print(data);
       return Story.fromJson(data);
     } else {
       throw Exception('Failed to load the user');
@@ -151,12 +169,12 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<bool> postToggleFavouriteStory({required int storyId}) async {
+  Future<bool> putFavouriteStory({required int storyId}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.post(
+    final response = await http.put(
         Uri.parse("$API_ENDPOINT/stories/$storyId/toggle_favourite"),
         headers: headers);
 
