@@ -37,7 +37,4 @@ abstract class HttpRepository {
   // Conversations
   // GET /api/v1/conversations
   Future<List<Conversation>> getIndexConversations();
-  // GET /api/v1/conversations/conversation_id
-  Future<List<Message>> getShowConversationsMessages(
-      {required int conversationId});
 }

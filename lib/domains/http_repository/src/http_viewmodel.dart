@@ -202,23 +202,4 @@ class HttpViewmodel implements HttpRepository {
       throw Exception('Failed to load the user');
     }
   }
-
-  @override
-  Future<List<Message>> getShowConversationsMessages(
-      {required int conversationId}) async {
-    final headers = {
-      'Authorization': 'Bearer $tokenId',
-      'Content-Type': 'application/json',
-    };
-    final response = await http.get(
-        Uri.parse("$API_ENDPOINT/conversations/$conversationId"),
-        headers: headers);
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = await jsonDecode(response.body);
-      return data.map((e) => Message.fromJson(e)).toList();
-    } else {
-      throw Exception('Failed to load the user');
-    }
-  }
 }
