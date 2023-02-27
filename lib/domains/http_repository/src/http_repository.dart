@@ -30,7 +30,7 @@ abstract class HttpRepository {
   // POST /api/v1/stories
   Future<Story> postCreateStory({required Story story});
   // POST /api/v1/stories/story_id/toggle_favourite
-  Future<Story> postToggleFavouriteStory({required int storyId});
+  Future<bool> postToggleFavouriteStory({required int storyId});
 
   // Conversations
   // GET /api/v1/conversations

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/story_repository/src/models/story_model.dart';
@@ -36,7 +35,7 @@ class CreateScreen extends ConsumerWidget {
           ownStory: true,
           backgroundGradientIndex: gradients[gradientIndexState]);
 
-      await ref.read(storiesProvider.notifier).createStory(story);
+      await ref.read(storiesScrollProvider.notifier).createStory(story);
     }
 
     return Scaffold(

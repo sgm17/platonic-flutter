@@ -14,4 +14,23 @@ class StoriesScrollNotifier
       state = AsyncValue.error(e, StackTrace.current);
     });
   }
+
+  Future<void> createStory(Story story) async {
+    final newStory =
+        await ref.read(storyViewmodelProvider).postStory(story: story);
+
+    state = state.when(
+        data: (data) {
+          return AsyncValue.data(data
+              .map((e) => e.faculty == story.faculty
+                  ? StoriesScroll(
+                      id: newStory.id,
+                      user: newStory.user,
+                      faculty: newStory.faculty)
+                  : e)
+              .toList());
+        },
+        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+        loading: AsyncValue.loading);
+  }
 }

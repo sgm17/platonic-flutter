@@ -74,7 +74,7 @@ class HttpViewmodel implements HttpRepository {
     final response = await http.post(Uri.parse("$API_ENDPOINT/users"),
         headers: headers, body: jsonEncode(user.toJson()));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
     } else {
@@ -151,7 +151,7 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<Story> postToggleFavouriteStory({required int storyId}) async {
+  Future<bool> postToggleFavouriteStory({required int storyId}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ class HttpViewmodel implements HttpRepository {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
-      return Story.fromJson(data);
+      return data['favourite'] as bool;
     } else {
       throw Exception('Failed to load the user');
     }

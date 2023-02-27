@@ -29,8 +29,8 @@ class StoryViewItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favouriteStoriesState = ref.watch(favouriteStoriesProvider);
-    final favorite = favouriteStoriesState.contains(story);
+    final favouriteStoriesIdState = ref.watch(favouriteStoriesIdProvider);
+    final favorite = favouriteStoriesIdState.contains(story.id);
 
     return Container(
       color: const Color.fromARGB(255, 27, 26, 29),

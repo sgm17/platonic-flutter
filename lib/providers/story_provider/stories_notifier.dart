@@ -20,27 +20,21 @@ class StoriesNotifier extends StateNotifier<AsyncValue<List<Story>>> {
     });
   }
 
-  Future<void> toggleStoryFavourite(int storyId) async {
-    await ref
+  Future<void> toggleStoryFavourite({required int storyId}) async {
+    final storyFavourite = await ref
         .read(storyViewmodelProvider)
         .toggleStoryFavourite(storyId: storyId);
 
-    state = state.when(
-        data: (List<Story> stories) => AsyncValue.data(stories
-            .map((e) => e.id == storyId ? e.copyWith(favourite: true) : e)
-            .toList()),
-        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-        loading: AsyncValue.loading);
-  }
+    final favouriteStoriesIdState = ref.read(favouriteStoriesIdProvider);
 
-  Future<void> createStory(Story story) async {
-    await ref.read(storyViewmodelProvider).postStory(story: story);
-
-    state = state.when(
-        data: (data) {
-          return AsyncData([story, ...data]);
-        },
-        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-        loading: AsyncValue.loading);
+    if (storyFavourite == false) {
+      ref.read(favouriteStoriesIdProvider.notifier).state =
+          favouriteStoriesIdState.where((story) => story != storyId).toList();
+    } else {
+      ref.read(favouriteStoriesIdProvider.notifier).state = [
+        ...favouriteStoriesIdState,
+        storyId
+      ];
+    }
   }
 }

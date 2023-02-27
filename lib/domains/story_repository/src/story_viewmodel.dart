@@ -18,7 +18,7 @@ class StoryViewmodel implements StoryRepository {
   }
 
   @override
-  Future<Story> toggleStoryFavourite({required int storyId}) {
+  Future<bool> toggleStoryFavourite({required int storyId}) {
     return ref
         .read(httpViewmodelProvider)
         .postToggleFavouriteStory(storyId: storyId);

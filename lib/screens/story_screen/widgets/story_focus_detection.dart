@@ -14,24 +14,15 @@ class StoryFocusDetection extends ConsumerWidget {
     focusNode.requestFocus();
   }
 
-  void toggleFavourite(WidgetRef ref, int index) {
-    final favouriteStoriesState = ref.read(favouriteStoriesProvider);
-
-    if (favouriteStoriesState.contains(stories[index])) {
-      ref.read(favouriteStoriesProvider.notifier).state = favouriteStoriesState
-          .where((story) => story != stories[index])
-          .toList();
-    } else {
-      ref.read(favouriteStoriesProvider.notifier).state = [
-        ...favouriteStoriesState,
-        stories[index]
-      ];
-    }
+  Future<void> toggleFavourite(WidgetRef ref, int storyId) async {
+    await ref
+        .read(storiesProvider.notifier)
+        .toggleStoryFavourite(storyId: storyId);
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final index = ref.watch(storyViewIndexProvider);
+    final storyViewIdState = ref.watch(storyViewIdProvider);
 
     return Column(
       children: [
@@ -62,7 +53,7 @@ class StoryFocusDetection extends ConsumerWidget {
                 width: 8.0,
               ),
               GestureDetector(
-                onTap: () => toggleFavourite(ref, index),
+                onTap: () => toggleFavourite(ref, storyViewIdState),
                 child: Container(
                   height: 30.0,
                   width: 30.0,

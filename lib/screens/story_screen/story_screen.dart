@@ -67,9 +67,11 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
               StoryView(
                 onStoryShow: (value) {
                   final index = storyItems.indexOf(value);
+                  final story = stories.elementAt(index);
+
                   print('Actual story index: $index');
                   SchedulerBinding.instance.addPostFrameCallback((_) {
-                    ref.read(storyViewIndexProvider.notifier).state = index;
+                    ref.read(storyViewIdProvider.notifier).state = story.id;
                   });
                 },
                 controller: controller,
@@ -81,9 +83,10 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
                       Navigator.pop(context);
                       break;
                     case Direction.up:
-                      if (stories[ref.read(storyViewIndexProvider)]
-                              .alreadyConversation ==
-                          false) {
+                      if (!stories
+                          .firstWhere(
+                              (s) => s.id == ref.read(storyViewIdProvider))
+                          .alreadyConversation) {
                         controller.pause();
                         focusNode.requestFocus();
                       }
