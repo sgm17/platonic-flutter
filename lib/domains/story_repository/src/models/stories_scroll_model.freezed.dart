@@ -19,6 +19,9 @@ mixin _$StoriesScroll {
   int get id => throw _privateConstructorUsedError;
   AppUser get user => throw _privateConstructorUsedError;
   Faculty get faculty => throw _privateConstructorUsedError;
+  @LinearGradientConverter()
+  LinearGradient get backgroundGradientIndex =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StoriesScrollCopyWith<StoriesScroll> get copyWith =>
@@ -31,7 +34,11 @@ abstract class $StoriesScrollCopyWith<$Res> {
           StoriesScroll value, $Res Function(StoriesScroll) then) =
       _$StoriesScrollCopyWithImpl<$Res, StoriesScroll>;
   @useResult
-  $Res call({int id, AppUser user, Faculty faculty});
+  $Res call(
+      {int id,
+      AppUser user,
+      Faculty faculty,
+      @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
   $AppUserCopyWith<$Res> get user;
   $FacultyCopyWith<$Res> get faculty;
@@ -53,6 +60,7 @@ class _$StoriesScrollCopyWithImpl<$Res, $Val extends StoriesScroll>
     Object? id = null,
     Object? user = null,
     Object? faculty = null,
+    Object? backgroundGradientIndex = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -67,6 +75,10 @@ class _$StoriesScrollCopyWithImpl<$Res, $Val extends StoriesScroll>
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
               as Faculty,
+      backgroundGradientIndex: null == backgroundGradientIndex
+          ? _value.backgroundGradientIndex
+          : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
+              as LinearGradient,
     ) as $Val);
   }
 
@@ -95,7 +107,11 @@ abstract class _$$_StoriesScrollCopyWith<$Res>
       __$$_StoriesScrollCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, AppUser user, Faculty faculty});
+  $Res call(
+      {int id,
+      AppUser user,
+      Faculty faculty,
+      @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
   @override
   $AppUserCopyWith<$Res> get user;
@@ -117,6 +133,7 @@ class __$$_StoriesScrollCopyWithImpl<$Res>
     Object? id = null,
     Object? user = null,
     Object? faculty = null,
+    Object? backgroundGradientIndex = null,
   }) {
     return _then(_$_StoriesScroll(
       id: null == id
@@ -131,6 +148,10 @@ class __$$_StoriesScrollCopyWithImpl<$Res>
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
               as Faculty,
+      backgroundGradientIndex: null == backgroundGradientIndex
+          ? _value.backgroundGradientIndex
+          : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
+              as LinearGradient,
     ));
   }
 }
@@ -139,7 +160,10 @@ class __$$_StoriesScrollCopyWithImpl<$Res>
 
 class _$_StoriesScroll extends _StoriesScroll {
   const _$_StoriesScroll(
-      {required this.id, required this.user, required this.faculty})
+      {required this.id,
+      required this.user,
+      required this.faculty,
+      @LinearGradientConverter() required this.backgroundGradientIndex})
       : super._();
 
   @override
@@ -148,10 +172,13 @@ class _$_StoriesScroll extends _StoriesScroll {
   final AppUser user;
   @override
   final Faculty faculty;
+  @override
+  @LinearGradientConverter()
+  final LinearGradient backgroundGradientIndex;
 
   @override
   String toString() {
-    return 'StoriesScroll(id: $id, user: $user, faculty: $faculty)';
+    return 'StoriesScroll(id: $id, user: $user, faculty: $faculty, backgroundGradientIndex: $backgroundGradientIndex)';
   }
 
   @override
@@ -161,11 +188,15 @@ class _$_StoriesScroll extends _StoriesScroll {
             other is _$_StoriesScroll &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.user, user) || other.user == user) &&
-            (identical(other.faculty, faculty) || other.faculty == faculty));
+            (identical(other.faculty, faculty) || other.faculty == faculty) &&
+            (identical(
+                    other.backgroundGradientIndex, backgroundGradientIndex) ||
+                other.backgroundGradientIndex == backgroundGradientIndex));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, user, faculty);
+  int get hashCode =>
+      Object.hash(runtimeType, id, user, faculty, backgroundGradientIndex);
 
   @JsonKey(ignore: true)
   @override
@@ -176,9 +207,12 @@ class _$_StoriesScroll extends _StoriesScroll {
 
 abstract class _StoriesScroll extends StoriesScroll {
   const factory _StoriesScroll(
-      {required final int id,
-      required final AppUser user,
-      required final Faculty faculty}) = _$_StoriesScroll;
+          {required final int id,
+          required final AppUser user,
+          required final Faculty faculty,
+          @LinearGradientConverter()
+              required final LinearGradient backgroundGradientIndex}) =
+      _$_StoriesScroll;
   const _StoriesScroll._() : super._();
 
   @override
@@ -187,6 +221,9 @@ abstract class _StoriesScroll extends StoriesScroll {
   AppUser get user;
   @override
   Faculty get faculty;
+  @override
+  @LinearGradientConverter()
+  LinearGradient get backgroundGradientIndex;
   @override
   @JsonKey(ignore: true)
   _$$_StoriesScrollCopyWith<_$_StoriesScroll> get copyWith =>

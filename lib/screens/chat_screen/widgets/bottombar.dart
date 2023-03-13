@@ -22,8 +22,8 @@ class ChatBottombar extends ConsumerWidget {
       controller: controller,
       textInputAction: TextInputAction.send,
       textAlignVertical: TextAlignVertical.center,
-      maxLength: 45,
-      maxLines: 1,
+      maxLines: null,
+      maxLength: 200,
       style: const TextStyle(
         fontSize: 16.0,
         fontFamily: 'Gilroy',

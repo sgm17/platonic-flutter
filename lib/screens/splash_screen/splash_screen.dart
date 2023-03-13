@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
+import 'package:platonic/providers/university_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/auth_screen.dart';
 import 'package:platonic/screens/home_screen/home_screen.dart';
@@ -79,7 +80,9 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
                 );
               } else {
                 // Not the first time
-                return const HomeScreen();
+                return ProviderScope(overrides: [
+                  universityProvider.overrideWithValue(user.university)
+                ], child: const HomeScreen());
               }
             }
           },

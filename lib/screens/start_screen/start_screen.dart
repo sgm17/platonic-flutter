@@ -14,57 +14,56 @@ class StartScreen extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
-        body: Stack(
-            fit: StackFit.expand,
-            alignment: Alignment.center,
-            clipBehavior: Clip.none,
-            children: [
-              Positioned(
-                left: 0.0,
-                top: -20.0,
-                right: null,
-                bottom: null,
-                width: 390.0,
-                height: 447.0042724609375,
-                child: BackgroundDecoration(),
+        body: Column(
+          children: [
+            const SizedBox(
+              height: 442.0,
+              child: Stack(
+                  fit: StackFit.expand,
+                  alignment: Alignment.center,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Positioned(
+                      left: 0.0,
+                      top: -20.0,
+                      height: 447.0042724609375,
+                      child: BackgroundDecoration(),
+                    ),
+                    Positioned(
+                      left: 25.0,
+                      top: -68.0,
+                      height: 510.0,
+                      child: StartFrame(),
+                    ),
+                  ]),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 86.0,
+                    child: StartTitle(),
+                  ),
+                  const SizedBox(
+                    height: 25.0,
+                  ),
+                  SizedBox(
+                    height: 56.0,
+                    child: StartSubtitle(),
+                  ),
+                  const SizedBox(
+                    height: 40.0,
+                  ),
+                  SizedBox(
+                    height: 60.0,
+                    child: GestureDetector(
+                        onTap: toggleGetStarted, child: const StartButton()),
+                  )
+                ],
               ),
-              Positioned(
-                left: 25.0,
-                top: -68.0,
-                right: null,
-                bottom: null,
-                width: 340.0,
-                height: 510.0,
-                child: StartFrame(),
-              ),
-              Positioned(
-                left: 0.0,
-                top: 506.0,
-                right: null,
-                bottom: null,
-                width: 392.0,
-                height: 86.0,
-                child: StartTitle(),
-              ),
-              Positioned(
-                left: 0.0,
-                top: 615.0,
-                right: null,
-                bottom: null,
-                width: 392.0,
-                height: 56.0,
-                child: StartSubtitle(),
-              ),
-              Positioned(
-                left: 85.0,
-                top: 709.0,
-                right: null,
-                bottom: null,
-                width: 220.0,
-                height: 60.0,
-                child: GestureDetector(
-                    onTap: toggleGetStarted, child: StartButton()),
-              )
-            ]));
+            ),
+          ],
+        ));
   }
 }

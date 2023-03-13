@@ -17,7 +17,7 @@ class HomeTopbar extends StatelessWidget {
           height: 35.0,
           child: const HomeUniversityTitle(),
         ),
-        SizedBox(
+        const SizedBox(
           width: 135.0,
           height: 35.0,
           child: TopbarButtons(),

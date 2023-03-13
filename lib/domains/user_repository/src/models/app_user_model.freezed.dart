@@ -20,6 +20,7 @@ mixin _$AppUser {
   String get uid => throw _privateConstructorUsedError;
   String? get cloudToken => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
   int get age => throw _privateConstructorUsedError;
   String? get profileImage => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $AppUserCopyWith<$Res> {
       String uid,
       String? cloudToken,
       String name,
+      String email,
       Sex sex,
       int age,
       String? profileImage,
@@ -82,6 +84,7 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? uid = null,
     Object? cloudToken = freezed,
     Object? name = null,
+    Object? email = null,
     Object? sex = null,
     Object? age = null,
     Object? profileImage = freezed,
@@ -110,6 +113,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       sex: null == sex
           ? _value.sex
@@ -207,6 +214,7 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       String uid,
       String? cloudToken,
       String name,
+      String email,
       Sex sex,
       int age,
       String? profileImage,
@@ -243,6 +251,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? uid = null,
     Object? cloudToken = freezed,
     Object? name = null,
+    Object? email = null,
     Object? sex = null,
     Object? age = null,
     Object? profileImage = freezed,
@@ -271,6 +280,10 @@ class __$$_AppUserCopyWithImpl<$Res>
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       sex: null == sex
           ? _value.sex
@@ -328,6 +341,7 @@ class _$_AppUser extends _AppUser {
       required this.uid,
       this.cloudToken,
       required this.name,
+      required this.email,
       required this.sex,
       required this.age,
       this.profileImage,
@@ -350,6 +364,8 @@ class _$_AppUser extends _AppUser {
   final String? cloudToken;
   @override
   final String name;
+  @override
+  final String email;
   @override
   final Sex sex;
   @override
@@ -382,7 +398,7 @@ class _$_AppUser extends _AppUser {
 
   @override
   String toString() {
-    return 'AppUser(id: $id, uid: $uid, cloudToken: $cloudToken, name: $name, sex: $sex, age: $age, profileImage: $profileImage, meetPicture: $meetPicture, university: $university, faculty: $faculty, study: $study, meetStatus: $meetStatus, sexToMeet: $sexToMeet, universityToMeet: $universityToMeet, facultiesToMeet: $facultiesToMeet)';
+    return 'AppUser(id: $id, uid: $uid, cloudToken: $cloudToken, name: $name, email: $email, sex: $sex, age: $age, profileImage: $profileImage, meetPicture: $meetPicture, university: $university, faculty: $faculty, study: $study, meetStatus: $meetStatus, sexToMeet: $sexToMeet, universityToMeet: $universityToMeet, facultiesToMeet: $facultiesToMeet)';
   }
 
   @override
@@ -395,6 +411,7 @@ class _$_AppUser extends _AppUser {
             (identical(other.cloudToken, cloudToken) ||
                 other.cloudToken == cloudToken) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.sex, sex) || other.sex == sex) &&
             (identical(other.age, age) || other.age == age) &&
             (identical(other.profileImage, profileImage) ||
@@ -422,6 +439,7 @@ class _$_AppUser extends _AppUser {
       uid,
       cloudToken,
       name,
+      email,
       sex,
       age,
       profileImage,
@@ -447,6 +465,7 @@ abstract class _AppUser extends AppUser {
       required final String uid,
       final String? cloudToken,
       required final String name,
+      required final String email,
       required final Sex sex,
       required final int age,
       final String? profileImage,
@@ -468,6 +487,8 @@ abstract class _AppUser extends AppUser {
   String? get cloudToken;
   @override
   String get name;
+  @override
+  String get email;
   @override
   Sex get sex;
   @override

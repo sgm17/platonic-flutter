@@ -25,8 +25,9 @@ class StudyDialogScreen extends ConsumerWidget {
     return searchBarState.trim().isEmpty
         ? studies
         : studies
-            .where((study) =>
-                study.name.toLowerCase().contains(searchBarState.toLowerCase()))
+            .where((study) => study.studyName
+                .toLowerCase()
+                .contains(searchBarState.toLowerCase()))
             .toList();
   }
 
@@ -108,7 +109,7 @@ class StudyDialogScreen extends ConsumerWidget {
                                 isBlue: true,
                                 isSelected: filteredStudies[index] ==
                                     ref.read(userRegisterDetailProvider).study,
-                                name: filteredStudies[index].name,
+                                name: filteredStudies[index].studyName,
                               ),
                             );
                           },

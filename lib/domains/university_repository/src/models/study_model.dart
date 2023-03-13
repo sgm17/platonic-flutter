@@ -13,8 +13,7 @@ part 'study_model.freezed.dart';
 class Study with _$Study {
   const Study._();
 
-  const factory Study(
-      {required int id, required String name, required int courses}) = _Study;
+  const factory Study({required int id, required String studyName}) = _Study;
 
   factory Study.fromJson(Map<String, dynamic> json) => _$StudyFromJson(json);
 

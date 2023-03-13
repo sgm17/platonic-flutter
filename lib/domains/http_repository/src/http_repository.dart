@@ -37,4 +37,6 @@ abstract class HttpRepository {
   // Conversations
   // GET /api/v1/conversations
   Future<List<Conversation>> getIndexConversations();
+  Future<Conversation> postCreateConversation(
+      {required Conversation conversation});
 }

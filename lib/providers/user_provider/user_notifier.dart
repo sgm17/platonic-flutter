@@ -104,12 +104,17 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
     if (user != null) {
       try {
+        // Update with the uid and the email
+        ref.read(userRegisterDetailProvider.notifier).state = ref
+            .read(userRegisterDetailProvider)
+            .copyWith(uid: user.uid, email: user.email!);
+
         // Post the user to the backend server
-        final AppUser user = await ref
+        final AppUser appUser = await ref
             .read(userViewmodelProvider)
             .postCreateUserRegisterDetail();
 
-        state = AsyncValue.data(user);
+        state = AsyncValue.data(appUser);
 
         idTokenListener ??=
             firebaseAuth.idTokenChanges().listen(onTokenIdChanges);

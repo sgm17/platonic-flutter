@@ -10,31 +10,36 @@ import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
 class ChatScreen extends ConsumerWidget {
   const ChatScreen({super.key});
 
-  Message createMessage({required String message}) {
-    return Message(
-        id: 0, message: message, userId: 0, createdAt: DateTime.now());
-  }
-
-  void toggleSend({required WidgetRef ref, required String message}) {
-    /* final activeConversation = ref.read(activeConversationProvider);
-
-    final updatedConversation = activeConversation.copyWith(
-      messages: [
-        createMessage(message: message),
-        ...activeConversation.messages,
-      ],
-    );
-
-    ref.read(conversationsScrollProvider.notifier).updateConversation(
-          updatedConversation,
-        );
-
-    ref.read(activeConversationProvider.notifier).state = updatedConversation; */
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final conversationState = ref.watch(conversationsScrollProvider);
+
+    Future<void> toggleSend(
+        {required String message, required bool createConversation}) async {
+      final activeConversation = ref.read(activeConversationProvider);
+
+      if (createConversation) {
+        await ref
+            .read(conversationsScrollProvider.notifier)
+            .createConversationUpdateState(conversation: activeConversation);
+      }
+
+      final newMessage = Message(
+          id: 0, message: message, userId: 0, createdAt: DateTime.now());
+
+      final updatedConversation = activeConversation.copyWith(
+        messages: [
+          newMessage,
+          ...activeConversation.messages,
+        ],
+      );
+
+      ref.read(conversationsScrollProvider.notifier).getConversationUpdateState(
+            conversation: updatedConversation,
+          );
+
+      ref.read(activeConversationProvider.notifier).state = updatedConversation;
+    }
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
@@ -42,7 +47,9 @@ class ChatScreen extends ConsumerWidget {
             child: conversationState.when(
           data: (data) {
             final activeConversationState = data.firstWhere(
-                (c) => c.id == ref.read(activeConversationIdProvider));
+                (c) => c == ref.read(activeConversationProvider),
+                // The conversation still is not created
+                orElse: () => ref.read(activeConversationProvider));
             final messages = activeConversationState.messages.reversed.toList();
 
             return Column(children: [
@@ -109,8 +116,10 @@ class ChatScreen extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: ChatBottombar(
-                    toggleSend: ({required String message}) =>
-                        toggleSend(message: message, ref: ref)),
+                    toggleSend: ({required String message}) => toggleSend(
+                        message: message,
+                        createConversation:
+                            activeConversationState.messages.isEmpty)),
               ),
               const SizedBox(
                 height: 16.0,

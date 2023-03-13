@@ -14,7 +14,7 @@ class StoryViewItem extends ConsumerWidget {
   String getTimeDifference() {
     final now = DateTime.now();
 
-    final difference = now.difference(story.createdAt);
+    final difference = now.difference(story.creationDate);
 
     if (difference.inSeconds < 60) {
       return '${difference.inSeconds}s';

@@ -29,7 +29,7 @@ class CreateScreen extends ConsumerWidget {
           user: AppUser.emptyUser,
           faculty: const Faculty(id: 0, facultyName: ''),
           body: text,
-          createdAt: DateTime.now(),
+          creationDate: DateTime.now().toUtc(),
           favourite: false,
           alreadyConversation: false,
           ownStory: true,

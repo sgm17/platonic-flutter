@@ -24,10 +24,7 @@ class StoryItem extends ConsumerWidget {
         height: 135.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            image: const DecorationImage(
-                image: AssetImage(
-                    "assets/images/36c0815a7435b728898d67811e50214f1bff69e4.png"),
-                fit: BoxFit.cover)),
+            gradient: storyState.backgroundGradientIndex),
         child: Stack(
             fit: StackFit.expand,
             alignment: Alignment.center,

@@ -12,15 +12,14 @@ Study _$StudyFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = Study(
           id: $checkedConvert('id', (v) => v as int),
-          name: $checkedConvert('name', (v) => v as String),
-          courses: $checkedConvert('courses', (v) => v as int),
+          studyName: $checkedConvert('study_name', (v) => v as String),
         );
         return val;
       },
+      fieldKeyMap: const {'studyName': 'study_name'},
     );
 
 Map<String, dynamic> _$StudyToJson(Study instance) => <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
-      'courses': instance.courses,
+      'study_name': instance.studyName,
     };

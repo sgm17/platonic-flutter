@@ -64,7 +64,7 @@ class OtherProfileScreen extends ConsumerWidget {
                   SizedBox(
                     height: 18.0,
                     child: StudiesTitle(
-                      study: user.study.name,
+                      study: user.study.studyName,
                     ),
                   ),
                   const SizedBox(

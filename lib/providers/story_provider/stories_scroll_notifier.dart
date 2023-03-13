@@ -28,10 +28,10 @@ class StoriesScrollNotifier
         final updatedData = data.map((e) {
           if (e.faculty.id == story.faculty.id) {
             return StoriesScroll(
-              id: newStory.id,
-              user: newStory.user,
-              faculty: newStory.faculty,
-            );
+                id: newStory.id,
+                user: newStory.user,
+                faculty: newStory.faculty,
+                backgroundGradientIndex: newStory.backgroundGradientIndex);
           } else {
             return e;
           }

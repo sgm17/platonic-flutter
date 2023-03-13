@@ -17,8 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Study {
   int get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  int get courses => throw _privateConstructorUsedError;
+  String get studyName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $StudyCopyWith<Study> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +28,7 @@ abstract class $StudyCopyWith<$Res> {
   factory $StudyCopyWith(Study value, $Res Function(Study) then) =
       _$StudyCopyWithImpl<$Res, Study>;
   @useResult
-  $Res call({int id, String name, int courses});
+  $Res call({int id, String studyName});
 }
 
 /// @nodoc
@@ -46,22 +45,17 @@ class _$StudyCopyWithImpl<$Res, $Val extends Study>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? courses = null,
+    Object? studyName = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      studyName: null == studyName
+          ? _value.studyName
+          : studyName // ignore: cast_nullable_to_non_nullable
               as String,
-      courses: null == courses
-          ? _value.courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -72,7 +66,7 @@ abstract class _$$_StudyCopyWith<$Res> implements $StudyCopyWith<$Res> {
       __$$_StudyCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, int courses});
+  $Res call({int id, String studyName});
 }
 
 /// @nodoc
@@ -85,22 +79,17 @@ class __$$_StudyCopyWithImpl<$Res> extends _$StudyCopyWithImpl<$Res, _$_Study>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? courses = null,
+    Object? studyName = null,
   }) {
     return _then(_$_Study(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      studyName: null == studyName
+          ? _value.studyName
+          : studyName // ignore: cast_nullable_to_non_nullable
               as String,
-      courses: null == courses
-          ? _value.courses
-          : courses // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -108,19 +97,16 @@ class __$$_StudyCopyWithImpl<$Res> extends _$StudyCopyWithImpl<$Res, _$_Study>
 /// @nodoc
 
 class _$_Study extends _Study {
-  const _$_Study({required this.id, required this.name, required this.courses})
-      : super._();
+  const _$_Study({required this.id, required this.studyName}) : super._();
 
   @override
   final int id;
   @override
-  final String name;
-  @override
-  final int courses;
+  final String studyName;
 
   @override
   String toString() {
-    return 'Study(id: $id, name: $name, courses: $courses)';
+    return 'Study(id: $id, studyName: $studyName)';
   }
 
   @override
@@ -129,12 +115,12 @@ class _$_Study extends _Study {
         (other.runtimeType == runtimeType &&
             other is _$_Study &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.courses, courses) || other.courses == courses));
+            (identical(other.studyName, studyName) ||
+                other.studyName == studyName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, courses);
+  int get hashCode => Object.hash(runtimeType, id, studyName);
 
   @JsonKey(ignore: true)
   @override
@@ -145,17 +131,13 @@ class _$_Study extends _Study {
 
 abstract class _Study extends Study {
   const factory _Study(
-      {required final int id,
-      required final String name,
-      required final int courses}) = _$_Study;
+      {required final int id, required final String studyName}) = _$_Study;
   const _Study._() : super._();
 
   @override
   int get id;
   @override
-  String get name;
-  @override
-  int get courses;
+  String get studyName;
   @override
   @JsonKey(ignore: true)
   _$$_StudyCopyWith<_$_Study> get copyWith =>

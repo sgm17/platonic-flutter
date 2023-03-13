@@ -39,7 +39,7 @@ class SelectFacultyContainer extends StatelessWidget {
                   const SizedBox(height: 8.0),
                   SelectFacultyOption(
                     isSelected: isSelected,
-                    studyTitle: study.name,
+                    studyTitle: study.studyName,
                   ),
                 ],
               ),

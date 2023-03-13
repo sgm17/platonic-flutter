@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:platonic/domains/university_repository/src/models/models.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'package:platonic/helpers/serialize/gradient_converter.dart';
 part 'stories_scroll_model.freezed.dart';
 part 'stories_scroll_model.g.dart';
 
@@ -19,6 +21,7 @@ class StoriesScroll with _$StoriesScroll {
     required int id,
     required AppUser user,
     required Faculty faculty,
+    @LinearGradientConverter() required LinearGradient backgroundGradientIndex,
   }) = _StoriesScroll;
 
   factory StoriesScroll.fromJson(Map<String, dynamic> json) =>

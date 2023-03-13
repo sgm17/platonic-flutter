@@ -4,9 +4,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/domains/chat_repository/chat_repository.dart';
-import 'package:platonic/providers/http_provider/providers.dart';
 import 'package:action_cable/action_cable.dart';
 import 'dart:async';
+
+import 'package:platonic/providers/http_provider/providers.dart';
 
 class ConversationsScrollNotifier
     extends StateNotifier<AsyncValue<List<Conversation>>> {
@@ -48,28 +49,26 @@ class ConversationsScrollNotifier
     }, onMessage: handleConversationStream);
   }
 
-  void handleConversationStream(dynamic message) {
+  void handleConversationStream(Map<dynamic, dynamic> message) {
     // Parse the incoming message as a JSON string
-    final conversationId = message['id'] as int?;
-    final jsonString = message['messages'] as List<dynamic>?;
-    if (jsonString == null || conversationId == null) {
+    final jsonConversation = message as Map<String, dynamic>;
+    if (jsonConversation["id"] == null ||
+        jsonConversation["user"] == null ||
+        jsonConversation["message"] == null) {
       return;
     }
 
-    // Parse the JSON string as a Conversation object
-    final messages = jsonString.map((e) => Message.fromJson(e)).toList();
+    final updatedConversation = Conversation.fromJson(jsonConversation);
 
-    getConversationUpdateState(
-        conversationId: conversationId, messages: messages);
+    getConversationUpdateState(conversation: updatedConversation);
   }
 
-  void getConversationUpdateState(
-      {required int conversationId, required List<Message> messages}) {
+  void getConversationUpdateState({required Conversation conversation}) {
     state = state.when(
       data: (data) {
         final newState = data.map((c) {
-          if (c.id == conversationId) {
-            return c.copyWith(messages: messages);
+          if (c.id == conversation.id) {
+            return c.copyWith(messages: conversation.messages);
           } else {
             return c;
           }
@@ -79,6 +78,15 @@ class ConversationsScrollNotifier
       error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
       loading: () => const AsyncValue.loading(),
     );
+  }
+
+  Future<void> createConversationUpdateState(
+      {required Conversation conversation}) async {
+    final Conversation newConversation = await ref
+        .read(httpViewmodelProvider)
+        .postCreateConversation(conversation: conversation);
+
+    getConversationUpdateState(conversation: newConversation);
   }
 
   @override

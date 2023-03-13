@@ -85,8 +85,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: userRegisterDetailState.study.name.isNotEmpty
-                ? userRegisterDetailState.study.name
+            placeholder: userRegisterDetailState.study.studyName.isNotEmpty
+                ? userRegisterDetailState.study.studyName
                 : 'Your studies',
             title: '''Studies''',
             toggleDialog: toggleStudy,

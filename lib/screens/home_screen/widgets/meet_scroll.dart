@@ -14,7 +14,7 @@ class MeetScroll extends ConsumerWidget {
     final meetsState = ref.watch(meetsScrollProvider);
 
     return SizedBox(
-        height: 130.0,
+        height: 110.0,
         child: meetsState.when(
           data: (meets) {
             return ListView.separated(
@@ -31,7 +31,7 @@ class MeetScroll extends ConsumerWidget {
                     meetScrollProvider.overrideWithValue(meets[index])
                   ],
                   child: const SizedBox(
-                      width: 80.0, height: 130.0, child: MeetItem()),
+                      width: 80.0, height: 110.0, child: MeetItem()),
                 );
               },
             );

@@ -202,4 +202,25 @@ class HttpViewmodel implements HttpRepository {
       throw Exception('Failed to load the user');
     }
   }
+
+  @override
+  Future<Conversation> postCreateConversation(
+      {required Conversation conversation}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final body = {'user_id': conversation.user.id};
+
+    final response = await http.post(Uri.parse("$API_ENDPOINT/conversations"),
+        body: jsonEncode(body), headers: headers);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return Conversation.fromJson(data);
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
 }

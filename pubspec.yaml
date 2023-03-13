@@ -106,6 +106,17 @@ flutter:
       fonts:
         - asset: assets/fonts/Dezen-Pro-Regular.otf
           weight: 400 
+    - family: "DM Sans"
+      fonts: 
+        - asset: "assets/fonts/DMSans-500.ttf"
+          style: "normal"
+          weight: 500
+        - asset: "assets/fonts/DMSans-regular.ttf"
+          style: "normal"
+          weight: 400
+        - asset: "assets/fonts/DMSans-700.ttf"
+          style: "normal"
+          weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

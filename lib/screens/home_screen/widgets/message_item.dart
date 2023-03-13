@@ -15,8 +15,7 @@ class MessageItem extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () {
-        ref.read(activeConversationIdProvider.notifier).state =
-            conversationState.id;
+        ref.read(activeConversationProvider.notifier).state = conversationState;
         Navigator.pushNamed(context, '/ChatScreen');
       },
       child: Container(
@@ -32,19 +31,19 @@ class MessageItem extends ConsumerWidget {
           const SizedBox(
             width: 16.0,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              MessageTitle(
-                name: conversationState.user.name,
-              ),
-              MessageBody(
-                lastMessage: conversationState.messages.isEmpty
-                    ? 'Start a conversation'
-                    : conversationState.messages.first.message,
-              ),
-            ],
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                MessageTitle(
+                  name: conversationState.user.name,
+                ),
+                MessageBody(
+                  lastMessage: conversationState.messages.last.message,
+                ),
+              ],
+            ),
           ),
         ]),
       ),

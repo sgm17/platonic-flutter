@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:platonic/domains/university_repository/src/models/faculties_list_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:platonic/domains/university_repository/src/models/models.dart';
 part 'app_user_model.freezed.dart';
 part 'app_user_model.g.dart';
@@ -20,6 +20,7 @@ class AppUser with _$AppUser {
       required String uid,
       String? cloudToken,
       required String name,
+      required String email,
       required Sex sex,
       required int age,
       String? profileImage,
@@ -41,9 +42,10 @@ class AppUser with _$AppUser {
       id: 0,
       uid: '',
       name: '',
+      email: '',
       sex: Sex.male,
       age: 0,
       university: University(id: 0, name: '', simpleName: ''),
       faculty: Faculty(id: 0, facultyName: ''),
-      study: Study(id: 0, name: '', courses: 0));
+      study: Study(id: 0, studyName: ''));
 }

@@ -5,18 +5,18 @@ import 'package:flutter/material.dart';
   */
 class MeetTitle extends StatelessWidget {
   final String name;
+  final int age;
 
-  const MeetTitle({super.key, required this.name});
+  const MeetTitle({super.key, required this.name, required this.age});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      name,
-      overflow: TextOverflow.visible,
+      "$name, $age",
+      overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
-      style: TextStyle(
-        height: 1.1530000141688757,
-        fontSize: 14.0,
+      style: const TextStyle(
+        fontSize: 10.0,
         fontFamily: 'Gilroy',
         fontWeight: FontWeight.w300,
         color: Color.fromARGB(255, 255, 255, 255),

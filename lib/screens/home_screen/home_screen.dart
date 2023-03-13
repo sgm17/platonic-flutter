@@ -9,34 +9,34 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 27, 26, 29),
+    return const Scaffold(
+      backgroundColor: Color.fromARGB(255, 27, 26, 29),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(16.0),
           child: Column(children: [
-            const SizedBox(
+            SizedBox(
               height: 35.0,
               child: HomeTopbar(),
             ),
-            const SizedBox(
+            SizedBox(
               height: 22.0,
             ),
-            const SizedBox(
+            SizedBox(
               height: 163.0,
               child: StoriesContainer(),
             ),
-            const SizedBox(
+            SizedBox(
               height: 32.0,
             ),
             SizedBox(
-              height: 158.0,
+              height: 138.0,
               child: MeetContainer(),
             ),
-            const SizedBox(
+            SizedBox(
               height: 32.0,
             ),
-            const MessagesContainer(),
+            MessagesContainer(),
           ]),
         ),
       ),

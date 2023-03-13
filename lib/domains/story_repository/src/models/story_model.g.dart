@@ -17,8 +17,8 @@ Story _$StoryFromJson(Map json) => $checkedCreate(
           faculty: $checkedConvert('faculty',
               (v) => Faculty.fromJson(Map<String, dynamic>.from(v as Map))),
           body: $checkedConvert('body', (v) => v as String),
-          createdAt: $checkedConvert('created_at',
-              (v) => const DateTimeConverter().fromJson(v as String)),
+          creationDate: $checkedConvert(
+              'creation_date', (v) => DateTime.parse(v as String)),
           favourite: $checkedConvert('favourite', (v) => v as bool),
           alreadyConversation:
               $checkedConvert('already_conversation', (v) => v as bool),
@@ -29,7 +29,7 @@ Story _$StoryFromJson(Map json) => $checkedCreate(
         return val;
       },
       fieldKeyMap: const {
-        'createdAt': 'created_at',
+        'creationDate': 'creation_date',
         'alreadyConversation': 'already_conversation',
         'ownStory': 'own_story',
         'backgroundGradientIndex': 'background_gradient_index'
@@ -41,7 +41,7 @@ Map<String, dynamic> _$StoryToJson(Story instance) => <String, dynamic>{
       'user': instance.user.toJson(),
       'faculty': instance.faculty.toJson(),
       'body': instance.body,
-      'created_at': const DateTimeConverter().toJson(instance.createdAt),
+      'creation_date': instance.creationDate.toIso8601String(),
       'favourite': instance.favourite,
       'already_conversation': instance.alreadyConversation,
       'own_story': instance.ownStory,

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "292854976758",
+    "project_id": "platonic-development-9c88c",
+    "storage_bucket": "platonic-development-9c88c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292854976758:android:d08209f6d1fb8eb9505cd7",
+        "android_client_info": {
+          "package_name": "com.invelex.platonic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "292854976758-ikbgalhqlmmfa38tfgedoj69cgdj6mb4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADCtmjKDALrG0zPfpu0cYW3qMQWGzll0I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "292854976758-ikbgalhqlmmfa38tfgedoj69cgdj6mb4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "292854976758-r7qdm9r5k7bldda3u6j8gf83j4u0u9kv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.invelex.platonic"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

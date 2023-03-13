@@ -12,7 +12,7 @@ class MessageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       lastMessage,
-      overflow: TextOverflow.visible,
+      overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
       style: const TextStyle(
         height: 1.1530000141688757,

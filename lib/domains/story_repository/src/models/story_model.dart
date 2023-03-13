@@ -23,7 +23,7 @@ class Story with _$Story {
     required AppUser user,
     required Faculty faculty,
     required String body,
-    @DateTimeConverter() required DateTime createdAt,
+    required DateTime creationDate,
     required bool favourite,
     required bool alreadyConversation,
     required bool ownStory,

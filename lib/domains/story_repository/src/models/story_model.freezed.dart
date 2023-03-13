@@ -20,8 +20,7 @@ mixin _$Story {
   AppUser get user => throw _privateConstructorUsedError;
   Faculty get faculty => throw _privateConstructorUsedError;
   String get body => throw _privateConstructorUsedError;
-  @DateTimeConverter()
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get creationDate => throw _privateConstructorUsedError;
   bool get favourite => throw _privateConstructorUsedError;
   bool get alreadyConversation => throw _privateConstructorUsedError;
   bool get ownStory => throw _privateConstructorUsedError;
@@ -43,7 +42,7 @@ abstract class $StoryCopyWith<$Res> {
       AppUser user,
       Faculty faculty,
       String body,
-      @DateTimeConverter() DateTime createdAt,
+      DateTime creationDate,
       bool favourite,
       bool alreadyConversation,
       bool ownStory,
@@ -70,7 +69,7 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
     Object? user = null,
     Object? faculty = null,
     Object? body = null,
-    Object? createdAt = null,
+    Object? creationDate = null,
     Object? favourite = null,
     Object? alreadyConversation = null,
     Object? ownStory = null,
@@ -93,9 +92,9 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      creationDate: null == creationDate
+          ? _value.creationDate
+          : creationDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       favourite: null == favourite
           ? _value.favourite
@@ -144,7 +143,7 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
       AppUser user,
       Faculty faculty,
       String body,
-      @DateTimeConverter() DateTime createdAt,
+      DateTime creationDate,
       bool favourite,
       bool alreadyConversation,
       bool ownStory,
@@ -169,7 +168,7 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
     Object? user = null,
     Object? faculty = null,
     Object? body = null,
-    Object? createdAt = null,
+    Object? creationDate = null,
     Object? favourite = null,
     Object? alreadyConversation = null,
     Object? ownStory = null,
@@ -192,9 +191,9 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
           ? _value.body
           : body // ignore: cast_nullable_to_non_nullable
               as String,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      creationDate: null == creationDate
+          ? _value.creationDate
+          : creationDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
       favourite: null == favourite
           ? _value.favourite
@@ -224,7 +223,7 @@ class _$_Story extends _Story {
       required this.user,
       required this.faculty,
       required this.body,
-      @DateTimeConverter() required this.createdAt,
+      required this.creationDate,
       required this.favourite,
       required this.alreadyConversation,
       required this.ownStory,
@@ -240,8 +239,7 @@ class _$_Story extends _Story {
   @override
   final String body;
   @override
-  @DateTimeConverter()
-  final DateTime createdAt;
+  final DateTime creationDate;
   @override
   final bool favourite;
   @override
@@ -254,7 +252,7 @@ class _$_Story extends _Story {
 
   @override
   String toString() {
-    return 'Story(id: $id, user: $user, faculty: $faculty, body: $body, createdAt: $createdAt, favourite: $favourite, alreadyConversation: $alreadyConversation, ownStory: $ownStory, backgroundGradientIndex: $backgroundGradientIndex)';
+    return 'Story(id: $id, user: $user, faculty: $faculty, body: $body, creationDate: $creationDate, favourite: $favourite, alreadyConversation: $alreadyConversation, ownStory: $ownStory, backgroundGradientIndex: $backgroundGradientIndex)';
   }
 
   @override
@@ -266,8 +264,8 @@ class _$_Story extends _Story {
             (identical(other.user, user) || other.user == user) &&
             (identical(other.faculty, faculty) || other.faculty == faculty) &&
             (identical(other.body, body) || other.body == body) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.creationDate, creationDate) ||
+                other.creationDate == creationDate) &&
             (identical(other.favourite, favourite) ||
                 other.favourite == favourite) &&
             (identical(other.alreadyConversation, alreadyConversation) ||
@@ -286,7 +284,7 @@ class _$_Story extends _Story {
       user,
       faculty,
       body,
-      createdAt,
+      creationDate,
       favourite,
       alreadyConversation,
       ownStory,
@@ -305,8 +303,7 @@ abstract class _Story extends Story {
       required final AppUser user,
       required final Faculty faculty,
       required final String body,
-      @DateTimeConverter()
-          required final DateTime createdAt,
+      required final DateTime creationDate,
       required final bool favourite,
       required final bool alreadyConversation,
       required final bool ownStory,
@@ -323,8 +320,7 @@ abstract class _Story extends Story {
   @override
   String get body;
   @override
-  @DateTimeConverter()
-  DateTime get createdAt;
+  DateTime get creationDate;
   @override
   bool get favourite;
   @override
