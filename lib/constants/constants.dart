@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 const FIRST_TIME_USING_APP_KEY = "FIRST_TIME_USING_APP_KEY";
 
 // Api Endpoint
-//const API_ENDPOINT = "http://192.168.1.19:3000/api/v1";
-const API_ENDPOINT = "http://10.0.2.2:3000/api/v1";
+const API_ENDPOINT = "http://192.168.1.19:3000/api/v1";
+// const API_ENDPOINT = "http://10.0.2.2:3000/api/v1";
 
 List<LinearGradient> gradients = [
   const LinearGradient(

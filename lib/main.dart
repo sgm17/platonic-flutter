@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
 import 'package:platonic/screens/dialog_screen/study_dialog_screen.dart';
 import 'package:platonic/screens/dialog_screen/university_dialog_screen.dart';
+import 'package:platonic/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:platonic/screens/match_screen/match_screen.dart';
 import 'package:platonic/screens/profile_screen/profile_screen.dart';
 import 'package:platonic/screens/splash_screen/splash_screen.dart';
@@ -48,6 +49,7 @@ class PlatonicApp extends StatelessWidget {
         '/StartScreen': (context) => const StartScreen(),
         '/SettingsScreen': (context) => const SettingsScreen(),
         '/AuthScreen': (context) => const AuthScreen(),
+        '/ForgotPasswordScreen': (context) => const ForgotPasswordScreen(),
         '/RegisterDetailScreen': (context) => const RegisterDetailScreen(),
         '/CreateScreen': (context) => const CreateScreen(),
         '/ChatScreen': (context) => const ChatScreen(),

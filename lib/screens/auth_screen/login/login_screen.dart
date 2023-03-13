@@ -11,6 +11,10 @@ class LoginScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final formKey = GlobalKey<FormState>();
 
+    void toggleForgotPassword() {
+      Navigator.pushReplacementNamed(context, '/ForgotPasswordScreen');
+    }
+
     Future<void> toggleLogin() async {
       if (formKey.currentState!.validate()) {
         formKey.currentState!.save();
@@ -47,9 +51,12 @@ class LoginScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 32.0,
                     ),
-                    SizedBox(
-                      height: 20.0,
-                      child: ForgotPasswordText(),
+                    GestureDetector(
+                      onTap: toggleForgotPassword,
+                      child: SizedBox(
+                        height: 20.0,
+                        child: ForgotPasswordText(),
+                      ),
                     ),
                     const SizedBox(
                       height: 32.0,
@@ -66,14 +73,14 @@ class LoginScreen extends ConsumerWidget {
                     const SizedBox(
                       height: 32.0,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 18.0,
                       child: DividerContainer(),
                     ),
                     const SizedBox(
                       height: 32.0,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 104.0,
                       child: Oauth2Container(),
                     ),

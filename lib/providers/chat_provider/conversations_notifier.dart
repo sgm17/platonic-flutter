@@ -1,13 +1,10 @@
-import 'dart:convert';
-
+import 'package:platonic/providers/http_provider/providers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/domains/chat_repository/chat_repository.dart';
 import 'package:action_cable/action_cable.dart';
 import 'dart:async';
-
-import 'package:platonic/providers/http_provider/providers.dart';
 
 class ConversationsScrollNotifier
     extends StateNotifier<AsyncValue<List<Conversation>>> {
