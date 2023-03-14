@@ -2,6 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'package:platonic/providers/auth_provider/auth_error_provider.dart';
 import 'package:platonic/providers/auth_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'dart:async';
@@ -141,7 +142,8 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
       // Fire method onAuthStateChanges(User? user)
     } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
+      //state = AsyncValue.error(e, StackTrace.current);
+      ref.read(authErrorProvider.notifier).state = e;
     }
   }
 
@@ -160,6 +162,7 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       // Fire method onAuthStateChanges(User? user)
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
+      ref.read(authErrorProvider.notifier).state = e;
     }
   }
 
