@@ -74,25 +74,30 @@ class UniversityDialogScreen extends ConsumerWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
+                        final university =
+                            filteredUniversities[index].university;
+
                         if (isMeetSettings) {
                           ref.read(userRegisterDetailProvider.notifier).state =
                               userRegisterDetailState.copyWith(
-                                  universityToMeet:
-                                      filteredUniversities[index].university);
+                                  universityToMeet: university,
+                                  universityToMeetId: university.id);
                         } else {
                           ref.read(userRegisterDetailProvider.notifier).state =
                               userRegisterDetailState.copyWith(
-                                  university:
-                                      filteredUniversities[index].university);
+                                  university: university,
+                                  universityId: university.id);
                         }
                       },
                       child: OptionSelected(
                         isBlue: true,
                         isSelected: isMeetSettings
-                            ? userRegisterDetailState.universityToMeet ==
-                                filteredUniversities[index].university
-                            : userRegisterDetailState.university ==
-                                filteredUniversities[index].university,
+                            ? userRegisterDetailState.universityToMeetId ==
+                                filteredUniversities[index].university.id
+                            : !isMeetSettings
+                                ? userRegisterDetailState.universityId ==
+                                    filteredUniversities[index].university.id
+                                : false,
                         name: filteredUniversities[index].university.name,
                       ),
                     );

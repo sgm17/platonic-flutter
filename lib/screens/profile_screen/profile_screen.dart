@@ -59,8 +59,8 @@ class ProfileScreen extends ConsumerWidget {
                       SizedBox(
                         height: 18.0,
                         child: UniversityTitle(
-                          universityName: user.university.name,
-                          universitySimpleName: user.university.simpleName,
+                          universityName: user.university!.name,
+                          universitySimpleName: user.university!.simpleName,
                         ),
                       ),
                       const SizedBox(
@@ -69,7 +69,7 @@ class ProfileScreen extends ConsumerWidget {
                       SizedBox(
                         height: 18.0,
                         child: StudiesTitle(
-                          study: user.study.studyName,
+                          study: user.study!.studyName,
                         ),
                       ),
                       const SizedBox(

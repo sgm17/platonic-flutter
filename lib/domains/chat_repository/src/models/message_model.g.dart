@@ -14,17 +14,17 @@ Message _$MessageFromJson(Map json) => $checkedCreate(
           id: $checkedConvert('id', (v) => v as int),
           message: $checkedConvert('message', (v) => v as String),
           userId: $checkedConvert('user_id', (v) => v as int),
-          createdAt: $checkedConvert('created_at',
+          creationDate: $checkedConvert('creation_date',
               (v) => const DateTimeConverter().fromJson(v as String)),
         );
         return val;
       },
-      fieldKeyMap: const {'userId': 'user_id', 'createdAt': 'created_at'},
+      fieldKeyMap: const {'userId': 'user_id', 'creationDate': 'creation_date'},
     );
 
 Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
       'id': instance.id,
       'message': instance.message,
       'user_id': instance.userId,
-      'created_at': const DateTimeConverter().toJson(instance.createdAt),
+      'creation_date': const DateTimeConverter().toJson(instance.creationDate),
     };

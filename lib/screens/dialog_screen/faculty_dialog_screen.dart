@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/university_repository/src/models/faculties_list_model.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
 import 'package:platonic/providers/dialog_provider/providers.dart';
-import 'package:platonic/providers/http_provider/providers.dart';
 import 'package:platonic/providers/university_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/dialog_screen/widgets/widgets.dart';
@@ -46,25 +45,25 @@ class FacultyDialogScreen extends ConsumerWidget {
             List<FacultiesList> facultiesList = [];
 
             if (isMeetSettings) {
-              if (userRegisterDetailState.universityToMeet != null &&
-                  userRegisterDetailState.name.isNotEmpty) {
+              if (userRegisterDetailState.universityToMeetId != 0) {
                 facultiesList = data
                     .firstWhere((e) =>
-                        e.university ==
-                        userRegisterDetailState.universityToMeet)
+                        e.university.id ==
+                        userRegisterDetailState.universityToMeetId)
                     .faculties;
               }
             } else {
-              if (userRegisterDetailState.university.name.isNotEmpty) {
+              if (userRegisterDetailState.universityId != 0) {
                 facultiesList = data
                     .firstWhere((e) =>
-                        e.university == userRegisterDetailState.university)
+                        e.university.id == userRegisterDetailState.universityId)
                     .faculties;
               }
             }
 
             final filteredFaculties = filterFaculties(
                 faculties: facultiesList, searchBarState: searchBarState);
+
             return Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -96,46 +95,59 @@ class FacultyDialogScreen extends ConsumerWidget {
                             return GestureDetector(
                               onTap: () {
                                 final faculty = filteredFaculties[index];
-                                final currentFacultiesToMeet =
-                                    userRegisterDetailState.facultiesToMeet;
-                                final newFacultiesToMeet =
-                                    currentFacultiesToMeet != null
-                                        ? [...currentFacultiesToMeet, faculty]
-                                        : [faculty];
-                                final facultiesToMeet = isMeetSettings
-                                    ? currentFacultiesToMeet != null &&
-                                            currentFacultiesToMeet
-                                                .contains(faculty)
-                                        ? currentFacultiesToMeet
-                                            .where((e) => e != faculty)
-                                            .toList()
-                                        : newFacultiesToMeet
-                                    : null;
+
                                 if (isMeetSettings) {
+                                  final currentFacultiesToMeet =
+                                      userRegisterDetailState.facultiesToMeet;
+
+                                  final newFacultiesToMeet =
+                                      currentFacultiesToMeet != null &&
+                                              currentFacultiesToMeet
+                                                  .map((e) => e.id)
+                                                  .toList()
+                                                  .contains(faculty.id)
+                                          ? currentFacultiesToMeet
+                                              .where((e) => e.id != faculty.id)
+                                              .toList()
+                                          : currentFacultiesToMeet != null
+                                              ? [
+                                                  convertToFaculty(faculty),
+                                                  ...currentFacultiesToMeet
+                                                ]
+                                              : [convertToFaculty(faculty)];
+
                                   ref
                                       .read(userRegisterDetailProvider.notifier)
                                       .state = userRegisterDetailState.copyWith(
-                                    facultiesToMeet: facultiesToMeet,
+                                    facultiesToMeet: newFacultiesToMeet,
                                   );
                                 } else {
                                   ref
-                                      .read(userRegisterDetailProvider.notifier)
-                                      .state = userRegisterDetailState.copyWith(
-                                    faculty: convertToFaculty(faculty),
-                                  );
+                                          .read(userRegisterDetailProvider.notifier)
+                                          .state =
+                                      userRegisterDetailState.copyWith(
+                                          facultyId: faculty.id,
+                                          faculty: convertToFaculty(faculty));
                                 }
                               },
                               child: SelectFacultyContainer(
                                   faculty: filteredFaculties[index],
                                   isSelected: isMeetSettings &&
-                                          (userRegisterDetailState
-                                                  .facultiesToMeet
-                                                  ?.contains(filteredFaculties[
-                                                      index]) ??
-                                              false) ||
-                                      userRegisterDetailState.faculty ==
-                                          convertToFaculty(
-                                              filteredFaculties[index])),
+                                          userRegisterDetailState
+                                                  .facultiesToMeet !=
+                                              null &&
+                                          userRegisterDetailState
+                                              .facultiesToMeet!
+                                              .map((e) => e.id)
+                                              .contains(
+                                                  filteredFaculties[index].id)
+                                      ? !isMeetSettings &&
+                                              userRegisterDetailState
+                                                      .facultyId !=
+                                                  0
+                                          ? true
+                                          : false
+                                      : false),
                             );
                           },
                           separatorBuilder: (context, index) {

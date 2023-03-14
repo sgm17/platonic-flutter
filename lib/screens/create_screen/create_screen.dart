@@ -3,6 +3,7 @@ import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/story_repository/src/models/story_model.dart';
 import 'package:platonic/domains/university_repository/src/models/models.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
+import 'package:platonic/providers/create_provider/circular_button_provider.dart';
 import 'package:platonic/providers/create_provider/providers.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
 import 'package:platonic/screens/create_screen/widgets/widgets.dart';
@@ -17,11 +18,18 @@ class CreateScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final gradientIndexState = ref.watch(gradientIndexProvider);
+    final circularButtonState = ref.watch(circularButtonProvider);
 
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    Future<void> toggleCreateCircular() async {
+    void toggleCreateCircular() {
+      if (ref.read(createControllerProvider).text.isNotEmpty) {
+        ref.read(circularButtonProvider.notifier).state = true;
+      }
+    }
+
+    Future<void> toggleMyFacultyStory() async {
       final text = ref.read(createControllerProvider).text;
 
       final Story story = Story(
@@ -31,9 +39,8 @@ class CreateScreen extends ConsumerWidget {
           body: text,
           creationDate: DateTime.now().toUtc(),
           favourite: false,
-          alreadyConversation: false,
-          ownStory: true,
-          backgroundGradientIndex: gradients[gradientIndexState]);
+          backgroundGradientIndex: gradients[gradientIndexState],
+          visualizations: []);
 
       await ref.read(storiesScrollProvider.notifier).createStory(story);
 
@@ -45,7 +52,11 @@ class CreateScreen extends ConsumerWidget {
         backgroundColor: Colors.transparent,
         body: SafeArea(
             child: Container(
-          decoration: BoxDecoration(gradient: gradients[gradientIndexState]),
+          decoration: BoxDecoration(
+              gradient: gradients[gradientIndexState],
+              borderRadius: !circularButtonState
+                  ? BorderRadius.circular(8.0)
+                  : BorderRadius.zero),
           width: width,
           height: height,
           child: Column(children: [
@@ -69,9 +80,10 @@ class CreateScreen extends ConsumerWidget {
             const SizedBox(
               height: 16.0,
             ),
-            GestureDetector(
-                onTap: toggleCreateCircular,
-                child: const CreateCircularButton()),
+            if (!circularButtonState)
+              GestureDetector(
+                  onTap: toggleCreateCircular,
+                  child: const CreateCircularButton()),
             const SizedBox(
               height: 32.0,
             ),
@@ -81,34 +93,94 @@ class CreateScreen extends ConsumerWidget {
               color: Colors.black,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: SizedBox(
-                  height: 31.0,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: width / 4,
-                        child: Container(),
+                child: !circularButtonState
+                    ? SizedBox(
+                        height: 31.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: width / 4,
+                              child: Container(),
+                            ),
+                            SizedBox(
+                              width: width / 4,
+                              child: const StoryTitle(),
+                            ),
+                            Container(
+                              alignment: Alignment.centerRight,
+                              width: width / 4,
+                              child: GestureDetector(
+                                  onTap: () {
+                                    ref
+                                        .read(gradientIndexProvider.notifier)
+                                        .state = (gradientIndexState +
+                                            1) %
+                                        gradients.length;
+                                  },
+                                  child: BackgroundSelector(
+                                    gradient: gradients[gradientIndexState],
+                                  )),
+                            ),
+                          ],
+                        ))
+                    : Row(
+                        children: [
+                          Flexible(
+                            child: GestureDetector(
+                              onTap: toggleMyFacultyStory,
+                              child: Container(
+                                height: 42.0,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color:
+                                        const Color.fromARGB(255, 27, 26, 29),
+                                    borderRadius: BorderRadius.circular(20.0)),
+                                child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                          height: 20.0,
+                                          width: 20.0,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                              color: Colors.green,
+                                              border: Border.all(
+                                                  color: Colors.white,
+                                                  width: 1.0),
+                                              shape: BoxShape.circle),
+                                          child: const Icon(
+                                            Icons.star,
+                                            color: Colors.white,
+                                            size: 10.0,
+                                          )),
+                                      const SizedBox(
+                                        width: 6.0,
+                                      ),
+                                      const Text('''Your faculty''',
+                                          overflow: TextOverflow.visible,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                            fontFamily: 'Arial',
+                                            fontWeight: FontWeight.w700,
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                          )
+                                          /* letterSpacing: 1.8, */
+                                          ),
+                                    ]),
+                              ),
+                            ),
+                          ),
+                          const Flexible(
+                              child: SizedBox(
+                            height: 42.0,
+                          )),
+                        ],
                       ),
-                      SizedBox(
-                        width: width / 4,
-                        child: const StoryTitle(),
-                      ),
-                      Container(
-                        alignment: Alignment.centerRight,
-                        width: width / 4,
-                        child: GestureDetector(
-                            onTap: () {
-                              ref.read(gradientIndexProvider.notifier).state =
-                                  (gradientIndexState + 1) % gradients.length;
-                            },
-                            child: BackgroundSelector(
-                              gradient: gradients[gradientIndexState],
-                            )),
-                      ),
-                    ],
-                  ),
-                ),
               ),
             ),
           ]),

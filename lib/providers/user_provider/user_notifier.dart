@@ -154,6 +154,9 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
 
+      // Send email verification after register complete
+      await firebaseAuth.currentUser?.sendEmailVerification();
+
       // Fire method onAuthStateChanges(User? user)
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);

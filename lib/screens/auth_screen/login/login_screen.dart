@@ -12,7 +12,7 @@ class LoginScreen extends ConsumerWidget {
     final formKey = GlobalKey<FormState>();
 
     void toggleForgotPassword() {
-      Navigator.pushReplacementNamed(context, '/ForgotPasswordScreen');
+      Navigator.pushNamed(context, '/ForgotPasswordScreen');
     }
 
     Future<void> toggleLogin() async {

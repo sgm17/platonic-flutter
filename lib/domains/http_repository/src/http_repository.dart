@@ -13,30 +13,41 @@ abstract class HttpRepository {
   // Users
   // GET /api/v1/users - Authentication required
   Future<AppUser?> getIndexAppUser({required String tokenId});
-  // GET /api/v1/users/otherUid
-  Future<AppUser> getShowOtherAppUser({required String otherUid});
   // POST /api/v1/users
   Future<AppUser> postCreateAppUser({required AppUser user});
-  // PUT /api/v1/users/uid
+  // PUT /api/v1/users/:id
   Future<AppUser> putUpdateAppUser({required AppUser user});
+  // DELETE /api/v1/users/:id
+  Future<bool> deleteDestroyAppUser({required AppUser user});
 
   // Meets
   // GET /api/v1/meets
   Future<List<MeetsScroll>> getIndexMeetsScroll();
+  // DELETE /api/v1/meets/:meet_id
+  Future<bool> deleteDestroyMeetsScroll({required int meetId});
 
   // Stories
   // GET /api/v1/stories
   Future<List<StoriesScroll>> getIndexStories();
-  // GET /api/v1/stories/faculty_id
+  // GET /api/v1/stories/:faculty_id
   Future<List<Story>> getShowStories({required int facultyId});
   // POST /api/v1/stories
   Future<Story> postCreateStory({required Story story});
-  // PUT /api/v1/stories/story_id/toggle_favourite
+  // PUT /api/v1/stories/:id/toggle_favourite
   Future<bool> putFavouriteStory({required int storyId});
+  // DESTROY /api/v1/stories/:id
+  Future<bool> deleteDestroyStory({required int storyId});
 
   // Conversations
   // GET /api/v1/conversations
   Future<List<Conversation>> getIndexConversations();
-  Future<Conversation> postCreateConversation(
-      {required Conversation conversation});
+  // POST /api/v1/conversations
+  Future<int> postCreateConversation({required int userId});
+  // DELETE /api/v1/conversations/:conversation_id
+  Future<bool> deleteDestroyConversation({required int conversationId});
+
+  // Visualizations
+  // POST /api/v1/visualizations
+  Future<bool> postCreateVisualization(
+      {required int userId, required int storyId});
 }

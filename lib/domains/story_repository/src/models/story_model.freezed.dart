@@ -22,8 +22,7 @@ mixin _$Story {
   String get body => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
   bool get favourite => throw _privateConstructorUsedError;
-  bool get alreadyConversation => throw _privateConstructorUsedError;
-  bool get ownStory => throw _privateConstructorUsedError;
+  List<AppUser> get visualizations => throw _privateConstructorUsedError;
   @LinearGradientConverter()
   LinearGradient get backgroundGradientIndex =>
       throw _privateConstructorUsedError;
@@ -44,8 +43,7 @@ abstract class $StoryCopyWith<$Res> {
       String body,
       DateTime creationDate,
       bool favourite,
-      bool alreadyConversation,
-      bool ownStory,
+      List<AppUser> visualizations,
       @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
   $AppUserCopyWith<$Res> get user;
@@ -71,8 +69,7 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
     Object? body = null,
     Object? creationDate = null,
     Object? favourite = null,
-    Object? alreadyConversation = null,
-    Object? ownStory = null,
+    Object? visualizations = null,
     Object? backgroundGradientIndex = null,
   }) {
     return _then(_value.copyWith(
@@ -100,14 +97,10 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
           ? _value.favourite
           : favourite // ignore: cast_nullable_to_non_nullable
               as bool,
-      alreadyConversation: null == alreadyConversation
-          ? _value.alreadyConversation
-          : alreadyConversation // ignore: cast_nullable_to_non_nullable
-              as bool,
-      ownStory: null == ownStory
-          ? _value.ownStory
-          : ownStory // ignore: cast_nullable_to_non_nullable
-              as bool,
+      visualizations: null == visualizations
+          ? _value.visualizations
+          : visualizations // ignore: cast_nullable_to_non_nullable
+              as List<AppUser>,
       backgroundGradientIndex: null == backgroundGradientIndex
           ? _value.backgroundGradientIndex
           : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
@@ -145,8 +138,7 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
       String body,
       DateTime creationDate,
       bool favourite,
-      bool alreadyConversation,
-      bool ownStory,
+      List<AppUser> visualizations,
       @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
   @override
@@ -170,8 +162,7 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
     Object? body = null,
     Object? creationDate = null,
     Object? favourite = null,
-    Object? alreadyConversation = null,
-    Object? ownStory = null,
+    Object? visualizations = null,
     Object? backgroundGradientIndex = null,
   }) {
     return _then(_$_Story(
@@ -199,14 +190,10 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
           ? _value.favourite
           : favourite // ignore: cast_nullable_to_non_nullable
               as bool,
-      alreadyConversation: null == alreadyConversation
-          ? _value.alreadyConversation
-          : alreadyConversation // ignore: cast_nullable_to_non_nullable
-              as bool,
-      ownStory: null == ownStory
-          ? _value.ownStory
-          : ownStory // ignore: cast_nullable_to_non_nullable
-              as bool,
+      visualizations: null == visualizations
+          ? _value._visualizations
+          : visualizations // ignore: cast_nullable_to_non_nullable
+              as List<AppUser>,
       backgroundGradientIndex: null == backgroundGradientIndex
           ? _value.backgroundGradientIndex
           : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
@@ -225,10 +212,10 @@ class _$_Story extends _Story {
       required this.body,
       required this.creationDate,
       required this.favourite,
-      required this.alreadyConversation,
-      required this.ownStory,
+      required final List<AppUser> visualizations,
       @LinearGradientConverter() required this.backgroundGradientIndex})
-      : super._();
+      : _visualizations = visualizations,
+        super._();
 
   @override
   final int id;
@@ -242,17 +229,21 @@ class _$_Story extends _Story {
   final DateTime creationDate;
   @override
   final bool favourite;
+  final List<AppUser> _visualizations;
   @override
-  final bool alreadyConversation;
-  @override
-  final bool ownStory;
+  List<AppUser> get visualizations {
+    if (_visualizations is EqualUnmodifiableListView) return _visualizations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_visualizations);
+  }
+
   @override
   @LinearGradientConverter()
   final LinearGradient backgroundGradientIndex;
 
   @override
   String toString() {
-    return 'Story(id: $id, user: $user, faculty: $faculty, body: $body, creationDate: $creationDate, favourite: $favourite, alreadyConversation: $alreadyConversation, ownStory: $ownStory, backgroundGradientIndex: $backgroundGradientIndex)';
+    return 'Story(id: $id, user: $user, faculty: $faculty, body: $body, creationDate: $creationDate, favourite: $favourite, visualizations: $visualizations, backgroundGradientIndex: $backgroundGradientIndex)';
   }
 
   @override
@@ -268,10 +259,8 @@ class _$_Story extends _Story {
                 other.creationDate == creationDate) &&
             (identical(other.favourite, favourite) ||
                 other.favourite == favourite) &&
-            (identical(other.alreadyConversation, alreadyConversation) ||
-                other.alreadyConversation == alreadyConversation) &&
-            (identical(other.ownStory, ownStory) ||
-                other.ownStory == ownStory) &&
+            const DeepCollectionEquality()
+                .equals(other._visualizations, _visualizations) &&
             (identical(
                     other.backgroundGradientIndex, backgroundGradientIndex) ||
                 other.backgroundGradientIndex == backgroundGradientIndex));
@@ -286,8 +275,7 @@ class _$_Story extends _Story {
       body,
       creationDate,
       favourite,
-      alreadyConversation,
-      ownStory,
+      const DeepCollectionEquality().hash(_visualizations),
       backgroundGradientIndex);
 
   @JsonKey(ignore: true)
@@ -305,8 +293,7 @@ abstract class _Story extends Story {
       required final String body,
       required final DateTime creationDate,
       required final bool favourite,
-      required final bool alreadyConversation,
-      required final bool ownStory,
+      required final List<AppUser> visualizations,
       @LinearGradientConverter()
           required final LinearGradient backgroundGradientIndex}) = _$_Story;
   _Story._() : super._();
@@ -324,9 +311,7 @@ abstract class _Story extends Story {
   @override
   bool get favourite;
   @override
-  bool get alreadyConversation;
-  @override
-  bool get ownStory;
+  List<AppUser> get visualizations;
   @override
   @LinearGradientConverter()
   LinearGradient get backgroundGradientIndex;

@@ -20,7 +20,7 @@ mixin _$Message {
   String get message => throw _privateConstructorUsedError;
   int get userId => throw _privateConstructorUsedError;
   @DateTimeConverter()
-  DateTime get createdAt => throw _privateConstructorUsedError;
+  DateTime get creationDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MessageCopyWith<Message> get copyWith => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $MessageCopyWith<$Res> {
       {int id,
       String message,
       int userId,
-      @DateTimeConverter() DateTime createdAt});
+      @DateTimeConverter() DateTime creationDate});
 }
 
 /// @nodoc
@@ -54,7 +54,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
     Object? id = null,
     Object? message = null,
     Object? userId = null,
-    Object? createdAt = null,
+    Object? creationDate = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,9 +69,9 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      creationDate: null == creationDate
+          ? _value.creationDate
+          : creationDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
   }
@@ -88,7 +88,7 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
       {int id,
       String message,
       int userId,
-      @DateTimeConverter() DateTime createdAt});
+      @DateTimeConverter() DateTime creationDate});
 }
 
 /// @nodoc
@@ -104,7 +104,7 @@ class __$$_MessageCopyWithImpl<$Res>
     Object? id = null,
     Object? message = null,
     Object? userId = null,
-    Object? createdAt = null,
+    Object? creationDate = null,
   }) {
     return _then(_$_Message(
       id: null == id
@@ -119,9 +119,9 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
-      createdAt: null == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      creationDate: null == creationDate
+          ? _value.creationDate
+          : creationDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
@@ -134,7 +134,7 @@ class _$_Message extends _Message {
       {required this.id,
       required this.message,
       required this.userId,
-      @DateTimeConverter() required this.createdAt})
+      @DateTimeConverter() required this.creationDate})
       : super._();
 
   @override
@@ -145,11 +145,11 @@ class _$_Message extends _Message {
   final int userId;
   @override
   @DateTimeConverter()
-  final DateTime createdAt;
+  final DateTime creationDate;
 
   @override
   String toString() {
-    return 'Message(id: $id, message: $message, userId: $userId, createdAt: $createdAt)';
+    return 'Message(id: $id, message: $message, userId: $userId, creationDate: $creationDate)';
   }
 
   @override
@@ -160,12 +160,13 @@ class _$_Message extends _Message {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+            (identical(other.creationDate, creationDate) ||
+                other.creationDate == creationDate));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, message, userId, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, message, userId, creationDate);
 
   @JsonKey(ignore: true)
   @override
@@ -179,7 +180,7 @@ abstract class _Message extends Message {
       {required final int id,
       required final String message,
       required final int userId,
-      @DateTimeConverter() required final DateTime createdAt}) = _$_Message;
+      @DateTimeConverter() required final DateTime creationDate}) = _$_Message;
   const _Message._() : super._();
 
   @override
@@ -190,7 +191,7 @@ abstract class _Message extends Message {
   int get userId;
   @override
   @DateTimeConverter()
-  DateTime get createdAt;
+  DateTime get creationDate;
   @override
   @JsonKey(ignore: true)
   _$$_MessageCopyWith<_$_Message> get copyWith =>

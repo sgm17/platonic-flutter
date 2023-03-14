@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Faculty {
   int get id => throw _privateConstructorUsedError;
-  String get facultyName => throw _privateConstructorUsedError;
+  String? get facultyName => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FacultyCopyWith<Faculty> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ abstract class $FacultyCopyWith<$Res> {
   factory $FacultyCopyWith(Faculty value, $Res Function(Faculty) then) =
       _$FacultyCopyWithImpl<$Res, Faculty>;
   @useResult
-  $Res call({int id, String facultyName});
+  $Res call({int id, String? facultyName});
 }
 
 /// @nodoc
@@ -45,17 +45,17 @@ class _$FacultyCopyWithImpl<$Res, $Val extends Faculty>
   @override
   $Res call({
     Object? id = null,
-    Object? facultyName = null,
+    Object? facultyName = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      facultyName: null == facultyName
+      facultyName: freezed == facultyName
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -67,7 +67,7 @@ abstract class _$$_FacultyCopyWith<$Res> implements $FacultyCopyWith<$Res> {
       __$$_FacultyCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String facultyName});
+  $Res call({int id, String? facultyName});
 }
 
 /// @nodoc
@@ -81,17 +81,17 @@ class __$$_FacultyCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? facultyName = null,
+    Object? facultyName = freezed,
   }) {
     return _then(_$_Faculty(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      facultyName: null == facultyName
+      facultyName: freezed == facultyName
           ? _value.facultyName
           : facultyName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -104,7 +104,7 @@ class _$_Faculty extends _Faculty {
   @override
   final int id;
   @override
-  final String facultyName;
+  final String? facultyName;
 
   @override
   String toString() {
@@ -133,13 +133,13 @@ class _$_Faculty extends _Faculty {
 
 abstract class _Faculty extends Faculty {
   const factory _Faculty(
-      {required final int id, required final String facultyName}) = _$_Faculty;
+      {required final int id, required final String? facultyName}) = _$_Faculty;
   const _Faculty._() : super._();
 
   @override
   int get id;
   @override
-  String get facultyName;
+  String? get facultyName;
   @override
   @JsonKey(ignore: true)
   _$$_FacultyCopyWith<_$_Faculty> get copyWith =>

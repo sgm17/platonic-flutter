@@ -41,26 +41,22 @@ class StudyDialogScreen extends ConsumerWidget {
         body: SafeArea(
           child: universitiesListState.when(
             data: (data) {
-              final List<Study> studies = ref
-                          .read(userRegisterDetailProvider)
-                          .university
-                          .name
-                          .isNotEmpty &&
-                      ref
-                          .read(userRegisterDetailProvider)
-                          .faculty
-                          .facultyName
-                          .isNotEmpty
-                  ? data
-                      .firstWhere((e) =>
-                          e.university ==
-                          ref.read(userRegisterDetailProvider).university)
-                      .faculties
-                      .firstWhere((e) =>
-                          convertToFaculty(e) ==
-                          ref.read(userRegisterDetailProvider).faculty)
-                      .studies
-                  : [];
+              List<Study> studies = [];
+              final universityRegisterDetailState =
+                  ref.read(userRegisterDetailProvider);
+
+              if (universityRegisterDetailState.universityId != 0 &&
+                  universityRegisterDetailState.facultyId != 0) {
+                studies = data
+                    .firstWhere((universitiesList) =>
+                        universitiesList.university.id ==
+                        ref.read(userRegisterDetailProvider).universityId)
+                    .faculties
+                    .firstWhere((facultiesList) =>
+                        facultiesList.id ==
+                        ref.read(userRegisterDetailProvider).id)
+                    .studies;
+              }
 
               final filteredStudies = filterStudies(
                   studies: studies, searchBarState: searchBarState);
@@ -107,8 +103,10 @@ class StudyDialogScreen extends ConsumerWidget {
                               },
                               child: OptionSelected(
                                 isBlue: true,
-                                isSelected: filteredStudies[index] ==
-                                    ref.read(userRegisterDetailProvider).study,
+                                isSelected: ref
+                                        .read(userRegisterDetailProvider)
+                                        .studyId ==
+                                    filteredStudies[index].id,
                                 name: filteredStudies[index].studyName,
                               ),
                             );

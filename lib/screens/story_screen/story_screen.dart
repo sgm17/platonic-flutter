@@ -1,6 +1,7 @@
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
 import 'package:platonic/screens/story_screen/widgets/widgets.dart';
 import 'package:story_view/story_view.dart';
@@ -83,10 +84,16 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
                       Navigator.pop(context);
                       break;
                     case Direction.up:
-                      if (!stories
-                          .firstWhere(
-                              (s) => s.id == ref.read(storyViewIdProvider))
-                          .alreadyConversation) {
+                      final storyCreator = stories.firstWhere(
+                          (s) => s.id == ref.read(storyViewIdProvider));
+                      final alreadyConversation = ref
+                          .read(chatProvider)
+                          .asData
+                          ?.value
+                          .map((e) => e.user)
+                          .contains(storyCreator.user);
+
+                      if (alreadyConversation != null && !alreadyConversation) {
                         controller.pause();
                         focusNode.requestFocus();
                       }

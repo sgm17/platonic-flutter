@@ -1,14 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
-import 'package:platonic/providers/university_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/auth_screen.dart';
 import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/register_detail_screen/register_detail_screen.dart';
 import 'package:platonic/screens/start_screen/start_screen.dart';
+import 'package:platonic/screens/verify_screen/verify_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
@@ -39,13 +40,15 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final userState = ref.watch(userProvider);
+    final firebaseAuth = FirebaseAuth.instance;
 
     if (splashState == false) {
       return Center(
           child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 200, maxHeight: 200),
-              child:
-                  Image.asset('assets/images/splash.png', fit: BoxFit.cover)));
+              child: Image.asset(
+                  'assets/images/ASm7AmLaGCSNihuq4WwBQ38tCZSy962nKCuhbBem.png',
+                  fit: BoxFit.cover)));
     }
 
     return Scaffold(
@@ -53,7 +56,10 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
         body: SafeArea(
             child: userState.when(
           data: (AppUser user) {
-            if (user.uid == '') {
+            if (firebaseAuth.currentUser != null &&
+                firebaseAuth.currentUser!.emailVerified) {
+              return const VerifyScreen();
+            } else if (user.id == 0) {
               // No user in the backend
               return const RegisterDetailScreen();
             } else {
@@ -80,9 +86,7 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
                 );
               } else {
                 // Not the first time
-                return ProviderScope(overrides: [
-                  universityProvider.overrideWithValue(user.university)
-                ], child: const HomeScreen());
+                return const HomeScreen();
               }
             }
           },

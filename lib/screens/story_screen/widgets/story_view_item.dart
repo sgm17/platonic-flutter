@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:platonic/domains/story_repository/story_repository.dart';
+import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
 
 class StoryViewItem extends ConsumerWidget {
@@ -97,12 +99,17 @@ class StoryViewItem extends ConsumerWidget {
               ),
             ]),
           ),
-          if (story.ownStory == false)
+          if (ref.read(userProvider).asData?.value.id == story.user.id)
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
               child: Row(children: [
-                if (story.alreadyConversation == false)
+                if (!ref
+                    .read(chatProvider)
+                    .asData!
+                    .value
+                    .map((e) => e.id)
+                    .contains(story.user.id))
                   Flexible(
                     child: TextField(
                       focusNode: focusNode,
@@ -140,7 +147,12 @@ class StoryViewItem extends ConsumerWidget {
                       ),
                     ),
                   ),
-                if (story.alreadyConversation == true)
+                if (ref
+                    .read(chatProvider)
+                    .asData!
+                    .value
+                    .map((e) => e.id)
+                    .contains(story.user.id))
                   Flexible(
                     child: Container(
                       height: 48.0,

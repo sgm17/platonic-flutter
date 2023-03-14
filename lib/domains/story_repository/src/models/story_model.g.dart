@@ -20,9 +20,12 @@ Story _$StoryFromJson(Map json) => $checkedCreate(
           creationDate: $checkedConvert(
               'creation_date', (v) => DateTime.parse(v as String)),
           favourite: $checkedConvert('favourite', (v) => v as bool),
-          alreadyConversation:
-              $checkedConvert('already_conversation', (v) => v as bool),
-          ownStory: $checkedConvert('own_story', (v) => v as bool),
+          visualizations: $checkedConvert(
+              'visualizations',
+              (v) => (v as List<dynamic>)
+                  .map((e) =>
+                      AppUser.fromJson(Map<String, dynamic>.from(e as Map)))
+                  .toList()),
           backgroundGradientIndex: $checkedConvert('background_gradient_index',
               (v) => const LinearGradientConverter().fromJson(v as int)),
         );
@@ -30,8 +33,6 @@ Story _$StoryFromJson(Map json) => $checkedCreate(
       },
       fieldKeyMap: const {
         'creationDate': 'creation_date',
-        'alreadyConversation': 'already_conversation',
-        'ownStory': 'own_story',
         'backgroundGradientIndex': 'background_gradient_index'
       },
     );
@@ -43,8 +44,7 @@ Map<String, dynamic> _$StoryToJson(Story instance) => <String, dynamic>{
       'body': instance.body,
       'creation_date': instance.creationDate.toIso8601String(),
       'favourite': instance.favourite,
-      'already_conversation': instance.alreadyConversation,
-      'own_story': instance.ownStory,
+      'visualizations': instance.visualizations.map((e) => e.toJson()).toList(),
       'background_gradient_index': const LinearGradientConverter()
           .toJson(instance.backgroundGradientIndex),
     };

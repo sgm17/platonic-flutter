@@ -15,7 +15,7 @@ class Faculty with _$Faculty {
 
   const factory Faculty({
     required int id,
-    required String facultyName,
+    required String? facultyName,
   }) = _Faculty;
 
   static Faculty emptyFaculty = const Faculty(id: 0, facultyName: '');

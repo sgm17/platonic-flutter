@@ -39,8 +39,7 @@ class RegisterDetailMeet extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: SettingsSelect(
-            placeholder: userRegisterDetailState.universityToMeet != null &&
-                    userRegisterDetailState.universityToMeet!.name.isNotEmpty
+            placeholder: userRegisterDetailState.universityToMeetId != 0
                 ? userRegisterDetailState.universityToMeet!.name
                 : 'Your university to meet',
             title: '''University to meet''',

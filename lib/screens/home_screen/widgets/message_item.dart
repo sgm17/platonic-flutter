@@ -15,7 +15,8 @@ class MessageItem extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () {
-        ref.read(activeConversationProvider.notifier).state = conversationState;
+        ref.read(activeConversationUserProvider.notifier).state =
+            conversationState.user;
         Navigator.pushNamed(context, '/ChatScreen');
       },
       child: Container(

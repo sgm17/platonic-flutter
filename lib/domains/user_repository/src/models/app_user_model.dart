@@ -1,4 +1,3 @@
-import 'package:platonic/domains/university_repository/src/models/faculties_list_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:platonic/domains/university_repository/src/models/models.dart';
 part 'app_user_model.freezed.dart';
@@ -25,13 +24,17 @@ class AppUser with _$AppUser {
       required int age,
       String? profileImage,
       String? meetPicture,
-      required University university,
-      required Faculty faculty,
-      required Study study,
+      required int universityId,
+      required int facultyId,
+      required int studyId,
+      University? university,
+      Faculty? faculty,
+      Study? study,
       bool? meetStatus,
       Sex? sexToMeet,
       University? universityToMeet,
-      List<FacultiesList>? facultiesToMeet}) = _AppUser;
+      int? universityToMeetId,
+      List<Faculty>? facultiesToMeet}) = _AppUser;
 
   factory AppUser.fromJson(Map<String, dynamic> json) =>
       _$AppUserFromJson(json);
@@ -39,13 +42,19 @@ class AppUser with _$AppUser {
   Map<String, dynamic> toJson() => _$AppUserToJson(this);
 
   static const AppUser emptyUser = AppUser(
-      id: 0,
-      uid: '',
-      name: '',
-      email: '',
-      sex: Sex.male,
-      age: 0,
-      university: University(id: 0, name: '', simpleName: ''),
-      faculty: Faculty(id: 0, facultyName: ''),
-      study: Study(id: 0, studyName: ''));
+    id: 0,
+    uid: '',
+    name: '',
+    email: '',
+    sex: Sex.male,
+    age: 0,
+    university: University(id: 0, name: '', simpleName: ''),
+    faculty: Faculty(id: 0, facultyName: ''),
+    study: Study(id: 0, studyName: ''),
+    facultyId: 0,
+    universityId: 0,
+    studyId: 0,
+    universityToMeetId: 0,
+    facultiesToMeet: [],
+  );
 }

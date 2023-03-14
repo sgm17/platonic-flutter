@@ -25,14 +25,17 @@ mixin _$AppUser {
   int get age => throw _privateConstructorUsedError;
   String? get profileImage => throw _privateConstructorUsedError;
   String? get meetPicture => throw _privateConstructorUsedError;
-  University get university => throw _privateConstructorUsedError;
-  Faculty get faculty => throw _privateConstructorUsedError;
-  Study get study => throw _privateConstructorUsedError;
+  int get universityId => throw _privateConstructorUsedError;
+  int get facultyId => throw _privateConstructorUsedError;
+  int get studyId => throw _privateConstructorUsedError;
+  University? get university => throw _privateConstructorUsedError;
+  Faculty? get faculty => throw _privateConstructorUsedError;
+  Study? get study => throw _privateConstructorUsedError;
   bool? get meetStatus => throw _privateConstructorUsedError;
   Sex? get sexToMeet => throw _privateConstructorUsedError;
   University? get universityToMeet => throw _privateConstructorUsedError;
-  List<FacultiesList>? get facultiesToMeet =>
-      throw _privateConstructorUsedError;
+  int? get universityToMeetId => throw _privateConstructorUsedError;
+  List<Faculty>? get facultiesToMeet => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppUserCopyWith<AppUser> get copyWith => throw _privateConstructorUsedError;
@@ -53,17 +56,21 @@ abstract class $AppUserCopyWith<$Res> {
       int age,
       String? profileImage,
       String? meetPicture,
-      University university,
-      Faculty faculty,
-      Study study,
+      int universityId,
+      int facultyId,
+      int studyId,
+      University? university,
+      Faculty? faculty,
+      Study? study,
       bool? meetStatus,
       Sex? sexToMeet,
       University? universityToMeet,
-      List<FacultiesList>? facultiesToMeet});
+      int? universityToMeetId,
+      List<Faculty>? facultiesToMeet});
 
-  $UniversityCopyWith<$Res> get university;
-  $FacultyCopyWith<$Res> get faculty;
-  $StudyCopyWith<$Res> get study;
+  $UniversityCopyWith<$Res>? get university;
+  $FacultyCopyWith<$Res>? get faculty;
+  $StudyCopyWith<$Res>? get study;
   $UniversityCopyWith<$Res>? get universityToMeet;
 }
 
@@ -89,12 +96,16 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
     Object? age = null,
     Object? profileImage = freezed,
     Object? meetPicture = freezed,
-    Object? university = null,
-    Object? faculty = null,
-    Object? study = null,
+    Object? universityId = null,
+    Object? facultyId = null,
+    Object? studyId = null,
+    Object? university = freezed,
+    Object? faculty = freezed,
+    Object? study = freezed,
     Object? meetStatus = freezed,
     Object? sexToMeet = freezed,
     Object? universityToMeet = freezed,
+    Object? universityToMeetId = freezed,
     Object? facultiesToMeet = freezed,
   }) {
     return _then(_value.copyWith(
@@ -134,18 +145,30 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.meetPicture
           : meetPicture // ignore: cast_nullable_to_non_nullable
               as String?,
-      university: null == university
+      universityId: null == universityId
+          ? _value.universityId
+          : universityId // ignore: cast_nullable_to_non_nullable
+              as int,
+      facultyId: null == facultyId
+          ? _value.facultyId
+          : facultyId // ignore: cast_nullable_to_non_nullable
+              as int,
+      studyId: null == studyId
+          ? _value.studyId
+          : studyId // ignore: cast_nullable_to_non_nullable
+              as int,
+      university: freezed == university
           ? _value.university
           : university // ignore: cast_nullable_to_non_nullable
-              as University,
-      faculty: null == faculty
+              as University?,
+      faculty: freezed == faculty
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
-              as Faculty,
-      study: null == study
+              as Faculty?,
+      study: freezed == study
           ? _value.study
           : study // ignore: cast_nullable_to_non_nullable
-              as Study,
+              as Study?,
       meetStatus: freezed == meetStatus
           ? _value.meetStatus
           : meetStatus // ignore: cast_nullable_to_non_nullable
@@ -158,33 +181,49 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.universityToMeet
           : universityToMeet // ignore: cast_nullable_to_non_nullable
               as University?,
+      universityToMeetId: freezed == universityToMeetId
+          ? _value.universityToMeetId
+          : universityToMeetId // ignore: cast_nullable_to_non_nullable
+              as int?,
       facultiesToMeet: freezed == facultiesToMeet
           ? _value.facultiesToMeet
           : facultiesToMeet // ignore: cast_nullable_to_non_nullable
-              as List<FacultiesList>?,
+              as List<Faculty>?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UniversityCopyWith<$Res> get university {
-    return $UniversityCopyWith<$Res>(_value.university, (value) {
+  $UniversityCopyWith<$Res>? get university {
+    if (_value.university == null) {
+      return null;
+    }
+
+    return $UniversityCopyWith<$Res>(_value.university!, (value) {
       return _then(_value.copyWith(university: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $FacultyCopyWith<$Res> get faculty {
-    return $FacultyCopyWith<$Res>(_value.faculty, (value) {
+  $FacultyCopyWith<$Res>? get faculty {
+    if (_value.faculty == null) {
+      return null;
+    }
+
+    return $FacultyCopyWith<$Res>(_value.faculty!, (value) {
       return _then(_value.copyWith(faculty: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StudyCopyWith<$Res> get study {
-    return $StudyCopyWith<$Res>(_value.study, (value) {
+  $StudyCopyWith<$Res>? get study {
+    if (_value.study == null) {
+      return null;
+    }
+
+    return $StudyCopyWith<$Res>(_value.study!, (value) {
       return _then(_value.copyWith(study: value) as $Val);
     });
   }
@@ -219,20 +258,24 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
       int age,
       String? profileImage,
       String? meetPicture,
-      University university,
-      Faculty faculty,
-      Study study,
+      int universityId,
+      int facultyId,
+      int studyId,
+      University? university,
+      Faculty? faculty,
+      Study? study,
       bool? meetStatus,
       Sex? sexToMeet,
       University? universityToMeet,
-      List<FacultiesList>? facultiesToMeet});
+      int? universityToMeetId,
+      List<Faculty>? facultiesToMeet});
 
   @override
-  $UniversityCopyWith<$Res> get university;
+  $UniversityCopyWith<$Res>? get university;
   @override
-  $FacultyCopyWith<$Res> get faculty;
+  $FacultyCopyWith<$Res>? get faculty;
   @override
-  $StudyCopyWith<$Res> get study;
+  $StudyCopyWith<$Res>? get study;
   @override
   $UniversityCopyWith<$Res>? get universityToMeet;
 }
@@ -256,12 +299,16 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? age = null,
     Object? profileImage = freezed,
     Object? meetPicture = freezed,
-    Object? university = null,
-    Object? faculty = null,
-    Object? study = null,
+    Object? universityId = null,
+    Object? facultyId = null,
+    Object? studyId = null,
+    Object? university = freezed,
+    Object? faculty = freezed,
+    Object? study = freezed,
     Object? meetStatus = freezed,
     Object? sexToMeet = freezed,
     Object? universityToMeet = freezed,
+    Object? universityToMeetId = freezed,
     Object? facultiesToMeet = freezed,
   }) {
     return _then(_$_AppUser(
@@ -301,18 +348,30 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.meetPicture
           : meetPicture // ignore: cast_nullable_to_non_nullable
               as String?,
-      university: null == university
+      universityId: null == universityId
+          ? _value.universityId
+          : universityId // ignore: cast_nullable_to_non_nullable
+              as int,
+      facultyId: null == facultyId
+          ? _value.facultyId
+          : facultyId // ignore: cast_nullable_to_non_nullable
+              as int,
+      studyId: null == studyId
+          ? _value.studyId
+          : studyId // ignore: cast_nullable_to_non_nullable
+              as int,
+      university: freezed == university
           ? _value.university
           : university // ignore: cast_nullable_to_non_nullable
-              as University,
-      faculty: null == faculty
+              as University?,
+      faculty: freezed == faculty
           ? _value.faculty
           : faculty // ignore: cast_nullable_to_non_nullable
-              as Faculty,
-      study: null == study
+              as Faculty?,
+      study: freezed == study
           ? _value.study
           : study // ignore: cast_nullable_to_non_nullable
-              as Study,
+              as Study?,
       meetStatus: freezed == meetStatus
           ? _value.meetStatus
           : meetStatus // ignore: cast_nullable_to_non_nullable
@@ -325,10 +384,14 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.universityToMeet
           : universityToMeet // ignore: cast_nullable_to_non_nullable
               as University?,
+      universityToMeetId: freezed == universityToMeetId
+          ? _value.universityToMeetId
+          : universityToMeetId // ignore: cast_nullable_to_non_nullable
+              as int?,
       facultiesToMeet: freezed == facultiesToMeet
           ? _value._facultiesToMeet
           : facultiesToMeet // ignore: cast_nullable_to_non_nullable
-              as List<FacultiesList>?,
+              as List<Faculty>?,
     ));
   }
 }
@@ -346,13 +409,17 @@ class _$_AppUser extends _AppUser {
       required this.age,
       this.profileImage,
       this.meetPicture,
-      required this.university,
-      required this.faculty,
-      required this.study,
+      required this.universityId,
+      required this.facultyId,
+      required this.studyId,
+      this.university,
+      this.faculty,
+      this.study,
       this.meetStatus,
       this.sexToMeet,
       this.universityToMeet,
-      final List<FacultiesList>? facultiesToMeet})
+      this.universityToMeetId,
+      final List<Faculty>? facultiesToMeet})
       : _facultiesToMeet = facultiesToMeet,
         super._();
 
@@ -375,20 +442,28 @@ class _$_AppUser extends _AppUser {
   @override
   final String? meetPicture;
   @override
-  final University university;
+  final int universityId;
   @override
-  final Faculty faculty;
+  final int facultyId;
   @override
-  final Study study;
+  final int studyId;
+  @override
+  final University? university;
+  @override
+  final Faculty? faculty;
+  @override
+  final Study? study;
   @override
   final bool? meetStatus;
   @override
   final Sex? sexToMeet;
   @override
   final University? universityToMeet;
-  final List<FacultiesList>? _facultiesToMeet;
   @override
-  List<FacultiesList>? get facultiesToMeet {
+  final int? universityToMeetId;
+  final List<Faculty>? _facultiesToMeet;
+  @override
+  List<Faculty>? get facultiesToMeet {
     final value = _facultiesToMeet;
     if (value == null) return null;
     if (_facultiesToMeet is EqualUnmodifiableListView) return _facultiesToMeet;
@@ -398,7 +473,7 @@ class _$_AppUser extends _AppUser {
 
   @override
   String toString() {
-    return 'AppUser(id: $id, uid: $uid, cloudToken: $cloudToken, name: $name, email: $email, sex: $sex, age: $age, profileImage: $profileImage, meetPicture: $meetPicture, university: $university, faculty: $faculty, study: $study, meetStatus: $meetStatus, sexToMeet: $sexToMeet, universityToMeet: $universityToMeet, facultiesToMeet: $facultiesToMeet)';
+    return 'AppUser(id: $id, uid: $uid, cloudToken: $cloudToken, name: $name, email: $email, sex: $sex, age: $age, profileImage: $profileImage, meetPicture: $meetPicture, universityId: $universityId, facultyId: $facultyId, studyId: $studyId, university: $university, faculty: $faculty, study: $study, meetStatus: $meetStatus, sexToMeet: $sexToMeet, universityToMeet: $universityToMeet, universityToMeetId: $universityToMeetId, facultiesToMeet: $facultiesToMeet)';
   }
 
   @override
@@ -418,6 +493,11 @@ class _$_AppUser extends _AppUser {
                 other.profileImage == profileImage) &&
             (identical(other.meetPicture, meetPicture) ||
                 other.meetPicture == meetPicture) &&
+            (identical(other.universityId, universityId) ||
+                other.universityId == universityId) &&
+            (identical(other.facultyId, facultyId) ||
+                other.facultyId == facultyId) &&
+            (identical(other.studyId, studyId) || other.studyId == studyId) &&
             (identical(other.university, university) ||
                 other.university == university) &&
             (identical(other.faculty, faculty) || other.faculty == faculty) &&
@@ -428,29 +508,36 @@ class _$_AppUser extends _AppUser {
                 other.sexToMeet == sexToMeet) &&
             (identical(other.universityToMeet, universityToMeet) ||
                 other.universityToMeet == universityToMeet) &&
+            (identical(other.universityToMeetId, universityToMeetId) ||
+                other.universityToMeetId == universityToMeetId) &&
             const DeepCollectionEquality()
                 .equals(other._facultiesToMeet, _facultiesToMeet));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      uid,
-      cloudToken,
-      name,
-      email,
-      sex,
-      age,
-      profileImage,
-      meetPicture,
-      university,
-      faculty,
-      study,
-      meetStatus,
-      sexToMeet,
-      universityToMeet,
-      const DeepCollectionEquality().hash(_facultiesToMeet));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        uid,
+        cloudToken,
+        name,
+        email,
+        sex,
+        age,
+        profileImage,
+        meetPicture,
+        universityId,
+        facultyId,
+        studyId,
+        university,
+        faculty,
+        study,
+        meetStatus,
+        sexToMeet,
+        universityToMeet,
+        universityToMeetId,
+        const DeepCollectionEquality().hash(_facultiesToMeet)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -470,13 +557,17 @@ abstract class _AppUser extends AppUser {
       required final int age,
       final String? profileImage,
       final String? meetPicture,
-      required final University university,
-      required final Faculty faculty,
-      required final Study study,
+      required final int universityId,
+      required final int facultyId,
+      required final int studyId,
+      final University? university,
+      final Faculty? faculty,
+      final Study? study,
       final bool? meetStatus,
       final Sex? sexToMeet,
       final University? universityToMeet,
-      final List<FacultiesList>? facultiesToMeet}) = _$_AppUser;
+      final int? universityToMeetId,
+      final List<Faculty>? facultiesToMeet}) = _$_AppUser;
   const _AppUser._() : super._();
 
   @override
@@ -498,11 +589,17 @@ abstract class _AppUser extends AppUser {
   @override
   String? get meetPicture;
   @override
-  University get university;
+  int get universityId;
   @override
-  Faculty get faculty;
+  int get facultyId;
   @override
-  Study get study;
+  int get studyId;
+  @override
+  University? get university;
+  @override
+  Faculty? get faculty;
+  @override
+  Study? get study;
   @override
   bool? get meetStatus;
   @override
@@ -510,7 +607,9 @@ abstract class _AppUser extends AppUser {
   @override
   University? get universityToMeet;
   @override
-  List<FacultiesList>? get facultiesToMeet;
+  int? get universityToMeetId;
+  @override
+  List<Faculty>? get facultiesToMeet;
   @override
   @JsonKey(ignore: true)
   _$$_AppUserCopyWith<_$_AppUser> get copyWith =>

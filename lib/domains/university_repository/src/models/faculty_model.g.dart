@@ -12,7 +12,7 @@ Faculty _$FacultyFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = Faculty(
           id: $checkedConvert('id', (v) => v as int),
-          facultyName: $checkedConvert('faculty_name', (v) => v as String),
+          facultyName: $checkedConvert('faculty_name', (v) => v as String?),
         );
         return val;
       },

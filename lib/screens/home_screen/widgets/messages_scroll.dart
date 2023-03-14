@@ -11,13 +11,12 @@ class MessagesScroll extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final conversationsState = ref.watch(conversationsScrollProvider);
+    final conversationsState = ref.watch(chatProvider);
 
-    return conversationsState.when(
-      data: (messages) {
-        return Flexible(
-          flex: 1,
-          child: ListView.separated(
+    return Expanded(
+      child: conversationsState.when(
+        data: (messages) {
+          return ListView.separated(
             itemCount: messages.length,
             separatorBuilder: (context, index) {
               return const SizedBox(
@@ -36,17 +35,17 @@ class MessagesScroll extends ConsumerWidget {
                 ),
               );
             },
+          );
+        },
+        loading: () => const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
-        );
-      },
-      loading: () => const Center(
-        child: CircularProgressIndicator(
-          color: Color.fromARGB(255, 255, 255, 255),
         ),
+        error: (error, stackTrace) {
+          return Text(error.toString());
+        },
       ),
-      error: (error, stackTrace) {
-        return Text(error.toString());
-      },
     );
   }
 }

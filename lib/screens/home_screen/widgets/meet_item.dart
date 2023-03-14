@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/meet_provider/providers.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
@@ -17,9 +16,8 @@ class MeetItem extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () {
-        final conversation =
-            Conversation(id: 0, user: meetState.user, messages: []);
-        ref.read(activeConversationProvider.notifier).state = conversation;
+        ref.read(activeConversationUserProvider.notifier).state =
+            meetState.user;
         Navigator.pushNamed(context, '/ChatScreen');
       },
       child: Container(

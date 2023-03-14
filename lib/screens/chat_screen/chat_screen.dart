@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/chat_repository/src/models/models.dart';
+import 'package:platonic/providers/chat_provider/action_cable_provider.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
 
 /* Frame chat
@@ -12,33 +14,51 @@ class ChatScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final conversationState = ref.watch(conversationsScrollProvider);
+    final conversationState = ref.watch(chatProvider);
+    final actionCableState = ref.watch(actionCableProvider);
 
     Future<void> toggleSend(
-        {required String message, required bool createConversation}) async {
-      final activeConversation = ref.read(activeConversationProvider);
+        {required String message, required bool emptyMessages}) async {
+      // Set on meet_item or message_item
+      final activeConversationUserState =
+          ref.read(activeConversationUserProvider);
 
-      if (createConversation) {
-        await ref
-            .read(conversationsScrollProvider.notifier)
-            .createConversationUpdateState(conversation: activeConversation);
-      }
-
+      // Create the message with the message, creationDate and userId
       final newMessage = Message(
-          id: 0, message: message, userId: 0, createdAt: DateTime.now());
+          id: 0,
+          message: message,
+          userId: ref.read(userProvider).asData!.value.id,
+          creationDate: DateTime.now().toUtc());
 
-      final updatedConversation = activeConversation.copyWith(
-        messages: [
-          newMessage,
-          ...activeConversation.messages,
-        ],
-      );
+      // Check if exists a conversation
+      if (emptyMessages == true) {
+        // Create the conversation via http request
+        final conversationId = await ref
+            .read(chatProvider.notifier)
+            .postCreateConversation(
+                appUser: activeConversationUserState, message: newMessage);
 
-      ref.read(conversationsScrollProvider.notifier).getConversationUpdateState(
-            conversation: updatedConversation,
-          );
+        final conversation = Conversation(
+            id: conversationId,
+            user: activeConversationUserState,
+            messages: [newMessage]);
 
-      ref.read(activeConversationProvider.notifier).state = updatedConversation;
+        // Update chatProvider state
+        ref
+            .read(chatProvider.notifier)
+            .addConversationWithMessageUpdateState(conversation: conversation);
+      }
+      final conversation = ref
+          .read(chatProvider)
+          .asData
+          ?.value
+          .firstWhere((e) => e.user.id == activeConversationUserState.id);
+
+      if (conversation != null) {
+        // Send the message
+        ref.read(actionCableProvider.notifier).sendMessageAction(
+            message: newMessage, conversationId: conversation.id);
+      }
     }
 
     return Scaffold(
@@ -46,11 +66,16 @@ class ChatScreen extends ConsumerWidget {
         body: SafeArea(
             child: conversationState.when(
           data: (data) {
-            final activeConversationState = data.firstWhere(
-                (c) => c == ref.read(activeConversationProvider),
-                // The conversation still is not created
-                orElse: () => ref.read(activeConversationProvider));
-            final messages = activeConversationState.messages.reversed.toList();
+            final user = ref.read(activeConversationUserProvider);
+            final messages = data
+                .firstWhere(
+                    (conversation) =>
+                        conversation.user.id ==
+                        ref.read(activeConversationUserProvider).id,
+                    orElse: () => Conversation.emptyConversation)
+                .messages
+                .reversed
+                .toList();
 
             return Column(children: [
               Padding(
@@ -58,7 +83,7 @@ class ChatScreen extends ConsumerWidget {
                 child: SizedBox(
                   height: 40.0,
                   child: ChatTopbar(
-                    appUser: activeConversationState.user,
+                    appUser: user,
                   ),
                 ),
               ),
@@ -72,26 +97,23 @@ class ChatScreen extends ConsumerWidget {
                     final children = <Widget>[];
 
                     if (index == messages.length - 1 ||
-                        messages[index].createdAt.day !=
-                            messages[index + 1].createdAt.day) {
+                        messages[index].creationDate.day !=
+                            messages[index + 1].creationDate.day) {
                       children.add(ChatTimestampText(
-                        timestamp: messages[index].createdAt,
+                        timestamp: messages[index].creationDate,
                       ));
                       children.add(const SizedBox(height: 8.0));
                     }
 
-                    children.add(messages[index].userId !=
-                            activeConversationState.user.id
+                    children.add(messages[index].userId != user.id
                         ? SendedMessage(text: messages[index].message)
                         : ReceivedMessage(
                             text: messages[index].message,
-                            profileImage:
-                                activeConversationState.user.profileImage,
+                            profileImage: user.profileImage,
                           ));
 
                     return Column(
-                      crossAxisAlignment: messages[index].userId !=
-                              activeConversationState.user.id
+                      crossAxisAlignment: messages[index].userId != user.id
                           ? CrossAxisAlignment.end
                           : CrossAxisAlignment.start,
                       children: children,
@@ -117,9 +139,7 @@ class ChatScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: ChatBottombar(
                     toggleSend: ({required String message}) => toggleSend(
-                        message: message,
-                        createConversation:
-                            activeConversationState.messages.isEmpty)),
+                        message: message, emptyMessages: messages.isEmpty)),
               ),
               const SizedBox(
                 height: 16.0,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/create_provider/circular_button_provider.dart';
 import 'package:platonic/providers/create_provider/providers.dart';
 
 /* Text title_placeholder
@@ -11,8 +12,10 @@ class CreateInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(createControllerProvider);
+    final circularButtonState = ref.watch(circularButtonProvider);
     return Center(
       child: TextField(
+        enabled: !circularButtonState,
         controller: controller,
         keyboardType: TextInputType.multiline,
         textInputAction: TextInputAction.newline,

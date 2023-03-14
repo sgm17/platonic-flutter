@@ -15,14 +15,6 @@ class UserViewmodel implements UserRepository {
     return ref.read(httpViewmodelProvider).getIndexAppUser(tokenId: tokenId);
   }
 
-  // show
-  @override
-  Future<AppUser> getOtherUserProfile({required String otherUid}) {
-    return ref
-        .read(httpViewmodelProvider)
-        .getShowOtherAppUser(otherUid: otherUid);
-  }
-
   // create
   @override
   Future<AppUser> postCreateUserRegisterDetail() {

@@ -1,6 +1,5 @@
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
-import 'package:platonic/domains/chat_repository/src/models/message_model.dart';
 import 'package:platonic/domains/http_repository/src/http_repository.dart';
 import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/stories_scroll_model.dart';
@@ -49,23 +48,6 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<AppUser> getShowOtherAppUser({required String otherUid}) async {
-    final headers = {
-      'Authorization': 'Bearer $tokenId',
-      'Content-Type': 'application/json',
-    };
-    final response = await http.get(Uri.parse("$API_ENDPOINT/users/$otherUid"),
-        headers: headers);
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = await jsonDecode(response.body);
-      return AppUser.fromJson(data);
-    } else {
-      throw Exception('Failed to load the user');
-    }
-  }
-
-  @override
   Future<AppUser> postCreateAppUser({required AppUser user}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
@@ -88,14 +70,29 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.put(
-        Uri.parse("$API_ENDPOINT/users/${user.uid}"),
-        headers: headers,
-        body: jsonEncode(user.toJson()));
+    final response = await http.put(Uri.parse("$API_ENDPOINT/users/${user.id}"),
+        headers: headers, body: jsonEncode(user.toJson()));
 
     if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<bool> deleteDestroyAppUser({required AppUser user}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+    final response = await http
+        .delete(Uri.parse("$API_ENDPOINT/users/${user.id}"), headers: headers);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return data["destroyed"];
     } else {
       throw Exception('Failed to load the user');
     }
@@ -113,6 +110,23 @@ class HttpViewmodel implements HttpRepository {
     if (response.statusCode == 200) {
       final List<dynamic> data = await jsonDecode(response.body);
       return data.map((e) => MeetsScroll.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<bool> deleteDestroyMeetsScroll({required int meetId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+    final response = await http.delete(Uri.parse("$API_ENDPOINT/meets/$meetId"),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return data["destroyed"];
     } else {
       throw Exception('Failed to load the user');
     }
@@ -187,6 +201,23 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
+  Future<bool> deleteDestroyStory({required int storyId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+    final response = await http
+        .delete(Uri.parse("$API_ENDPOINT/stories/$storyId"), headers: headers);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return data['destroyed'] as bool;
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
   Future<List<Conversation>> getIndexConversations() async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
@@ -204,21 +235,56 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<Conversation> postCreateConversation(
-      {required Conversation conversation}) async {
+  Future<int> postCreateConversation({required int userId}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
 
-    final body = {'user_id': conversation.user.id};
-
     final response = await http.post(Uri.parse("$API_ENDPOINT/conversations"),
-        body: jsonEncode(body), headers: headers);
+        body: jsonEncode({'user_id': userId}), headers: headers);
+
+    if (response.statusCode == 201) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return data["id"];
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<bool> deleteDestroyConversation({required int conversationId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.delete(
+        Uri.parse("$API_ENDPOINT/conversations/$conversationId"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
-      return Conversation.fromJson(data);
+      return data["destroyed"];
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<bool> postCreateVisualization(
+      {required int userId, required int storyId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.post(Uri.parse("$API_ENDPOINT/visualizations"),
+        headers: headers);
+
+    if (response.statusCode == 201) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return data["visualization"];
     } else {
       throw Exception('Failed to load the user');
     }

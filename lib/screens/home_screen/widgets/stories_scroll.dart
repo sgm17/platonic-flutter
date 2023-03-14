@@ -13,10 +13,19 @@ class StoriesScroll extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final storiesState = ref.watch(storiesScrollProvider);
 
+    void toggleStoryItemEmpty() {
+      Navigator.pushNamed(context, '/CreateScreen');
+    }
+
     return SizedBox(
       height: 135.0,
       child: storiesState.when(
         data: (stories) {
+          if (stories.isEmpty) {
+            return GestureDetector(
+                onTap: toggleStoryItemEmpty, child: const StoryItemEmpty());
+          }
+
           return ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: stories.length,

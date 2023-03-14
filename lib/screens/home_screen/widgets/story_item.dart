@@ -109,7 +109,7 @@ class StoryItem extends ConsumerWidget {
                           width: width,
                           height: height,
                           child: StoryTitle(
-                            faculty: storyState.faculty.facultyName,
+                            faculty: storyState.faculty.facultyName!,
                           ),
                         ))
                   ]);

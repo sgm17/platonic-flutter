@@ -59,8 +59,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: userRegisterDetailState.university.name.isNotEmpty
-                ? userRegisterDetailState.university.name
+            placeholder: userRegisterDetailState.universityId != 0
+                ? userRegisterDetailState.university!.name
                 : 'Your university',
             title: '''University''',
             toggleDialog: toggleUniversity,
@@ -72,8 +72,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: userRegisterDetailState.faculty.facultyName.isNotEmpty
-                ? userRegisterDetailState.faculty.facultyName
+            placeholder: userRegisterDetailState.facultyId != 0
+                ? userRegisterDetailState.faculty!.facultyName!
                 : 'Your faculty',
             title: '''Faculty''',
             toggleDialog: toggleFaculty,
@@ -85,8 +85,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: userRegisterDetailState.study.studyName.isNotEmpty
-                ? userRegisterDetailState.study.studyName
+            placeholder: userRegisterDetailState.studyId != 0
+                ? userRegisterDetailState.study!.studyName
                 : 'Your studies',
             title: '''Studies''',
             toggleDialog: toggleStudy,

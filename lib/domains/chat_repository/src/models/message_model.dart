@@ -18,7 +18,7 @@ class Message with _$Message {
     required int id,
     required String message,
     required int userId,
-    @DateTimeConverter() required DateTime createdAt,
+    @DateTimeConverter() required DateTime creationDate,
   }) = _Message;
 
   factory Message.fromJson(Map<String, dynamic> json) =>
