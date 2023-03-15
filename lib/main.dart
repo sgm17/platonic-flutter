@@ -17,6 +17,7 @@ import 'package:platonic/screens/chat_screen/chat_screen.dart';
 import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/profile_screen/other_profile_screen.dart';
 import 'package:platonic/screens/auth_screen/auth_screen.dart';
+import 'package:platonic/screens/story_screen/story_screen.dart';
 import 'package:platonic/screens/verify_screen/verify_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/shared_preferences_provider/shared_preferences_provider.dart';
@@ -41,7 +42,7 @@ class PlatonicApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/SplashScreen',
+      initialRoute: '/StoryScreen',
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -54,7 +55,7 @@ class PlatonicApp extends StatelessWidget {
       routes: {
         '/VerifyScreen': (context) => const VerifyScreen(),
         '/SplashScreen': (context) => const SplashScreen(),
-        '/StoryScreen': (context) => const CreateScreen(),
+        '/StoryScreen': (context) => const StoryScreen(),
         '/ProfileScreen': (context) => const ProfileScreen(),
         '/OtherProfileScreen': (context) => const OtherProfileScreen(),
         '/StartScreen': (context) => const StartScreen(),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
+import 'package:platonic/screens/chat_screen/widgets/topbar/dots_menu.dart';
 import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
 
@@ -14,6 +15,11 @@ class ChatTopbar extends ConsumerWidget {
   const ChatTopbar({super.key, required this.appUser});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    void toggleProfile() {
+      ref.read(otherUserProvider.notifier).state = appUser;
+      Navigator.pushNamed(context, '/OtherProfileScreen');
+    }
+
     return SizedBox(
       height: 40.0,
       child: Row(children: [
@@ -26,10 +32,7 @@ class ChatTopbar extends ConsumerWidget {
           width: 30.0,
         ),
         GestureDetector(
-          onTap: () {
-            ref.read(otherUserProvider.notifier).state = appUser;
-            Navigator.pushNamed(context, '/OtherProfileScreen');
-          },
+          onTap: toggleProfile,
           child: SizedBox(
             width: 40.0,
             height: 40.0,
@@ -48,7 +51,12 @@ class ChatTopbar extends ConsumerWidget {
           child: UserTitle(
             name: appUser.name,
           ),
-        )
+        ),
+        const Expanded(
+            child: SizedBox(
+          height: 10.0,
+        )),
+        const DotsMenu()
       ]),
     );
   }
