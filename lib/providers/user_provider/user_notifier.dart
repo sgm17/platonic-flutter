@@ -82,8 +82,6 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
     if (token == null) return;
 
-    // print('tokenId update state: $token');
-
     tokenId = token;
   }
 
@@ -141,10 +139,11 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       // No need to fetch user profile from backend server here
 
       // Fire method onAuthStateChanges(User? user)
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      print(e.code);
       //state = AsyncValue.error(e, StackTrace.current);
-      ref.read(authErrorProvider.notifier).state = e;
-    }
+      // ref.read(authErrorProvider.notifier).state = e;
+    } catch (e) {}
   }
 
   Future<void> userRegisterWithEmailAndPassword() async {
@@ -162,7 +161,7 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       // Fire method onAuthStateChanges(User? user)
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
-      ref.read(authErrorProvider.notifier).state = e;
+      // ref.read(authErrorProvider.notifier).state = e;
     }
   }
 

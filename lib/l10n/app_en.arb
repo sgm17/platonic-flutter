@@ -1,0 +1,6 @@
+{
+    "invalid-email": "The email provided is not valid",
+    "@invalid-email": {
+      "description": "The user has not provided a valid email"
+    },
+}

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
 import 'package:platonic/screens/dialog_screen/study_dialog_screen.dart';
@@ -41,6 +42,15 @@ class PlatonicApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       initialRoute: '/SplashScreen',
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('es'), // Spanish
+      ],
       routes: {
         '/VerifyScreen': (context) => const VerifyScreen(),
         '/SplashScreen': (context) => const SplashScreen(),
