@@ -1,9 +1,11 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
-import 'package:platonic/providers/auth_provider/auth_error_provider.dart';
+import 'package:platonic/providers/error_provider/auth_error_provider.dart';
 import 'package:platonic/providers/auth_provider/providers.dart';
+import 'package:platonic/providers/error_provider/splash_error_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'dart:async';
 
@@ -69,6 +71,8 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
             firebaseAuth.idTokenChanges().listen(onTokenIdChanges);
         cloudTokenListener ??=
             firebaseMessaging.onTokenRefresh.listen(onCloudTokenChanges);
+      } on ErrorApp catch (e) {
+        ref.read(splashErrorProvider.notifier).state = e;
       } catch (e) {
         state = AsyncValue.error(e, StackTrace.current);
       }
@@ -80,21 +84,24 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
   Future<void> onTokenIdChanges(User? user) async {
     final token = await user?.getIdToken();
 
-    if (token == null) return;
-
-    tokenId = token;
+    if (token != null) {
+      tokenId = token;
+    }
   }
 
   Future<void> onCloudTokenChanges(String? cloudToken) async {
-    final tokenId = await firebaseAuth.currentUser?.getIdToken();
-
-    if (tokenId == null) return;
+    final cloudToken = await firebaseMessaging.getToken();
 
     if (cloudToken != null) {
-      final bool result = await ref
-          .watch(userViewmodelProvider)
-          .updateCloudToken(tokenId: tokenId, cloudToken: cloudToken);
-      print('Cloud token update state: $result');
+      try {
+        await ref
+            .read(userViewmodelProvider)
+            .updateCloudToken(tokenId: tokenId, cloudToken: cloudToken);
+      } on ErrorApp catch (e) {
+        ref.read(splashErrorProvider.notifier).state = e;
+      } catch (e) {
+        state = AsyncValue.error(e, StackTrace.current);
+      }
     }
   }
 
@@ -119,6 +126,8 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
             firebaseAuth.idTokenChanges().listen(onTokenIdChanges);
         cloudTokenListener ??=
             firebaseMessaging.onTokenRefresh.listen(onCloudTokenChanges);
+      } on ErrorApp catch (e) {
+        ref.read(authErrorProvider.notifier).state = e;
       } catch (e) {
         state = AsyncValue.error(e, StackTrace.current);
       }
@@ -140,10 +149,9 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
       // Fire method onAuthStateChanges(User? user)
     } on FirebaseAuthException catch (e) {
-      print(e.code);
-      //state = AsyncValue.error(e, StackTrace.current);
-      // ref.read(authErrorProvider.notifier).state = e;
-    } catch (e) {}
+      final errorApp = ErrorApp(code: e.code.split('-').join(""));
+      ref.read(authErrorProvider.notifier).state = errorApp;
+    }
   }
 
   Future<void> userRegisterWithEmailAndPassword() async {
@@ -159,17 +167,12 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       await firebaseAuth.currentUser?.sendEmailVerification();
 
       // Fire method onAuthStateChanges(User? user)
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
-      // ref.read(authErrorProvider.notifier).state = e;
+    } on FirebaseAuthException catch (e) {
+      final errorApp = ErrorApp(code: e.code.split('-').join(""));
+      ref.read(authErrorProvider.notifier).state = errorApp;
     }
   }
 
-  Future<void> logoutUser() async {
-    try {
-      await firebaseAuth.signOut();
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
-    }
-  }
+  // Doesn't throw exceptions
+  Future<void> logoutUser() async => await firebaseAuth.signOut();
 }

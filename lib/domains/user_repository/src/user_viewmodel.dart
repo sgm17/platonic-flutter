@@ -28,4 +28,18 @@ class UserViewmodel implements UserRepository {
     final user = ref.read(userRegisterDetailProvider);
     return ref.read(httpViewmodelProvider).putUpdateAppUser(user: user);
   }
+
+  // put
+  @override
+  Future<bool> postUpdatCloudToken({required String cloudToken}) {
+    return ref
+        .read(httpViewmodelProvider)
+        .putUpdateCloudTokenAppUser(cloudToken: cloudToken);
+  }
+
+  // still not implemented
+  @override
+  Future<bool> deleteAppUser({required AppUser appUser}) {
+    return ref.read(httpViewmodelProvider).deleteDestroyAppUser(user: appUser);
+  }
 }

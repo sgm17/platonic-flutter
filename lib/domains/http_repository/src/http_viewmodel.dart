@@ -1,5 +1,6 @@
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/http_repository/src/http_repository.dart';
 import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/stories_scroll_model.dart';
@@ -26,7 +27,7 @@ class HttpViewmodel implements HttpRepository {
       final List<dynamic> data = await jsonDecode(response.body);
       return data.map((e) => UniversitiesList.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load the universities');
+      throw const ErrorApp(code: 'httpindexuniversities');
     }
   }
 
@@ -43,7 +44,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpindexappuser');
     }
   }
 
@@ -60,7 +61,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpcreateappuser');
     }
   }
 
@@ -77,7 +78,25 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpupdateappuser');
+    }
+  }
+
+  @override
+  Future<bool> putUpdateCloudTokenAppUser({required String cloudToken}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.put(Uri.parse("$API_ENDPOINT/users/cloudToken"),
+        headers: headers, body: jsonEncode({'cloud_token': cloudToken}));
+
+    if (response.statusCode == 201) {
+      await jsonDecode(response.body);
+      return true;
+    } else {
+      throw const ErrorApp(code: 'httpupdatecloudtokenappuser');
     }
   }
 
@@ -94,7 +113,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data["destroyed"];
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpdestroyappuser');
     }
   }
 
@@ -111,7 +130,7 @@ class HttpViewmodel implements HttpRepository {
       final List<dynamic> data = await jsonDecode(response.body);
       return data.map((e) => MeetsScroll.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpindexmeet');
     }
   }
 
@@ -128,7 +147,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data["destroyed"];
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpdestroymeet');
     }
   }
 
@@ -145,7 +164,7 @@ class HttpViewmodel implements HttpRepository {
       final List<dynamic> data = await json.decode(response.body);
       return data.map((e) => StoriesScroll.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpindexstories');
     }
   }
 
@@ -162,7 +181,7 @@ class HttpViewmodel implements HttpRepository {
       final List<dynamic> data = await jsonDecode(response.body);
       return data.map((e) => Story.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpshowstories');
     }
   }
 
@@ -178,7 +197,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return Story.fromJson(data);
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpcreatestories');
     }
   }
 
@@ -196,7 +215,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data['favourite'] as bool;
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpfavouritestories');
     }
   }
 
@@ -213,7 +232,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data['destroyed'] as bool;
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpdeletestories');
     }
   }
 
@@ -230,7 +249,7 @@ class HttpViewmodel implements HttpRepository {
       final List<dynamic> data = await jsonDecode(response.body);
       return data.map((e) => Conversation.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpindexconversations');
     }
   }
 
@@ -248,7 +267,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data["id"];
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpcreateconversations');
     }
   }
 
@@ -267,7 +286,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data["destroyed"];
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpdestroyconversations');
     }
   }
 
@@ -286,7 +305,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data["visualization"];
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpcreatevisualization');
     }
   }
 }

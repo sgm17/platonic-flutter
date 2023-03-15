@@ -7,8 +7,16 @@ class MeetViewmodel implements MeetRepository {
   final Ref ref;
 
   MeetViewmodel({required this.ref});
+
   @override
   Future<List<MeetsScroll>> getMeetsScroll() {
     return ref.read(httpViewmodelProvider).getIndexMeetsScroll();
+  }
+
+  @override
+  Future<bool> deleteMeet({required int meetId}) {
+    return ref
+        .read(httpViewmodelProvider)
+        .deleteDestroyMeetsScroll(meetId: meetId);
   }
 }

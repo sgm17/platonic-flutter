@@ -17,6 +17,8 @@ abstract class HttpRepository {
   Future<AppUser> postCreateAppUser({required AppUser user});
   // PUT /api/v1/users/:id
   Future<AppUser> putUpdateAppUser({required AppUser user});
+  // PUT /api/v1/users/cloudToken
+  Future<bool> putUpdateCloudTokenAppUser({required String cloudToken});
   // DELETE /api/v1/users/:id
   Future<bool> deleteDestroyAppUser({required AppUser user});
 
@@ -50,4 +52,8 @@ abstract class HttpRepository {
   // POST /api/v1/visualizations
   Future<bool> postCreateVisualization(
       {required int userId, required int storyId});
+
+  // Images
+  // POST /api/v1/image
+  // Future<bool> post
 }

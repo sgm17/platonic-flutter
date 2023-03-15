@@ -1,6 +1,150 @@
 {
-    "invalid-email": "The email provided is not valid",
-    "@invalid-email": {
-      "description": "The user has not provided a valid email"
-    },
+  "invalidemail": "The email address is malformed or is not valid",
+  "@invalidemail": {
+    "description": "Indicates that the email address is malformed or is not valid"
+  },
+  "userdisabled": "Your account has been disabled",
+  "@userdisabled": {
+    "description": "Indicates that the user's account has been disabled"
+  },
+  "usernotfound": "The user account has not been found",
+  "@usernotfound": {
+    "description": " Indicates that the user account was not found. This could happen if the user was deleted or if they never existed"
+  },
+  "wrongpassword": "The password is incorrect",
+  "@wrongpassword": {
+    "description": "Indicates that the password is incorrect"
+  },
+  "emailalreadyinuse": "The email address is already associated with an existing user account",
+  "@emailalreadyinuse": {
+    "description": "Indicates that the email address is already associated with an existing user account"
+  },
+  "operationnotallowed": "This operation is not allowed",
+  "@operationnotallowed": {
+    "description": "Indicates that the operation is not allowed. This could happen if the user account has been disabled or if the authentication provider is not enabled for the Firebase project"
+  },
+  "weakpassword": "The password is too weak",
+  "@weakpassword": {
+    "description": "Indicates that the password is too weak. Firebase requires that the password be at least six characters long"
+  },
+  "credentialalreadyinuse" : "The email address is already associated with an existing user account",
+  "@credentialalreadyinuse" : {
+    "description": "Indicates that the email address is already associated with an existing user account. This could happen if the user already signed up with a different authentication provider, such as Google or Facebook"
+  },
+  "invalidcredential": "The credential is malformed or is not valid",
+  "@invalidcredential": {
+    "description": "Indicates that the credential is malformed or is not valid. This could happen if the authentication provider returned an invalid credential"
+  },
+  "accountexistswithdifferentcredential": "The email is already associated with an existing user account, but with a different authentication provider",
+  "@accountexistswithdifferentcredential": {
+    "description": "Indicates that the email address is already associated with an existing user account, but with a different authentication provider"
+  },
+  "requiresrecentlogin" : "You must have to sign again to perform the operation",
+  "@requiresrecentlogin" : {
+    "description": "Indicates that the user must sign in again to perform the operation. This could happen if the user's session has expired or if they have signed out from another device"
+  },
+  "provideralreadylinked": "The authentication provider is already linked to you account",
+  "@provideralreadylinked": {
+    "description": "Indicates that the authentication provider is already linked to the user's account"
+  },
+  "nosuchprovider" : "This authentication provider is not enabled",
+  "@nosuchprovider" : {
+    "description": "Indicates that the authentication provider is not enabled for the Firebase project"
+  },
+  "invalidverificationcode" : "The verification code is invalid or has expired",
+  "@invalidverificationcode" : {
+    "description": "Indicates that the verification code is invalid or has expired"
+  },
+  "invalidverificationid": "The verification ID is invalid",
+  "@invalidverificationid": {
+    "description": "Indicates that the verification ID is invalid"
+  },
+  "missingverificationcode": "The verification code is missing",
+  "@missingverificationcode": {
+    "description": "Indicates that the verification code is missing"
+  },
+  "quotaexceeded" : "The maximum number of SMS messages has been exceeded",
+  "@quotaexceeded" : {
+   "description": "Indicates that the maximum number of SMS messages has been exceeded"
+  },
+  "sessionexpired": "Your session has been expired",
+  "@sessionexpired": {
+    "description": "Indicates that the user's session has expired"
+  },
+  "internalerror" : "An internal error occurred while processing the request",
+  "@internalerror" : {
+    "description": "Indicates that an internal error occurred while processing the request"
+  },
+  "httpindexuniversities": "Unexpected error retrieving list of universities",
+  "@httpindexuniversities" : {
+    "description": ""
+  },
+  "httpindexappuser": "",
+  "@httpindexappuser": {
+    "description": ""
+  },
+  "httpcreateappuser": "",
+  "@httpcreateappuser": {
+    "description": ""
+  },
+  "httpupdateappuser": "",
+  "@httpupdateappuser": {
+    "description": ""
+  },
+  "httpdestroyappuser": "",
+  "@httpdestroyappuser": {
+    "description": ""
+  },
+  "httpupdatecloudtokenappuser": "",
+  "@httpupdatecloudtokenappuser": {
+    "description": ""
+  },
+  "httpindexmeet": "",
+  "@httpindexmeet": {
+    "description": ""
+  },
+  "httpdestroymeet": "",
+  "@httpdestroymeet": {
+    "description": ""
+  },
+  "httpindexstories": "",
+  "@httpindexstories": {
+    "description": ""
+  },
+  "httpshowstories": "",
+  "@httpshowstories": {
+    "description": ""
+  },
+  "httpcreatestories": "",
+  "@httpcreatestories": {
+    "description": ""
+  },
+  "httpfavouritestories": "",
+  "@httpfavouritestories": {
+    "description": ""
+  },
+  "httpdeletestories": "",
+  "@httpdeletestories": {
+    "description": ""
+  },
+  "httpindexconversations": "",
+  "@httpindexconversations": {
+    "description": ""
+  },
+  "httpcreateconversations": "",
+  "@httpcreateconversations": {
+    "description": ""
+  },
+  "httpdestroyconversations": "",
+  "@httpdestroyconversations": {
+    "description": ""
+  },
+  "httpcreatevisualization": "",
+  "@httpcreatevisualization": {
+    "description": ""
+  },
+  "meetdeletedialog": "",
+  "@meetdelete": {
+    "description": ""
+  }
 }

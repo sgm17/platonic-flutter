@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
+import 'package:platonic/providers/error_provider/splash_error_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/auth_screen.dart';
+import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/register_detail_screen/register_detail_screen.dart';
 import 'package:platonic/screens/start_screen/start_screen.dart';
@@ -41,6 +43,20 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
   Widget build(BuildContext context) {
     final userState = ref.watch(userProvider);
     final firebaseAuth = FirebaseAuth.instance;
+
+    final splashErrorState = ref.watch(splashErrorProvider);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (splashErrorState != null) {
+        showDialog(
+            context: context,
+            builder: (context) => ErrorDialog(
+                  error: splashErrorState.code,
+                ));
+
+        ref.read(splashErrorProvider.notifier).state = null;
+      }
+    });
 
     if (splashState == false) {
       return Center(

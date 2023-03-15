@@ -2,7 +2,9 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
+import 'package:platonic/providers/error_provider/story_error_provider.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
+import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/story_screen/widgets/widgets.dart';
 import 'package:story_view/story_view.dart';
 import 'dart:async';
@@ -49,6 +51,19 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
   @override
   Widget build(BuildContext context) {
     final storiesState = ref.watch(storiesProvider);
+    final storyErrorState = ref.watch(storyErrorProvider);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (storyErrorState != null) {
+        showDialog(
+            context: context,
+            builder: (context) => ErrorDialog(
+                  error: storyErrorState.code,
+                ));
+
+        ref.read(storyErrorProvider.notifier).state = null;
+      }
+    });
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 27, 26, 29),
