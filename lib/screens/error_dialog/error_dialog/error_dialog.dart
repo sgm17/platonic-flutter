@@ -11,23 +11,27 @@ class ErrorDialogItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void toggleRetry() {
+      Navigator.pop(context);
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 53.0),
       child: Material(
         borderRadius: BorderRadius.circular(10.0),
         color: const Color.fromARGB(255, 217, 217, 217),
-        child: SizedBox(
-          height: 146.0,
-          child: Column(
-            children: [
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.all(10.0),
-                  child: ErrorText(error: error),
-                ),
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10.0),
+                child: ErrorText(error: error),
               ),
-              Container(
+            ),
+            GestureDetector(
+              onTap: toggleRetry,
+              child: Container(
                 alignment: Alignment.center,
                 height: 36.0,
                 decoration: const BoxDecoration(
@@ -37,8 +41,8 @@ class ErrorDialogItem extends StatelessWidget {
                             width: 0.5))),
                 child: const RetryText(),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
