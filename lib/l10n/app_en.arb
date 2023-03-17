@@ -135,14 +135,6 @@
   "@httpindexconversations": {
     "description": ""
   },
-  "httpcreateconversations": "",
-  "@httpcreateconversations": {
-    "description": ""
-  },
-  "httpcreatemessage": "",
-  "@httpcreatemessage": {
-    "description": ""
-  },
   "httpdestroyconversations": "",
   "@httpdestroyconversations": {
     "description": ""

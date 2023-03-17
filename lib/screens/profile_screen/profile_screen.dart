@@ -7,6 +7,7 @@ import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/error_dialog/loading_dialog/loading_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
+import 'package:platonic/screens/profile_screen/widgets/back_button_profile.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
 
 /* Frame profile
@@ -49,26 +50,32 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
       }
     }
 
-    Future<void> toggleLoadingDialog() async {
+    void toggleLoadingDialog() {
       setState(() {
         isLoading = true;
       });
 
-      await showDialog(
+      final dialog = showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (context) => const LoadingDialog(loading: 'userloadingdialog'),
       );
 
-      setState(() {
-        isLoading = false;
+      updateProfile().whenComplete(() {
+        Navigator.of(context).pop(); // Dismiss the dialog
+        setState(() {
+          isLoading = false;
+        });
       });
+
+      dialog.then((_) {});
     }
 
     Future<bool> onWillPop() async {
       if (isLoading) {
         return false;
       } else {
-        await toggleLoadingDialog();
+        toggleLoadingDialog();
         await updateProfile();
         return true;
       }
@@ -76,9 +83,9 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
-        body: SafeArea(
-          child: WillPopScope(
-            onWillPop: onWillPop,
+        body: WillPopScope(
+          onWillPop: onWillPop,
+          child: SafeArea(
             child: userState.when(
               data: (AppUser? user) {
                 if (user == null) return const SizedBox.shrink();
@@ -88,12 +95,17 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Align(
+                        Align(
                           alignment: Alignment.topLeft,
                           child: SizedBox(
                             width: 35.0,
                             height: 35.0,
-                            child: BackButtonContainer(),
+                            child: BackButtonProfile(
+                              toggleLoadingDialog: () async {
+                                await onWillPop();
+                                Navigator.pop(context);
+                              },
+                            ),
                           ),
                         ),
                         const SizedBox(

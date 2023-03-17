@@ -76,7 +76,7 @@ class HttpViewmodel implements HttpRepository {
     final response = await http.put(Uri.parse("$API_ENDPOINT/users/${user.id}"),
         headers: headers, body: jsonEncode(user.toJson()));
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
     } else {
@@ -254,47 +254,6 @@ class HttpViewmodel implements HttpRepository {
       return data.map((e) => Conversation.fromJson(e)).toList();
     } else {
       throw const ErrorApp(code: 'httpindexconversations');
-    }
-  }
-
-  @override
-  Future<Conversation> postCreateConversation({required int user2Id}) async {
-    final headers = {
-      'Authorization': 'Bearer $tokenId',
-      'Content-Type': 'application/json',
-    };
-
-    final response = await http.post(Uri.parse("$API_ENDPOINT/conversations"),
-        body: jsonEncode({'user2_id': user2Id}), headers: headers);
-
-    if (response.statusCode == 201) {
-      final Map<String, dynamic> data = await jsonDecode(response.body);
-      return Conversation.fromJson(data);
-    } else {
-      throw const ErrorApp(code: 'httpcreateconversations');
-    }
-  }
-
-  @override
-  Future<Message> postCreateMessage(
-      {required int conversationId, required Message message}) async {
-    final headers = {
-      'Authorization': 'Bearer $tokenId',
-      'Content-Type': 'application/json',
-    };
-
-    final body = {'conversation_id': conversationId, ...message.toJson()};
-
-    final response = await http.post(
-        Uri.parse("$API_ENDPOINT/conversations/$conversationId/create_message"),
-        body: jsonEncode(body),
-        headers: headers);
-
-    if (response.statusCode == 201) {
-      final Map<String, dynamic> data = await jsonDecode(response.body);
-      return Message.fromJson(data);
-    } else {
-      throw const ErrorApp(code: 'httpcreatemessage');
     }
   }
 

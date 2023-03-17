@@ -10,9 +10,9 @@ import 'package:platonic/providers/user_provider/providers.dart';
 import 'dart:async';
 
 class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
-  final Ref ref;
-  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final Ref ref;
 
   String? tokenId;
 
