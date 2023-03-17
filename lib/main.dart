@@ -42,7 +42,7 @@ class PlatonicApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/StoryScreen',
+      initialRoute: '/SplashScreen',
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -55,7 +55,6 @@ class PlatonicApp extends StatelessWidget {
       routes: {
         '/VerifyScreen': (context) => const VerifyScreen(),
         '/SplashScreen': (context) => const SplashScreen(),
-        '/StoryScreen': (context) => const StoryScreen(),
         '/ProfileScreen': (context) => const ProfileScreen(),
         '/OtherProfileScreen': (context) => const OtherProfileScreen(),
         '/StartScreen': (context) => const StartScreen(),
@@ -64,6 +63,7 @@ class PlatonicApp extends StatelessWidget {
         '/ForgotPasswordScreen': (context) => const ForgotPasswordScreen(),
         '/RegisterDetailScreen': (context) => const RegisterDetailScreen(),
         '/CreateScreen': (context) => const CreateScreen(),
+        '/StoryScreen': (context) => const StoryScreen(),
         '/ChatScreen': (context) => const ChatScreen(),
         '/HomeScreen': (context) => const HomeScreen(),
         '/MatchScreen': (context) => const MatchScreen(),

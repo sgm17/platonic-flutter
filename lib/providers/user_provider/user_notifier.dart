@@ -96,7 +96,7 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       try {
         await ref
             .read(userViewmodelProvider)
-            .updateCloudToken(tokenId: tokenId, cloudToken: cloudToken);
+            .postUpdateCloudToken(cloudToken: cloudToken);
       } on ErrorApp catch (e) {
         ref.read(splashErrorProvider.notifier).state = e;
       } catch (e) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/error_provider/home_error_provider.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
@@ -13,6 +14,7 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final homeErrorState = ref.watch(homeErrorProvider);
+    final actionState = ref.read(actionProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (homeErrorState != null) {
@@ -54,7 +56,7 @@ class HomeScreen extends ConsumerWidget {
             SizedBox(
               height: 32.0,
             ),
-            MessagesContainer(),
+            Expanded(child: MessagesContainer()),
           ]),
         ),
       ),

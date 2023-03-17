@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
 
 /* Component message_item
@@ -11,12 +12,17 @@ class MessageItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final conversationState = ref.watch(conversationScrollProvider);
+    final conversationItemState = ref.watch(conversationItemProvider);
+
+    final userState = ref.read(userProvider).asData!.value;
+
+    final user = userState.id == conversationItemState.user1.id
+        ? conversationItemState.user2
+        : conversationItemState.user1;
 
     return GestureDetector(
       onTap: () {
-        ref.read(activeConversationUserProvider.notifier).state =
-            conversationState.user;
+        ref.read(activeUser2Provider.notifier).state = user;
         Navigator.pushNamed(context, '/ChatScreen');
       },
       child: Container(
@@ -28,7 +34,7 @@ class MessageItem extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20.0),
             color: const Color.fromARGB(255, 43, 45, 46)),
         child: Row(children: [
-          MessageImage(profileImage: conversationState.user.profileImage),
+          MessageImage(profileImage: user.profileImage),
           const SizedBox(
             width: 16.0,
           ),
@@ -38,11 +44,9 @@ class MessageItem extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 MessageTitle(
-                  name: conversationState.user.name,
+                  name: user.name,
                 ),
-                MessageBody(
-                  lastMessage: conversationState.messages.last.message,
-                ),
+                MessageBody(messages: conversationItemState.messages),
               ],
             ),
           ),

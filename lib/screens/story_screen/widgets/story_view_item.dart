@@ -1,17 +1,25 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:platonic/domains/chat_repository/src/models/models.dart';
 import 'package:platonic/domains/story_repository/story_repository.dart';
+import 'package:platonic/providers/chat_provider/conversations_provider.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
+import 'package:platonic/screens/story_screen/widgets/story_dots_menu.dart';
+import 'package:platonic/screens/story_screen/widgets/story_viewers.dart';
 
 class StoryViewItem extends ConsumerWidget {
   const StoryViewItem(
-      {super.key, required this.story, required this.focusNode});
+      {super.key,
+      required this.story,
+      required this.focusNode,
+      required this.popupMenuButtonKey});
 
   final Story story;
   final FocusNode focusNode;
+  final GlobalKey popupMenuButtonKey;
 
   String getTimeDifference() {
     final now = DateTime.now();
@@ -33,6 +41,46 @@ class StoryViewItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final favouriteStoriesIdState = ref.watch(favouriteStoriesIdProvider);
     final favorite = favouriteStoriesIdState.contains(story.id);
+    final userState = ref.read(userProvider).asData?.value;
+
+    final storyOwner = userState?.id == story.user.id;
+
+    final alreadyConversation = ref.read(conversationsProvider).any((e) =>
+        e.user1.id == story.user.id && e.user2.id == userState?.id ||
+        e.user1.id == userState?.id && e.user2.id == story.user.id);
+
+    void toggleSend(String message) {
+      final activeConversation = ref.read(conversationsProvider).firstWhere(
+          (e) =>
+              e.user1.id == story.user.id && e.user2.id == userState?.id ||
+              e.user1.id == userState?.id && e.user2.id == story.user.id,
+          orElse: () => Conversation.emptyConversation);
+
+      if (activeConversation == Conversation.emptyConversation) {
+        // Create conversation
+        final newMessage = Message(
+            id: 0,
+            body: message,
+            userId: ref.read(userProvider).asData!.value.id,
+            creationDate: DateTime.now().toUtc(),
+            conversationId: 0);
+
+        ref
+            .read(conversationsProvider.notifier)
+            .createConversation(user2Id: story.user.id, message: newMessage);
+      } else {
+        final newMessage = Message(
+            id: 0,
+            body: message,
+            userId: ref.read(userProvider).asData!.value.id,
+            creationDate: DateTime.now().toUtc(),
+            conversationId: activeConversation.id);
+
+        ref
+            .read(conversationsProvider.notifier)
+            .sendMessage(message: newMessage);
+      }
+    }
 
     return Container(
       color: const Color.fromARGB(255, 27, 26, 29),
@@ -97,22 +145,24 @@ class StoryViewItem extends ConsumerWidget {
                       color: Color.fromARGB(255, 255, 255, 255)),
                 ),
               ),
+              if (storyOwner)
+                Positioned(
+                    top: 16.0,
+                    right: 16.0,
+                    child: StoryDotsMenu(
+                      popupMenuButtonKey: popupMenuButtonKey,
+                    )),
             ]),
           ),
-          if (ref.read(userProvider).asData?.value.id == story.user.id)
+          if (!storyOwner)
             Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Row(children: [
-                if (!ref
-                    .read(chatProvider)
-                    .asData!
-                    .value
-                    .map((e) => e.id)
-                    .contains(story.user.id))
+                if (!alreadyConversation)
                   Flexible(
                     child: TextField(
                       focusNode: focusNode,
+                      onSubmitted: toggleSend,
                       textInputAction: TextInputAction.send,
                       textAlignVertical: TextAlignVertical.center,
                       maxLength: 45,
@@ -147,12 +197,7 @@ class StoryViewItem extends ConsumerWidget {
                       ),
                     ),
                   ),
-                if (ref
-                    .read(chatProvider)
-                    .asData!
-                    .value
-                    .map((e) => e.id)
-                    .contains(story.user.id))
+                if (alreadyConversation)
                   Flexible(
                     child: Container(
                       height: 48.0,
@@ -175,6 +220,14 @@ class StoryViewItem extends ConsumerWidget {
                   fill: favorite == false ? 1.0 : 0,
                 )
               ]),
+            )
+          else if (story.visualizations != null &&
+              story.visualizations!.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: StoryViewers(
+                  viewers: story.visualizations!,
+                  totalViewers: story.visualizations!.length),
             )
         ],
       ),

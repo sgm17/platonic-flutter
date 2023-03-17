@@ -15,7 +15,7 @@ class StoryViewmodel implements StoryRepository {
 
   @override
   Future<List<Story>> getShowStoriesFaculty() {
-    final facultyId = ref.read(activeFacultyProvider).id;
+    final facultyId = ref.read(activeFacultyIdProvider);
     return ref.read(httpViewmodelProvider).getShowStories(facultyId: facultyId);
   }
 
@@ -27,5 +27,12 @@ class StoryViewmodel implements StoryRepository {
   @override
   Future<bool> putToggleStoryFavourite({required int storyId}) {
     return ref.read(httpViewmodelProvider).putFavouriteStory(storyId: storyId);
+  }
+
+  @override
+  Future<bool> postStoryVisualization({required int storyId}) {
+    return ref
+        .read(httpViewmodelProvider)
+        .postCreateVisualization(storyId: storyId);
   }
 }

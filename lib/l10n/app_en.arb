@@ -119,6 +119,10 @@
   "@httpcreatestories": {
     "description": ""
   },
+  "httpspamtories": "",
+  "@httpspamtories": {
+    "description": ""
+  },
   "httpfavouritestories": "",
   "@httpfavouritestories": {
     "description": ""
@@ -135,6 +139,10 @@
   "@httpcreateconversations": {
     "description": ""
   },
+  "httpcreatemessage": "",
+  "@httpcreatemessage": {
+    "description": ""
+  },
   "httpdestroyconversations": "",
   "@httpdestroyconversations": {
     "description": ""
@@ -143,8 +151,28 @@
   "@httpcreatevisualization": {
     "description": ""
   },
+  "httpcreateimage": "",
+  "@httpcreateimage": {
+    "description": ""
+  },
+  "httpcreatemultipleimages": "",
+  "@httpcreatemultipleimages": {
+    "description": ""
+  },
   "meetdeletedialog": "",
   "@meetdelete": {
+    "description": ""
+  },
+  "conversationdeletedialog": "",
+  "@conversationdelete": {
+    "description": ""
+  },
+  "scrollstorydeletedialog": "",
+  "@scrollstorydelete": {
+    "description": ""
+  },
+  "userloadingdialog": "",
+  "@userloadingdialog": {
     "description": ""
   }
 }

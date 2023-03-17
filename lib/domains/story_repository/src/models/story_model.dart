@@ -24,7 +24,7 @@ class Story with _$Story {
     required String body,
     required DateTime creationDate,
     required bool favourite,
-    required List<AppUser> visualizations,
+    required List<AppUser>? visualizations,
     @LinearGradientConverter() required LinearGradient backgroundGradientIndex,
   }) = _Story;
 

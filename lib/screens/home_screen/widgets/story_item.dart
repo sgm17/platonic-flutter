@@ -14,11 +14,13 @@ class StoryItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final storyState = ref.watch(storyScrollProvider);
 
+    Future<void> toggleStoryScreen() async {
+      ref.read(activeFacultyIdProvider.notifier).state = storyState.faculty.id;
+      Navigator.pushNamed(context, '/StoryScreen');
+    }
+
     return GestureDetector(
-      onTap: () {
-        ref.read(activeFacultyProvider.notifier).state = storyState.faculty;
-        Navigator.pushNamed(context, '/StoryScreen');
-      },
+      onTap: toggleStoryScreen,
       child: Container(
         width: 100.0,
         height: 135.0,

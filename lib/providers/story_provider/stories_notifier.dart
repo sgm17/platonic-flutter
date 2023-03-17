@@ -6,17 +6,24 @@ import 'package:platonic/providers/story_provider/providers.dart';
 
 class StoriesNotifier extends StateNotifier<AsyncValue<List<Story>>> {
   final Ref ref;
-
-  StoriesNotifier(this.ref) : super(const AsyncValue<List<Story>>.loading()) {
+  final int activeFacultyState;
+  StoriesNotifier(this.ref, this.activeFacultyState)
+      : super(const AsyncValue<List<Story>>.loading()) {
     initialize();
   }
 
   Future<void> initialize() async {
-    ref.read(storyViewmodelProvider).getShowStoriesFaculty().then((stories) {
-      state = AsyncValue.data(stories);
-    }).catchError((e) {
-      state = AsyncValue.error(e, StackTrace.current);
-    });
+    if (activeFacultyState != -1) {
+      try {
+        final stories =
+            await ref.read(storyViewmodelProvider).getShowStoriesFaculty();
+        state = AsyncValue.data(stories);
+      } on ErrorApp catch (e) {
+        ref.read(storyErrorProvider.notifier).state = e;
+      } catch (e) {
+        state = AsyncValue.error(e, StackTrace.current);
+      }
+    }
   }
 
   Future<void> toggleStoryFavourite({required int storyId}) async {
@@ -39,7 +46,19 @@ class StoriesNotifier extends StateNotifier<AsyncValue<List<Story>>> {
     } on ErrorApp catch (e) {
       ref.read(storyErrorProvider.notifier).state = e;
     } catch (e) {
-      print(e);
+      state = AsyncValue.error(e, StackTrace.current);
+    }
+  }
+
+  Future<void> storyVisualization({required int storyId}) async {
+    try {
+      await ref
+          .read(storyViewmodelProvider)
+          .postStoryVisualization(storyId: storyId);
+    } on ErrorApp catch (e) {
+      ref.read(storyErrorProvider.notifier).state = e;
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
     }
   }
 }

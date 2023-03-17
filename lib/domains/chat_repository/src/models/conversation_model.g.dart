@@ -12,12 +12,14 @@ Conversation _$ConversationFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = Conversation(
           id: $checkedConvert('id', (v) => v as int),
-          user: $checkedConvert('user',
+          user1: $checkedConvert('user1',
+              (v) => AppUser.fromJson(Map<String, dynamic>.from(v as Map))),
+          user2: $checkedConvert('user2',
               (v) => AppUser.fromJson(Map<String, dynamic>.from(v as Map))),
           messages: $checkedConvert(
               'messages',
-              (v) => (v as List<dynamic>)
-                  .map((e) =>
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) =>
                       Message.fromJson(Map<String, dynamic>.from(e as Map)))
                   .toList()),
         );
@@ -28,6 +30,7 @@ Conversation _$ConversationFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$ConversationToJson(Conversation instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'user': instance.user.toJson(),
-      'messages': instance.messages.map((e) => e.toJson()).toList(),
+      'user1': instance.user1.toJson(),
+      'user2': instance.user2.toJson(),
+      'messages': instance.messages?.map((e) => e.toJson()).toList(),
     };

@@ -16,7 +16,8 @@ class Message with _$Message {
 
   const factory Message({
     required int id,
-    required String message,
+    required int conversationId,
+    required String body,
     required int userId,
     @DateTimeConverter() required DateTime creationDate,
   }) = _Message;

@@ -22,7 +22,7 @@ mixin _$Story {
   String get body => throw _privateConstructorUsedError;
   DateTime get creationDate => throw _privateConstructorUsedError;
   bool get favourite => throw _privateConstructorUsedError;
-  List<AppUser> get visualizations => throw _privateConstructorUsedError;
+  List<AppUser>? get visualizations => throw _privateConstructorUsedError;
   @LinearGradientConverter()
   LinearGradient get backgroundGradientIndex =>
       throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $StoryCopyWith<$Res> {
       String body,
       DateTime creationDate,
       bool favourite,
-      List<AppUser> visualizations,
+      List<AppUser>? visualizations,
       @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
   $AppUserCopyWith<$Res> get user;
@@ -69,7 +69,7 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
     Object? body = null,
     Object? creationDate = null,
     Object? favourite = null,
-    Object? visualizations = null,
+    Object? visualizations = freezed,
     Object? backgroundGradientIndex = null,
   }) {
     return _then(_value.copyWith(
@@ -97,10 +97,10 @@ class _$StoryCopyWithImpl<$Res, $Val extends Story>
           ? _value.favourite
           : favourite // ignore: cast_nullable_to_non_nullable
               as bool,
-      visualizations: null == visualizations
+      visualizations: freezed == visualizations
           ? _value.visualizations
           : visualizations // ignore: cast_nullable_to_non_nullable
-              as List<AppUser>,
+              as List<AppUser>?,
       backgroundGradientIndex: null == backgroundGradientIndex
           ? _value.backgroundGradientIndex
           : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
@@ -138,7 +138,7 @@ abstract class _$$_StoryCopyWith<$Res> implements $StoryCopyWith<$Res> {
       String body,
       DateTime creationDate,
       bool favourite,
-      List<AppUser> visualizations,
+      List<AppUser>? visualizations,
       @LinearGradientConverter() LinearGradient backgroundGradientIndex});
 
   @override
@@ -162,7 +162,7 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
     Object? body = null,
     Object? creationDate = null,
     Object? favourite = null,
-    Object? visualizations = null,
+    Object? visualizations = freezed,
     Object? backgroundGradientIndex = null,
   }) {
     return _then(_$_Story(
@@ -190,10 +190,10 @@ class __$$_StoryCopyWithImpl<$Res> extends _$StoryCopyWithImpl<$Res, _$_Story>
           ? _value.favourite
           : favourite // ignore: cast_nullable_to_non_nullable
               as bool,
-      visualizations: null == visualizations
+      visualizations: freezed == visualizations
           ? _value._visualizations
           : visualizations // ignore: cast_nullable_to_non_nullable
-              as List<AppUser>,
+              as List<AppUser>?,
       backgroundGradientIndex: null == backgroundGradientIndex
           ? _value.backgroundGradientIndex
           : backgroundGradientIndex // ignore: cast_nullable_to_non_nullable
@@ -212,7 +212,7 @@ class _$_Story extends _Story {
       required this.body,
       required this.creationDate,
       required this.favourite,
-      required final List<AppUser> visualizations,
+      required final List<AppUser>? visualizations,
       @LinearGradientConverter() required this.backgroundGradientIndex})
       : _visualizations = visualizations,
         super._();
@@ -229,12 +229,14 @@ class _$_Story extends _Story {
   final DateTime creationDate;
   @override
   final bool favourite;
-  final List<AppUser> _visualizations;
+  final List<AppUser>? _visualizations;
   @override
-  List<AppUser> get visualizations {
+  List<AppUser>? get visualizations {
+    final value = _visualizations;
+    if (value == null) return null;
     if (_visualizations is EqualUnmodifiableListView) return _visualizations;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_visualizations);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -293,7 +295,7 @@ abstract class _Story extends Story {
       required final String body,
       required final DateTime creationDate,
       required final bool favourite,
-      required final List<AppUser> visualizations,
+      required final List<AppUser>? visualizations,
       @LinearGradientConverter()
           required final LinearGradient backgroundGradientIndex}) = _$_Story;
   _Story._() : super._();
@@ -311,7 +313,7 @@ abstract class _Story extends Story {
   @override
   bool get favourite;
   @override
-  List<AppUser> get visualizations;
+  List<AppUser>? get visualizations;
   @override
   @LinearGradientConverter()
   LinearGradient get backgroundGradientIndex;

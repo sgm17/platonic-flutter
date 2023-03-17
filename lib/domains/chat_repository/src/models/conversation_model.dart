@@ -17,14 +17,18 @@ class Conversation with _$Conversation {
 
   const factory Conversation(
       {required int id,
-      required AppUser user,
-      required List<Message> messages}) = _Conversation;
-
-  static const Conversation emptyConversation =
-      Conversation(id: 0, user: AppUser.emptyUser, messages: []);
+      required AppUser user1,
+      required AppUser user2,
+      required List<Message>? messages}) = _Conversation;
 
   factory Conversation.fromJson(Map<String, dynamic> json) =>
       _$ConversationFromJson(json);
+
+  static Conversation emptyConversation = const Conversation(
+      id: 0,
+      user1: AppUser.emptyUser,
+      user2: AppUser.emptyUser,
+      messages: null);
 
   Map<String, dynamic> toJson() => _$ConversationToJson(this);
 }

@@ -1,7 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
-import 'package:platonic/providers/error_provider/home_error_provider.dart';
 import 'package:platonic/providers/meet_provider/providers.dart';
 import 'package:platonic/screens/error_dialog/delete_dialog/delete_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
@@ -18,26 +16,26 @@ class MeetItem extends ConsumerWidget {
     final meetState = ref.watch(meetScrollProvider);
 
     void toggleMeetConversation() {
-      ref.read(activeConversationUserProvider.notifier).state = meetState.user;
+      ref.read(activeUser2Provider.notifier).state = meetState.user;
       Navigator.pushNamed(context, '/ChatScreen');
     }
 
-    Future<void> toggleDeleteMeet() async {
-      try {
-        await ref.read(meetViewmodelProvider).deleteMeet(meetId: meetState.id);
-      } on ErrorApp catch (e) {
-        ref.read(homeErrorProvider.notifier).state = e;
-      } catch (e) {
-        print(e);
-      }
+    Future<void> toggleDeleteDialog() {
+      return showDialog(
+          context: context,
+          builder: (context) => DeleteDialog(
+              error: '''meetdelete''',
+              toggleDelete: () async {
+                await ref
+                    .read(meetsScrollProvider.notifier)
+                    .deleteMeet(meet: meetState);
+                Navigator.pop(context);
+              }));
     }
 
     return GestureDetector(
       onTap: toggleMeetConversation,
-      onLongPress: () => showDialog(
-          context: context,
-          builder: (context) => DeleteDialog(
-              error: '''meetdelete''', toggleDelete: toggleDeleteMeet)),
+      onLongPress: toggleDeleteDialog,
       child: Container(
         alignment: Alignment.bottomCenter,
         width: 80.0,
@@ -64,8 +62,7 @@ class MeetItem extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(10.0)),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 5.0),
-              child:
-                  MeetTitle(name: meetState.user.name, age: meetState.user.age),
+              child: MeetTitle(name: meetState.user.name),
             ),
           ),
         ),

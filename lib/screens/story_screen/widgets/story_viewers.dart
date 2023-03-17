@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:platonic/domains/user_repository/user_repository.dart';
 
 class StoryViewers extends StatelessWidget {
-  final List<String> viewers;
+  final List<AppUser> viewers;
   final int totalViewers;
 
-  const StoryViewers({required this.viewers, required this.totalViewers});
+  const StoryViewers(
+      {super.key, required this.viewers, required this.totalViewers});
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +22,21 @@ class StoryViewers extends StatelessWidget {
                 for (int i = 0; i < viewers.length && i < 5; i++)
                   Positioned(
                     left: i * 20.0,
-                    child: CircleAvatar(
-                      radius: 15,
-                      backgroundImage: NetworkImage(viewers[i]),
-                    ),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 255, 255, 255),
+                                width: 2.0),
+                            image: viewers[i].profileImage != null
+                                ? DecorationImage(
+                                    image:
+                                        NetworkImage(viewers[i].profileImage!),
+                                    fit: BoxFit.cover)
+                                : const DecorationImage(
+                                    image: AssetImage(
+                                        'assets/images/default_avatar.jpg'),
+                                    fit: BoxFit.cover))),
                   ),
               ],
             ),

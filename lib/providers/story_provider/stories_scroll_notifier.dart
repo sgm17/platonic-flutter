@@ -34,19 +34,29 @@ class StoriesScrollNotifier
 
       state = state.when(
         data: (data) {
-          final updatedData = data.map((e) {
-            if (e.faculty.id == story.faculty.id) {
-              return StoriesScroll(
+          List<StoriesScroll> newState;
+          if (data.map((e) => e.faculty.id).contains(story.faculty.id)) {
+            newState = data
+                .map((e) => e.faculty.id == story.faculty.id
+                    ? StoriesScroll(
+                        id: newStory.id,
+                        user: newStory.user,
+                        faculty: newStory.faculty,
+                        backgroundGradientIndex:
+                            newStory.backgroundGradientIndex)
+                    : e)
+                .toList();
+          } else {
+            newState = [
+              StoriesScroll(
                   id: newStory.id,
                   user: newStory.user,
                   faculty: newStory.faculty,
-                  backgroundGradientIndex: newStory.backgroundGradientIndex);
-            } else {
-              return e;
-            }
-          }).toList();
-
-          return AsyncData(updatedData);
+                  backgroundGradientIndex: newStory.backgroundGradientIndex),
+              ...data
+            ];
+          }
+          return AsyncValue.data(newState);
         },
         error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
         loading: () => const AsyncValue.loading(),

@@ -1,4 +1,4 @@
-export 'active_faculty_provider.dart';
+export 'active_faculty_id_provider.dart';
 export 'favourite_stories_id_provider.dart';
 export 'stories_notifier.dart';
 export 'stories_provider.dart';

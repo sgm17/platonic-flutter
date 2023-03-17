@@ -11,41 +11,29 @@ class MessagesScroll extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final conversationsState = ref.watch(chatProvider);
+    final conversationsState = ref.watch(conversationsProvider);
 
     return Expanded(
-      child: conversationsState.when(
-        data: (messages) {
-          return ListView.separated(
-            itemCount: messages.length,
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                height: 10.0,
-              );
-            },
-            itemBuilder: (context, index) {
-              return ProviderScope(
-                overrides: [
-                  conversationScrollProvider.overrideWithValue(messages[index])
-                ],
-                child: const SizedBox(
-                  width: 358.0,
-                  height: 80.0,
-                  child: MessageItem(),
-                ),
-              );
-            },
-          );
-        },
-        loading: () => const Center(
-          child: CircularProgressIndicator(
-            color: Color.fromARGB(255, 255, 255, 255),
+        child: ListView.separated(
+      itemCount: conversationsState.length,
+      separatorBuilder: (context, index) {
+        return const SizedBox(
+          height: 10.0,
+        );
+      },
+      itemBuilder: (context, index) {
+        return ProviderScope(
+          overrides: [
+            conversationItemProvider
+                .overrideWithValue(conversationsState[index])
+          ],
+          child: const SizedBox(
+            width: 358.0,
+            height: 80.0,
+            child: MessageItem(),
           ),
-        ),
-        error: (error, stackTrace) {
-          return Text(error.toString());
-        },
-      ),
-    );
+        );
+      },
+    ));
   }
 }

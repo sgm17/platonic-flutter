@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Message {
   int get id => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  int get conversationId => throw _privateConstructorUsedError;
+  String get body => throw _privateConstructorUsedError;
   int get userId => throw _privateConstructorUsedError;
   @DateTimeConverter()
   DateTime get creationDate => throw _privateConstructorUsedError;
@@ -33,7 +34,8 @@ abstract class $MessageCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String message,
+      int conversationId,
+      String body,
       int userId,
       @DateTimeConverter() DateTime creationDate});
 }
@@ -52,7 +54,8 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
   @override
   $Res call({
     Object? id = null,
-    Object? message = null,
+    Object? conversationId = null,
+    Object? body = null,
     Object? userId = null,
     Object? creationDate = null,
   }) {
@@ -61,9 +64,13 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      conversationId: null == conversationId
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      body: null == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
               as String,
       userId: null == userId
           ? _value.userId
@@ -86,7 +93,8 @@ abstract class _$$_MessageCopyWith<$Res> implements $MessageCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String message,
+      int conversationId,
+      String body,
       int userId,
       @DateTimeConverter() DateTime creationDate});
 }
@@ -102,7 +110,8 @@ class __$$_MessageCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? message = null,
+    Object? conversationId = null,
+    Object? body = null,
     Object? userId = null,
     Object? creationDate = null,
   }) {
@@ -111,9 +120,13 @@ class __$$_MessageCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      conversationId: null == conversationId
+          ? _value.conversationId
+          : conversationId // ignore: cast_nullable_to_non_nullable
+              as int,
+      body: null == body
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
               as String,
       userId: null == userId
           ? _value.userId
@@ -132,7 +145,8 @@ class __$$_MessageCopyWithImpl<$Res>
 class _$_Message extends _Message {
   const _$_Message(
       {required this.id,
-      required this.message,
+      required this.conversationId,
+      required this.body,
       required this.userId,
       @DateTimeConverter() required this.creationDate})
       : super._();
@@ -140,7 +154,9 @@ class _$_Message extends _Message {
   @override
   final int id;
   @override
-  final String message;
+  final int conversationId;
+  @override
+  final String body;
   @override
   final int userId;
   @override
@@ -149,7 +165,7 @@ class _$_Message extends _Message {
 
   @override
   String toString() {
-    return 'Message(id: $id, message: $message, userId: $userId, creationDate: $creationDate)';
+    return 'Message(id: $id, conversationId: $conversationId, body: $body, userId: $userId, creationDate: $creationDate)';
   }
 
   @override
@@ -158,7 +174,9 @@ class _$_Message extends _Message {
         (other.runtimeType == runtimeType &&
             other is _$_Message &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.conversationId, conversationId) ||
+                other.conversationId == conversationId) &&
+            (identical(other.body, body) || other.body == body) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.creationDate, creationDate) ||
                 other.creationDate == creationDate));
@@ -166,7 +184,7 @@ class _$_Message extends _Message {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, message, userId, creationDate);
+      Object.hash(runtimeType, id, conversationId, body, userId, creationDate);
 
   @JsonKey(ignore: true)
   @override
@@ -178,7 +196,8 @@ class _$_Message extends _Message {
 abstract class _Message extends Message {
   const factory _Message(
       {required final int id,
-      required final String message,
+      required final int conversationId,
+      required final String body,
       required final int userId,
       @DateTimeConverter() required final DateTime creationDate}) = _$_Message;
   const _Message._() : super._();
@@ -186,7 +205,9 @@ abstract class _Message extends Message {
   @override
   int get id;
   @override
-  String get message;
+  int get conversationId;
+  @override
+  String get body;
   @override
   int get userId;
   @override

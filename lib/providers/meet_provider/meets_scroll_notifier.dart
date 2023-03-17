@@ -22,4 +22,24 @@ class MeetsScrollNotifier extends StateNotifier<AsyncValue<List<MeetsScroll>>> {
       state = AsyncValue.error(e, StackTrace.current);
     }
   }
+
+  Future<void> deleteMeet({required MeetsScroll meet}) async {
+    try {
+      final delete =
+          await ref.read(meetViewmodelProvider).deleteMeet(meetId: meet.id);
+      if (delete == true) {
+        state = state.when(
+            data: (data) {
+              final newState = data.where((e) => e != meet).toList();
+              return AsyncValue.data(newState);
+            },
+            error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+            loading: () => AsyncValue.loading());
+      }
+    } on ErrorApp catch (e) {
+      ref.read(homeErrorProvider.notifier).state = e;
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
+    }
+  }
 }

@@ -4,6 +4,6 @@ abstract class UserRepository {
   Future<AppUser?> getAppUserProfile({required String tokenId});
   Future<AppUser> postCreateUserRegisterDetail();
   Future<AppUser> postUpdateUserRegisterDetail();
-  Future<bool> postUpdatCloudToken({required String cloudToken});
+  Future<bool> postUpdateCloudToken({required String cloudToken});
   Future<bool> deleteAppUser({required AppUser appUser});
 }

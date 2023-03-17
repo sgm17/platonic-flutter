@@ -47,7 +47,7 @@ class CreateScreen extends ConsumerWidget {
     Future<void> toggleMyFacultyStory() async {
       final text = ref.read(createControllerProvider).text;
 
-      final Story story = Story(
+      final story = Story(
           id: 0,
           user: AppUser.emptyUser,
           faculty: const Faculty(id: 0, facultyName: ''),

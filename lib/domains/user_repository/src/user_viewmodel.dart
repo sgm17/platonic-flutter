@@ -7,7 +7,7 @@ import 'package:platonic/providers/user_provider/providers.dart';
 class UserViewmodel implements UserRepository {
   final Ref ref;
 
-  UserViewmodel({required this.ref});
+  UserViewmodel(this.ref);
 
   // index
   @override
@@ -31,7 +31,7 @@ class UserViewmodel implements UserRepository {
 
   // put
   @override
-  Future<bool> postUpdatCloudToken({required String cloudToken}) {
+  Future<bool> postUpdateCloudToken({required String cloudToken}) {
     return ref
         .read(httpViewmodelProvider)
         .putUpdateCloudTokenAppUser(cloudToken: cloudToken);

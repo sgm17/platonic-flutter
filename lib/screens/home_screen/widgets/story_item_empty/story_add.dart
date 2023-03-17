@@ -9,7 +9,7 @@ class StoryAdd extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
+    return const ClipRRect(
       borderRadius: BorderRadius.zero,
       child: SizedBox(
         width: 48.0,

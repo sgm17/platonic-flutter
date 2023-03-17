@@ -4,6 +4,7 @@ import 'package:platonic/domains/story_repository/src/models/models.dart';
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
 import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'dart:io';
 
 abstract class HttpRepository {
   // Universities
@@ -44,16 +45,19 @@ abstract class HttpRepository {
   // GET /api/v1/conversations
   Future<List<Conversation>> getIndexConversations();
   // POST /api/v1/conversations
-  Future<int> postCreateConversation({required int userId});
+  Future<Conversation> postCreateConversation({required int user2Id});
+  // POST /api/v1/messages
+  Future<Message> postCreateMessage(
+      {required int conversationId, required Message message});
   // DELETE /api/v1/conversations/:conversation_id
   Future<bool> deleteDestroyConversation({required int conversationId});
 
   // Visualizations
   // POST /api/v1/visualizations
-  Future<bool> postCreateVisualization(
-      {required int userId, required int storyId});
+  Future<bool> postCreateVisualization({required int storyId});
 
   // Images
   // POST /api/v1/image
-  // Future<bool> post
+  Future<String> postCreateImage({required File file});
+  Future<List<String>> postCreateMultipleImages({required List<File> files});
 }

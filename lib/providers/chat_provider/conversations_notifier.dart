@@ -1,63 +1,137 @@
-import 'package:platonic/domains/user_repository/src/models/models.dart';
-import 'package:platonic/providers/http_provider/http_viewmodel_provider.dart';
+import 'package:action_cable/action_cable.dart';
+import 'package:platonic/domains/chat_repository/chat_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
-import 'package:platonic/domains/chat_repository/chat_repository.dart';
-import 'dart:async';
 
-class ConversationsScrollNotifier
-    extends StateNotifier<AsyncValue<List<Conversation>>> {
+class ConversationsNotifier extends StateNotifier<List<Conversation>> {
+  final String conversationChannelName = "ConversationChannel";
+  final String messageChannelName = "MessageChannel";
+  final ActionCable action;
   final Ref ref;
 
-  ConversationsScrollNotifier(this.ref)
-      : super(const AsyncValue<List<Conversation>>.loading()) {
+  ConversationsNotifier(this.ref, this.action) : super([]) {
     initialize();
   }
 
-  Future<void> initialize() async {
-    try {
-      final conversations =
-          await ref.read(chatViewmodelProvider).getConversations();
-      state = AsyncValue.data(conversations);
-    } catch (e) {
-      state = AsyncValue.error(e, StackTrace.current);
+  void initialize() {
+    // Subscribe to the conversation channel
+    subscribeConversationChannel();
+
+    // Subscribe to the message channel
+    subscribeMessageChannel();
+  }
+
+  void subscribeConversationChannel() {
+    ref.read(actionProvider).subscribe(conversationChannelName,
+        onSubscribed: () {
+      print('confirm conversations subscription');
+      getConversations();
+    }, onDisconnected: () {
+      print('disconnected from conversations');
+    }, onMessage: (message) {
+      if (message["conversations"] is List) {
+        final jsonConversations = message["conversations"];
+        final conversations =
+            jsonConversations.map((e) => Conversation.fromJson(e)).toList();
+
+        final pastState = state;
+
+        addConversation(conversation: conversations);
+
+        if (pastState.isNotEmpty) {
+          unSubscribeMessageChannel();
+        }
+        subscribeMessageChannel();
+      } else if (message is Map<String, dynamic> && message.containsKey("id")) {
+        final conversation = Conversation.fromJson(message);
+
+        final pastState = state;
+
+        addConversation(conversation: conversation);
+
+        if (pastState.isNotEmpty) {
+          unSubscribeMessageChannel();
+        }
+        subscribeMessageChannel();
+      }
+    });
+  }
+
+  void unSubscribeMessageChannel() =>
+      ref.read(actionProvider).unsubscribe(messageChannelName);
+
+  void unSubscribeConversationChannel() =>
+      ref.read(actionProvider).unsubscribe(conversationChannelName);
+
+  void subscribeMessageChannel() {
+    final conversationIds = state.map((e) => e.id).toList();
+    if (conversationIds.isNotEmpty) {
+      ref.read(actionProvider).subscribe(messageChannelName,
+          channelParams: {"conversation_ids": conversationIds},
+          onSubscribed: () {
+        print('confirm messages subscription: $conversationIds');
+      }, onDisconnected: () {
+        print('disconnected from messages');
+      }, onMessage: (message) {
+        if (message is Map<String, dynamic> && message.containsKey("id")) {
+          final newMessage = Message.fromJson(message);
+          addMessage(
+              conversationId: newMessage.conversationId, message: newMessage);
+        }
+      });
     }
   }
 
-  void addConversationWithMessageUpdateState(
-      {required Conversation conversation}) {
-    state = state.when(
-        data: (data) {
-          return AsyncValue.data([conversation, ...data]);
-        },
-        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-        loading: () => const AsyncValue.loading());
+  void addMessage({required int conversationId, required Message message}) {
+    state = state
+        .map((e) => e.id == conversationId
+            ? e.copyWith(messages: [message, ...e.messages ?? []])
+            : e)
+        .toList();
   }
 
-  void getConversationUpdateState(
-      {required Message message, required int conversationId}) {
-    state = state.when(
-      data: (data) {
-        final newState = data.map((c) {
-          if (c.id == conversationId) {
-            return c.copyWith(messages: [message, ...c.messages]);
-          } else {
-            return c;
-          }
-        }).toList();
-        return AsyncValue.data(newState);
-      },
-      error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-      loading: () => const AsyncValue.loading(),
-    );
+  void addConversation({required dynamic conversation}) {
+    if (conversation is Conversation) {
+      state = [conversation, ...state];
+    } else if (conversation is List) {
+      state = [...conversation, ...state];
+    }
   }
 
-  Future<int> postCreateConversation(
-      {required AppUser appUser, required Message message}) async {
-    final conversationId = await ref
-        .read(httpViewmodelProvider)
-        .postCreateConversation(userId: appUser.id);
+  void deleteConversation({required int conversationId}) {
+    state = state
+        .where((conversation) => conversation.id != conversationId)
+        .toList();
+  }
 
-    return conversationId;
+  void getConversations() {
+    ref
+        .read(actionProvider)
+        .performAction(conversationChannelName, action: 'get_conversations');
+  }
+
+  void createConversation({required int user2Id, required Message message}) {
+    final body = {"user2_id": user2Id, ...message.toJson()};
+
+    ref.read(actionProvider).performAction(conversationChannelName,
+        action: 'create_conversation', actionParams: body);
+  }
+
+  void sendMessage({required Message message}) {
+    final conversationIds = state.map((e) => e.id).toList();
+
+    if (conversationIds.isNotEmpty) {
+      ref.read(actionProvider).performAction(messageChannelName,
+          channelParams: {"conversation_ids": conversationIds},
+          action: 'new_message',
+          actionParams: message.toJson());
+    }
+  }
+
+  @override
+  void dispose() {
+    unSubscribeConversationChannel();
+    unSubscribeMessageChannel();
+    super.dispose();
   }
 }

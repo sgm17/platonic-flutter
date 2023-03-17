@@ -9,19 +9,19 @@ class MessagesContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Expanded(
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
-          height: 18.0,
-          child: HomeTitle(
-            title: '''Messages''',
+    return const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 18.0,
+            child: HomeTitle(
+              title: '''Messages''',
+            ),
           ),
-        ),
-        SizedBox(
-          height: 10.0,
-        ),
-        MessagesScroll(),
-      ]),
-    );
+          SizedBox(
+            height: 10.0,
+          ),
+          MessagesScroll(),
+        ]);
   }
 }

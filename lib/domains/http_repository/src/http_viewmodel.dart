@@ -1,5 +1,6 @@
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
+import 'package:platonic/domains/chat_repository/src/models/message_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/http_repository/src/http_repository.dart';
 import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.dart';
@@ -9,6 +10,7 @@ import 'package:platonic/domains/university_repository/src/models/universities_l
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
 
 class HttpViewmodel implements HttpRepository {
   final String? tokenId;
@@ -196,6 +198,8 @@ class HttpViewmodel implements HttpRepository {
     if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return Story.fromJson(data);
+    } else if (response.statusCode == 429) {
+      throw const ErrorApp(code: 'httpspamtories');
     } else {
       throw const ErrorApp(code: 'httpcreatestories');
     }
@@ -254,20 +258,43 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<int> postCreateConversation({required int userId}) async {
+  Future<Conversation> postCreateConversation({required int user2Id}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
 
     final response = await http.post(Uri.parse("$API_ENDPOINT/conversations"),
-        body: jsonEncode({'user_id': userId}), headers: headers);
+        body: jsonEncode({'user2_id': user2Id}), headers: headers);
 
     if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
-      return data["id"];
+      return Conversation.fromJson(data);
     } else {
       throw const ErrorApp(code: 'httpcreateconversations');
+    }
+  }
+
+  @override
+  Future<Message> postCreateMessage(
+      {required int conversationId, required Message message}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final body = {'conversation_id': conversationId, ...message.toJson()};
+
+    final response = await http.post(
+        Uri.parse("$API_ENDPOINT/conversations/$conversationId/create_message"),
+        body: jsonEncode(body),
+        headers: headers);
+
+    if (response.statusCode == 201) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return Message.fromJson(data);
+    } else {
+      throw const ErrorApp(code: 'httpcreatemessage');
     }
   }
 
@@ -291,21 +318,80 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<bool> postCreateVisualization(
-      {required int userId, required int storyId}) async {
+  Future<bool> postCreateVisualization({required int storyId}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
 
     final response = await http.post(Uri.parse("$API_ENDPOINT/visualizations"),
-        headers: headers);
+        headers: headers, body: jsonEncode({'story_id': storyId}));
 
     if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data["visualization"];
     } else {
       throw const ErrorApp(code: 'httpcreatevisualization');
+    }
+  }
+
+  @override
+  Future<String> postCreateImage({required File file}) async {
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$API_ENDPOINT/images'),
+    );
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'image',
+        file.path,
+      ),
+    );
+
+    final response = await request.send();
+
+    if (response.statusCode == 201) {
+      final responseBody = await response.stream.bytesToString();
+      final Map<String, dynamic> data = jsonDecode(responseBody);
+      final name = data["name"];
+      final format = data["format"];
+
+      return "$API_ENDPOINT/images?$name&$format";
+    } else {
+      throw const ErrorApp(code: 'httpcreateimage');
+    }
+  }
+
+  @override
+  Future<List<String>> postCreateMultipleImages(
+      {required List<File> files}) async {
+    final request = http.MultipartRequest(
+      'POST',
+      Uri.parse('$API_ENDPOINT/create_multiple'),
+    );
+    for (final file in files) {
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'images',
+          file.path,
+        ),
+      );
+    }
+
+    final response = await request.send();
+
+    if (response.statusCode == 201) {
+      final responseBody = await response.stream.bytesToString();
+      final List<dynamic> data = await jsonDecode(responseBody);
+
+      return data.map((data) {
+        final name = data["name"];
+        final format = data["format"];
+
+        return "$API_ENDPOINT/images?$name&$format";
+      }).toList();
+    } else {
+      throw const ErrorApp(code: 'httpcreatemultipleimages');
     }
   }
 }

@@ -12,19 +12,25 @@ Message _$MessageFromJson(Map json) => $checkedCreate(
       ($checkedConvert) {
         final val = Message(
           id: $checkedConvert('id', (v) => v as int),
-          message: $checkedConvert('message', (v) => v as String),
+          conversationId: $checkedConvert('conversation_id', (v) => v as int),
+          body: $checkedConvert('body', (v) => v as String),
           userId: $checkedConvert('user_id', (v) => v as int),
           creationDate: $checkedConvert('creation_date',
               (v) => const DateTimeConverter().fromJson(v as String)),
         );
         return val;
       },
-      fieldKeyMap: const {'userId': 'user_id', 'creationDate': 'creation_date'},
+      fieldKeyMap: const {
+        'conversationId': 'conversation_id',
+        'userId': 'user_id',
+        'creationDate': 'creation_date'
+      },
     );
 
 Map<String, dynamic> _$MessageToJson(Message instance) => <String, dynamic>{
       'id': instance.id,
-      'message': instance.message,
+      'conversation_id': instance.conversationId,
+      'body': instance.body,
       'user_id': instance.userId,
       'creation_date': const DateTimeConverter().toJson(instance.creationDate),
     };
