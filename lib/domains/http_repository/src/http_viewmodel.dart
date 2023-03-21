@@ -258,25 +258,6 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<bool> deleteDestroyConversation({required int conversationId}) async {
-    final headers = {
-      'Authorization': 'Bearer $tokenId',
-      'Content-Type': 'application/json',
-    };
-
-    final response = await http.delete(
-        Uri.parse("$API_ENDPOINT/conversations/$conversationId"),
-        headers: headers);
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = await jsonDecode(response.body);
-      return data["destroyed"];
-    } else {
-      throw const ErrorApp(code: 'httpdestroyconversations');
-    }
-  }
-
-  @override
   Future<bool> postCreateVisualization({required int storyId}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',

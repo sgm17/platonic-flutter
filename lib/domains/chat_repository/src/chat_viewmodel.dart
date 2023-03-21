@@ -12,11 +12,4 @@ class ChatViewmodel implements ChatRepository {
   Future<List<Conversation>> getMessagesScroll() {
     return ref.read(httpViewmodelProvider).getIndexConversations();
   }
-
-  @override
-  Future<bool> deleteConversation({required int conversationId}) {
-    return ref
-        .read(httpViewmodelProvider)
-        .deleteDestroyConversation(conversationId: conversationId);
-  }
 }

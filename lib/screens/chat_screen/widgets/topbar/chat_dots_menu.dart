@@ -12,7 +12,7 @@ class ChatDotsMenu extends ConsumerWidget {
       {super.key, required this.toggleDeleteDialog, required this.appUser});
 
   final Future<void> Function(
-          Future<void> Function(BuildContext context) toggleDeleteConversation)
+          void Function(BuildContext context) toggleDeleteConversation)
       toggleDeleteDialog;
   final AppUser appUser;
 
@@ -20,7 +20,7 @@ class ChatDotsMenu extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final userState = ref.read(userProvider).asData?.value;
 
-    Future<void> toggleDeleteConversation(BuildContext context) async {
+    void toggleDeleteConversation(BuildContext context) async {
       try {
         final conversation = ref.read(conversationsProvider).firstWhere(
             (e) =>
@@ -29,9 +29,9 @@ class ChatDotsMenu extends ConsumerWidget {
             orElse: () => Conversation.emptyConversation);
 
         if (conversation != Conversation.emptyConversation) {
-          await ref
-              .read(chatViewmodelProvider)
-              .deleteConversation(conversationId: conversation.id);
+          ref
+              .read(conversationsProvider.notifier)
+              .sendDeleteConversation(conversationId: conversation.id);
 
           ref
               .read(conversationsProvider.notifier)

@@ -42,9 +42,9 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
           unSubscribeMessageChannel();
         }
         subscribeMessageChannel();
-      } else if (message["conversation"] is Map<String, dynamic> &&
+      } else if (message["new_conversation"] is Map<String, dynamic> &&
           message.containsKey("id")) {
-        final jsonConversation = message["conversation"];
+        final jsonConversation = message["new_conversation"];
         final conversation = Conversation.fromJson(jsonConversation);
 
         final pastState = state;
@@ -124,6 +124,13 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
 
     ref.read(actionProvider).performAction(conversationChannelName,
         action: 'create_conversation', actionParams: body);
+  }
+
+  void sendDeleteConversation({required int conversationId}) {
+    final body = {"conversation_id": conversationId};
+
+    ref.read(actionProvider).performAction(conversationChannelName,
+        action: 'delete_conversation', actionParams: body);
   }
 
   void sendMessage({required Message message}) {

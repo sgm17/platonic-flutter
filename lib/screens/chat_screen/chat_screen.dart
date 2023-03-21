@@ -74,14 +74,14 @@ class ChatScreen extends ConsumerWidget {
     });
 
     Future<void> toggleDeleteDialog(
-      Future<void> Function(BuildContext context) toggleDeleteConversation,
+      void Function(BuildContext context) toggleDeleteConversation,
     ) async {
       return showDialog(
           context: context,
           builder: (context) => DeleteDialog(
               error: '''conversationdeletedialog''',
-              toggleDelete: () async {
-                await toggleDeleteConversation(context);
+              toggleDelete: () {
+                toggleDeleteConversation(context);
                 Navigator.pop(context);
               }));
     }

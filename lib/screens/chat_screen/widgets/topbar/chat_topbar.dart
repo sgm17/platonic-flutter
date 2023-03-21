@@ -19,7 +19,7 @@ class ChatTopbar extends ConsumerWidget {
   final Conversation activeConversation;
   final AppUser appUser;
   final Future<void> Function(
-          Future<void> Function(BuildContext context) toggleDeleteConversation)
+          void Function(BuildContext context) toggleDeleteConversation)
       toggleDeleteDialog;
 
   @override
