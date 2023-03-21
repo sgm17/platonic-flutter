@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:platonic/providers/error_provider/profile_error_provider.dart';
+import 'package:platonic/providers/http_provider/http_viewmodel_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
@@ -23,13 +27,38 @@ class ProfileScreen extends ConsumerStatefulWidget {
 class ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool isLoading = false;
 
-/*   Future<void> toggleUserAvatar(){
+  Future<void> toggleUserAvatar() async {
+    final pickedFile =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
 
+    if (pickedFile != null) {
+      setState(() {
+        isLoading = true;
+      });
+
+      // Display the loading dialog
+      showDialog(
+        context: context,
+        builder: (_) => LoadingDialog(
+          loading: 'uploading the picture',
+        ),
+      );
+
+      // Upload the image file to the server
+      final image = await ref
+          .read(httpViewmodelProvider)
+          .postCreateImage(file: File(pickedFile.path));
+
+      // Hide the loading dialog
+      Navigator.of(context).pop();
+
+      setState(() {
+        isLoading = false;
+      });
+
+      ref.read(userProvider.notifier).uploadProfileImage(profileImage: image);
+    }
   }
-
-  Future<void> loadingDialog(){
-    final
-  } */
 
   @override
   Widget build(BuildContext context) {
@@ -110,6 +139,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                           height: 6.0,
                         ),
                         GestureDetector(
+                          onTap: toggleUserAvatar,
                           child: SizedBox(
                             height: 110.0,
                             child: UserAvatar(

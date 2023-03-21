@@ -1,3 +1,4 @@
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/auth_provider/providers.dart';
@@ -11,6 +12,8 @@ import 'dart:async';
 class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
   final Ref ref;
 
   String? tokenId;
@@ -42,6 +45,14 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       cloudTokenListener =
           firebaseMessaging.onTokenRefresh.listen(onCloudTokenChanges);
     }
+  }
+
+  Future<void> register() async {
+    await firebaseMessaging.requestPermission();
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      showNotification(message);
+    });
   }
 
   Future<void> onAuthStateChanges(User? user) async {
@@ -192,6 +203,35 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
     }
   }
 
+  Future<void> showNotification(RemoteMessage message) async {
+    const AndroidNotificationDetails androidPlatformChannelSpecifics =
+        AndroidNotificationDetails('your channel id', 'your channel name',
+            channelDescription: 'your channel description',
+            importance: Importance.max,
+            priority: Priority.high,
+            ticker: 'ticker');
+
+    const NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      message.notification!.title,
+      message.notification!.body,
+      platformChannelSpecifics,
+      payload: message.data.toString(),
+    );
+  }
+
   // Doesn't throw exceptions
   Future<void> logoutUser() async => await firebaseAuth.signOut();
+
+  void uploadProfileImage({required String profileImage}) {
+    state = state.when(
+        data: (data) {
+          return AsyncValue.data(data.copyWith(profileImage: profileImage));
+        },
+        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+        loading: () => const AsyncValue.loading());
+  }
 }
