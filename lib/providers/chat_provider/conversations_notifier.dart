@@ -29,7 +29,7 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
     }, onDisconnected: () {
       print('disconnected from conversations');
     }, onMessage: (message) {
-      if (message["conversations"] is List) {
+      if (message["conversations"] is List && message.containsKey("id")) {
         final jsonConversations = message["conversations"];
         final conversations =
             jsonConversations.map((e) => Conversation.fromJson(e)).toList();
@@ -42,8 +42,10 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
           unSubscribeMessageChannel();
         }
         subscribeMessageChannel();
-      } else if (message is Map<String, dynamic> && message.containsKey("id")) {
-        final conversation = Conversation.fromJson(message);
+      } else if (message["conversation"] is Map<String, dynamic> &&
+          message.containsKey("id")) {
+        final jsonConversation = message["conversation"];
+        final conversation = Conversation.fromJson(jsonConversation);
 
         final pastState = state;
 
@@ -53,6 +55,10 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
           unSubscribeMessageChannel();
         }
         subscribeMessageChannel();
+      } else if (message["delete_conversation"] is Map<String, dynamic> &&
+          message.containsKey("id")) {
+        // delete conversation
+        final jsonConversation = message["delete_conversation"];
       }
     });
   }
@@ -73,8 +79,11 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
       }, onDisconnected: () {
         print('disconnected from messages');
       }, onMessage: (message) {
-        if (message is Map<String, dynamic> && message.containsKey("id")) {
-          final newMessage = Message.fromJson(message);
+        if (message["message"] is Map<String, dynamic> &&
+            message.containsKey("id")) {
+          final jsonMessage = message["message"];
+
+          final newMessage = Message.fromJson(jsonMessage);
           addMessage(
               conversationId: newMessage.conversationId, message: newMessage);
         }

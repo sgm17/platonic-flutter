@@ -95,6 +95,7 @@ class ChatScreen extends ConsumerWidget {
             child: SizedBox(
               height: 40.0,
               child: ChatTopbar(
+                  activeConversation: activeConversation,
                   appUser: activeUserState,
                   toggleDeleteDialog: toggleDeleteDialog),
             ),

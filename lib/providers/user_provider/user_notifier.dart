@@ -1,12 +1,11 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
-import 'package:platonic/providers/error_provider/auth_error_provider.dart';
 import 'package:platonic/providers/auth_provider/providers.dart';
-import 'package:platonic/providers/error_provider/splash_error_provider.dart';
+import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 
 class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
@@ -110,15 +109,17 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
 
     if (user != null) {
       try {
-        // Update with the uid and the email
-        ref.read(userRegisterDetailProvider.notifier).state = ref
+        final createdUser = ref
             .read(userRegisterDetailProvider)
             .copyWith(uid: user.uid, email: user.email!);
+
+        // Update with the uid and the email
+        ref.read(userRegisterDetailProvider.notifier).state = createdUser;
 
         // Post the user to the backend server
         final AppUser appUser = await ref
             .read(userViewmodelProvider)
-            .postCreateUserRegisterDetail();
+            .postCreateUserRegisterDetail(appUser: createdUser);
 
         state = AsyncValue.data(appUser);
 
@@ -133,6 +134,20 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
       }
     } else {
       state = const AsyncValue.loading();
+    }
+  }
+
+  Future<void> updateProfile() async {
+    try {
+      final user = ref.read(userRegisterDetailProvider);
+      final updatedUser = await ref
+          .read(userViewmodelProvider)
+          .postUpdateUserRegisterDetail(appUser: user);
+      state = AsyncValue.data(updatedUser);
+    } on ErrorApp catch (e) {
+      ref.read(profileErrorProvider.notifier).state = e;
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
     }
   }
 
@@ -151,6 +166,8 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
     } on FirebaseAuthException catch (e) {
       final errorApp = ErrorApp(code: e.code.split('-').join(""));
       ref.read(authErrorProvider.notifier).state = errorApp;
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
     }
   }
 
@@ -170,6 +187,8 @@ class UserNotifier extends StateNotifier<AsyncValue<AppUser>> {
     } on FirebaseAuthException catch (e) {
       final errorApp = ErrorApp(code: e.code.split('-').join(""));
       ref.read(authErrorProvider.notifier).state = errorApp;
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
     }
   }
 

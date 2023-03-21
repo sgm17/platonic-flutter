@@ -44,8 +44,6 @@ abstract class HttpRepository {
   // Conversations
   // GET /api/v1/conversations
   Future<List<Conversation>> getIndexConversations();
-  // DELETE /api/v1/conversations/:conversation_id
-  Future<bool> deleteDestroyConversation({required int conversationId});
 
   // Visualizations
   // POST /api/v1/visualizations

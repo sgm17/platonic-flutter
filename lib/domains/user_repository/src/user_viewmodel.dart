@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/domains/user_repository/src/user_repository.dart';
 import 'package:platonic/providers/http_provider/providers.dart';
-import 'package:platonic/providers/user_provider/providers.dart';
 
 class UserViewmodel implements UserRepository {
   final Ref ref;
@@ -17,16 +16,15 @@ class UserViewmodel implements UserRepository {
 
   // create
   @override
-  Future<AppUser> postCreateUserRegisterDetail() {
-    final user = ref.read(userRegisterDetailProvider);
-    return ref.read(httpViewmodelProvider).postCreateAppUser(user: user);
+  Future<AppUser> postCreateUserRegisterDetail({required AppUser appUser}) {
+    return ref.read(httpViewmodelProvider).postCreateAppUser(user: appUser);
   }
 
   // put
   @override
-  Future<AppUser> postUpdateUserRegisterDetail() {
-    final user = ref.read(userRegisterDetailProvider);
-    return ref.read(httpViewmodelProvider).putUpdateAppUser(user: user);
+  Future<AppUser> postUpdateUserRegisterDetail(
+      {required AppUser appUser}) async {
+    return ref.read(httpViewmodelProvider).putUpdateAppUser(user: appUser);
   }
 
   // put

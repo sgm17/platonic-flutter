@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/chat_repository/chat_repository.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
@@ -10,8 +11,12 @@ import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
   */
 class ChatTopbar extends ConsumerWidget {
   const ChatTopbar(
-      {super.key, required this.appUser, required this.toggleDeleteDialog});
+      {super.key,
+      required this.appUser,
+      required this.toggleDeleteDialog,
+      required this.activeConversation});
 
+  final Conversation activeConversation;
   final AppUser appUser;
   final Future<void> Function(
           Future<void> Function(BuildContext context) toggleDeleteConversation)
@@ -60,7 +65,9 @@ class ChatTopbar extends ConsumerWidget {
             child: SizedBox(
           height: 10.0,
         )),
-        ChatDotsMenu(toggleDeleteDialog: toggleDeleteDialog, appUser: appUser),
+        if (activeConversation != Conversation.emptyConversation)
+          ChatDotsMenu(
+              toggleDeleteDialog: toggleDeleteDialog, appUser: appUser),
       ]),
     );
   }
