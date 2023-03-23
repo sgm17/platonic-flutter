@@ -42,7 +42,7 @@ class Semicircle extends StatelessWidget {
                       scaleX: scaleX,
                       scaleY: scaleY,
                       scaleZ: 1,
-                      child: StartIntersect())
+                      child: const StartIntersect())
                 ]);
               }),
             )

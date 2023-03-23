@@ -17,7 +17,7 @@ class AddContainer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: Container(
-          color: Color.fromARGB(255, 27, 26, 29),
+          color: const Color.fromARGB(255, 27, 26, 29),
         ),
       ),
     );

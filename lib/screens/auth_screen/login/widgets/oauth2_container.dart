@@ -6,33 +6,19 @@ class Oauth2Container extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 358.0,
+    return const SizedBox(
       height: 104.0,
-      child: Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.center,
-          clipBehavior: Clip.none,
-          children: [
-            Positioned(
-              left: 0.0,
-              top: 0.0,
-              right: null,
-              bottom: null,
-              width: 358.0,
-              height: 44.0,
-              child: AppleOauth2Container(),
-            ),
-            const Positioned(
-              left: 0.0,
-              top: 60.0,
-              right: null,
-              bottom: null,
-              width: 358.0,
-              height: 44.0,
-              child: GoogleOauth2Container(),
-            )
-          ]),
+      child:
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        SizedBox(
+          height: 44.0,
+          child: AppleOauth2Container(),
+        ),
+        SizedBox(
+          height: 44.0,
+          child: GoogleOauth2Container(),
+        )
+      ]),
     );
   }
 }

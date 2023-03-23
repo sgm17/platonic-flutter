@@ -45,7 +45,7 @@ class CreateContainer extends StatelessWidget {
                         scaleX: scaleX,
                         scaleY: scaleY,
                         scaleZ: 1,
-                        child: CreateIcon())
+                        child: const CreateIcon())
                   ]);
                 }),
               )

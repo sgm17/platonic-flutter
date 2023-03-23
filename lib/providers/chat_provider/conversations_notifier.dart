@@ -29,7 +29,7 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
     }, onDisconnected: () {
       print('disconnected from conversations');
     }, onMessage: (message) {
-      if (message["conversations"] is List && message.containsKey("id")) {
+      if (message["conversations"] is List) {
         final jsonConversations = message["conversations"];
         final conversations =
             jsonConversations.map((e) => Conversation.fromJson(e)).toList();
@@ -42,8 +42,7 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
           unSubscribeMessageChannel();
         }
         subscribeMessageChannel();
-      } else if (message["new_conversation"] is Map<String, dynamic> &&
-          message.containsKey("id")) {
+      } else if (message["new_conversation"] is Map<String, dynamic>) {
         final jsonConversation = message["new_conversation"];
         final conversation = Conversation.fromJson(jsonConversation);
 
@@ -55,10 +54,18 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
           unSubscribeMessageChannel();
         }
         subscribeMessageChannel();
-      } else if (message["delete_conversation"] is Map<String, dynamic> &&
-          message.containsKey("id")) {
+      } else if (message["delete_conversation"] is Map<String, dynamic>) {
         // delete conversation
         final jsonConversation = message["delete_conversation"];
+        final conversationId = jsonConversation["id"];
+
+        deleteConversation(conversationId: conversationId);
+
+        unSubscribeMessageChannel();
+
+        if (state.isNotEmpty) {
+          subscribeMessageChannel();
+        }
       }
     });
   }
@@ -79,8 +86,7 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
       }, onDisconnected: () {
         print('disconnected from messages');
       }, onMessage: (message) {
-        if (message["message"] is Map<String, dynamic> &&
-            message.containsKey("id")) {
+        if (message["message"] is Map<String, dynamic>) {
           final jsonMessage = message["message"];
 
           final newMessage = Message.fromJson(jsonMessage);
@@ -94,7 +100,8 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   void addMessage({required int conversationId, required Message message}) {
     state = state
         .map((e) => e.id == conversationId
-            ? e.copyWith(messages: [message, ...e.messages ?? []])
+            ? e.copyWith(
+                messages: e.messages != null ? [...e.messages!, message] : [])
             : e)
         .toList();
   }
@@ -126,8 +133,8 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
         action: 'create_conversation', actionParams: body);
   }
 
-  void sendDeleteConversation({required int conversationId}) {
-    final body = {"conversation_id": conversationId};
+  void sendDeleteConversation({required String conversationId}) {
+    final body = {"id": conversationId};
 
     ref.read(actionProvider).performAction(conversationChannelName,
         action: 'delete_conversation', actionParams: body);

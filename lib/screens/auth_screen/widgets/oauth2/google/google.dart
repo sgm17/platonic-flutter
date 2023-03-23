@@ -8,7 +8,7 @@ class Google extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 21.0,
       height: 21.0,
       child: ClipRRect(

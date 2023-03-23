@@ -1,13 +1,16 @@
-import 'package:action_cable/action_cable.dart';
+import 'package:platonic/providers/shared_preferences_provider/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
-import 'package:platonic/providers/user_provider/providers.dart';
+import 'package:action_cable/action_cable.dart';
 
 final actionProvider = Provider<ActionCable>((ref) {
-  final tokenId = ref.watch(userProvider.notifier).tokenId;
+  final sharedPreferences = ref.read(sharedPreferencesProvider);
+
+  final tokenId = sharedPreferences.getString(FIREBASE_TOKEN_ID_KEY);
 
   final ActionCable cable = ActionCable.Connect(ACTION_CABLE_ENDPOINT,
       headers: {'Authorization': 'Bearer $tokenId'});
+
   ref.onDispose(() {
     cable.disconnect();
   });

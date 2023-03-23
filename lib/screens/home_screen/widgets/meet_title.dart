@@ -11,7 +11,7 @@ class MeetTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "$name",
+      name,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
       style: const TextStyle(

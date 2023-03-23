@@ -9,7 +9,7 @@ class UserAvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 100.0,
       height: 100.0,
       child: Stack(
@@ -26,6 +26,7 @@ class UserAvatarImage extends StatelessWidget {
               height: null,
               child: Mask.fromSVGPath(
                 'M100 50C100 77.6142 77.6142 100 50 100C22.3858 100 0 77.6142 0 50C0 22.3858 22.3858 0 50 0C77.6142 0 100 22.3858 100 50Z',
+                offset: const Offset(0.0, 0.0),
                 child: Image.asset(
                   "assets/images/11c97a1e48f1dc3e40998507942a19e99392643f.png",
                   color: null,
@@ -34,7 +35,6 @@ class UserAvatarImage extends StatelessWidget {
                   height: 100.0,
                   colorBlendMode: BlendMode.dstATop,
                 ),
-                offset: Offset(0.0, 0.0),
               ),
             )
           ]),

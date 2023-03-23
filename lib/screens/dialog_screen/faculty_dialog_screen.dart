@@ -34,8 +34,17 @@ class FacultyDialogScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isMeetSettings = ref.watch(isMeetSettingsDialogProvider);
     final searchBarState = ref.watch(searchBarProvider);
-    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+    final userState = ref.watch(appUserProvider);
     final universitiesListState = ref.watch(universitiesListProvider);
+
+    bool getSelected(FacultiesList faculty) {
+      if (isMeetSettings) {
+        return userState.facultiesToMeet?.any((e) => e.id == faculty.id) ??
+            false;
+      } else {
+        return userState.facultyId != 0 && faculty.id == userState.facultyId;
+      }
+    }
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 27, 26, 29),
@@ -45,18 +54,17 @@ class FacultyDialogScreen extends ConsumerWidget {
             List<FacultiesList> facultiesList = [];
 
             if (isMeetSettings) {
-              if (userRegisterDetailState.universityToMeetId != 0) {
+              if (userState.universityToMeet != null) {
                 facultiesList = data
                     .firstWhere((e) =>
-                        e.university.id ==
-                        userRegisterDetailState.universityToMeetId)
+                        e.university.id == userState.universityToMeet?.id)
                     .faculties;
               }
             } else {
-              if (userRegisterDetailState.universityId != 0) {
+              if (userState.universityId != 0) {
                 facultiesList = data
-                    .firstWhere((e) =>
-                        e.university.id == userRegisterDetailState.universityId)
+                    .firstWhere(
+                        (e) => e.university.id == userState.universityId)
                     .faculties;
               }
             }
@@ -98,7 +106,7 @@ class FacultyDialogScreen extends ConsumerWidget {
 
                                 if (isMeetSettings) {
                                   final currentFacultiesToMeet =
-                                      userRegisterDetailState.facultiesToMeet;
+                                      userState.facultiesToMeet;
 
                                   final newFacultiesToMeet =
                                       currentFacultiesToMeet != null &&
@@ -117,37 +125,21 @@ class FacultyDialogScreen extends ConsumerWidget {
                                               : [convertToFaculty(faculty)];
 
                                   ref
-                                      .read(userRegisterDetailProvider.notifier)
-                                      .state = userRegisterDetailState.copyWith(
-                                    facultiesToMeet: newFacultiesToMeet,
-                                  );
+                                      .read(appUserProvider.notifier)
+                                      .setFacultiesToMeet(
+                                        newFacultiesToMeet,
+                                      );
                                 } else {
                                   ref
-                                          .read(userRegisterDetailProvider.notifier)
-                                          .state =
-                                      userRegisterDetailState.copyWith(
-                                          facultyId: faculty.id,
-                                          faculty: convertToFaculty(faculty));
+                                      .read(appUserProvider.notifier)
+                                      .setFaculty(convertToFaculty(faculty));
                                 }
                               },
                               child: SelectFacultyContainer(
-                                  faculty: filteredFaculties[index],
-                                  isSelected: isMeetSettings &&
-                                          userRegisterDetailState
-                                                  .facultiesToMeet !=
-                                              null &&
-                                          userRegisterDetailState
-                                              .facultiesToMeet!
-                                              .map((e) => e.id)
-                                              .contains(
-                                                  filteredFaculties[index].id)
-                                      ? !isMeetSettings &&
-                                              userRegisterDetailState
-                                                      .facultyId !=
-                                                  0
-                                          ? true
-                                          : false
-                                      : false),
+                                faculty: filteredFaculties[index],
+                                isSelected:
+                                    getSelected(filteredFaculties[index]),
+                              ),
                             );
                           },
                           separatorBuilder: (context, index) {

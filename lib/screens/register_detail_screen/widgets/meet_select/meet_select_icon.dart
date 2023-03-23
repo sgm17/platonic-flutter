@@ -6,14 +6,14 @@ class MeetSelectIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 10.5,
       height: 6.190624713897705,
       child: SvgWidget(painters: [
         SvgPathPainter.fill()
           ..addPath(
               'M5.25 6.19062L0 0.940625L0.940625 0L5.25 4.33125L9.55937 0.0218747L10.5 0.962499L5.25 6.19062Z')
-          ..color = Color.fromARGB(255, 255, 255, 255),
+          ..color = const Color.fromARGB(255, 255, 255, 255),
       ]),
     );
   }

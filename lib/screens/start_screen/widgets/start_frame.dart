@@ -9,7 +9,7 @@ class StartFrame extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 340.0,
       height: 510.0,
       child: Stack(
@@ -35,7 +35,7 @@ class StartFrame extends StatelessWidget {
               height: 170.0,
               child: StartMiddle(),
             ),
-            const Positioned(
+            Positioned(
               left: 0.0,
               top: 340.0,
               right: null,

@@ -45,7 +45,7 @@ class SettingsContainer extends StatelessWidget {
                         scaleX: scaleX,
                         scaleY: scaleY,
                         scaleZ: 1,
-                        child: SettingsIcon())
+                        child: const SettingsIcon())
                   ]);
                 }),
               )

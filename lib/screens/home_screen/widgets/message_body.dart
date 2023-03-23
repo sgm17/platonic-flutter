@@ -12,7 +12,7 @@ class MessageBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      messages?.isNotEmpty == true ? messages!.first.body : 'Empty messages',
+      messages?.isNotEmpty == true ? messages!.last.body : 'Empty messages',
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
       style: const TextStyle(

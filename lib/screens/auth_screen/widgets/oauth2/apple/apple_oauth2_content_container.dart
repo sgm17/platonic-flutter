@@ -6,7 +6,7 @@ class AppleOauth2ContentContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 358.0,
       height: 44.0,
       child: Stack(
@@ -14,7 +14,7 @@ class AppleOauth2ContentContainer extends StatelessWidget {
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
-            const Positioned(
+            Positioned(
               left: 0.0,
               top: 0.0,
               right: null,

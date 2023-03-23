@@ -52,7 +52,7 @@ class MatchSmallFavouriteIconContainer extends StatelessWidget {
                             scaleX: scaleX,
                             scaleY: scaleY,
                             scaleZ: 1,
-                            child: MatchSmallFavouriteIcon())
+                            child: const MatchSmallFavouriteIcon())
                       ]);
                     }),
                   )

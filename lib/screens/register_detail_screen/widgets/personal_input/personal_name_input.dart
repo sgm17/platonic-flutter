@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 
 /* Instance personal_input
@@ -8,27 +10,32 @@ import 'package:platonic/providers/user_provider/providers.dart';
 class PersonalNameInput extends ConsumerWidget {
   const PersonalNameInput({super.key});
 
-  String? validateName(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Name is required';
-    }
-    if (value.length > 10) {
-      return 'Name is too long';
-    }
-    if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-      return 'Name can only contain letters';
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    String? validateName(String? value) {
+      if (value == null || value.isEmpty) {
+        ref.read(registerDetailErrorProvider.notifier).state =
+            const ErrorApp(code: 'registernamerequireddialog');
+        return 'Name is required';
+      }
+      if (value.length > 10) {
+        ref.read(registerDetailErrorProvider.notifier).state =
+            const ErrorApp(code: 'registernamelongdialog');
+
+        return 'Name is too long';
+      }
+      if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+        ref.read(registerDetailErrorProvider.notifier).state =
+            const ErrorApp(code: 'registernameonlylettersdialog');
+
+        return 'Name can only contain letters';
+      }
+      return null;
+    }
+
     return TextFormField(
       onSaved: (newValue) {
-        if (newValue == null) return;
-        final updatedState =
-            ref.read(userRegisterDetailProvider).copyWith(name: newValue);
-        ref.read(userRegisterDetailProvider.notifier).state = updatedState;
+        ref.read(appUserProvider.notifier).setName(newValue!);
       },
       validator: validateName,
       textInputAction: TextInputAction.next,

@@ -15,7 +15,7 @@ class EmailContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10.0),
         border: Border.all(
           width: 1.0,
-          color: Color.fromARGB(255, 43, 45, 46),
+          color: const Color.fromARGB(255, 43, 45, 46),
         ),
       ),
     );

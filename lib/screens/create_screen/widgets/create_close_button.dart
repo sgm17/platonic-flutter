@@ -10,7 +10,7 @@ class CreateCloseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/HomeScreen'),
+      onTap: () => Navigator.pop(context),
       child: const SizedBox(
         width: 35.0,
         height: 35.0,

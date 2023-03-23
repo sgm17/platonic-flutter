@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class MessageNotReceived extends StatelessWidget {
@@ -6,7 +7,7 @@ class MessageNotReceived extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pop(context),
+      onTap: () => FirebaseAuth.instance.currentUser?.sendEmailVerification(),
       child: Align(
         alignment: Alignment.center,
         child: RichText(

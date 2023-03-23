@@ -14,7 +14,7 @@ class StudiesTitle extends StatelessWidget {
       study,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.1530000141688757,
         fontSize: 14.0,
         fontFamily: 'Gilroy',

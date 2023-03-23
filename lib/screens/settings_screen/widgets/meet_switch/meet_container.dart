@@ -17,7 +17,7 @@ class MeetContainer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: Container(
-          color: Color.fromARGB(255, 43, 45, 46),
+          color: const Color.fromARGB(255, 43, 45, 46),
         ),
       ),
     );

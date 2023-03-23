@@ -12,7 +12,7 @@ class RegisterDetailMeet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+    final userState = ref.watch(appUserProvider);
 
     void toggleUniversity() {
       ref.read(isMeetSettingsDialogProvider.notifier).state = true;
@@ -39,8 +39,9 @@ class RegisterDetailMeet extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: SettingsSelect(
-            placeholder: userRegisterDetailState.universityToMeetId != 0
-                ? userRegisterDetailState.universityToMeet!.name
+            placeholder: userState.universityToMeet != null &&
+                    userState.universityToMeet!.name.isNotEmpty
+                ? userState.universityToMeet!.name
                 : 'Your university to meet',
             title: '''University to meet''',
             toggleDialog: toggleUniversity,
@@ -52,9 +53,9 @@ class RegisterDetailMeet extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: SettingsSelect(
-            placeholder: userRegisterDetailState.facultiesToMeet != null &&
-                    userRegisterDetailState.facultiesToMeet!.isNotEmpty
-                ? '${userRegisterDetailState.facultiesToMeet!.first.facultyName} +${userRegisterDetailState.facultiesToMeet!.length - 1}'
+            placeholder: userState.facultiesToMeet != null &&
+                    userState.facultiesToMeet!.isNotEmpty
+                ? '${userState.facultiesToMeet!.first.facultyName} +${userState.facultiesToMeet!.length - 1}'
                 : 'Your faculties to meet',
             title: '''Faculties to meet''',
             toggleDialog: toggleFaculty,

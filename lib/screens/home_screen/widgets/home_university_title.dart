@@ -10,10 +10,10 @@ class HomeUniversityTitle extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider).asData!.value;
+    final userState = ref.watch(appUserProvider);
 
     return Text(
-      user.university!.simpleName.toUpperCase(),
+      userState.university!.simpleName.toUpperCase(),
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
       style: const TextStyle(

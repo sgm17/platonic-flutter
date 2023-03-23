@@ -1,6 +1,5 @@
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
-import 'package:platonic/domains/chat_repository/src/models/message_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/http_repository/src/http_repository.dart';
 import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.dart';
@@ -34,7 +33,7 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<AppUser?> getIndexAppUser({required String tokenId}) async {
+  Future<AppUser?> getIndexAppUser() async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
@@ -45,6 +44,8 @@ class HttpViewmodel implements HttpRepository {
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
+    } else if (response.statusCode == 422) {
+      return AppUser.emptyUser;
     } else {
       throw const ErrorApp(code: 'httpindexappuser');
     }
@@ -56,6 +57,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
+
     final response = await http.post(Uri.parse("$API_ENDPOINT/users"),
         headers: headers, body: jsonEncode(user.toJson()));
 
@@ -281,6 +283,7 @@ class HttpViewmodel implements HttpRepository {
       'POST',
       Uri.parse('$API_ENDPOINT/images'),
     );
+    request.headers['Authorization'] = 'Bearer $tokenId';
     request.files.add(
       await http.MultipartFile.fromPath(
         'image',
@@ -296,7 +299,7 @@ class HttpViewmodel implements HttpRepository {
       final name = data["name"];
       final format = data["format"];
 
-      return "$API_ENDPOINT/images?$name&$format";
+      return "$API_ENDPOINT/images?name=$name&format=$format";
     } else {
       throw const ErrorApp(code: 'httpcreateimage');
     }
@@ -309,6 +312,7 @@ class HttpViewmodel implements HttpRepository {
       'POST',
       Uri.parse('$API_ENDPOINT/create_multiple'),
     );
+    request.headers['Authorization'] = 'Bearer $tokenId';
     for (final file in files) {
       request.files.add(
         await http.MultipartFile.fromPath(
@@ -328,7 +332,7 @@ class HttpViewmodel implements HttpRepository {
         final name = data["name"];
         final format = data["format"];
 
-        return "$API_ENDPOINT/images?$name&$format";
+        return "$API_ENDPOINT/images?name=$name&format=$format";
       }).toList();
     } else {
       throw const ErrorApp(code: 'httpcreatemultipleimages');

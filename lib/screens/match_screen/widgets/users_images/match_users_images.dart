@@ -93,7 +93,7 @@ class _MatchUsersImagesState extends State<MatchUsersImages>
               width: 140.0,
               height: 140.0,
               child: ScaleTransition(
-                  scale: _scaleAnimation1, child: MatchProfileImage()),
+                  scale: _scaleAnimation1, child: const MatchProfileImage()),
             ),
             Positioned(
               left: 100.0,
@@ -103,7 +103,8 @@ class _MatchUsersImagesState extends State<MatchUsersImages>
               width: 160.0,
               height: 160.0,
               child: ScaleTransition(
-                  scale: _scaleAnimation2, child: MatchOtherProfileImage()),
+                  scale: _scaleAnimation2,
+                  child: const MatchOtherProfileImage()),
             ),
             Positioned(
               left: 127.0,
@@ -123,7 +124,7 @@ class _MatchUsersImagesState extends State<MatchUsersImages>
               width: 24.588457107543945,
               height: 24.588457107543945,
               child: RotationTransition(
-                  turns: _controller2, child: MatchSmallFavourite()),
+                  turns: _controller2, child: const MatchSmallFavourite()),
             ),
           ]),
     );

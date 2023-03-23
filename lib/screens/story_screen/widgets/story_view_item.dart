@@ -11,11 +11,12 @@ import 'package:platonic/screens/story_screen/widgets/story_dots_menu.dart';
 import 'package:platonic/screens/story_screen/widgets/story_viewers.dart';
 
 class StoryViewItem extends ConsumerWidget {
-  const StoryViewItem(
-      {super.key,
-      required this.story,
-      required this.focusNode,
-      required this.popupMenuButtonKey});
+  const StoryViewItem({
+    super.key,
+    required this.story,
+    required this.focusNode,
+    required this.popupMenuButtonKey,
+  });
 
   final Story story;
   final FocusNode focusNode;
@@ -40,20 +41,20 @@ class StoryViewItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favouriteStoriesIdState = ref.watch(favouriteStoriesIdProvider);
+    final userState = ref.watch(appUserProvider);
     final favorite = favouriteStoriesIdState.contains(story.id);
-    final userState = ref.read(userProvider).asData?.value;
 
-    final storyOwner = userState?.id == story.user.id;
+    final storyOwner = userState.id == story.user.id;
 
     final alreadyConversation = ref.read(conversationsProvider).any((e) =>
-        e.user1.id == story.user.id && e.user2.id == userState?.id ||
-        e.user1.id == userState?.id && e.user2.id == story.user.id);
+        e.user1.id == story.user.id && e.user2.id == userState.id ||
+        e.user1.id == userState.id && e.user2.id == story.user.id);
 
     void toggleSend(String message) {
       final activeConversation = ref.read(conversationsProvider).firstWhere(
           (e) =>
-              e.user1.id == story.user.id && e.user2.id == userState?.id ||
-              e.user1.id == userState?.id && e.user2.id == story.user.id,
+              e.user1.id == story.user.id && e.user2.id == userState.id ||
+              e.user1.id == userState.id && e.user2.id == story.user.id,
           orElse: () => Conversation.emptyConversation);
 
       if (activeConversation == Conversation.emptyConversation) {
@@ -61,7 +62,7 @@ class StoryViewItem extends ConsumerWidget {
         final newMessage = Message(
             id: 0,
             body: message,
-            userId: ref.read(userProvider).asData!.value.id,
+            userId: userState.id,
             creationDate: DateTime.now().toUtc(),
             conversationId: 0);
 
@@ -72,7 +73,7 @@ class StoryViewItem extends ConsumerWidget {
         final newMessage = Message(
             id: 0,
             body: message,
-            userId: ref.read(userProvider).asData!.value.id,
+            userId: userState.id,
             creationDate: DateTime.now().toUtc(),
             conversationId: activeConversation.id);
 

@@ -17,7 +17,7 @@ class MeetSelectBackground extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.0),
         child: Container(
-          color: Color.fromARGB(255, 43, 45, 46),
+          color: const Color.fromARGB(255, 43, 45, 46),
         ),
       ),
     );

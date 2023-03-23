@@ -3,7 +3,7 @@ import 'package:platonic/domains/story_repository/src/models/models.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
 
 final storiesProvider =
-    StateNotifierProvider<StoriesNotifier, AsyncValue<List<Story>>>((ref) {
+    StateNotifierProvider.autoDispose<StoriesNotifier, AsyncValue<List<Story>>>((ref) {
   final activeFacultyState = ref.watch(activeFacultyIdProvider);
   return StoriesNotifier(ref, activeFacultyState);
 });

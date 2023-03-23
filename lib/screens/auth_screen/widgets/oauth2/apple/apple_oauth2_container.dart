@@ -8,7 +8,6 @@ class AppleOauth2Container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 358.0,
       height: 44.0,
       child: Stack(
           fit: StackFit.expand,
@@ -62,7 +61,7 @@ class AppleOauth2Container extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: height,
-                        child: AppleOauth2ContentContainer(),
+                        child: const AppleOauth2ContentContainer(),
                       ))
                 ]);
               }),

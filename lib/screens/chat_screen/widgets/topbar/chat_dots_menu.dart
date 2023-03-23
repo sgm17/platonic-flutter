@@ -11,34 +11,26 @@ class ChatDotsMenu extends ConsumerWidget {
   const ChatDotsMenu(
       {super.key, required this.toggleDeleteDialog, required this.appUser});
 
-  final Future<void> Function(
-          void Function(BuildContext context) toggleDeleteConversation)
+  final Future<void> Function(void Function() toggleDeleteConversation)
       toggleDeleteDialog;
   final AppUser appUser;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userState = ref.read(userProvider).asData?.value;
+    final userState = ref.watch(appUserProvider);
 
-    void toggleDeleteConversation(BuildContext context) async {
+    void deleteConversation() async {
       try {
         final conversation = ref.read(conversationsProvider).firstWhere(
             (e) =>
-                e.user1.id == appUser.id && e.user2.id == userState?.id ||
-                e.user1.id == userState?.id && e.user2.id == appUser.id,
+                e.user1.id == appUser.id && e.user2.id == userState.id ||
+                e.user1.id == userState.id && e.user2.id == appUser.id,
             orElse: () => Conversation.emptyConversation);
 
         if (conversation != Conversation.emptyConversation) {
-          ref
-              .read(conversationsProvider.notifier)
-              .sendDeleteConversation(conversationId: conversation.id);
-
-          ref
-              .read(conversationsProvider.notifier)
-              .deleteConversation(conversationId: conversation.id);
+          ref.read(conversationsProvider.notifier).sendDeleteConversation(
+              conversationId: conversation.id.toString());
         }
-        Navigator.pop(context);
-        // Navigator.pushReplacementNamed(context, '/HomeScreen');
       } on ErrorApp catch (e) {
         ref.read(chatErrorProvider.notifier).state = e;
       } catch (e) {
@@ -66,9 +58,9 @@ class ChatDotsMenu extends ConsumerWidget {
           )
         ];
       },
-      onSelected: (value) {
+      onSelected: (value) async {
         if (value == 0) {
-          toggleDeleteDialog(toggleDeleteConversation);
+          await toggleDeleteDialog(deleteConversation);
         }
       },
     );

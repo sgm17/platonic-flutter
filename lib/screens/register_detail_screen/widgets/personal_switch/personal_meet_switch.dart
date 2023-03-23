@@ -12,17 +12,19 @@ class PersonalMeetSwitch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    EdgeInsets containerMargin =
-        ref.read(userRegisterDetailProvider).sex == Sex.male
-            ? const EdgeInsets.only(right: 132.0, top: 2.0)
-            : const EdgeInsets.only(top: 2.0, left: 132.0);
+    final userState = ref.watch(appUserProvider);
+
+    EdgeInsets containerMargin = userState.sex == Sex.male
+        ? const EdgeInsets.only(right: 132.0, top: 2.0)
+        : const EdgeInsets.only(top: 2.0, left: 132.0);
     return GestureDetector(
-      onTap: () => ref.read(userRegisterDetailProvider.notifier).state = ref
-          .read(userRegisterDetailProvider)
-          .copyWith(
-              sex: ref.read(userRegisterDetailProvider).sex == Sex.male
-                  ? Sex.female
-                  : Sex.male),
+      onTap: () {
+        if (userState.sex == Sex.male) {
+          ref.read(appUserProvider.notifier).setSex(Sex.female);
+        } else {
+          ref.read(appUserProvider.notifier).setSex(Sex.female);
+        }
+      },
       child: Container(
         width: 258.0,
         height: 38.0,
@@ -50,7 +52,7 @@ class PersonalMeetSwitch extends ConsumerWidget {
                 height: 34.0,
                 child: const PersonalBlueContainer(),
               ),
-              Positioned(
+              const Positioned(
                 left: 132.0,
                 top: 0.0,
                 right: null,

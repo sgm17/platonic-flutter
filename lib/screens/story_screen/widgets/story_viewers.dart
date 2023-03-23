@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'package:platonic/providers/shared_preferences_provider/providers.dart';
 
-class StoryViewers extends StatelessWidget {
+class StoryViewers extends ConsumerWidget {
   final List<AppUser> viewers;
   final int totalViewers;
 
@@ -9,7 +12,7 @@ class StoryViewers extends StatelessWidget {
       {super.key, required this.viewers, required this.totalViewers});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: 100.0,
       child: Column(
@@ -30,8 +33,12 @@ class StoryViewers extends StatelessWidget {
                                 width: 2.0),
                             image: viewers[i].profileImage != null
                                 ? DecorationImage(
-                                    image:
-                                        NetworkImage(viewers[i].profileImage!),
+                                    image: NetworkImage(
+                                        viewers[i].profileImage!,
+                                        headers: {
+                                          'Authorization':
+                                              'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
+                                        }),
                                     fit: BoxFit.cover)
                                 : const DecorationImage(
                                     image: AssetImage(

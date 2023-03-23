@@ -18,7 +18,6 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppUser {
   int get id => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
-  String? get cloudToken => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   Sex get sex => throw _privateConstructorUsedError;
@@ -49,7 +48,6 @@ abstract class $AppUserCopyWith<$Res> {
   $Res call(
       {int id,
       String uid,
-      String? cloudToken,
       String name,
       String email,
       Sex sex,
@@ -89,7 +87,6 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
   $Res call({
     Object? id = null,
     Object? uid = null,
-    Object? cloudToken = freezed,
     Object? name = null,
     Object? email = null,
     Object? sex = null,
@@ -117,10 +114,6 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      cloudToken: freezed == cloudToken
-          ? _value.cloudToken
-          : cloudToken // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -251,7 +244,6 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
   $Res call(
       {int id,
       String uid,
-      String? cloudToken,
       String name,
       String email,
       Sex sex,
@@ -292,7 +284,6 @@ class __$$_AppUserCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? uid = null,
-    Object? cloudToken = freezed,
     Object? name = null,
     Object? email = null,
     Object? sex = null,
@@ -320,10 +311,6 @@ class __$$_AppUserCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
-      cloudToken: freezed == cloudToken
-          ? _value.cloudToken
-          : cloudToken // ignore: cast_nullable_to_non_nullable
-              as String?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -402,10 +389,9 @@ class _$_AppUser extends _AppUser {
   const _$_AppUser(
       {required this.id,
       required this.uid,
-      this.cloudToken,
       required this.name,
       required this.email,
-      required this.sex,
+      this.sex = Sex.male,
       required this.age,
       this.profileImage,
       this.meetPicture,
@@ -415,8 +401,8 @@ class _$_AppUser extends _AppUser {
       this.university,
       this.faculty,
       this.study,
-      this.meetStatus,
-      this.sexToMeet,
+      this.meetStatus = true,
+      this.sexToMeet = Sex.male,
       this.universityToMeet,
       this.universityToMeetId,
       final List<Faculty>? facultiesToMeet})
@@ -428,12 +414,11 @@ class _$_AppUser extends _AppUser {
   @override
   final String uid;
   @override
-  final String? cloudToken;
-  @override
   final String name;
   @override
   final String email;
   @override
+  @JsonKey()
   final Sex sex;
   @override
   final int age;
@@ -454,8 +439,10 @@ class _$_AppUser extends _AppUser {
   @override
   final Study? study;
   @override
+  @JsonKey()
   final bool? meetStatus;
   @override
+  @JsonKey()
   final Sex? sexToMeet;
   @override
   final University? universityToMeet;
@@ -473,7 +460,7 @@ class _$_AppUser extends _AppUser {
 
   @override
   String toString() {
-    return 'AppUser(id: $id, uid: $uid, cloudToken: $cloudToken, name: $name, email: $email, sex: $sex, age: $age, profileImage: $profileImage, meetPicture: $meetPicture, universityId: $universityId, facultyId: $facultyId, studyId: $studyId, university: $university, faculty: $faculty, study: $study, meetStatus: $meetStatus, sexToMeet: $sexToMeet, universityToMeet: $universityToMeet, universityToMeetId: $universityToMeetId, facultiesToMeet: $facultiesToMeet)';
+    return 'AppUser(id: $id, uid: $uid, name: $name, email: $email, sex: $sex, age: $age, profileImage: $profileImage, meetPicture: $meetPicture, universityId: $universityId, facultyId: $facultyId, studyId: $studyId, university: $university, faculty: $faculty, study: $study, meetStatus: $meetStatus, sexToMeet: $sexToMeet, universityToMeet: $universityToMeet, universityToMeetId: $universityToMeetId, facultiesToMeet: $facultiesToMeet)';
   }
 
   @override
@@ -483,8 +470,6 @@ class _$_AppUser extends _AppUser {
             other is _$_AppUser &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.uid, uid) || other.uid == uid) &&
-            (identical(other.cloudToken, cloudToken) ||
-                other.cloudToken == cloudToken) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.sex, sex) || other.sex == sex) &&
@@ -519,7 +504,6 @@ class _$_AppUser extends _AppUser {
         runtimeType,
         id,
         uid,
-        cloudToken,
         name,
         email,
         sex,
@@ -550,10 +534,9 @@ abstract class _AppUser extends AppUser {
   const factory _AppUser(
       {required final int id,
       required final String uid,
-      final String? cloudToken,
       required final String name,
       required final String email,
-      required final Sex sex,
+      final Sex sex,
       required final int age,
       final String? profileImage,
       final String? meetPicture,
@@ -574,8 +557,6 @@ abstract class _AppUser extends AppUser {
   int get id;
   @override
   String get uid;
-  @override
-  String? get cloudToken;
   @override
   String get name;
   @override

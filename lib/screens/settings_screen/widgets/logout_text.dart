@@ -8,7 +8,7 @@ class LogoutText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
+    return const Align(
       alignment: Alignment.center,
       child: Text(
         '''Log out''',

@@ -14,7 +14,7 @@ class MessageItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final conversationItemState = ref.watch(conversationItemProvider);
 
-    final userState = ref.read(userProvider).asData!.value;
+    final userState = ref.read(appUserProvider);
 
     final user = userState.id == conversationItemState.user1.id
         ? conversationItemState.user2

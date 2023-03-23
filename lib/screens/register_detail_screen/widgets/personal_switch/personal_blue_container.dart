@@ -17,7 +17,7 @@ class PersonalBlueContainer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
         child: Container(
-          color: Color.fromARGB(255, 63, 141, 253),
+          color: const Color.fromARGB(255, 63, 141, 253),
         ),
       ),
     );

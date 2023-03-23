@@ -21,5 +21,8 @@ class University with _$University {
   factory University.fromJson(Map<String, dynamic> json) =>
       _$UniversityFromJson(json);
 
+  static const University emptyUniversity =
+      University(id: 0, name: '', simpleName: '');
+
   Map<String, dynamic> toJson() => _$UniversityToJson(this);
 }

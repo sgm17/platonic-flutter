@@ -40,7 +40,7 @@ class StartBlur extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: height,
-                        child: AvatarContainer(),
+                        child: const AvatarContainer(),
                       ))
                 ]);
               }),
@@ -68,7 +68,7 @@ class StartBlur extends StatelessWidget {
                       scaleX: scaleX,
                       scaleY: scaleY,
                       scaleZ: 1,
-                      child: UserAvatar())
+                      child: const UserAvatar())
                 ]);
               }),
             ),
@@ -94,7 +94,7 @@ class StartBlur extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: height,
-                        child: StartAvatarTitle(),
+                        child: const StartAvatarTitle(),
                       ))
                 ]);
               }),

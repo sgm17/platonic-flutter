@@ -26,10 +26,7 @@ class PersonalAgeInput extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TextFormField(
       onSaved: (newValue) {
-        if (newValue == null) return;
-        ref.read(userRegisterDetailProvider.notifier).state = ref
-            .watch(userRegisterDetailProvider)
-            .copyWith(age: int.parse(newValue));
+        ref.read(appUserProvider.notifier).setAge(int.parse(newValue!));
       },
       validator: validateAge,
       keyboardType: TextInputType.number,

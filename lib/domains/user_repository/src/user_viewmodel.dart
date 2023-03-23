@@ -10,8 +10,8 @@ class UserViewmodel implements UserRepository {
 
   // index
   @override
-  Future<AppUser?> getAppUserProfile({required String tokenId}) {
-    return ref.read(httpViewmodelProvider).getIndexAppUser(tokenId: tokenId);
+  Future<AppUser?> getAppUserProfile() {
+    return ref.read(httpViewmodelProvider).getIndexAppUser();
   }
 
   // create

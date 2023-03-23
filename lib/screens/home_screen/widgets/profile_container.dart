@@ -45,7 +45,7 @@ class ProfileContainer extends StatelessWidget {
                         scaleX: scaleX,
                         scaleY: scaleY,
                         scaleZ: 1,
-                        child: ProfileIcon())
+                        child: const ProfileIcon())
                   ]);
                 }),
               )

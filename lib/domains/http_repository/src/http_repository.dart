@@ -13,7 +13,7 @@ abstract class HttpRepository {
 
   // Users
   // GET /api/v1/users - Authentication required
-  Future<AppUser?> getIndexAppUser({required String tokenId});
+  Future<AppUser?> getIndexAppUser();
   // POST /api/v1/users
   Future<AppUser> postCreateAppUser({required AppUser user});
   // PUT /api/v1/users/:id

@@ -31,7 +31,7 @@ class UniversityDialogScreen extends ConsumerWidget {
     final searchBarState = ref.watch(searchBarProvider);
     final universitiesListState = ref.watch(universitiesListProvider);
 
-    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+    final userState = ref.watch(appUserProvider);
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 27, 26, 29),
@@ -78,24 +78,22 @@ class UniversityDialogScreen extends ConsumerWidget {
                             filteredUniversities[index].university;
 
                         if (isMeetSettings) {
-                          ref.read(userRegisterDetailProvider.notifier).state =
-                              userRegisterDetailState.copyWith(
-                                  universityToMeet: university,
-                                  universityToMeetId: university.id);
+                          ref
+                              .read(appUserProvider.notifier)
+                              .setUniversityToMeet(university);
                         } else {
-                          ref.read(userRegisterDetailProvider.notifier).state =
-                              userRegisterDetailState.copyWith(
-                                  university: university,
-                                  universityId: university.id);
+                          ref
+                              .read(appUserProvider.notifier)
+                              .setUniversity(university);
                         }
                       },
                       child: OptionSelected(
                         isBlue: true,
                         isSelected: isMeetSettings
-                            ? userRegisterDetailState.universityToMeetId ==
+                            ? userState.universityToMeet?.id ==
                                 filteredUniversities[index].university.id
                             : !isMeetSettings
-                                ? userRegisterDetailState.universityId ==
+                                ? userState.universityId ==
                                     filteredUniversities[index].university.id
                                 : false,
                         name: filteredUniversities[index].university.name,

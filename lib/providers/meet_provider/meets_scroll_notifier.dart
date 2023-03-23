@@ -34,7 +34,7 @@ class MeetsScrollNotifier extends StateNotifier<AsyncValue<List<MeetsScroll>>> {
               return AsyncValue.data(newState);
             },
             error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-            loading: () => AsyncValue.loading());
+            loading: () => const AsyncValue.loading());
       }
     } on ErrorApp catch (e) {
       ref.read(homeErrorProvider.notifier).state = e;

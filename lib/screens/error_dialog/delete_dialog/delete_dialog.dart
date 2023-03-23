@@ -55,7 +55,7 @@ class DeleteDialog extends StatelessWidget {
                                           color: Color.fromARGB(
                                               255, 147, 147, 147),
                                           width: 0.5))),
-                              child: DeleteButtonCancel(),
+                              child: const DeleteButtonCancel(),
                             ),
                           ),
                         ),

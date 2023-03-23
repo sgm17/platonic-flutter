@@ -9,7 +9,7 @@ class StartMiddle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 340.0,
       height: 170.0,
       child: Stack(

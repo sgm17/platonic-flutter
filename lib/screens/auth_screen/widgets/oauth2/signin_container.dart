@@ -14,8 +14,8 @@ class SigninContainer extends StatelessWidget {
           width: 1.0,
           color: const Color.fromARGB(255, 43, 45, 46),
         ),
-        boxShadow: [
-          const BoxShadow(
+        boxShadow: const [
+          BoxShadow(
             color: Color.fromARGB(63, 0, 0, 0),
             offset: Offset(0.0, 4.0),
             blurRadius: 4.0,

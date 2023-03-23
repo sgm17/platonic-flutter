@@ -42,7 +42,7 @@ class ProfileButton extends StatelessWidget {
                   ]);
                 }),
               ),
-              Positioned(
+              const Positioned(
                 left: 8.0,
                 top: 7.0,
                 right: 7.0,

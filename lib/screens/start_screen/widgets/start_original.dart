@@ -39,7 +39,7 @@ class StartOriginal extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: height,
-                        child: AvatarContainer(),
+                        child: const AvatarContainer(),
                       ))
                 ]);
               }),
@@ -67,7 +67,7 @@ class StartOriginal extends StatelessWidget {
                       scaleX: scaleX,
                       scaleY: scaleY,
                       scaleZ: 1,
-                      child: UserAvatar())
+                      child: const UserAvatar())
                 ]);
               }),
             ),
@@ -93,7 +93,7 @@ class StartOriginal extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: height,
-                        child: StartAvatarTitle(),
+                        child: const StartAvatarTitle(),
                       ))
                 ]);
               }),

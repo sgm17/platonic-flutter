@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class StoryDotsMenu extends StatelessWidget {
-  const StoryDotsMenu({super.key, required this.popupMenuButtonKey});
+class StoryDotsMenu extends ConsumerWidget {
+  const StoryDotsMenu({
+    super.key,
+    required this.popupMenuButtonKey,
+  });
 
   final GlobalKey popupMenuButtonKey;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return PopupMenuButton(
       key: popupMenuButtonKey,
       icon: const SizedBox(
@@ -30,9 +34,6 @@ class StoryDotsMenu extends StatelessWidget {
                       fontWeight: FontWeight.w800,
                       color: Colors.red)))
         ];
-      },
-      onSelected: (value) {
-        if (value == 0) {}
       },
     );
   }

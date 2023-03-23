@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 const FIRST_TIME_USING_APP_KEY = "FIRST_TIME_USING_APP_KEY";
+const FIREBASE_TOKEN_ID_KEY = "FIREBASE_TOKEN_ID_KEY";
+const MEET_LAST_USER_ID_KEY = "MEET_LAST_USER_ID_KEY";
 
 // Api Endpoint
 // const API_ENDPOINT = "http://10.0.2.2:3000/api/v1";

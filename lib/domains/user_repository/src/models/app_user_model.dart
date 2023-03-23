@@ -17,10 +17,9 @@ class AppUser with _$AppUser {
   const factory AppUser(
       {required int id,
       required String uid,
-      String? cloudToken,
       required String name,
       required String email,
-      required Sex sex,
+      @Default(Sex.male) Sex sex,
       required int age,
       String? profileImage,
       String? meetPicture,
@@ -30,8 +29,8 @@ class AppUser with _$AppUser {
       University? university,
       Faculty? faculty,
       Study? study,
-      bool? meetStatus,
-      Sex? sexToMeet,
+      @Default(true) bool? meetStatus,
+      @Default(Sex.male) Sex? sexToMeet,
       University? universityToMeet,
       int? universityToMeetId,
       List<Faculty>? facultiesToMeet}) = _AppUser;
@@ -46,7 +45,6 @@ class AppUser with _$AppUser {
     uid: '',
     name: '',
     email: '',
-    sex: Sex.male,
     age: 0,
     university: University(id: 0, name: '', simpleName: ''),
     faculty: Faculty(id: 0, facultyName: ''),
@@ -54,7 +52,7 @@ class AppUser with _$AppUser {
     facultyId: 0,
     universityId: 0,
     studyId: 0,
-    universityToMeetId: 0,
+    universityToMeet: University.emptyUniversity,
     facultiesToMeet: [],
   );
 }

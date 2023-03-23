@@ -42,7 +42,7 @@ class SettingsButton extends StatelessWidget {
                   ]);
                 }),
               ),
-              Positioned(
+              const Positioned(
                 left: 9.0,
                 top: 9.0,
                 right: 10.0,

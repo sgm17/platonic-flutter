@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/constants/constants.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/meet_provider/providers.dart';
+import 'package:platonic/providers/shared_preferences_provider/providers.dart';
 import 'package:platonic/screens/error_dialog/delete_dialog/delete_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -50,9 +52,10 @@ class MeetItem extends ConsumerWidget {
                     ))
                 : DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(
-                      meetState.user.profileImage!,
-                    ),
+                    image: NetworkImage(meetState.user.profileImage!, headers: {
+                      'Authorization':
+                          'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
+                    }),
                   )),
         child: Flexible(
           child: Container(

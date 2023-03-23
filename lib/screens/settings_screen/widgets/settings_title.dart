@@ -16,7 +16,7 @@ class SettingsTitle extends StatelessWidget {
         title,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.left,
-        style: TextStyle(
+        style: const TextStyle(
           height: 1.1530000141688757,
           fontSize: 14.0,
           fontFamily: 'Gilroy',

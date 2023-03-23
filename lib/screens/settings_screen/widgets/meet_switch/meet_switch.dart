@@ -9,18 +9,20 @@ class MeetSwitch extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+    final userState = ref.watch(appUserProvider);
 
-    EdgeInsets containerMargin = userRegisterDetailState.sexToMeet == Sex.male
+    EdgeInsets containerMargin = userState.sexToMeet == Sex.male
         ? const EdgeInsets.only(right: 111.22222137451172, top: 2.0)
         : const EdgeInsets.only(top: 2.0, left: 111.22222137451172);
 
     return GestureDetector(
-      onTap: () => ref.read(userRegisterDetailProvider.notifier).state =
-          userRegisterDetailState.copyWith(
-              sexToMeet: userRegisterDetailState.sexToMeet == Sex.male
-                  ? Sex.female
-                  : Sex.male),
+      onTap: () {
+        if (userState.sexToMeet == Sex.male) {
+          ref.read(appUserProvider.notifier).setSexToMeet(Sex.female);
+        } else {
+          ref.read(appUserProvider.notifier).setSexToMeet(Sex.male);
+        }
+      },
       child: Container(
         width: 221.0,
         height: 32.0,
@@ -48,7 +50,7 @@ class MeetSwitch extends ConsumerWidget {
                 height: 29.217390060424805,
                 child: const BlueContainer(),
               ),
-              Positioned(
+              const Positioned(
                 left: 112.66663360595703,
                 top: 0.0,
                 right: null,

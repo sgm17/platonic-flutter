@@ -13,7 +13,6 @@ AppUser _$AppUserFromJson(Map json) => $checkedCreate(
         final val = AppUser(
           id: $checkedConvert('id', (v) => v as int),
           uid: $checkedConvert('uid', (v) => v as String),
-          cloudToken: $checkedConvert('cloud_token', (v) => v as String?),
           name: $checkedConvert('name', (v) => v as String),
           email: $checkedConvert('email', (v) => v as String),
           sex: $checkedConvert('sex', (v) => $enumDecode(_$SexEnumMap, v)),
@@ -58,7 +57,6 @@ AppUser _$AppUserFromJson(Map json) => $checkedCreate(
         return val;
       },
       fieldKeyMap: const {
-        'cloudToken': 'cloud_token',
         'profileImage': 'profile_image',
         'meetPicture': 'meet_picture',
         'universityId': 'university_id',
@@ -75,7 +73,6 @@ AppUser _$AppUserFromJson(Map json) => $checkedCreate(
 Map<String, dynamic> _$AppUserToJson(AppUser instance) => <String, dynamic>{
       'id': instance.id,
       'uid': instance.uid,
-      'cloud_token': instance.cloudToken,
       'name': instance.name,
       'email': instance.email,
       'sex': _$SexEnumMap[instance.sex]!,

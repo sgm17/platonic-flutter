@@ -8,7 +8,6 @@ class GoogleOauth2Container extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 358.0,
       height: 44.0,
       child: Stack(
           fit: StackFit.expand,

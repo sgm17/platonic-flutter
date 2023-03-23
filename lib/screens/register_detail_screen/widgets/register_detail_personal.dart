@@ -12,7 +12,7 @@ class RegisterDetailPersonal extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+    final userState = ref.watch(appUserProvider);
 
     void toggleUniversity() {
       ref.read(isMeetSettingsDialogProvider.notifier).state = false;
@@ -59,8 +59,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: userRegisterDetailState.universityId != 0
-                ? userRegisterDetailState.university!.name
+            placeholder: userState.universityId != 0
+                ? userState.university!.name
                 : 'Your university',
             title: '''University''',
             toggleDialog: toggleUniversity,
@@ -72,8 +72,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: userRegisterDetailState.facultyId != 0
-                ? userRegisterDetailState.faculty!.facultyName!
+            placeholder: userState.facultyId != 0
+                ? userState.faculty!.facultyName!
                 : 'Your faculty',
             title: '''Faculty''',
             toggleDialog: toggleFaculty,
@@ -85,8 +85,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
         SizedBox(
           height: 38.0,
           child: PersonalSelect(
-            placeholder: userRegisterDetailState.studyId != 0
-                ? userRegisterDetailState.study!.studyName
+            placeholder: userState.studyId != 0
+                ? userState.study!.studyName
                 : 'Your studies',
             title: '''Studies''',
             toggleDialog: toggleStudy,

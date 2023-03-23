@@ -52,7 +52,7 @@ class _MeetSwitchState extends State<MeetSwitch> {
                 margin: containerMargin,
                 width: 112.0,
                 height: 30.0,
-                child: MeetBlueContainer(),
+                child: const MeetBlueContainer(),
               ),
               const Positioned(
                 left: 113.0,

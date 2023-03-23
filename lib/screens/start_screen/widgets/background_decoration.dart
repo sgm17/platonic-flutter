@@ -9,7 +9,7 @@ class BackgroundDecoration extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 390.0,
       height: 447.0042724609375,
       child: Stack(

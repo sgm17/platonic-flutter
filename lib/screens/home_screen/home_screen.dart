@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/error_provider/home_error_provider.dart';
+import 'package:platonic/providers/meet_provider/providers.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
 
@@ -14,7 +15,10 @@ class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final homeErrorState = ref.watch(homeErrorProvider);
-    final actionState = ref.read(actionProvider);
+
+    final conversationsState = ref.watch(conversationsProvider);
+
+    final matchUserState = ref.watch(matchUserProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (homeErrorState != null) {
@@ -26,37 +30,41 @@ class HomeScreen extends ConsumerWidget {
 
         ref.read(homeErrorProvider.notifier).state = null;
       }
+      if (matchUserState != null) {
+        Navigator.pushNamed(context, '/MatchScreen');
+      }
     });
 
-    return const Scaffold(
-      backgroundColor: Color.fromARGB(255, 27, 26, 29),
+    return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 27, 26, 29),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            SizedBox(
+            const SizedBox(
               height: 35.0,
               child: HomeTopbar(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 22.0,
             ),
-            SizedBox(
+            const SizedBox(
               height: 163.0,
               child: StoriesContainer(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 32.0,
             ),
-            SizedBox(
+            const SizedBox(
               height: 138.0,
               child: MeetContainer(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 32.0,
             ),
-            Expanded(child: MessagesContainer()),
+            if (conversationsState.isNotEmpty)
+              const Expanded(child: MessagesContainer()),
           ]),
         ),
       ),

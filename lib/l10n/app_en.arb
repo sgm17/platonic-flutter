@@ -152,19 +152,63 @@
     "description": ""
   },
   "meetdeletedialog": "",
-  "@meetdelete": {
+  "@meetdeletedialog": {
     "description": ""
   },
   "conversationdeletedialog": "",
-  "@conversationdelete": {
+  "@conversationdeletedialog": {
     "description": ""
   },
-  "scrollstorydeletedialog": "",
-  "@scrollstorydelete": {
+  "storydeletedialog": "",
+  "@storydeletedialog": {
     "description": ""
   },
   "userloadingdialog": "",
   "@userloadingdialog": {
+    "description": ""
+  },
+  "imageloadingdialog": "",
+  "@imageloadingdialog": {
+    "description": ""
+  },
+  "registeruniversitydialog": "",
+  "@registeruniversitydialog": {
+    "description": ""
+  },
+  "registerfacultydialog": "",
+  "@registerfacultydialog": {
+    "description": ""
+  },
+  "registerstudydialog": "",
+  "@registerstudydialog": {
+    "description": ""
+  },
+  "registernamerequireddialog": "",
+  "@registernamerequireddialog": {
+    "description": ""
+  },
+  "registernamelongdialog": "",
+  "@registernamelongdialog": {
+    "description": ""
+  },
+  "registernameonlylettersdialog": "",
+  "@registernameonlylettersdialog": {
+    "description": ""
+  },
+  "authemptyemaildialog": "",
+  "@authemptyemaildialog": {
+    "description": ""
+  },
+  "authvalidemaildialog": "",
+  "@authvalidemaildialog": {
+    "description": ""
+  },
+  "authemptypasswordialog": "",
+  "@authemptypasswordialog": {
+    "description": ""
+  },
+  "authshortpasswordialog": "",
+  "@authshortpasswordialog": {
     "description": ""
   }
 }

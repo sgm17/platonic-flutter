@@ -34,28 +34,21 @@ class StoriesScrollNotifier
 
       state = state.when(
         data: (data) {
-          List<StoriesScroll> newState;
-          if (data.map((e) => e.faculty.id).contains(story.faculty.id)) {
-            newState = data
-                .map((e) => e.faculty.id == story.faculty.id
-                    ? StoriesScroll(
-                        id: newStory.id,
-                        user: newStory.user,
-                        faculty: newStory.faculty,
-                        backgroundGradientIndex:
-                            newStory.backgroundGradientIndex)
-                    : e)
-                .toList();
-          } else {
-            newState = [
-              StoriesScroll(
-                  id: newStory.id,
-                  user: newStory.user,
-                  faculty: newStory.faculty,
-                  backgroundGradientIndex: newStory.backgroundGradientIndex),
-              ...data
-            ];
-          }
+          final containsFaculty =
+              data.any((e) => e.faculty.id == newStory.faculty.id);
+          final newStoriesScroll = StoriesScroll(
+            id: newStory.id,
+            user: newStory.user,
+            faculty: newStory.faculty,
+            backgroundGradientIndex: newStory.backgroundGradientIndex,
+          );
+          final newState = containsFaculty
+              ? data
+                  .map((e) => e.faculty.id == newStory.faculty.id
+                      ? newStoriesScroll
+                      : e)
+                  .toList()
+              : [newStoriesScroll, ...data];
           return AsyncValue.data(newState);
         },
         error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
@@ -66,5 +59,15 @@ class StoriesScrollNotifier
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
     }
+  }
+
+  void deleteStoriesScroll({required int storyId}) {
+    state = state.when(
+        data: (data) {
+          final newState = data.where((e) => e.id != storyId).toList();
+          return AsyncValue.data(newState);
+        },
+        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+        loading: () => const AsyncValue.loading());
   }
 }

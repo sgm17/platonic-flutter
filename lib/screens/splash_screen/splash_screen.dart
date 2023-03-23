@@ -1,7 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/providers/error_provider/splash_error_provider.dart';
@@ -12,7 +8,9 @@ import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/register_detail_screen/register_detail_screen.dart';
 import 'package:platonic/screens/start_screen/start_screen.dart';
 import 'package:platonic/screens/verify_screen/verify_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/constants/constants.dart';
+import 'package:flutter/material.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -32,19 +30,29 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
         const Duration(seconds: 2), () => setState(() => splashState = true));
   }
 
-  bool isFirstTimeUsingApp(SharedPreferences sharedPreferences) {
+  bool getFirstTimeUsingApp() {
+    final sharedPreferences = ref.read(sharedPreferencesProvider);
+
     final firstTimeUsingAppp =
         sharedPreferences.getBool(FIRST_TIME_USING_APP_KEY);
 
     return firstTimeUsingAppp ?? true;
   }
 
+  bool getFirebaseTokenIdExists() {
+    final sharedPreferences = ref.read(sharedPreferencesProvider);
+
+    final exists = sharedPreferences.containsKey(FIREBASE_TOKEN_ID_KEY);
+
+    return exists;
+  }
+
   @override
   Widget build(BuildContext context) {
-    final userState = ref.watch(userProvider);
-    final firebaseAuth = FirebaseAuth.instance;
-
     final splashErrorState = ref.watch(splashErrorProvider);
+
+    final appUserState = ref.watch(appUserProvider);
+    final firebaseUserState = ref.watch(firebaseUserProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (splashErrorState != null) {
@@ -67,50 +75,44 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
                   fit: BoxFit.cover)));
     }
 
+    Widget buildSplashBody() {
+      final tokenId = getFirebaseTokenIdExists();
+
+      if (firebaseUserState == null || tokenId == false) {
+        return const AuthScreen();
+      } else if (appUserState.id == AppUser.emptyUser.id) {
+        return const RegisterDetailScreen();
+      } else if (firebaseUserState.emailVerified == false &&
+          appUserState.id != AppUser.emptyUser.id) {
+        return const VerifyScreen();
+      } else {
+        // User in the backend
+        final firstTimeUsingTheApp = getFirstTimeUsingApp();
+
+        if (firstTimeUsingTheApp == true) {
+          // First login of the user
+          return FutureBuilder<bool>(
+            // Set the first time using app to false
+            future: ref
+                .read(sharedPreferencesProvider)
+                .setBool(FIRST_TIME_USING_APP_KEY, false),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const SizedBox.shrink();
+              }
+              // Redirect to the StartScreen
+              return const StartScreen();
+            },
+          );
+        } else {
+          // Not the first time
+          return const HomeScreen();
+        }
+      }
+    }
+
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
-        body: SafeArea(
-            child: userState.when(
-          data: (AppUser user) {
-            if (firebaseAuth.currentUser != null &&
-                firebaseAuth.currentUser!.emailVerified) {
-              return const VerifyScreen();
-            } else if (user.id == 0) {
-              // No user in the backend
-              return const RegisterDetailScreen();
-            } else {
-              // Instance SharedPreferences()
-              final sharedPreferences = ref.read(sharedPreferencesProvider);
-
-              // User in the backend
-              final firstTimeUsingTheApp =
-                  isFirstTimeUsingApp(sharedPreferences);
-
-              if (firstTimeUsingTheApp == true) {
-                // First login of the user
-                return FutureBuilder<bool>(
-                  // Set the first time using app to false
-                  future: sharedPreferences.setBool(
-                      FIRST_TIME_USING_APP_KEY, false),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const SizedBox.shrink();
-                    }
-                    // Redirect to the StartScreen
-                    return const StartScreen();
-                  },
-                );
-              } else {
-                // Not the first time
-                return const HomeScreen();
-              }
-            }
-          },
-          // No Firebase user
-          loading: () => const AuthScreen(),
-          error: (error, stackTrace) {
-            return Text(error.toString());
-          },
-        )));
+        body: SafeArea(child: buildSplashBody()));
   }
 }

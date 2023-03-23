@@ -68,7 +68,7 @@ class DividerContainer extends StatelessWidget {
                       scaleX: scaleX,
                       scaleY: scaleY,
                       scaleZ: 1,
-                      child: DividerLine1())
+                      child: const DividerLine1())
                 ]);
               }),
             ),
@@ -95,7 +95,7 @@ class DividerContainer extends StatelessWidget {
                       scaleX: scaleX,
                       scaleY: scaleY,
                       scaleZ: 1,
-                      child: DividerLine2())
+                      child: const DividerLine2())
                 ]);
               }),
             )

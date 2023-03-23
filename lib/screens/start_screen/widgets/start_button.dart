@@ -15,7 +15,7 @@ class StartButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.0),
       ),
-      child: Stack(
+      child: const Stack(
           fit: StackFit.expand,
           alignment: Alignment.center,
           clipBehavior: Clip.none,

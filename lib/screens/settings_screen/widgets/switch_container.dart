@@ -12,14 +12,11 @@ class SwitchContainer extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userRegisterDetailState = ref.watch(userRegisterDetailProvider);
+    final userState = ref.watch(appUserProvider);
 
     return GestureDetector(
       onTap: () {
-        final meetStatus = userRegisterDetailState.meetStatus;
-        if (meetStatus == null) return;
-        ref.read(userRegisterDetailProvider.notifier).state =
-            userRegisterDetailState.copyWith(meetStatus: !meetStatus);
+        ref.read(appUserProvider.notifier).setMeetStatus();
       },
       child: SizedBox(
         width: 45.0,
@@ -50,11 +47,11 @@ class SwitchContainer extends ConsumerWidget {
                         child: SizedBox(
                           width: width,
                           height: height,
-                          child: userRegisterDetailState.meetStatus == null
-                              ? SwitchBlueBackground()
-                              : userRegisterDetailState.meetStatus!
-                                  ? SwitchBlueBackground()
-                                  : SwitchWhiteBackground(),
+                          child: userState.meetStatus == null
+                              ? const SwitchBlueBackground()
+                              : userState.meetStatus!
+                                  ? const SwitchBlueBackground()
+                                  : const SwitchWhiteBackground(),
                         ))
                   ]);
                 }),
@@ -76,9 +73,9 @@ class SwitchContainer extends ConsumerWidget {
                       (constraints.maxHeight * percentHeight) / 17.0;
 
                   Matrix4 matrix4 = Matrix4.translationValues(
-                      userRegisterDetailState.meetStatus == null
+                      userState.meetStatus == null
                           ? constraints.maxWidth * 0.5333333333333333
-                          : userRegisterDetailState.meetStatus!
+                          : userState.meetStatus!
                               ? constraints.maxWidth * 0.5333333333333333
                               : constraints.maxWidth * 0.5333333333333333 / 5,
                       constraints.maxHeight * 0.16,
@@ -90,7 +87,10 @@ class SwitchContainer extends ConsumerWidget {
                       curve: Curves.easeInOut,
                       transform: matrix4,
                       child: TransformHelper.scale(
-                          x: scaleX, y: scaleY, z: 1, child: SwitchSelect()),
+                          x: scaleX,
+                          y: scaleY,
+                          z: 1,
+                          child: const SwitchSelect()),
                     )
                   ]);
                 }),

@@ -9,7 +9,7 @@ class MatchSmallFavourite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return const SizedBox(
       width: 24.588457107543945,
       height: 24.588457107543945,
       child: Stack(
@@ -26,7 +26,7 @@ class MatchSmallFavourite extends StatelessWidget {
               height: 18.0,
               child: MatchSmallFavouriteContainer(),
             ),
-            const Positioned(
+            Positioned(
               left: 10.464111328125,
               top: 5.464101791381836,
               right: null,
