@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
-import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'package:platonic/domains/story_repository/src/models/models.dart';
 import 'package:platonic/providers/shared_preferences_provider/providers.dart';
 
 class StoryViewers extends ConsumerWidget {
-  final List<AppUser> viewers;
+  final List<Visualization> viewers;
   final int totalViewers;
 
   const StoryViewers(
@@ -31,10 +31,10 @@ class StoryViewers extends ConsumerWidget {
                             border: Border.all(
                                 color: const Color.fromARGB(255, 255, 255, 255),
                                 width: 2.0),
-                            image: viewers[i].profileImage != null
+                            image: viewers[i].user.profileImage != null
                                 ? DecorationImage(
                                     image: NetworkImage(
-                                        viewers[i].profileImage!,
+                                        viewers[i].user.profileImage!,
                                         headers: {
                                           'Authorization':
                                               'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'

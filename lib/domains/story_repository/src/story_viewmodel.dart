@@ -14,8 +14,7 @@ class StoryViewmodel implements StoryRepository {
   }
 
   @override
-  Future<List<Story>> getShowStoriesFaculty() {
-    final facultyId = ref.read(activeFacultyIdProvider);
+  Future<List<Story>> getShowStoriesFaculty({required int facultyId}) {
     return ref.read(httpViewmodelProvider).getShowStories(facultyId: facultyId);
   }
 

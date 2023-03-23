@@ -96,7 +96,7 @@ class HttpViewmodel implements HttpRepository {
     final response = await http.put(Uri.parse("$API_ENDPOINT/users/cloudToken"),
         headers: headers, body: jsonEncode({'cloud_token': cloudToken}));
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       await jsonDecode(response.body);
       return true;
     } else {
@@ -178,6 +178,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
+
     final response = await http
         .get(Uri.parse("$API_ENDPOINT/stories/$facultyId"), headers: headers);
 

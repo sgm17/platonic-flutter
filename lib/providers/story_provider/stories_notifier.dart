@@ -17,8 +17,9 @@ class StoriesNotifier extends StateNotifier<AsyncValue<List<Story>>> {
   Future<void> initialize() async {
     if (activeFacultyState != -1) {
       try {
-        final stories =
-            await ref.read(storyViewmodelProvider).getShowStoriesFaculty();
+        final stories = await ref
+            .read(storyViewmodelProvider)
+            .getShowStoriesFaculty(facultyId: activeFacultyState);
         state = AsyncValue.data(stories);
       } on ErrorApp catch (e) {
         ref.read(storyErrorProvider.notifier).state = e;

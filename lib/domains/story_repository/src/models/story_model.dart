@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:platonic/domains/story_repository/src/models/models.dart';
 import 'package:platonic/domains/university_repository/src/models/models.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:platonic/helpers/serialize/gradient_converter.dart';
@@ -24,7 +25,7 @@ class Story with _$Story {
     required String body,
     required DateTime creationDate,
     required bool favourite,
-    required List<AppUser>? visualizations,
+    required List<Visualization>? visualizations,
     @LinearGradientConverter() required LinearGradient backgroundGradientIndex,
   }) = _Story;
 

@@ -59,8 +59,9 @@ class MatchScreenState extends ConsumerState<MatchScreen>
         backgroundColor: Colors.transparent,
         body: SafeArea(
           child: Container(
+            width: double.infinity,
             decoration: BoxDecoration(
-                image: matchUserState?.meetPicture != null
+                image: matchUserState?.meetPicture == null
                     ? const DecorationImage(
                         colorFilter: ColorFilter.mode(
                             Color.fromARGB(178, 27, 26, 29), BlendMode.srcATop),

@@ -23,8 +23,8 @@ Story _$StoryFromJson(Map json) => $checkedCreate(
           visualizations: $checkedConvert(
               'visualizations',
               (v) => (v as List<dynamic>?)
-                  ?.map((e) =>
-                      AppUser.fromJson(Map<String, dynamic>.from(e as Map)))
+                  ?.map((e) => Visualization.fromJson(
+                      Map<String, dynamic>.from(e as Map)))
                   .toList()),
           backgroundGradientIndex: $checkedConvert('background_gradient_index',
               (v) => const LinearGradientConverter().fromJson(v as int)),
