@@ -17,15 +17,22 @@ class HomeScreen extends ConsumerStatefulWidget {
 }
 
 class HomeScreenState extends ConsumerState<HomeScreen> {
-  bool isAlreadyMatch = false;
+  @override
+  void initState() {
+    super.initState();
+
+    final matchUserState = ref.read(matchUserProvider);
+
+    if (matchUserState != null) {
+      Navigator.pushNamed(context, '/MatchScreen');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final homeErrorState = ref.watch(homeErrorProvider);
 
     final conversationsState = ref.watch(conversationsProvider);
-
-    final matchUserState = ref.watch(matchUserProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (homeErrorState != null) {
@@ -36,12 +43,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                 ));
 
         ref.read(homeErrorProvider.notifier).state = null;
-      }
-      if (matchUserState != null && isAlreadyMatch == false) {
-        Navigator.pushNamed(context, '/MatchScreen');
-        setState(() {
-          isAlreadyMatch;
-        });
       }
     });
 
