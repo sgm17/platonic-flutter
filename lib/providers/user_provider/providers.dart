@@ -4,3 +4,4 @@ export 'user_viewmodel_provider.dart';
 export 'other_user_provider.dart';
 export 'firebase_user_notifier.dart';
 export 'firebase_user_provider.dart';
+export 'token_id_provider.dart';

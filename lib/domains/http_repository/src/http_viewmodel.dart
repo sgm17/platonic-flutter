@@ -1,12 +1,12 @@
-import 'package:platonic/constants/constants.dart';
+import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
 import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/http_repository/src/http_repository.dart';
 import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/stories_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/story_model.dart';
-import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
+import 'package:platonic/constants/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
@@ -44,8 +44,6 @@ class HttpViewmodel implements HttpRepository {
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return AppUser.fromJson(data);
-    } else if (response.statusCode == 422) {
-      return AppUser.emptyUser;
     } else {
       throw const ErrorApp(code: 'httpindexappuser');
     }
@@ -93,8 +91,10 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.put(Uri.parse("$API_ENDPOINT/users/cloudToken"),
-        headers: headers, body: jsonEncode({'cloud_token': cloudToken}));
+    final response = await http.put(
+        Uri.parse("$API_ENDPOINT/users/cloud_token"),
+        headers: headers,
+        body: jsonEncode({'cloud_token': cloudToken}));
 
     if (response.statusCode == 200) {
       await jsonDecode(response.body);

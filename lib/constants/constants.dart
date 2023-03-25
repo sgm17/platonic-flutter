@@ -6,10 +6,10 @@ const FIREBASE_TOKEN_ID_KEY = "FIREBASE_TOKEN_ID_KEY";
 const MEET_LAST_USER_ID_KEY = "MEET_LAST_USER_ID_KEY";
 
 // Api Endpoint
-// const API_ENDPOINT = "http://10.0.2.2:3000/api/v1";
-// const ACTION_CABLE_ENDPOINT = "ws://10.0.2.2:3000/cable";
-const API_ENDPOINT = "http://35.180.234.87:80/api/v1";
-const ACTION_CABLE_ENDPOINT = "ws://35.180.234.87:80/cable";
+const API_ENDPOINT = "http://10.0.2.2:3000/api/v1";
+const ACTION_CABLE_ENDPOINT = "ws://10.0.2.2:3000/cable";
+// const API_ENDPOINT = "http://35.180.234.87:80/api/v1";
+// const ACTION_CABLE_ENDPOINT = "ws://35.180.234.87:80/cable";
 
 List<LinearGradient> gradients = [
   const LinearGradient(

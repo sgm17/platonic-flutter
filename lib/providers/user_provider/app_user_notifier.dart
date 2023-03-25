@@ -18,6 +18,31 @@ class AppUserNotifier extends StateNotifier<AppUser> {
     userSignInBackend();
   }
 
+  Future<void> userSignInBackend() async {
+    if (user != null) {
+      try {
+        // Get the tokenId
+        final tokenId = ref.read(tokenIdProvider);
+
+        if (tokenId != null) {
+          // Get the profile from the backend
+          final appUser =
+              await ref.read(userViewmodelProvider).getAppUserProfile();
+
+          if (appUser != null) {
+            state = appUser;
+          }
+        } else {
+          state = AppUser.emptyUser;
+        }
+      } on ErrorApp catch (e) {
+        ref.read(splashErrorProvider.notifier).state = e;
+      } catch (e) {
+        print(e);
+      }
+    }
+  }
+
   Future<void> userRegisterDetailInBackend() async {
     if (user != null) {
       try {
@@ -66,24 +91,6 @@ class AppUserNotifier extends StateNotifier<AppUser> {
       ref.read(authErrorProvider.notifier).state = errorApp;
     } catch (e) {
       print(e);
-    }
-  }
-
-  Future<void> userSignInBackend() async {
-    if (user != null) {
-      try {
-        // Get the profile from the backend
-        final appUser =
-            await ref.read(userViewmodelProvider).getAppUserProfile();
-
-        if (appUser != null) {
-          state = appUser;
-        }
-      } on ErrorApp catch (e) {
-        ref.read(splashErrorProvider.notifier).state = e;
-      } catch (e) {
-        print(e);
-      }
     }
   }
 

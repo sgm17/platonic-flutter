@@ -1,8 +1,10 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/error_provider/home_error_provider.dart';
 import 'package:platonic/providers/meet_provider/providers.dart';
+import 'package:platonic/providers/user_provider/firebase_user_provider.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
 
@@ -25,6 +27,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
     if (matchUserState != null) {
       Navigator.pushNamed(context, '/MatchScreen');
+      return;
+    } else {
+      ref.read(firebaseUserProvider.notifier).initializeFirebaseMessaging();
     }
   }
 

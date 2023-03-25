@@ -10,8 +10,12 @@ import 'package:platonic/providers/error_provider/providers.dart';
 import 'dart:async';
 
 class FirebaseUserNotifier extends StateNotifier<User?> {
+  final initializationSettings = const InitializationSettings(
+      android: AndroidInitializationSettings('ic_notification'));
+
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
+
   final Ref ref;
 
   StreamSubscription<User?>? idTokenListener;
@@ -19,6 +23,9 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
   StreamSubscription<User?>? userChangesListener;
 
   FirebaseUserNotifier(this.ref) : super(null) {
+    //FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
+    //  showNotification(message);
+    //});
     initialize();
   }
 
@@ -27,8 +34,6 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
 
     if (firebaseAuth.currentUser != null) {
       idTokenListener = firebaseAuth.idTokenChanges().listen(onTokenIdChanges);
-      cloudTokenListener =
-          FirebaseMessaging.instance.onTokenRefresh.listen(onCloudTokenChanges);
       userChangesListener = firebaseAuth.userChanges().listen(onUserChanges);
     }
   }
@@ -44,6 +49,10 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
       ref
           .read(sharedPreferencesProvider)
           .setString(FIREBASE_TOKEN_ID_KEY, tokenId);
+      ref.read(tokenIdProvider.notifier).state = tokenId;
+
+      cloudTokenListener =
+          FirebaseMessaging.instance.onTokenRefresh.listen(onCloudTokenChanges);
     }
   }
 
@@ -59,21 +68,41 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
     }
   }
 
-  Future<void> register() async {
-    await FirebaseMessaging.instance.requestPermission();
+  Future<void> initializeFirebaseMessaging() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      showNotification(message);
-    });
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
+    final settings = await messaging.requestPermission();
+
+    final remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
+
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      print('User granted permission');
+
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        showNotification(message);
+      });
+
+      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+        print('User tapped on the notification!');
+        print('Message data: ${message.data}');
+        print('Message notification: ${message.notification}');
+      });
+    } else {
+      print('User declined or has not accepted permission');
+    }
   }
 
   Future<void> showNotification(RemoteMessage message) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails('your channel id', 'your channel name',
-            channelDescription: 'your channel description',
-            importance: Importance.max,
-            priority: Priority.high,
-            ticker: 'ticker');
+        AndroidNotificationDetails(
+      'high_importance_channel',
+      'High Importance Notifications',
+      channelDescription: 'your channel description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
 
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);

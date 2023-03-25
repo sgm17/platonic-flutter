@@ -39,14 +39,6 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
     return firstTimeUsingAppp ?? true;
   }
 
-  bool getFirebaseTokenIdExists() {
-    final sharedPreferences = ref.read(sharedPreferencesProvider);
-
-    final exists = sharedPreferences.containsKey(FIREBASE_TOKEN_ID_KEY);
-
-    return exists;
-  }
-
   @override
   Widget build(BuildContext context) {
     final splashErrorState = ref.watch(splashErrorProvider);
@@ -76,9 +68,9 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
     }
 
     Widget buildSplashBody() {
-      final tokenId = getFirebaseTokenIdExists();
+      final tokenId = ref.read(tokenIdProvider);
 
-      if (firebaseUserState == null || tokenId == false) {
+      if (firebaseUserState == null || tokenId == null) {
         return const AuthScreen();
       } else if (appUserState.id == AppUser.emptyUser.id) {
         return const RegisterDetailScreen();
