@@ -26,16 +26,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
 
-    final matchUserState = ref.read(matchUserProvider);
-
-    if (matchUserState != null) {
-      Navigator.pushNamed(context, '/MatchScreen');
-      return;
-    } else {
-      initialize();
-      getMessageOpenedApp();
-      getInitialMessage();
-    }
+    initialize();
+    getMessageOpenedApp();
+    getInitialMessage();
   }
 
   Future<void> getMessageOpenedApp() async {

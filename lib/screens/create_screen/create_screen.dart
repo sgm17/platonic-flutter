@@ -64,13 +64,16 @@ class CreateScreenState extends ConsumerState<CreateScreen> {
           backgroundGradientIndex: gradients[gradientIndexState],
           visualizations: []);
 
-      await ref.read(storiesScrollProvider.notifier).createStory(story);
+      final result =
+          await ref.read(storiesScrollProvider.notifier).createStory(story);
 
       createController.clear();
 
       ref.read(circularButtonProvider.notifier).state = false;
 
-      Navigator.pop(context);
+      if (result == true) {
+        Navigator.pop(context);
+      }
     }
 
     return Scaffold(

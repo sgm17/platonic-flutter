@@ -31,6 +31,7 @@ class ChatDotsMenu extends ConsumerWidget {
           ref.read(conversationsProvider.notifier).sendDeleteConversation(
               conversationId: conversation.id.toString());
         }
+        Navigator.of(context).pop();
       } on ErrorApp catch (e) {
         ref.read(chatErrorProvider.notifier).state = e;
       } catch (e) {

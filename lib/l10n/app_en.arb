@@ -167,6 +167,10 @@
   "@userloadingdialog": {
     "description": ""
   },
+  "settingsloadingdialog": "",
+  "@settingsloadingdialog": {
+    "description": ""
+  },
   "imageloadingdialog": "",
   "@imageloadingdialog": {
     "description": ""

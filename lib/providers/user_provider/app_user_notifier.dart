@@ -122,19 +122,24 @@ class AppUserNotifier extends StateNotifier<AppUser> {
   void setEmail(String email) => state = state.copyWith(email: email);
   void setSex(Sex sex) => state = state.copyWith(sex: sex);
   void setAge(int age) => state = state.copyWith(age: age);
-  void setUniversity(University university) => state =
-      state.copyWith(university: university, universityId: university.id);
-  void setFaculty(Faculty faculty) =>
-      state = state.copyWith(faculty: faculty, facultyId: faculty.id);
+  void setUniversity(University university) => state = state.copyWith(
+      university: university,
+      universityId: university.id,
+      faculty: null,
+      study: null);
+  void setFaculty(Faculty faculty) => state =
+      state.copyWith(faculty: faculty, facultyId: faculty.id, study: null);
   void setStudy(Study study) =>
       state = state.copyWith(study: study, studyId: study.id);
-  void setMeetStatus() => state = state.copyWith(meetStatus: state.meetStatus);
+  void setMeetStatus() => state = state.copyWith(
+      meetStatus: state.meetStatus != null ? !state.meetStatus! : false);
   void setSexToMeet(Sex sexToMeet) =>
       state = state.copyWith(sexToMeet: sexToMeet);
   void setUniversityToMeet(University universityToMeet) =>
       state = state.copyWith(
           universityToMeet: universityToMeet,
-          universityToMeetId: universityToMeet.id);
+          universityToMeetId: universityToMeet.id,
+          facultiesToMeet: null);
   void setFacultiesToMeet(List<Faculty> faculties) =>
       state = state.copyWith(facultiesToMeet: faculties);
 

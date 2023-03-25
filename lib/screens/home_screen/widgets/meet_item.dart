@@ -31,7 +31,7 @@ class MeetItem extends ConsumerWidget {
                 await ref
                     .read(meetsScrollProvider.notifier)
                     .deleteMeet(meet: meetState);
-                Navigator.pop(context);
+                Navigator.of(context).pop();
               }));
     }
 

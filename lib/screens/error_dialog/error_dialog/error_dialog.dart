@@ -12,7 +12,7 @@ class ErrorDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void toggleRetry() {
-      Navigator.pop(context);
+      Navigator.of(context).pop();
     }
 
     return Center(

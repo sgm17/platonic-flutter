@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
 import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
@@ -21,7 +22,8 @@ class HttpViewmodel implements HttpRepository {
     final headers = {
       'Content-Type': 'application/json',
     };
-    final response = await http.get(Uri.parse("$API_ENDPOINT/universities"),
+    final response = await http.get(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/universities"),
         headers: headers);
 
     if (response.statusCode == 200) {
@@ -38,8 +40,9 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response =
-        await http.get(Uri.parse("$API_ENDPOINT/users"), headers: headers);
+    final response = await http.get(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/users"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
@@ -56,8 +59,10 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.post(Uri.parse("$API_ENDPOINT/users"),
-        headers: headers, body: jsonEncode(user.toJson()));
+    final response = await http.post(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/users"),
+        headers: headers,
+        body: jsonEncode(user.toJson()));
 
     if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
@@ -73,8 +78,10 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.put(Uri.parse("$API_ENDPOINT/users/${user.id}"),
-        headers: headers, body: jsonEncode(user.toJson()));
+    final response = await http.put(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/users/${user.id}"),
+        headers: headers,
+        body: jsonEncode(user.toJson()));
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
@@ -92,11 +99,11 @@ class HttpViewmodel implements HttpRepository {
     };
 
     final response = await http.put(
-        Uri.parse("$API_ENDPOINT/users/cloud_token"),
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/users/cloud_token"),
         headers: headers,
         body: jsonEncode({'cloud_token': cloudToken}));
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       await jsonDecode(response.body);
       return true;
     } else {
@@ -110,8 +117,9 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http
-        .delete(Uri.parse("$API_ENDPOINT/users/${user.id}"), headers: headers);
+    final response = await http.delete(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/users/${user.id}"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
@@ -127,8 +135,9 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response =
-        await http.get(Uri.parse("$API_ENDPOINT/meets"), headers: headers);
+    final response = await http.get(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/meets"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final List<dynamic> data = await jsonDecode(response.body);
@@ -144,7 +153,8 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.delete(Uri.parse("$API_ENDPOINT/meets/$meetId"),
+    final response = await http.delete(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/meets/$meetId"),
         headers: headers);
 
     if (response.statusCode == 200) {
@@ -161,8 +171,9 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response =
-        await http.get(Uri.parse("$API_ENDPOINT/stories"), headers: headers);
+    final response = await http.get(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/stories"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final List<dynamic> data = await json.decode(response.body);
@@ -179,8 +190,9 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http
-        .get(Uri.parse("$API_ENDPOINT/stories/$facultyId"), headers: headers);
+    final response = await http.get(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/stories/$facultyId"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final List<dynamic> data = await jsonDecode(response.body);
@@ -196,8 +208,10 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.post(Uri.parse("$API_ENDPOINT/stories"),
-        headers: headers, body: jsonEncode(story.toJson()));
+    final response = await http.post(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/stories"),
+        headers: headers,
+        body: jsonEncode(story.toJson()));
     if (response.statusCode == 201) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return Story.fromJson(data);
@@ -215,7 +229,8 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
     final response = await http.put(
-        Uri.parse("$API_ENDPOINT/stories/$storyId/toggle_favourite"),
+        Uri.parse(
+            "${dotenv.env['API_ENDPOINT']}/stories/$storyId/toggle_favourite"),
         headers: headers);
 
     if (response.statusCode == 200) {
@@ -232,8 +247,9 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http
-        .delete(Uri.parse("$API_ENDPOINT/stories/$storyId"), headers: headers);
+    final response = await http.delete(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/stories/$storyId"),
+        headers: headers);
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
@@ -249,7 +265,8 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.get(Uri.parse("$API_ENDPOINT/conversations"),
+    final response = await http.get(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/conversations"),
         headers: headers);
 
     if (response.statusCode == 200) {
@@ -267,10 +284,16 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.post(Uri.parse("$API_ENDPOINT/visualizations"),
-        headers: headers, body: jsonEncode({'story_id': storyId}));
+    final response = await http.post(
+        Uri.parse(
+            "${dotenv.env['API_ENDPOINT']}/stories/$storyId/visualizations"),
+        headers: headers,
+        body: jsonEncode({'story_id': storyId}));
 
     if (response.statusCode == 201) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return data["visualization"];
+    } else if (response.statusCode == 200) {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return data["visualization"];
     } else {
@@ -282,7 +305,7 @@ class HttpViewmodel implements HttpRepository {
   Future<String> postCreateImage({required File file}) async {
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('$API_ENDPOINT/images'),
+      Uri.parse('${dotenv.env['API_ENDPOINT']}/images'),
     );
     request.headers['Authorization'] = 'Bearer $tokenId';
     request.files.add(
@@ -300,7 +323,7 @@ class HttpViewmodel implements HttpRepository {
       final name = data["name"];
       final format = data["format"];
 
-      return "$API_ENDPOINT/images?name=$name&format=$format";
+      return "${dotenv.env['API_ENDPOINT']}/images?name=$name&format=$format";
     } else {
       throw const ErrorApp(code: 'httpcreateimage');
     }
@@ -311,7 +334,7 @@ class HttpViewmodel implements HttpRepository {
       {required List<File> files}) async {
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('$API_ENDPOINT/create_multiple'),
+      Uri.parse('${dotenv.env['API_ENDPOINT']}/create_multiple'),
     );
     request.headers['Authorization'] = 'Bearer $tokenId';
     for (final file in files) {
@@ -333,7 +356,7 @@ class HttpViewmodel implements HttpRepository {
         final name = data["name"];
         final format = data["format"];
 
-        return "$API_ENDPOINT/images?name=$name&format=$format";
+        return "${dotenv.env['API_ENDPOINT']}/images?name=$name&format=$format";
       }).toList();
     } else {
       throw const ErrorApp(code: 'httpcreatemultipleimages');

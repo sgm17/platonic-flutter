@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/auth_provider/register_provider.dart';
-import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/login/widgets/widgets.dart';
 import 'package:platonic/screens/auth_screen/register/widgets/widgets.dart';

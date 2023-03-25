@@ -1,4 +1,5 @@
 import 'package:image_picker/image_picker.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/profile_error_provider.dart';
 import 'package:platonic/providers/http_provider/http_viewmodel_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
@@ -23,6 +24,7 @@ class ProfileScreen extends ConsumerStatefulWidget {
 
 class ProfileScreenState extends ConsumerState<ProfileScreen> {
   bool isLoading = false;
+  bool isUpdating = false;
 
   Future<void> toggleUpdateImage({bool profileImage = true}) async {
     final pickedFile =
@@ -35,6 +37,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
 
       // Display the loading dialog
       showDialog(
+        barrierDismissible: false,
         context: context,
         builder: (_) => const LoadingDialog(
           loading: 'imageloadingdialog',
@@ -47,7 +50,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
           .postCreateImage(file: File(pickedFile.path));
 
       // Hide the loading dialog
-      Navigator.pop(context);
+      Navigator.of(context).pop();
 
       setState(() {
         isLoading = false;
@@ -59,35 +62,45 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         ref.read(appUserProvider.notifier).setMeetImage(image);
       }
     }
+
+    setState(() {
+      isUpdating = true;
+    });
   }
 
-  void toggleLoadingDialog() {
-    setState(() {
-      isLoading = true;
-    });
+  Future<void> updateProfile() async {
+    try {
+      setState(() {
+        isLoading = true;
+      });
 
-    final dialog = showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => const LoadingDialog(loading: 'userloadingdialog'),
-    );
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => const LoadingDialog(loading: 'userloadingdialog'),
+      );
 
-    ref.read(appUserProvider.notifier).updateProfile().whenComplete(() {
-      Navigator.of(context).pop(); // Dismiss the dialog
+      await ref.read(appUserProvider.notifier).updateProfile();
+
+      Navigator.of(context).pop();
+
       setState(() {
         isLoading = false;
       });
-    });
-
-    dialog.then((_) {});
+    } on ErrorApp catch (e) {
+      ref.read(profileErrorProvider.notifier).state = e;
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<bool> onWillPop() async {
     if (isLoading) {
       return false;
+    } else if (isUpdating == false) {
+      return true;
     } else {
-      toggleLoadingDialog();
-      await ref.read(appUserProvider.notifier).updateProfile();
+      await updateProfile();
       return true;
     }
   }
@@ -124,12 +137,12 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                         child: SizedBox(
                           width: 35.0,
                           height: 35.0,
-                          child: BackButtonProfile(
-                            toggleLoadingDialog: () async {
-                              await onWillPop();
-                              Navigator.pop(context);
-                            },
-                          ),
+                          child:
+                              BackButtonProfile(toggleLoadingDialog: () async {
+                            if (await onWillPop()) {
+                              Navigator.of(context).pop();
+                            }
+                          }),
                         ),
                       ),
                       const SizedBox(

@@ -116,22 +116,9 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   }
 
   void deleteConversation({required int conversationId}) {
-    state = state.where((conversation) {
-      if (conversation.id == conversationId) {
-        final activeUser2State = ref.read(activeUser2Provider);
-        final userState = ref.read(appUserProvider);
-
-        if (userState.id == conversation.user1.id &&
-                activeUser2State?.id == conversation.user2.id ||
-            activeUser2State?.id == conversation.user1.id &&
-                userState.id == conversation.user2.id) {
-          ref.read(activeUser2Provider.notifier).state = null;
-        }
-        return true;
-      } else {
-        return false;
-      }
-    }).toList();
+    state = state
+        .where((conversation) => conversation.id == conversationId)
+        .toList();
   }
 
   void getConversations() {

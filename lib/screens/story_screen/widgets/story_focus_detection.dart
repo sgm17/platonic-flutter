@@ -23,15 +23,15 @@ class StoryFocusDetection extends ConsumerWidget {
     focusNode.requestFocus();
   }
 
-  Future<void> toggleFavourite(WidgetRef ref, int storyId) async {
-    await ref
-        .read(storiesProvider.notifier)
-        .toggleStoryFavourite(storyId: storyId);
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final storyViewIdState = ref.watch(storyViewIdProvider);
+
+    Future<void> toggleFavourite(int storyId) async {
+      await ref
+          .read(storiesProvider.notifier)
+          .toggleStoryFavourite(storyId: storyId);
+    }
 
     void togglePopupMenuButton() {
       controller.pause();
@@ -108,7 +108,7 @@ class StoryFocusDetection extends ConsumerWidget {
                     width: 8.0,
                   ),
                   GestureDetector(
-                    onTap: () => toggleFavourite(ref, storyViewIdState),
+                    onTap: () => toggleFavourite(storyViewIdState),
                     child: Container(
                       height: 30.0,
                       width: 30.0,

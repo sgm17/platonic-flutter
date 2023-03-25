@@ -15,7 +15,7 @@ class DeleteDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void toggleCancel() {
-      Navigator.pop(context);
+      Navigator.of(context).pop();
     }
 
     return Center(

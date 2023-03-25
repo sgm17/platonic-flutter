@@ -81,6 +81,8 @@ class StoryViewItem extends ConsumerWidget {
             .read(conversationsProvider.notifier)
             .sendMessage(message: newMessage);
       }
+
+      Navigator.of(context).pop();
     }
 
     return Container(

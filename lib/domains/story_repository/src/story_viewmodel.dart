@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/story_repository/src/models/models.dart';
 import 'package:platonic/domains/story_repository/src/story_repository.dart';
 import 'package:platonic/providers/http_provider/providers.dart';
-import 'package:platonic/providers/story_provider/providers.dart';
 
 class StoryViewmodel implements StoryRepository {
   final Ref ref;

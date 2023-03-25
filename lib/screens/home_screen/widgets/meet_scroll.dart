@@ -27,6 +27,7 @@ class MeetScroll extends ConsumerWidget {
         if (meetId != sharedMeetId) {
           sharedPreferences.setInt(MEET_LAST_USER_ID_KEY, meetsScroll.last.id);
           ref.read(matchUserProvider.notifier).state = meetsScroll.last.user;
+          Navigator.pushNamed(context, '/MatchScreen');
         }
       }
     });

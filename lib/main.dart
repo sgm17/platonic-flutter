@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
@@ -26,6 +29,14 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final sharedPreferenches = await SharedPreferences.getInstance();
+
+  const String env =
+      String.fromEnvironment('ENVIRONMENT', defaultValue: 'development');
+
+  await dotenv.load(
+      fileName: env == 'production'
+          ? 'assets/environment/.env.production'
+          : 'assets/environment/.env.development');
 
   runApp(ProviderScope(overrides: [
     sharedPreferencesProvider.overrideWithValue(sharedPreferenches)

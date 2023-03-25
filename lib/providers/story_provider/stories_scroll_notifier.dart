@@ -26,7 +26,7 @@ class StoriesScrollNotifier
     }
   }
 
-  Future<void> createStory(Story story) async {
+  Future<bool> createStory(Story story) async {
     try {
       final newStory = await ref
           .read(storyViewmodelProvider)
@@ -54,14 +54,17 @@ class StoriesScrollNotifier
         error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
         loading: () => const AsyncValue.loading(),
       );
+      return true;
     } on ErrorApp catch (e) {
       ref.read(createErrorProvider.notifier).state = e;
     } catch (e) {
       state = AsyncValue.error(e, StackTrace.current);
     }
+    return false;
   }
 
-  void deleteStoriesScroll({required int storyId}) {
+  Future<void> deleteStoriesScroll({required int storyId}) async {
+    await initialize();
     state = state.when(
         data: (data) {
           final newState = data.where((e) => e.id != storyId).toList();

@@ -24,13 +24,12 @@ class StoryViewers extends ConsumerWidget {
               children: [
                 for (int i = 0; i < viewers.length && i < 5; i++)
                   Positioned(
-                    left: i * 20.0,
+                    left: i * 15.0,
                     child: Container(
+                        height: 30.0,
+                        width: 30.0,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                width: 2.0),
                             image: viewers[i].user.profileImage != null
                                 ? DecorationImage(
                                     image: NetworkImage(
@@ -48,7 +47,23 @@ class StoryViewers extends ConsumerWidget {
               ],
             ),
           ),
-          Text('Saw by $totalViewers'),
+          const SizedBox(
+            height: 8.0,
+          ),
+          Text(
+            'Saw by $totalViewers',
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              height: 1.152999997138977,
+              fontSize: 14.0,
+              fontFamily: 'Gilroy',
+              fontWeight: FontWeight.w300,
+              color: Color.fromARGB(255, 255, 255, 255),
+
+              /* letterSpacing: 0.0, */
+            ),
+          ),
         ],
       ),
     );
