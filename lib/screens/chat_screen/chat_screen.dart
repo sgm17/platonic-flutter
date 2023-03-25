@@ -20,6 +20,13 @@ class ChatScreen extends ConsumerWidget {
 
     // User2 set
     final activeUserState = ref.watch(activeUser2Provider);
+
+    if (activeUserState == null) {
+      Navigator.pop(context);
+
+      return const SizedBox.shrink();
+    }
+
     // Current user
     final userState = ref.watch(appUserProvider);
     // List of all the conversations

@@ -2,6 +2,7 @@ import 'package:action_cable/action_cable.dart';
 import 'package:platonic/domains/chat_repository/chat_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
+import 'package:platonic/providers/user_provider/app_user_provider.dart';
 
 class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   final String conversationChannelName = "ConversationChannel";
@@ -115,9 +116,22 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   }
 
   void deleteConversation({required int conversationId}) {
-    state = state
-        .where((conversation) => conversation.id != conversationId)
-        .toList();
+    state = state.where((conversation) {
+      if (conversation.id == conversationId) {
+        final activeUser2State = ref.read(activeUser2Provider);
+        final userState = ref.read(appUserProvider);
+
+        if (userState.id == conversation.user1.id &&
+                activeUser2State?.id == conversation.user2.id ||
+            activeUser2State?.id == conversation.user1.id &&
+                userState.id == conversation.user2.id) {
+          ref.read(activeUser2Provider.notifier).state = null;
+        }
+        return true;
+      } else {
+        return false;
+      }
+    }).toList();
   }
 
   void getConversations() {

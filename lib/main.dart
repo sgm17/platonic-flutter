@@ -1,5 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
@@ -21,11 +19,14 @@ import 'package:platonic/screens/story_screen/story_screen.dart';
 import 'package:platonic/screens/verify_screen/verify_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/shared_preferences_provider/shared_preferences_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   final sharedPreferenches = await SharedPreferences.getInstance();
+
   runApp(ProviderScope(overrides: [
     sharedPreferencesProvider.overrideWithValue(sharedPreferenches)
   ], child: const PlatonicApp()));
