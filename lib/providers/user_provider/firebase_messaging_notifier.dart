@@ -4,6 +4,7 @@ import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:platonic/providers/chat_provider/active_user2_provider.dart';
 import 'package:platonic/providers/error_provider/providers.dart';
+import 'package:platonic/providers/story_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'dart:async';
@@ -49,6 +50,14 @@ class FirebaseMessagingNotifier extends StateNotifier<String?> {
       AppUser user = AppUser.fromJson(message.data);
       ref.read(activeUser2Provider.notifier).state = user;
       return 'ChatScreen';
+    } else if (message != null && message.data["type"] == "favourite") {
+      final facultyId = message.data["faculty_id"];
+      ref.read(activeFacultyIdProvider.notifier).state = facultyId;
+      return 'StoryScreen';
+    } else if (message != null && message.data["type"] == "meet") {
+      AppUser user = AppUser.fromJson(message.data);
+      ref.read(activeUser2Provider.notifier).state = user;
+      return 'ChatScreen';
     }
     return null;
   }
@@ -73,13 +82,23 @@ class FirebaseMessagingNotifier extends StateNotifier<String?> {
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
     if (message.notification != null && message.notification?.android != null) {
-      await flutterLocalNotificationsPlugin.show(
-        0,
-        message.notification!.title,
-        message.notification!.body,
-        platformChannelSpecifics,
-        payload: message.data.toString(),
-      );
+      if (message.notification?.body == null) {
+        await flutterLocalNotificationsPlugin.show(
+          0,
+          message.notification!.title,
+          null,
+          platformChannelSpecifics,
+          payload: message.data.toString(),
+        );
+      } else {
+        await flutterLocalNotificationsPlugin.show(
+          0,
+          message.notification!.title,
+          message.notification!.body,
+          platformChannelSpecifics,
+          payload: message.data.toString(),
+        );
+      }
     }
   }
 

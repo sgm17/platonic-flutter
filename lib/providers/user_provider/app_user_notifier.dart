@@ -1,3 +1,4 @@
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
@@ -8,6 +9,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
+
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AppUserNotifier extends StateNotifier<AppUser> {
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
@@ -105,6 +108,59 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
       // Send email verification after register complete
       await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+
+      // Initialize onUserChanges()
+      ref.read(firebaseUserProvider.notifier).initialize();
+    } on FirebaseAuthException catch (e) {
+      final errorApp = ErrorApp(code: e.code.split('-').join(""));
+      ref.read(authErrorProvider.notifier).state = errorApp;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> userRegisterGoogle() async {
+    try {
+      final googleSignIn = GoogleSignIn();
+      final googleAccount = await googleSignIn.signIn();
+      final googleAuth = await googleAccount!.authentication;
+
+      // Create a credential from the Google sign-in
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Sign in with the credential
+      await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // Initialize onUserChanges()
+      ref.read(firebaseUserProvider.notifier).initialize();
+    } on FirebaseAuthException catch (e) {
+      final errorApp = ErrorApp(code: e.code.split('-').join(""));
+      ref.read(authErrorProvider.notifier).state = errorApp;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> userRegisterApple() async {
+    try {
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName
+        ],
+      );
+
+      // Create a credential from the Apple sign-in
+      final credential = OAuthProvider('apple.com').credential(
+        idToken: appleCredential.identityToken,
+        accessToken: appleCredential.authorizationCode,
+      );
+
+      // Sign in with the credential
+      await FirebaseAuth.instance.signInWithCredential(credential);
 
       // Initialize onUserChanges()
       ref.read(firebaseUserProvider.notifier).initialize();
