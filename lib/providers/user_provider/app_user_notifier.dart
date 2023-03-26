@@ -1,16 +1,15 @@
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/auth_provider/providers.dart';
 import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
-
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AppUserNotifier extends StateNotifier<AppUser> {
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;

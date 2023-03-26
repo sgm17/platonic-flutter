@@ -1,63 +1,79 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/register/widgets/widgets.dart';
 import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class RegisterForm extends StatelessWidget {
+class RegisterForm extends ConsumerWidget {
   const RegisterForm({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const SizedBox(
+  Widget build(BuildContext context, WidgetRef ref) {
+    Future<void> toggleGoogleSignIn() async {
+      await ref.read(appUserProvider.notifier).userRegisterGoogle();
+    }
+
+    Future<void> toggleAppleSignIn() async {
+      await ref.read(appUserProvider.notifier).userRegisterApple();
+    }
+
+    return SizedBox(
       height: 343.0,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
-          height: 44.0,
-          child: AppleOauth2Container(),
+        GestureDetector(
+          onTap: toggleAppleSignIn,
+          child: const SizedBox(
+            height: 44.0,
+            child: AppleOauth2Container(),
+          ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 32.0,
         ),
-        SizedBox(
-          height: 44.0,
-          child: GoogleOauth2Container(),
+        GestureDetector(
+          onTap: toggleGoogleSignIn,
+          child: const SizedBox(
+            height: 44.0,
+            child: GoogleOauth2Container(),
+          ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 32.0,
         ),
-        SizedBox(
+        const SizedBox(
           height: 18.0,
           child: DividerContainer(),
         ),
-        SizedBox(
+        const SizedBox(
           height: 32.0,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20.0,
           child: RegisterTitle(
             title: '''Email''',
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5.0,
         ),
-        SizedBox(
+        const SizedBox(
             height: 38.0,
             child: EmailAuthInput(
               isLogin: false,
             )),
-        SizedBox(
+        const SizedBox(
           height: 15.0,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20.0,
           child: RegisterTitle(
             title: '''Password''',
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5.0,
         ),
-        SizedBox(
+        const SizedBox(
           height: 38.0,
           child: PasswordAuthInput(
             isLogin: false,
