@@ -9,7 +9,7 @@ class ForgotPasswordIlustration extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      "assets/images/9a97c157fc546ec3e6f0cf4908d36a1c015166f8.png",
+      "assets/images/forgot_password_illustration.png",
       color: null,
       fit: BoxFit.cover,
       width: 176.0,

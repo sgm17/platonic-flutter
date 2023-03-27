@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,8 +28,7 @@ void main() async {
   await Firebase.initializeApp();
   final sharedPreferenches = await SharedPreferences.getInstance();
 
-  const String env =
-      String.fromEnvironment('ENVIRONMENT', defaultValue: 'development');
+  const String env = String.fromEnvironment('ENV', defaultValue: 'development');
 
   await dotenv.load(
       fileName: env == 'production'

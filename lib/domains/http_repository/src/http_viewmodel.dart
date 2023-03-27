@@ -7,7 +7,6 @@ import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.d
 import 'package:platonic/domains/story_repository/src/models/stories_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/story_model.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
-import 'package:platonic/constants/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
@@ -22,6 +21,7 @@ class HttpViewmodel implements HttpRepository {
     final headers = {
       'Content-Type': 'application/json',
     };
+
     final response = await http.get(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/universities"),
         headers: headers);

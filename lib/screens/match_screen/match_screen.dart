@@ -66,7 +66,7 @@ class MatchScreenState extends ConsumerState<MatchScreen>
                         colorFilter: ColorFilter.mode(
                             Color.fromARGB(178, 27, 26, 29), BlendMode.srcATop),
                         image: AssetImage(
-                            "assets/images/06f09f8eac7f5e637474b2403286281c5d7d756d.png"),
+                            "assets/images/meet_picture_default.png"),
                         fit: BoxFit.cover)
                     : DecorationImage(
                         colorFilter: const ColorFilter.mode(

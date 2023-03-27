@@ -67,7 +67,8 @@ class StartOriginal extends StatelessWidget {
                       scaleX: scaleX,
                       scaleY: scaleY,
                       scaleZ: 1,
-                      child: const UserAvatar())
+                      child: const UserAvatar(
+                          image: 'assets/images/blur_image.png'))
                 ]);
               }),
             ),

@@ -1,4 +1,3 @@
-// SharedPreferences Key
 import 'package:flutter/material.dart';
 
 const FIRST_TIME_USING_APP_KEY = "FIRST_TIME_USING_APP_KEY";

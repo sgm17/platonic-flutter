@@ -31,13 +31,13 @@ class MeetItemEmpty extends ConsumerWidget {
                           ? const DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(
-                                'assets/images/63a91e1fa6a45ed6c830240b54e7235ca3056df0.png',
+                                'assets/images/meet_empty_woman.png',
                               ),
                             )
                           : const DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage(
-                                'assets/images/c93797845b3668bcf33845c795477dea9f18c68a.png',
+                                'assets/images/meet_empty_man.png',
                               ),
                             ),
                     ),

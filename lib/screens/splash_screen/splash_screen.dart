@@ -64,8 +64,7 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
       return Center(
           child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 200, maxHeight: 200),
-              child: Image.asset(
-                  'assets/images/ASm7AmLaGCSNihuq4WwBQ38tCZSy962nKCuhbBem.png',
+              child: Image.asset('assets/images/splash_image.png',
                   fit: BoxFit.cover)));
     }
 

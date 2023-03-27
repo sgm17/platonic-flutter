@@ -90,7 +90,11 @@ class FirebaseMessagingNotifier extends StateNotifier<String?> {
           platformChannelSpecifics,
           payload: message.data.toString(),
         );
-      } else {
+      } else if (message.notification != null) {
+        if (message.data["type"] == "chat" &&
+            AppUser.fromJson(message.data).id ==
+                ref.read(activeUser2Provider).id) return;
+
         await flutterLocalNotificationsPlugin.show(
           0,
           message.notification!.title,

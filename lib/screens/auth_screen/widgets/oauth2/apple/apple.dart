@@ -14,7 +14,7 @@ class Apple extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.zero,
         child: Image.asset(
-          "assets/images/d82bd87a47600a88b85953e36865534a3423c2a2.png",
+          "assets/images/apple_icon.png",
           color: null,
           fit: BoxFit.cover,
           width: 17.68421173095703,

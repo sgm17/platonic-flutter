@@ -42,7 +42,7 @@ class VerifyScreen extends ConsumerWidget {
             child: SizedBox(
               height: 176.0,
               child: Image.asset(
-                'assets/images/mLnaGnhgPqhHCZYFeRVrpnRBEdpTdfzuyiPHEU6U.png',
+                'assets/images/verify_illustration.png',
                 fit: BoxFit.cover,
               ),
             ),

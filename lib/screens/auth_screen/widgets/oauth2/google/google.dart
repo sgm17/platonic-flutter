@@ -14,7 +14,7 @@ class Google extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.zero,
         child: Image.asset(
-          "assets/images/1853e756244cff29dd775c88f3dad7312d44a584.png",
+          "assets/images/google_icon.png",
           color: null,
           fit: BoxFit.cover,
           width: 21.0,
