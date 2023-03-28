@@ -120,6 +120,7 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
   Future<void> userRegisterGoogle() async {
     try {
+      return;
       final googleSignIn = GoogleSignIn();
       final googleAccount = await googleSignIn.signIn();
       final googleAuth = await googleAccount!.authentication;
@@ -145,6 +146,7 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
   Future<void> userRegisterApple() async {
     try {
+      return;
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,

@@ -1,45 +1,37 @@
 {
   "project_info": {
-    "project_number": "292854976758",
-    "project_id": "platonic-development-9c88c",
-    "storage_bucket": "platonic-development-9c88c.appspot.com"
+    "project_number": "575732891304",
+    "project_id": "platonic-3bc9d",
+    "storage_bucket": "platonic-3bc9d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:292854976758:android:d08209f6d1fb8eb9505cd7",
+        "mobilesdk_app_id": "1:575732891304:android:b1147b743a2646d3f50c9d",
         "android_client_info": {
           "package_name": "com.invelex.platonic"
         }
       },
       "oauth_client": [
         {
-          "client_id": "292854976758-u7fv1f78imm8n0senipia8mb8sk63e3h.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.invelex.platonic",
-            "certificate_hash": "212bf0ad476c98813df2bdb26664af19f51eccde"
-          }
-        },
-        {
-          "client_id": "292854976758-ikbgalhqlmmfa38tfgedoj69cgdj6mb4.apps.googleusercontent.com",
+          "client_id": "575732891304-h3o9a4kaal4kq0p3akv4u7d6qssm0s9c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyADCtmjKDALrG0zPfpu0cYW3qMQWGzll0I"
+          "current_key": "AIzaSyDFlmjFxEdcQyIHJzXWuMvcjs5zTXAGgtw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "292854976758-ikbgalhqlmmfa38tfgedoj69cgdj6mb4.apps.googleusercontent.com",
+              "client_id": "575732891304-h3o9a4kaal4kq0p3akv4u7d6qssm0s9c.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "292854976758-r7qdm9r5k7bldda3u6j8gf83j4u0u9kv.apps.googleusercontent.com",
+              "client_id": "575732891304-9sofsobk23q03dhd6p5mrfl3oopigtov.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
                 "bundle_id": "com.invelex.platonic"
