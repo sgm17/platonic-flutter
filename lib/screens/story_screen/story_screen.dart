@@ -63,8 +63,8 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
       if (storyErrorState != null) {
         showDialog(
             context: context,
-            builder: (context) => const ErrorDialog(
-                  error: 'storyErrorState.code',
+            builder: (context) => ErrorDialog(
+                  error: storyErrorState.code,
                 ));
 
         ref.read(storyErrorProvider.notifier).state = null;

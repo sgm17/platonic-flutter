@@ -42,6 +42,7 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
         if (pastState.isNotEmpty) {
           unSubscribeMessageChannel();
         }
+
         subscribeMessageChannel();
       } else if (message["new_conversation"] is Map<String, dynamic>) {
         final jsonConversation = message["new_conversation"];
@@ -117,7 +118,7 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
 
   void deleteConversation({required int conversationId}) {
     state = state
-        .where((conversation) => conversation.id == conversationId)
+        .where((conversation) => conversation.id != conversationId)
         .toList();
   }
 

@@ -72,7 +72,7 @@ class CreateScreenState extends ConsumerState<CreateScreen> {
       ref.read(circularButtonProvider.notifier).state = false;
 
       if (result == true) {
-        Navigator.pop(context);
+        Navigator.of(context).pop();
       }
     }
 

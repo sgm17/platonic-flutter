@@ -47,15 +47,21 @@ class FirebaseMessagingNotifier extends StateNotifier<String?> {
 
   String? handleInitialMessage({required RemoteMessage? message}) {
     if (message != null && message.data["type"] == "chat") {
-      AppUser user = AppUser.fromJson(message.data);
+      var messageJson = message.data;
+      messageJson.forEach((key, value) => messageJson[key] = int.parse(value));
+      AppUser user = AppUser.fromJson(messageJson);
       ref.read(activeUser2Provider.notifier).state = user;
       return 'ChatScreen';
     } else if (message != null && message.data["type"] == "favourite") {
-      final facultyId = message.data["faculty_id"];
-      ref.read(activeFacultyIdProvider.notifier).state = facultyId;
+      final facultyId = int.tryParse(message.data["faculty_id"]);
+      if (facultyId != null) {
+        ref.read(activeFacultyIdProvider.notifier).state = facultyId;
+      }
       return 'StoryScreen';
     } else if (message != null && message.data["type"] == "meet") {
-      AppUser user = AppUser.fromJson(message.data);
+      var messageJson = message.data;
+      messageJson.forEach((key, value) => messageJson[key] = int.parse(value));
+      AppUser user = AppUser.fromJson(messageJson);
       ref.read(activeUser2Provider.notifier).state = user;
       return 'ChatScreen';
     }
@@ -92,8 +98,9 @@ class FirebaseMessagingNotifier extends StateNotifier<String?> {
         );
       } else if (message.notification != null) {
         if (message.data["type"] == "chat" &&
-            AppUser.fromJson(message.data).id ==
-                ref.read(activeUser2Provider).id) return;
+            message.data["id"] == ref.read(activeUser2Provider).id.toString()) {
+          return;
+        }
 
         await flutterLocalNotificationsPlugin.show(
           0,
