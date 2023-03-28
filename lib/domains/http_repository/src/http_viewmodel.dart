@@ -1,4 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:platonic/domains/flat_repository/src/models/flat_home_model.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
+import 'package:platonic/domains/flat_repository/src/models/place_model.dart';
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
 import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
@@ -242,42 +245,6 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<bool> deleteDestroyStory({required int storyId}) async {
-    final headers = {
-      'Authorization': 'Bearer $tokenId',
-      'Content-Type': 'application/json',
-    };
-    final response = await http.delete(
-        Uri.parse("${dotenv.env['API_ENDPOINT']}/stories/$storyId"),
-        headers: headers);
-
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = await jsonDecode(response.body);
-      return data['destroyed'] as bool;
-    } else {
-      throw const ErrorApp(code: 'httpdeletestories');
-    }
-  }
-
-  @override
-  Future<List<Conversation>> getIndexConversations() async {
-    final headers = {
-      'Authorization': 'Bearer $tokenId',
-      'Content-Type': 'application/json',
-    };
-    final response = await http.get(
-        Uri.parse("${dotenv.env['API_ENDPOINT']}/conversations"),
-        headers: headers);
-
-    if (response.statusCode == 200) {
-      final List<dynamic> data = await jsonDecode(response.body);
-      return data.map((e) => Conversation.fromJson(e)).toList();
-    } else {
-      throw const ErrorApp(code: 'httpindexconversations');
-    }
-  }
-
-  @override
   Future<bool> postCreateVisualization({required int storyId}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
@@ -298,6 +265,221 @@ class HttpViewmodel implements HttpRepository {
       return data["visualization"];
     } else {
       throw const ErrorApp(code: 'httpcreatevisualization');
+    }
+  }
+
+  @override
+  Future<bool> deleteDestroyStory({required int storyId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+    final response = await http.delete(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/stories/$storyId"),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return data['destroyed'] as bool;
+    } else {
+      throw const ErrorApp(code: 'httpdeletestories');
+    }
+  }
+
+  @override
+  Future<void> deleteDestroyFlat({required int flatId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.delete(
+      Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/$flatId"),
+      headers: headers,
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<List<FlatsScrollModel>> getIndexFlats() async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.get(
+      Uri.parse("${dotenv.env['API_ENDPOINT']}/flats"),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = await jsonDecode(response.body);
+
+      return data.map((e) => FlatsScrollModel.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<FlatHomeModel> getIndexHomeFlat() async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.get(
+      Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/index_home"),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return FlatHomeModel.fromJson(data);
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<FlatModel> getShowFlat({required int flatId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.get(
+      Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/$flatId"),
+      headers: headers,
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return FlatModel.fromJson(data);
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<List<AppUser>> postAddRemoveTenant(
+      {required int flatId, required String tenantEmail}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final body = {'id': flatId, 'tenant_email': tenantEmail};
+
+    final response = await http.post(
+        Uri.parse(
+            "${dotenv.env['API_ENDPOINT']}/flats/$flatId/add_remove_tenant"),
+        headers: headers,
+        body: body);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = await jsonDecode(response.body);
+      return data.map((e) => AppUser.fromJson(e)).toList();
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<bool> postBookmarkFlat({required int flatId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final body = {'id': flatId};
+
+    final response = await http.post(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/$flatId/bookmark"),
+        headers: headers,
+        body: body);
+
+    if (response.statusCode == 200) {
+      final Map<String, bool> data = await jsonDecode(response.body);
+
+      return data["book_mark"] ?? false;
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<FlatsScrollModel> postCreateFlat({required FlatModel flat}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.post(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/flats"),
+        headers: headers,
+        body: jsonEncode(flat.toJson()));
+
+    if (response.statusCode == 201) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+
+      return FlatsScrollModel.fromJson(data);
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<FlatsScrollModel> putUpdateFlat({required FlatModel flat}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await http.put(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/${flat.id}"),
+        headers: headers,
+        body: jsonEncode(flat.toJson()));
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+
+      return FlatsScrollModel.fromJson(data);
+    } else {
+      throw Exception('Failed to load the user');
+    }
+  }
+
+  @override
+  Future<List<PlaceModel>> getIndexAddress({required String address}) async {
+    const ADDRESS_LIMIT = 5;
+
+    final response = await http.get(
+        Uri.parse(
+            "https://photon.komoot.io/api/?q=$address&limit=$ADDRESS_LIMIT"),
+        headers: {
+          'Content-Type': 'application/json',
+        });
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      final features = data["features"] as List<dynamic>?;
+
+      if (features == null) return [];
+
+      return features
+          .where((f) => f["properties"]["type"] == "street")
+          .map((e) {
+        final geometry = e["geometry"];
+        final List<dynamic> newGeometry = geometry["coordinates"];
+        final Map<String, dynamic> newMap = {...e, "geometry": newGeometry};
+        return PlaceModel.fromJson(newMap);
+      }).toList();
+    } else {
+      throw Exception('Failed to load the user');
     }
   }
 

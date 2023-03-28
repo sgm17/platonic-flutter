@@ -1,4 +1,7 @@
 import 'package:platonic/domains/chat_repository/chat_repository.dart';
+import 'package:platonic/domains/flat_repository/src/models/flat_home_model.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
+import 'package:platonic/domains/flat_repository/src/models/place_model.dart';
 import 'package:platonic/domains/meet_repository/meet_repository.dart';
 import 'package:platonic/domains/story_repository/src/models/models.dart';
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
@@ -38,16 +41,33 @@ abstract class HttpRepository {
   Future<Story> postCreateStory({required Story story});
   // PUT /api/v1/stories/:id/toggle_favourite
   Future<bool> putFavouriteStory({required int storyId});
+  // POST /api/v1/stories/:story_id/visualizations
+  Future<bool> postCreateVisualization({required int storyId});
   // DESTROY /api/v1/stories/:id
   Future<bool> deleteDestroyStory({required int storyId});
 
-  // Conversations
-  // GET /api/v1/conversations
-  Future<List<Conversation>> getIndexConversations();
+  // Address
+  // GET https://photon.komoot.io/api/?q=text&limit=1
+  Future<List<PlaceModel>> getIndexAddress({required String address});
 
-  // Visualizations
-  // POST /api/v1/visualizations
-  Future<bool> postCreateVisualization({required int storyId});
+  // Flats
+  // GET /api/v1/flats/index_home
+  Future<FlatHomeModel> getIndexHomeFlat();
+  // GET /api/v1/flats
+  Future<List<FlatsScrollModel>> getIndexFlats();
+  // GET /api/v1/flats/flat_id
+  Future<FlatModel> getShowFlat({required int flatId});
+  // POST /api/v1/flats
+  Future<FlatsScrollModel> postCreateFlat({required FlatModel flat});
+  // POST /api/v1/flats/flat_id/add_remove_tenant
+  Future<List<AppUser>> postAddRemoveTenant(
+      {required int flatId, required String tenantEmail});
+  // POST /api/v1/flats/flat_id/bookmark
+  Future<bool> postBookmarkFlat({required int flatId});
+  // PUT /api/v1/flats/flat_id
+  Future<FlatsScrollModel> putUpdateFlat({required FlatModel flat});
+  // DELETE /api/v1/flats/flat_id
+  Future<void> deleteDestroyFlat({required int flatId});
 
   // Images
   // POST /api/v1/image

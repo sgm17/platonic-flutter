@@ -4,6 +4,13 @@ const FIRST_TIME_USING_APP_KEY = "FIRST_TIME_USING_APP_KEY";
 const FIREBASE_TOKEN_ID_KEY = "FIREBASE_TOKEN_ID_KEY";
 const MEET_LAST_USER_ID_KEY = "MEET_LAST_USER_ID_KEY";
 
+const List<IconData> transportationIcons = [
+  Icons.directions_train,
+  Icons.directions_bus,
+  Icons.directions_car,
+  Icons.directions_walk,
+];
+
 List<LinearGradient> gradients = [
   const LinearGradient(
     colors: [
