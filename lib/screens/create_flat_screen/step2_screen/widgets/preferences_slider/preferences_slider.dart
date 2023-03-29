@@ -56,14 +56,15 @@ class PreferencesSliderState extends ConsumerState<PreferencesSlider> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 81.0,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SizedBox(height: 23.0, child: PreferencesSliderMinimumTitle()),
+            const SizedBox(
+                height: 23.0, child: PreferencesSliderMinimumTitle()),
             SizedBox(
               height: 23.0,
               child: PreferencesSliderMonthsTitle(
@@ -108,7 +109,7 @@ class PreferencesSliderState extends ConsumerState<PreferencesSlider> {
                 )
               ]),
         ),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(

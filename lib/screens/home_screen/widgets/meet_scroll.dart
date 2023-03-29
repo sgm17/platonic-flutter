@@ -49,13 +49,12 @@ class MeetScroll extends ConsumerWidget {
                 );
               },
               itemBuilder: (context, index) {
-                return ProviderScope(
-                  overrides: [
-                    meetScrollProvider.overrideWithValue(meets[index])
-                  ],
-                  child: const SizedBox(
-                      width: 80.0, height: 110.0, child: MeetItem()),
-                );
+                return SizedBox(
+                    width: 80.0,
+                    height: 110.0,
+                    child: ProviderScope(overrides: [
+                      meetScrollProvider.overrideWithValue(meets[index])
+                    ], child: const MeetItem()));
               },
             );
           },

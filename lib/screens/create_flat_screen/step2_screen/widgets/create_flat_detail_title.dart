@@ -13,7 +13,7 @@ class CreateFlatDetailTitle extends StatelessWidget {
     return Text(
       title,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.3020000457763672,
         fontSize: 24.0,
         fontFamily: 'DM Sans',

@@ -44,13 +44,13 @@ class Step1Screen extends StatelessWidget {
                   const SizedBox(
                     height: 32.0,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                      padding: EdgeInsets.symmetric(horizontal: 32.0),
                       child: Column(
                         children: [
                           CreateFlatDetailSearch(),
-                          const CreateFlatAddressSuggestion()
+                          CreateFlatAddressSuggestion()
                         ],
                       ),
                     ),
@@ -61,7 +61,7 @@ class Step1Screen extends StatelessWidget {
                     child: SizedBox(
                       height: 44.0,
                       child: CreateFlatDetailButton(
-                        route: '/GeneratedStep2Widget',
+                        route: '/Step2Screen',
                         text: '''Confirm Address''',
                       ),
                     ),

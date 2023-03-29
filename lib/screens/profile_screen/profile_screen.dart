@@ -44,7 +44,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
       );
 
-      var image;
+      String? image;
 
       try {
         // Upload the image file to the server
@@ -53,7 +53,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
             .postCreateImage(file: File(pickedFile.path));
       } on ErrorApp {
         ref.read(profileErrorProvider.notifier).state =
-            ErrorApp(code: 'profileimageerror');
+            const ErrorApp(code: 'profileimageerror');
       }
 
       // Hide the loading dialog
@@ -62,6 +62,8 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
       setState(() {
         isLoading = false;
       });
+
+      if (image == null) return;
 
       if (profileImage) {
         ref.read(appUserProvider.notifier).setProfileImage(image);

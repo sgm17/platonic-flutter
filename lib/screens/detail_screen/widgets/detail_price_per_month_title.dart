@@ -17,7 +17,7 @@ class DetailPricePerMonthTitle extends StatelessWidget {
           overflow: TextOverflow.visible,
           textAlign: TextAlign.left,
           text: TextSpan(
-            style: TextStyle(
+            style: const TextStyle(
               height: 1.3020000457763672,
               fontSize: 16.0,
               fontFamily: 'DM Sans',
@@ -27,7 +27,7 @@ class DetailPricePerMonthTitle extends StatelessWidget {
               /* letterSpacing: 0.0, */
             ),
             children: [
-              TextSpan(
+              const TextSpan(
                 text: '''€''',
                 style: TextStyle(
                   fontSize: 10.0,
@@ -38,7 +38,7 @@ class DetailPricePerMonthTitle extends StatelessWidget {
               TextSpan(
                 text: ((principalCost + electricityCost) / 100).toString(),
               ),
-              TextSpan(
+              const TextSpan(
                 text: '''/month''',
                 style: TextStyle(
                   fontSize: 10.0,

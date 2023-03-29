@@ -22,20 +22,22 @@ class TenantsNumberOption extends ConsumerWidget {
     return GestureDetector(
       onTap: toggleNumberTenants,
       child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: const Duration(milliseconds: 300),
           alignment: Alignment.center,
           width: 40.0,
           height: 30.0,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
               color: flatCreateState.tenantsNumber == number
-                  ? Color.fromARGB(255, 63, 141, 253)
+                  ? const Color.fromARGB(255, 63, 141, 253)
                   : null,
               border: flatCreateState.tenantsNumber == number
                   ? Border.all(
-                      width: 1.0, color: Color.fromARGB(255, 63, 141, 253))
+                      width: 1.0,
+                      color: const Color.fromARGB(255, 63, 141, 253))
                   : Border.all(
-                      width: 1.0, color: Color.fromARGB(255, 43, 45, 46))),
+                      width: 1.0,
+                      color: const Color.fromARGB(255, 43, 45, 46))),
           child: TenantsNumberOptionText(number: number)),
     );
   }

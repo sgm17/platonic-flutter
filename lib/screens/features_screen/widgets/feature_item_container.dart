@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
-import 'package:platonic/helpers/svg/svg.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
-
 import 'widgets.dart';
 
 /* Rectangle container
@@ -46,8 +44,8 @@ class FeatureItemContainer extends ConsumerWidget {
                   ? const Color.fromARGB(255, 63, 141, 253)
                   : const Color.fromARGB(255, 43, 45, 46),
             ),
-            boxShadow: [
-              const BoxShadow(
+            boxShadow: const [
+              BoxShadow(
                 color: Color.fromARGB(63, 0, 0, 0),
                 offset: Offset(0.0, 4.0),
                 blurRadius: 4.0,

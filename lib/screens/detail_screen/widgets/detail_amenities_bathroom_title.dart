@@ -14,7 +14,7 @@ class DetailAmenitiesBathroomTitle extends StatelessWidget {
       '''$bathroom bathroom''',
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.3020000457763672,
         fontSize: 12.0,
         fontFamily: 'DM Sans',

@@ -35,10 +35,7 @@ class FeaturesCreateScreen extends StatelessWidget {
                   (index) {
                     final start = index * 2;
                     final end = start + 2;
-                    final features = featuresModel
-                        .sublist(start, end)
-                        .where((element) => element != null)
-                        .toList();
+                    final features = featuresModel.sublist(start, end).toList();
                     return Container(
                       margin: EdgeInsets.only(
                           bottom: index == (featuresModel.length / 2).ceil() - 1

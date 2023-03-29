@@ -15,7 +15,7 @@ class DetailLocation extends StatelessWidget {
     return SizedBox(
       height: 17.0,
       child: Row(children: [
-        DetailLocationIconContainer(),
+        const DetailLocationIconContainer(),
         const SizedBox(
           width: 4.0,
         ),

@@ -15,12 +15,12 @@ class DetailAmenitiesBathroom extends StatelessWidget {
       width: 100.0,
       height: 16.0,
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
+        const SizedBox(
           width: 15.0,
           height: 15.0,
           child: DetailAmenitiesBathroomIconContainer(),
         ),
-        SizedBox(
+        const SizedBox(
           width: 4.0,
         ),
         DetailAmenitiesBathroomTitle(

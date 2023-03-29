@@ -14,7 +14,7 @@ class DetailPropertyBuiltTitle extends StatelessWidget {
         overflow: TextOverflow.visible,
         textAlign: TextAlign.left,
         text: TextSpan(
-          style: TextStyle(
+          style: const TextStyle(
             height: 1.3020000457763672,
             fontSize: 12.0,
             fontFamily: 'DM Sans',
@@ -27,7 +27,7 @@ class DetailPropertyBuiltTitle extends StatelessWidget {
             TextSpan(
               text: '''$built built m''',
             ),
-            TextSpan(
+            const TextSpan(
               text: '''2''',
               style: TextStyle(
 

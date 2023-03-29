@@ -27,7 +27,7 @@ class DetailComodities extends StatelessWidget {
             bedroom: bedroom,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
         SizedBox(

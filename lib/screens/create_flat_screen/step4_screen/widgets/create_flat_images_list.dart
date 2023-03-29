@@ -33,7 +33,7 @@ class CreateFlatImagesList extends ConsumerWidget {
           children: [
             Expanded(child: imageWidgets[i]),
             const SizedBox(width: 16.0),
-            Expanded(child: SizedBox.shrink()),
+            const Expanded(child: SizedBox.shrink()),
           ],
         ));
       } else {
@@ -48,7 +48,7 @@ class CreateFlatImagesList extends ConsumerWidget {
     }
 
     if (rows.isEmpty) {
-      return Wrap(
+      return const Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           SizedBox(
@@ -56,7 +56,7 @@ class CreateFlatImagesList extends ConsumerWidget {
             height: 95.0,
             child: CreateFlatDetailImageEmpty(),
           ),
-          const SizedBox(width: 16.0),
+          SizedBox(width: 16.0),
           SizedBox(
             width: 170.0,
             height: 95.0,
@@ -70,11 +70,11 @@ class CreateFlatImagesList extends ConsumerWidget {
       children: [
         for (var i = 0; i < rows.length; i++)
           Padding(
-            padding: EdgeInsets.only(bottom: 16.0),
+            padding: const EdgeInsets.only(bottom: 16.0),
             child: rows[i],
           ),
         if (images.length < 20)
-          Padding(
+          const Padding(
             padding: EdgeInsets.only(bottom: 16.0),
             child: Row(
               children: [
@@ -85,7 +85,7 @@ class CreateFlatImagesList extends ConsumerWidget {
                     child: CreateFlatDetailImageEmpty(),
                   ),
                 ),
-                const SizedBox(width: 16.0),
+                SizedBox(width: 16.0),
                 Expanded(
                   child: SizedBox(
                     width: 170.0,

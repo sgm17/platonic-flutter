@@ -11,14 +11,14 @@ class FeaturesListGarageIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 13.333333015441895,
       height: 15.0,
       child: SvgWidget(painters: [
         SvgPathPainter.fill()
           ..addPath(
               'M0 15L0 5L6.66667 0L13.3333 5L13.3333 15L12.0833 15L12.0833 5.625L6.66667 1.5625L1.25 5.625L1.25 15L0 15ZM3.75 13.75L9.58333 13.75L9.58333 11.4583L3.75 11.4583L3.75 13.75ZM3.75 10.2083L9.58333 10.2083L9.58333 7.91667L3.75 7.91667L3.75 10.2083ZM2.5 15L2.5 6.66667L10.8333 6.66667L10.8333 15L2.5 15Z')
-          ..color = Color.fromARGB(255, 63, 141, 253),
+          ..color = const Color.fromARGB(255, 63, 141, 253),
       ]),
     );
   }

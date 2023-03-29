@@ -14,7 +14,7 @@ class NavigateBeforeDetailIconContainer extends StatelessWidget {
       height: 35.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.0),
-        color: Color.fromARGB(255, 43, 45, 46),
+        color: const Color.fromARGB(255, 43, 45, 46),
       ),
       child: child,
     );

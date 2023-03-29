@@ -15,7 +15,7 @@ class NavigateBeforeDetail extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       GestureDetector(
         onTap: () => Navigator.pop(context),
-        child: SizedBox(
+        child: const SizedBox(
           width: 25.0,
           height: 25.0,
           child: NavigateBeforeIconContainer(
@@ -23,7 +23,7 @@ class NavigateBeforeDetail extends StatelessWidget {
           ),
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 25.0,
         child: NavigateBeforeTitle(
           title: '''Details''',
@@ -31,7 +31,7 @@ class NavigateBeforeDetail extends StatelessWidget {
         ),
       ),
       if (ownFlat)
-        Row(
+        const Row(
           children: [
             NavigateBeforeDetailIconContainer(
                 child: Icon(
@@ -53,9 +53,9 @@ class NavigateBeforeDetail extends StatelessWidget {
       else
         NavigateBeforeDetailIconContainer(
             child: bookmark
-                ? Icon(Icons.bookmark,
+                ? const Icon(Icons.bookmark,
                     size: 20.0, color: Color.fromARGB(255, 232, 236, 0))
-                : Icon(
+                : const Icon(
                     Icons.bookmark_outline,
                     size: 20.0,
                     color: Colors.white,

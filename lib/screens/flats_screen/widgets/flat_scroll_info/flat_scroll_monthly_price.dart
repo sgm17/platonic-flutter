@@ -15,7 +15,7 @@ class FlatScrollMonthlyPrice extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.left,
         text: TextSpan(
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14.0,
             fontFamily: 'DM Sans',
             fontWeight: FontWeight.w500,
@@ -24,7 +24,7 @@ class FlatScrollMonthlyPrice extends StatelessWidget {
             /* letterSpacing: 0.0, */
           ),
           children: [
-            TextSpan(
+            const TextSpan(
               text: '''€''',
               style: TextStyle(
                 fontSize: 8.0,
@@ -36,7 +36,7 @@ class FlatScrollMonthlyPrice extends StatelessWidget {
             TextSpan(
               text: ''' ${rentPricePerMonthInCents / 100} ''',
             ),
-            TextSpan(
+            const TextSpan(
               text: '''/ per month''',
               style: TextStyle(
                 fontSize: 8.0,

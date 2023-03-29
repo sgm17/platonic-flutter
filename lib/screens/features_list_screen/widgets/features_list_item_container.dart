@@ -15,12 +15,12 @@ class FeaturesListItemContainer extends StatelessWidget {
       width: 40.0,
       height: 40.0,
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 179, 210, 255),
+        color: const Color.fromARGB(255, 179, 210, 255),
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Icon(
         child,
-        color: Color.fromARGB(255, 63, 141, 253),
+        color: const Color.fromARGB(255, 63, 141, 253),
         size: 20.0,
       ),
     );

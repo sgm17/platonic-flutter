@@ -13,7 +13,7 @@ class FlatScrollTitle extends StatelessWidget {
       title,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 14.0,
         fontFamily: 'DM Sans',
         fontWeight: FontWeight.w500,

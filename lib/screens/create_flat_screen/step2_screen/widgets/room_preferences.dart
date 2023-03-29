@@ -11,11 +11,11 @@ class RoomPreferences extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 216.0,
       child: Form(
         key: formKey,
-        child: Column(children: [
+        child: const Column(children: [
           Flexible(
             child: RentPerMonthInput(),
           ),

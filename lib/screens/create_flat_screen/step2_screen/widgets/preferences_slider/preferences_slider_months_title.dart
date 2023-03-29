@@ -28,7 +28,7 @@ class PreferencesSliderMonthsTitle extends StatelessWidget {
         text,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.left,
-        style: TextStyle(
+        style: const TextStyle(
           height: 1.3020000457763672,
           fontSize: 16.0,
           fontFamily: 'DM Sans',

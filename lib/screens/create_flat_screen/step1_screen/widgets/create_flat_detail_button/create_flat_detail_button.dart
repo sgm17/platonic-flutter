@@ -19,9 +19,9 @@ class CreateFlatDetailButton extends StatelessWidget {
         alignment: Alignment.center,
         height: 44.0,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 63, 141, 253),
+          color: const Color.fromARGB(255, 63, 141, 253),
           borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Color.fromARGB(63, 0, 0, 0),
               offset: Offset(0.0, 4.0),

@@ -8,14 +8,14 @@ class FlatsScrollNavigateBeforeIcon extends StatelessWidget {
   const FlatsScrollNavigateBeforeIcon({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 5.416666507720947,
       height: 9.520833015441895,
       child: SvgWidget(painters: [
         SvgPathPainter.fill()
           ..addPath(
               'M4.3125 9.33333L0.1875 5.20833C0.118056 5.13889 0.0694444 5.06944 0.0416667 5C0.0138889 4.93056 0 4.85417 0 4.77083C0 4.6875 0.0138889 4.61111 0.0416667 4.54167C0.0694444 4.47222 0.118056 4.40278 0.1875 4.33333L4.33333 0.1875C4.45833 0.0625 4.60764 0 4.78125 0C4.95486 0 5.10417 0.0625 5.22917 0.1875C5.35417 0.3125 5.41319 0.465278 5.40625 0.645833C5.39931 0.826389 5.33333 0.979167 5.20833 1.10417L1.54167 4.77083L5.22917 8.45833C5.35417 8.58333 5.41667 8.72917 5.41667 8.89583C5.41667 9.0625 5.35417 9.20833 5.22917 9.33333C5.10417 9.45833 4.95139 9.52083 4.77083 9.52083C4.59028 9.52083 4.4375 9.45833 4.3125 9.33333Z')
-          ..color = Color.fromARGB(255, 255, 255, 255),
+          ..color = const Color.fromARGB(255, 255, 255, 255),
       ]),
     );
   }

@@ -25,7 +25,7 @@ class DetailAddTenantCircle extends StatelessWidget {
               ..color = const Color.fromARGB(255, 63, 141, 253),
           ]),
         ),
-        DetailAddTenantIcon()
+        const DetailAddTenantIcon()
       ],
     );
   }

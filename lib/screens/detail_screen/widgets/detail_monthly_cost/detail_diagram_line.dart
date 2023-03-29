@@ -24,19 +24,19 @@ class DetailDiagramLine extends StatelessWidget {
             children: [
               Flexible(
                 flex: principalCost,
-                child: DetailPrincipalInterestLine(),
+                child: const DetailPrincipalInterestLine(),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5.0,
               ),
               Flexible(
                 flex: electricityCost,
-                child: DetailPrincipalElectricityLine(),
+                child: const DetailPrincipalElectricityLine(),
               ),
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 32.0,
         ),
         SizedBox(

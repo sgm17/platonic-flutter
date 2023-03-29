@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/providers/shared_preferences_provider/providers.dart';
-import 'package:platonic/providers/user_provider/app_user_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
 
@@ -25,7 +24,7 @@ class MeetPictureContainer extends ConsumerWidget {
     final userState = ref.watch(appUserProvider);
 
     if (myUser == false) {
-      final otherUser = ref.watch(otherUserProvider);
+      final otherUser = ref.read(otherUserProvider);
       return Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(

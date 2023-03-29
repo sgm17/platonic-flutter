@@ -1,9 +1,17 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/screens/create_flat_screen/step1_screen/step1_screen.dart';
+import 'package:platonic/screens/create_flat_screen/step2_screen/step2_screen.dart';
+import 'package:platonic/screens/create_flat_screen/step3_screen/step3_screen.dart';
+import 'package:platonic/screens/create_flat_screen/step4_screen/step4_screen.dart';
+import 'package:platonic/screens/detail_screen/detail_screen.dart';
 import 'package:platonic/screens/dialog_screen/faculty_dialog_screen.dart';
 import 'package:platonic/screens/dialog_screen/study_dialog_screen.dart';
 import 'package:platonic/screens/dialog_screen/university_dialog_screen.dart';
+import 'package:platonic/screens/features_list_screen/features_list_screen.dart';
+import 'package:platonic/screens/features_screen/features_create_screen.dart';
+import 'package:platonic/screens/flats_screen/flats_screen.dart';
 import 'package:platonic/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:platonic/screens/match_screen/match_screen.dart';
 import 'package:platonic/screens/profile_screen/profile_screen.dart';
@@ -79,6 +87,14 @@ class PlatonicApp extends StatelessWidget {
         '/UniversityDialogScreen': (context) => const UniversityDialogScreen(),
         '/FacultyDialogScreen': (context) => const FacultyDialogScreen(),
         '/StudyDialogScreen': (context) => const StudyDialogScreen(),
+        '/FlatsScreen': (context) => const FlatsScreen(),
+        '/Step1Screen': (context) => const Step1Screen(),
+        '/Step2Screen': (context) => const Step2Screen(),
+        '/Step3Screen': (context) => const Step3Screen(),
+        '/Step4Screen': (context) => const Step4Screen(),
+        '/DetailScreen': (context) => const DetailScreen(),
+        '/FeaturesCreateScreen': (context) => const FeaturesCreateScreen(),
+        '/FeaturesListScreen': (context) => const FeaturesListScreen(),
       },
     );
   }

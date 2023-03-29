@@ -22,10 +22,10 @@ class FlatScrollTransport extends StatelessWidget {
     return Row(children: [
       Icon(
         child,
-        color: Color.fromARGB(255, 130, 130, 132),
+        color: const Color.fromARGB(255, 130, 130, 132),
         size: 10.0,
       ),
-      SizedBox(
+      const SizedBox(
         width: 6.0,
       ),
       FlatScrollTransportTitle(

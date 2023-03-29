@@ -15,7 +15,7 @@ class DetailMonthlyCostSubtitle extends StatelessWidget {
         overflow: TextOverflow.visible,
         textAlign: TextAlign.left,
         text: TextSpan(
-          style: TextStyle(
+          style: const TextStyle(
             height: 1.3020000457763672,
             fontSize: 16.0,
             fontFamily: 'DM Sans',
@@ -25,7 +25,7 @@ class DetailMonthlyCostSubtitle extends StatelessWidget {
             /* letterSpacing: 0.0, */
           ),
           children: [
-            TextSpan(
+            const TextSpan(
               text: '''€''',
               style: TextStyle(
                 fontSize: 8.0,
@@ -38,7 +38,7 @@ class DetailMonthlyCostSubtitle extends StatelessWidget {
             ),
             TextSpan(
               text: cost,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14.0,
                 fontFamily: 'DM Sans',
                 fontWeight: FontWeight.w500,

@@ -13,7 +13,7 @@ class DetailTenantName extends StatelessWidget {
       name,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.225000023841858,
         fontSize: 16.0,
         fontFamily: 'Gilroy',

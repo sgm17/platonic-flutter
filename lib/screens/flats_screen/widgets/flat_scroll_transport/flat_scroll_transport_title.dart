@@ -20,7 +20,7 @@ class FlatScrollTransportTitle extends StatelessWidget {
       '''$minutes min.  to ${university.simpleName.toUpperCase()}''',
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 10.0,
         fontFamily: 'DM Sans',
         fontWeight: FontWeight.w400,

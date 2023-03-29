@@ -17,7 +17,7 @@ class FlatsScrollHeader extends ConsumerWidget {
     final myUser = ref.read(appUserProvider);
 
     void toggleCreateFlatScreen() {
-      Navigator.pushNamed(context, '/GeneratedStep1Widget');
+      Navigator.pushNamed(context, '/Step1Screen');
 
       ref.read(flatCreateProvider.notifier).state =
           ref.read(flatCreateProvider).copyWith(owner: myUser, transports: [
@@ -50,7 +50,7 @@ class FlatsScrollHeader extends ConsumerWidget {
               const SizedBox(
                 width: 16.0,
               ),
-              Flexible(
+              const Flexible(
                 child: SizedBox(
                   height: 38.0,
                   child: FlatScrollSearchbar(),
@@ -60,7 +60,8 @@ class FlatsScrollHeader extends ConsumerWidget {
                 width: 16.0,
               ),
               GestureDetector(
-                  onTap: toggleCreateFlatScreen, child: CreateFlatButton())
+                  onTap: toggleCreateFlatScreen,
+                  child: const CreateFlatButton())
             ],
           ),
         ),

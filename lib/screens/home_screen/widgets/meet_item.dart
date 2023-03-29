@@ -57,16 +57,14 @@ class MeetItem extends ConsumerWidget {
                           'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
                     }),
                   )),
-        child: Flexible(
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.5),
-                borderRadius: BorderRadius.circular(10.0)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5.0),
-              child: MeetTitle(name: meetState.user.name),
-            ),
+        child: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
+              color: Colors.black.withOpacity(.5),
+              borderRadius: BorderRadius.circular(10.0)),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5.0),
+            child: MeetTitle(name: meetState.user.name),
           ),
         ),
       ),

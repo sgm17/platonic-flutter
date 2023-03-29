@@ -13,7 +13,7 @@ class CreateFlatDetailSearchIconContainer extends StatelessWidget {
       alignment: Alignment.center,
       width: 20.0,
       height: 20.0,
-      child: CreateFlatDetailSearchIcon(),
+      child: const CreateFlatDetailSearchIcon(),
     );
   }
 }

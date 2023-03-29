@@ -14,7 +14,7 @@ class AmenityNumberRow extends StatelessWidget {
   const AmenityNumberRow({Key? key, required this.bedroom}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 30.0,
       child: Row(
           children: numbers

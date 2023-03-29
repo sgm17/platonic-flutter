@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/university_repository/src/models/faculties_list_model.dart';
-import 'package:platonic/providers/user_provider/app_user_provider.dart';
 import 'package:platonic/screens/dialog_screen/widgets/widgets.dart';
 
 /* Group select

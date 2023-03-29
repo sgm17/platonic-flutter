@@ -14,20 +14,20 @@ class FeaturesSelect extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void toggleSelectFeatures() {
-      Navigator.pushNamed(context, '/GeneratedFeaturesWidget');
+      Navigator.pushNamed(context, '/FeaturesCreateScreen');
     }
 
     return GestureDetector(
       onTap: toggleSelectFeatures,
       child: Container(
         alignment: Alignment.centerLeft,
-        padding: EdgeInsets.symmetric(horizontal: 14.0),
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
         height: 42.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           border: Border.all(
             width: 1.0,
-            color: Color.fromARGB(255, 43, 45, 46),
+            color: const Color.fromARGB(255, 43, 45, 46),
           ),
         ),
         child: FeaturesSelectText(

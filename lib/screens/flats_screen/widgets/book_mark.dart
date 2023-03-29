@@ -21,14 +21,14 @@ class BookMark extends StatelessWidget {
         alignment: Alignment.center,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
-          color: Color.fromARGB(255, 43, 45, 46),
+          color: const Color.fromARGB(255, 43, 45, 46),
         ),
         child: Icon(
           bookMarkActive ? Icons.bookmark_outlined : Icons.bookmark_border,
           size: 20.0,
           color: bookMarkActive
-              ? Color.fromARGB(255, 232, 236, 0)
-              : Color.fromARGB(255, 255, 255, 255),
+              ? const Color.fromARGB(255, 232, 236, 0)
+              : const Color.fromARGB(255, 255, 255, 255),
         ),
       ),
     );

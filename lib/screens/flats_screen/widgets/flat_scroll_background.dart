@@ -11,7 +11,7 @@ class FlatScrollBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0)),
           image:
               DecorationImage(image: NetworkImage(image), fit: BoxFit.cover)),
     );

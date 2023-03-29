@@ -15,12 +15,12 @@ class DetailTransportationIconContainer extends StatelessWidget {
         width: 40.0,
         height: 40.0,
         decoration: BoxDecoration(
-          color: Color.fromARGB(255, 179, 210, 255),
+          color: const Color.fromARGB(255, 179, 210, 255),
           borderRadius: BorderRadius.circular(5.0),
         ),
         child: Icon(
           child,
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 255, 255),
           size: 20.0,
         ));
   }

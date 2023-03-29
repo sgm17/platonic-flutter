@@ -22,7 +22,7 @@ class DetailProperty extends StatelessWidget {
             built: built,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 30.0,
         ),
         SizedBox(

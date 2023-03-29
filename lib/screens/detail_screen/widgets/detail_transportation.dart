@@ -22,7 +22,7 @@ class DetailTransportation extends StatelessWidget {
           height: 40.0,
           child: child,
         ),
-        SizedBox(
+        const SizedBox(
           width: 16.0,
         ),
         SizedBox(

@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'package:platonic/providers/chat_provider/active_user2_provider.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 /* Rectangle Rectangle 22
@@ -8,14 +10,20 @@ import 'widgets.dart';
   */
 class DetailPrice extends ConsumerWidget {
   final int principalCost, electricityCost;
+  final AppUser owner;
 
   const DetailPrice(
-      {Key? key, required this.principalCost, required this.electricityCost})
+      {Key? key,
+      required this.principalCost,
+      required this.electricityCost,
+      required this.owner})
       : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void toggleContact() {
-      //TODO: ref.read(activeChatId);
+      ref.read(activeUser2Provider.notifier).state = owner;
+
+      Navigator.pushNamed(context, '/ChatScreen');
     }
 
     return Container(
@@ -39,7 +47,7 @@ class DetailPrice extends ConsumerWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 23.0,
                 child: DetailPriceTitle(),
               ),

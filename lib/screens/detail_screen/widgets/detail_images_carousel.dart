@@ -33,7 +33,7 @@ class DetailImagesCarousel extends ConsumerWidget {
                     .state = index,
               ),
               items: image
-                  .map((item) => Container(
+                  .map((item) => SizedBox(
                       width: double.infinity,
                       child: FittedBox(
                           fit: BoxFit.fill, child: Image.network(item))))
@@ -48,8 +48,8 @@ class DetailImagesCarousel extends ConsumerWidget {
                     return Container(
                       width: 8.0,
                       height: 8.0,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 10.0, horizontal: 2.0),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: activeCarouselIndexState == index

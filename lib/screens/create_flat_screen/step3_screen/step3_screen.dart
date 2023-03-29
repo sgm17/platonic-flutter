@@ -10,12 +10,11 @@ import 'widgets/widgets.dart';
   */
 
 class Step3Screen extends ConsumerWidget {
-  final formKey = GlobalKey<FormState>();
-
-  Step3Screen({super.key});
+  const Step3Screen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final formKey = GlobalKey<FormState>();
     final flatCreateState = ref.watch(flatCreateProvider);
 
     void toggleAmenitiesTransportationForm() {
@@ -32,7 +31,7 @@ class Step3Screen extends ConsumerWidget {
         ref.read(flatCreateProvider.notifier).state =
             flatState.copyWith(built: builtState, floor: floorState);
 
-        Navigator.pushNamed(context, '/GeneratedStep4Widget');
+        Navigator.pushNamed(context, '/Step4Screen');
       }
     }
 
@@ -62,10 +61,10 @@ class Step3Screen extends ConsumerWidget {
                       const SizedBox(
                         height: 22.0,
                       ),
-                      Row(
+                      const Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Flexible(
+                            Flexible(
                                 flex: 3,
                                 child: SizedBox(
                                   height: 70.0,
@@ -81,7 +80,7 @@ class Step3Screen extends ConsumerWidget {
                       const SizedBox(
                         height: 22.0,
                       ),
-                      Row(
+                      const Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Flexible(
@@ -168,7 +167,7 @@ class Step3Screen extends ConsumerWidget {
                       const SizedBox(
                         height: 22.0,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 74.0,
                         child: AmenityDisclaimerText(),
                       ),

@@ -8,25 +8,28 @@ import 'widgets/widgets.dart';
   */
 
 class FlatsScreen extends ConsumerWidget {
+  const FlatsScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatsScrollState = ref.watch(flatsScrollProvider);
 
     void toggleFlatDetailScreen() {
-      Navigator.pushNamed(context, '/GeneratedDetailsWidget');
+      Navigator.pushNamed(context, '/DetailScreen');
     }
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 27, 26, 29),
+      backgroundColor: const Color.fromARGB(255, 27, 26, 29),
       body: flatsScrollState.when(
         data: (flats) => Column(
           children: [
-            FlatsScrollHeader(),
+            const FlatsScrollHeader(),
             Expanded(
                 child: ListView.separated(
-              padding: EdgeInsets.symmetric(vertical: 22.0, horizontal: 22.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 22.0, horizontal: 22.0),
               itemCount: flats.length,
-              separatorBuilder: (context, index) => SizedBox(
+              separatorBuilder: (context, index) => const SizedBox(
                 height: 22.0,
               ),
               itemBuilder: (context, index) {
@@ -36,7 +39,7 @@ class FlatsScreen extends ConsumerWidget {
                     height: 225.0,
                     child: ProviderScope(overrides: [
                       flatScrollProvider.overrideWithValue(flats[index])
-                    ], child: FlatScrollItem()),
+                    ], child: const FlatScrollItem()),
                   ),
                 );
               },

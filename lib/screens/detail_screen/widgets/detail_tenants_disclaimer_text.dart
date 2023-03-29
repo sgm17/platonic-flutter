@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DetailTenantsDisclaimerText extends StatelessWidget {
+  const DetailTenantsDisclaimerText({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Text(
+    return const Text(
       '''If you share a flat with students from other universities, add them''',
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,

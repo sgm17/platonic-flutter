@@ -14,12 +14,12 @@ class DetailPropertyBuilt extends StatelessWidget {
       width: 100.0,
       height: 16.0,
       child: Row(children: [
-        SizedBox(
+        const SizedBox(
           width: 15.0,
           height: 15.0,
           child: DetailPropertyBuiltIconContainer(),
         ),
-        SizedBox(
+        const SizedBox(
           width: 4.0,
         ),
         DetailPropertyBuiltTitle(

@@ -14,7 +14,7 @@ class DetailCostConceptTitle extends StatelessWidget {
       title,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.3020000457763672,
         fontSize: 14.0,
         fontFamily: 'DM Sans',

@@ -79,14 +79,14 @@ class DetailScreen extends ConsumerWidget {
                           const SizedBox(
                             height: 8.0,
                           ),
-                          DetailTenantsDisclaimerText(),
+                          const DetailTenantsDisclaimerText(),
                           const SizedBox(
                             height: 22.0,
                           ),
-                          Row(
+                          const Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const SizedBox(
+                              SizedBox(
                                 height: 26.0,
                                 child: CreateFlatDetailSubtitle(
                                   subtitle: '''Features''',
@@ -231,6 +231,7 @@ class DetailScreen extends ConsumerWidget {
                     child: DetailPrice(
                       electricityCost: flat.electricityPriceInCents,
                       principalCost: flat.rentPricePerMonthInCents,
+                      owner: flat.owner,
                     ),
                   ),
                 ],

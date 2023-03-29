@@ -23,7 +23,7 @@ class DetailAmenities extends StatelessWidget {
             bedroom: bedroom,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 30.0,
         ),
         SizedBox(
