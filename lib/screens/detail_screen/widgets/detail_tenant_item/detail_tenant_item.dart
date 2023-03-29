@@ -35,7 +35,7 @@ class DetailTenantItem extends StatelessWidget {
               height: 4.0,
             ),
             DetailTenantUniversity(
-              university: tenant.university.name,
+              university: tenant.university!.name,
             ),
           ],
         ),

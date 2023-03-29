@@ -131,31 +131,31 @@ class Step3Screen extends ConsumerWidget {
                         height: 18.0,
                         child: AmenityTransportationSubtitle(
                             university:
-                                "${flatCreateState.owner.university.name} (${flatCreateState.owner.university.simpleName.toUpperCase()})"),
+                                "${flatCreateState.owner.university!.name} (${flatCreateState.owner.university!.simpleName.toUpperCase()})"),
                       ),
                       const SizedBox(
                         height: 6.0,
                       ),
                       AmenityTransportation(
-                        tenantUniversity: flatCreateState.owner.university,
+                        universityId: flatCreateState.owner.universityId,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: flatCreateState.tenants.map((t) {
-                          final index = flatCreateState.tenants.indexOf(t);
+                        children: flatCreateState.tenants.map((tenant) {
+                          final index = flatCreateState.tenants.indexOf(tenant);
                           return Column(
                             children: [
                               SizedBox(
                                 height: 18.0,
                                 child: AmenityTransportationSubtitle(
                                     university:
-                                        "${t.university} (${t.university.simpleName.toUpperCase()})"),
+                                        "${tenant.university} (${tenant.university!.simpleName.toUpperCase()})"),
                               ),
                               const SizedBox(
                                 height: 6.0,
                               ),
                               AmenityTransportation(
-                                tenantUniversity: t.university,
+                                universityId: tenant.universityId,
                               ),
                               if (index == flatCreateState.tenants.length - 1)
                                 const SizedBox(
@@ -185,8 +185,8 @@ class Step3Screen extends ConsumerWidget {
                               decoration: BoxDecoration(
                                 color: const Color.fromARGB(255, 63, 141, 253),
                                 borderRadius: BorderRadius.circular(10.0),
-                                boxShadow: [
-                                  const BoxShadow(
+                                boxShadow: const [
+                                  BoxShadow(
                                     color: Color.fromARGB(63, 0, 0, 0),
                                     offset: Offset(0.0, 4.0),
                                     blurRadius: 4.0,

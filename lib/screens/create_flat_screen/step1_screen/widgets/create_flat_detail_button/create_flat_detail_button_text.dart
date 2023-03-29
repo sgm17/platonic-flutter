@@ -14,7 +14,7 @@ class CreateFlatDetailButtonText extends StatelessWidget {
       text,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.1529999838935003,
         fontSize: 18.0,
         fontFamily: 'Gilroy',

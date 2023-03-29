@@ -30,7 +30,7 @@ class FlatNotifier extends StateNotifier<AsyncValue<FlatModel>> {
             return AsyncValue.data(newState);
           },
           error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-          loading: () => AsyncValue.loading());
+          loading: () => const AsyncValue.loading());
 
       return true;
     } catch (e) {
@@ -46,6 +46,6 @@ class FlatNotifier extends StateNotifier<AsyncValue<FlatModel>> {
           return AsyncValue.data(newState);
         },
         error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-        loading: () => AsyncValue.loading());
+        loading: () => const AsyncValue.loading());
   }
 }

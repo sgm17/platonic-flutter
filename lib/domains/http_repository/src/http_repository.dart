@@ -1,7 +1,4 @@
-import 'package:platonic/domains/chat_repository/chat_repository.dart';
-import 'package:platonic/domains/flat_repository/src/models/flat_home_model.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
-import 'package:platonic/domains/flat_repository/src/models/place_model.dart';
 import 'package:platonic/domains/meet_repository/meet_repository.dart';
 import 'package:platonic/domains/story_repository/src/models/models.dart';
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';

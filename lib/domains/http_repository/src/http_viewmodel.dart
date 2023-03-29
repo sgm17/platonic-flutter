@@ -1,9 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:platonic/domains/flat_repository/src/models/flat_home_model.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
-import 'package:platonic/domains/flat_repository/src/models/place_model.dart';
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
-import 'package:platonic/domains/chat_repository/src/models/conversation_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/http_repository/src/http_repository.dart';
 import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.dart';

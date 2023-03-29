@@ -2,7 +2,6 @@ import 'package:action_cable/action_cable.dart';
 import 'package:platonic/domains/chat_repository/chat_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
-import 'package:platonic/providers/user_provider/app_user_provider.dart';
 
 class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   final String conversationChannelName = "ConversationChannel";

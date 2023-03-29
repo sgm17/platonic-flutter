@@ -1,10 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/login/widgets/widgets.dart';
 import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
-import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});

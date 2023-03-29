@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
-import 'package:platonic/domains/university_repository/university_repository.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 
 class AmenityTransportation extends ConsumerWidget {
-  final University tenantUniversity;
+  final int universityId;
 
-  const AmenityTransportation({Key? key, required this.tenantUniversity})
+  const AmenityTransportation({Key? key, required this.universityId})
       : super(key: key);
 
   @override
@@ -16,20 +15,20 @@ class AmenityTransportation extends ConsumerWidget {
 
     void toggleNextIcon() {
       int currentIndex = transportationIcons.indexOf(flatCreateState.transports
-          .firstWhere((e) => e.university == tenantUniversity)
+          .firstWhere((e) => e.university.id == universityId)
           .icon);
 
       if (currentIndex == transportationIcons.length - 1) {
         ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
             transports: flatCreateState.transports
-                .map((e) => e.university == tenantUniversity
+                .map((e) => e.university.id == universityId
                     ? e.copyWith(icon: transportationIcons[0])
                     : e)
                 .toList());
       } else {
         ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
             transports: flatCreateState.transports
-                .map((e) => e.university == tenantUniversity
+                .map((e) => e.university.id == universityId
                     ? e.copyWith(icon: transportationIcons[currentIndex + 1])
                     : e)
                 .toList());
@@ -38,20 +37,20 @@ class AmenityTransportation extends ConsumerWidget {
 
     void togglePastIcon() {
       int currentIndex = transportationIcons.indexOf(flatCreateState.transports
-          .firstWhere((e) => e.university == tenantUniversity)
+          .firstWhere((e) => e.university.id == universityId)
           .icon);
 
       if (currentIndex == 0) {
         ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
             transports: flatCreateState.transports
-                .map((e) => e.university == tenantUniversity
+                .map((e) => e.university.id == universityId
                     ? e.copyWith(icon: transportationIcons[0])
                     : e)
                 .toList());
       } else {
         ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
             transports: flatCreateState.transports
-                .map((e) => e.university == tenantUniversity
+                .map((e) => e.university.id == universityId
                     ? e.copyWith(icon: transportationIcons[currentIndex - 1])
                     : e)
                 .toList());
@@ -65,7 +64,7 @@ class AmenityTransportation extends ConsumerWidget {
           children: [
             GestureDetector(
               onTap: togglePastIcon,
-              child: Icon(Icons.navigate_before_outlined,
+              child: const Icon(Icons.navigate_before_outlined,
                   color: Color.fromARGB(255, 255, 255, 255)),
             ),
             Container(
@@ -74,18 +73,18 @@ class AmenityTransportation extends ConsumerWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-                  color: Color.fromARGB(255, 63, 141, 253)),
+                  color: const Color.fromARGB(255, 63, 141, 253)),
               child: Icon(
                 flatCreateState.transports
-                    .firstWhere((e) => e.university == tenantUniversity)
+                    .firstWhere((e) => e.university.id == universityId)
                     .icon,
                 size: 20,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: const Color.fromARGB(255, 255, 255, 255),
               ),
             ),
             GestureDetector(
               onTap: toggleNextIcon,
-              child: Icon(
+              child: const Icon(
                 Icons.navigate_next_outlined,
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
@@ -93,7 +92,7 @@ class AmenityTransportation extends ConsumerWidget {
           ],
         ),
       ),
-      SizedBox(
+      const SizedBox(
         width: 8.0,
       ),
       SizedBox(
@@ -103,7 +102,7 @@ class AmenityTransportation extends ConsumerWidget {
             ref.read(flatCreateProvider.notifier).state =
                 flatCreateState.copyWith(
                     transports: flatCreateState.transports
-                        .map((t) => t.university == tenantUniversity
+                        .map((t) => t.university.id == universityId
                             ? t.copyWith(minutes: int.parse(newValue!))
                             : t)
                         .toList());
