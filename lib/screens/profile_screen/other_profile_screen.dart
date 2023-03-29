@@ -86,6 +86,7 @@ class OtherProfileScreen extends ConsumerWidget {
                     child: MeetPictureContainer(
                       isVisible: false,
                       toggleMeetPicture: null,
+                      myUser: false,
                     ),
                   ),
                 ]),

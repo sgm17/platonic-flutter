@@ -44,10 +44,17 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
       );
 
-      // Upload the image file to the server
-      final image = await ref
-          .read(httpViewmodelProvider)
-          .postCreateImage(file: File(pickedFile.path));
+      var image;
+
+      try {
+        // Upload the image file to the server
+        image = await ref
+            .read(httpViewmodelProvider)
+            .postCreateImage(file: File(pickedFile.path));
+      } on ErrorApp {
+        ref.read(profileErrorProvider.notifier).state =
+            ErrorApp(code: 'profileimageerror');
+      }
 
       // Hide the loading dialog
       Navigator.of(context).pop();

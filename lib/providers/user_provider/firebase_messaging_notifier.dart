@@ -29,7 +29,8 @@ class FirebaseMessagingNotifier extends StateNotifier<String?> {
     cloudTokenListener = messaging.onTokenRefresh.listen(onCloudTokenChanges);
 
     const initializationSettings = InitializationSettings(
-        android: AndroidInitializationSettings('ic_notification'));
+        android: AndroidInitializationSettings('ic_notification'),
+        iOS: DarwinInitializationSettings());
 
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
 

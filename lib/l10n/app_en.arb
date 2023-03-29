@@ -214,5 +214,9 @@
   "authshortpasswordialog": "",
   "@authshortpasswordialog": {
     "description": ""
+  },
+  "profileimageerror": "",
+  "@profileimageerror": {
+    "description": ""
   }
 }
