@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
-import 'widgets.dart';
 
 class AmenityTransportation extends ConsumerWidget {
   final University tenantUniversity;

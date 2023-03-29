@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/flat_repository/src/flat_repository.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
+import 'package:platonic/providers/http_provider/providers.dart';
 
 class FlatViewmodel implements FlatRepository {
   final Ref ref;
@@ -9,16 +10,16 @@ class FlatViewmodel implements FlatRepository {
 
   @override
   Future<FlatHomeModel> getIndexFlatHome() {
-    return Future.delayed(Duration(seconds: 1), () => flatHome);
+    return ref.read(httpViewmodelProvider).getIndexHomeFlat();
   }
 
   @override
   Future<List<FlatsScrollModel>> getIndexFlatsScroll() {
-    return Future.delayed(Duration(seconds: 1), () => flatsScroll);
+    return ref.read(httpViewmodelProvider).getIndexFlats();
   }
 
   @override
-  Future<FlatModel> getShowFlatDetail({required int id}) {
-    return Future.delayed(Duration(seconds: 1), () => flatDetail);
+  Future<FlatModel> getShowFlatDetail({required int flatId}) {
+    return ref.read(httpViewmodelProvider).getShowFlat(flatId: flatId);
   }
 }

@@ -15,7 +15,7 @@ class FlatScrollDirectionTitle extends StatelessWidget {
       '$name, $city, $state',
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 10.0,
         fontFamily: 'DM Sans',
         fontWeight: FontWeight.w400,

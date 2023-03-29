@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/screens/detail_screen/widgets/detail_cost_concept_ellipse.dart';
-import 'package:flutterapp/screens/detail_screen/widgets/detail_monthly_cost/detail_monthly_cost_subtitle.dart';
+import 'package:platonic/screens/detail_screen/widgets/widgets.dart';
 import 'detail_cost_concept_title.dart';
 
 /* Group principalinterest
@@ -16,7 +15,7 @@ class DetailPrincipalInterest extends StatelessWidget {
     return SizedBox(
       height: 21.0,
       child: Row(children: [
-        Expanded(
+        const Expanded(
           child: Row(
             children: [
               SizedBox(
@@ -38,7 +37,7 @@ class DetailPrincipalInterest extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 32.0,
         ),
         SizedBox(

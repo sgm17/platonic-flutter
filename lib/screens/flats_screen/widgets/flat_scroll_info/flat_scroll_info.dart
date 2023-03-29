@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/domain/flat_repository/src/models/flats_scroll_model.dart';
-import 'package:flutterapp/screens/flats_screen/widgets/flat_amenities.dart';
-import 'package:flutterapp/screens/flats_screen/widgets/flat_scroll_info/flat_scroll_direction_title.dart';
-import 'package:flutterapp/screens/flats_screen/widgets/flat_scroll_info/flat_scroll_monthly_price.dart';
-import 'package:flutterapp/screens/flats_screen/widgets/flat_scroll_transport/flat_scroll_transport.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
+import 'package:platonic/screens/flats_screen/widgets/widgets.dart';
 import 'flat_scroll_title.dart';
 
 /* Frame university_info

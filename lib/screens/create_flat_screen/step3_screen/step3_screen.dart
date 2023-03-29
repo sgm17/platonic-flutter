@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
 import 'package:platonic/screens/create_flat_screen/step2_screen/widgets/widgets.dart';
-
+import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 
 /* Frame step3
@@ -12,6 +11,8 @@ import 'widgets/widgets.dart';
 
 class Step3Screen extends ConsumerWidget {
   final formKey = GlobalKey<FormState>();
+
+  Step3Screen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -36,7 +37,7 @@ class Step3Screen extends ConsumerWidget {
     }
 
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 27, 26, 29),
+        backgroundColor: const Color.fromARGB(255, 27, 26, 29),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
@@ -46,25 +47,25 @@ class Step3Screen extends ConsumerWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      NavigateBefore(
+                      const NavigateBefore(
                         color: Colors.white,
                         title: 'Step 3-4',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 22.0,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 33.0,
                         child: CreateFlatDetailTitle(
                             title: '''Property Amenities '''),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 22.0,
                       ),
                       Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Flexible(
+                            const Flexible(
                                 flex: 3,
                                 child: SizedBox(
                                   height: 70.0,
@@ -77,7 +78,7 @@ class Step3Screen extends ConsumerWidget {
                               ),
                             )
                           ]),
-                      SizedBox(
+                      const SizedBox(
                         height: 22.0,
                       ),
                       Row(
@@ -97,16 +98,16 @@ class Step3Screen extends ConsumerWidget {
                               ),
                             )
                           ]),
-                      SizedBox(
+                      const SizedBox(
                         height: 22.0,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 26.0,
                         child: CreateFlatDetailSubtitle(
                           subtitle: '''Features''',
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 14.0,
                       ),
                       SizedBox(
@@ -115,15 +116,15 @@ class Step3Screen extends ConsumerWidget {
                           features: flatCreateState.features,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 22.0,
                       ),
-                      SizedBox(
+                      const SizedBox(
                           height: 26.0,
                           child: CreateFlatDetailSubtitle(
                             subtitle: '''Transportation''',
                           )),
-                      SizedBox(
+                      const SizedBox(
                         height: 6.0,
                       ),
                       SizedBox(
@@ -132,7 +133,7 @@ class Step3Screen extends ConsumerWidget {
                             university:
                                 "${flatCreateState.owner.university.name} (${flatCreateState.owner.university.simpleName.toUpperCase()})"),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 6.0,
                       ),
                       AmenityTransportation(
@@ -150,28 +151,28 @@ class Step3Screen extends ConsumerWidget {
                                     university:
                                         "${t.university} (${t.university.simpleName.toUpperCase()})"),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 6.0,
                               ),
                               AmenityTransportation(
                                 tenantUniversity: t.university,
                               ),
                               if (index == flatCreateState.tenants.length - 1)
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 )
                             ],
                           );
                         }).toList(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 22.0,
                       ),
                       SizedBox(
                         height: 74.0,
                         child: AmenityDisclaimerText(),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 32.0,
                       ),
                       GestureDetector(
@@ -182,18 +183,18 @@ class Step3Screen extends ConsumerWidget {
                               alignment: Alignment.center,
                               height: 44.0,
                               decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 63, 141, 253),
+                                color: const Color.fromARGB(255, 63, 141, 253),
                                 borderRadius: BorderRadius.circular(10.0),
                                 boxShadow: [
-                                  BoxShadow(
+                                  const BoxShadow(
                                     color: Color.fromARGB(63, 0, 0, 0),
                                     offset: Offset(0.0, 4.0),
                                     blurRadius: 4.0,
                                   )
                                 ],
                               ),
-                              child:
-                                  CreateFlatDetailButtonText(text: '''Next'''),
+                              child: const CreateFlatDetailButtonText(
+                                  text: '''Next'''),
                             )),
                       ),
                     ]),

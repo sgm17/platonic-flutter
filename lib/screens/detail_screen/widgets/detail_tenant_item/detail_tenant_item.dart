@@ -24,14 +24,14 @@ class DetailTenantItem extends StatelessWidget {
             image: tenant.profileImage!,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 16.0,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DetailTenantName(name: tenant.name),
-            SizedBox(
+            const SizedBox(
               height: 4.0,
             ),
             DetailTenantUniversity(

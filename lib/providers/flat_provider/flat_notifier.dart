@@ -9,7 +9,7 @@ class FlatNotifier extends StateNotifier<AsyncValue<FlatModel>> {
   FlatNotifier(this.ref) : super(const AsyncValue.loading()) {
     ref
         .read(flatViewmodelProvider)
-        .getShowFlatDetail(id: ref.read(activeFlatIdProvider))
+        .getShowFlatDetail(flatId: ref.read(activeFlatIdProvider))
         .then((flat) {
       state = AsyncValue.data(flat);
     }).catchError((e) {

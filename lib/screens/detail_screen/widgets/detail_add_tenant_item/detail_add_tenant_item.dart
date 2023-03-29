@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/screens/detail_screen/widgets/detail_add_tenant_item/detail_add_tenant_circle.dart';
-import 'package:flutterapp/screens/detail_screen/widgets/detail_add_tenant_item/detail_add_tenant_input.dart';
+import 'package:platonic/screens/detail_screen/widgets/widgets.dart';
 
 class DetailAddTenantItem extends StatelessWidget {
   const DetailAddTenantItem({Key? key, required this.flatId}) : super(key: key);
@@ -11,8 +10,8 @@ class DetailAddTenantItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        DetailAddTenantCircle(),
-        SizedBox(
+        const DetailAddTenantCircle(),
+        const SizedBox(
           width: 6.0,
         ),
         Expanded(
