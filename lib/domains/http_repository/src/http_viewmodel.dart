@@ -47,8 +47,12 @@ class HttpViewmodel implements HttpRepository {
         headers: headers);
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> data = await jsonDecode(response.body);
-      return AppUser.fromJson(data);
+      final Map<String, dynamic>? data = await jsonDecode(response.body);
+      if (data != null) {
+        return AppUser.fromJson(data);
+      } else {
+        return null;
+      }
     } else {
       throw const ErrorApp(code: 'httpindexappuser');
     }
@@ -300,7 +304,7 @@ class HttpViewmodel implements HttpRepository {
     );
 
     if (response.statusCode != 200) {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpdeleteflat');
     }
   }
 
@@ -321,7 +325,7 @@ class HttpViewmodel implements HttpRepository {
 
       return data.map((e) => FlatsScrollModel.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpindexflats');
     }
   }
 
@@ -345,7 +349,7 @@ class HttpViewmodel implements HttpRepository {
         return FlatHomeModel.fromJson(data);
       }
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httphomeflat');
     }
   }
 
@@ -365,7 +369,7 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
       return FlatModel.fromJson(data);
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpshowflat');
     }
   }
 
@@ -389,7 +393,7 @@ class HttpViewmodel implements HttpRepository {
       final List<dynamic> data = await jsonDecode(response.body);
       return data.map((e) => AppUser.fromJson(e)).toList();
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpposttenant');
     }
   }
 
@@ -412,7 +416,7 @@ class HttpViewmodel implements HttpRepository {
 
       return data["book_mark"] ?? false;
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpbookmark');
     }
   }
 
@@ -433,7 +437,7 @@ class HttpViewmodel implements HttpRepository {
 
       return FlatsScrollModel.fromJson(data);
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpcreateflat');
     }
   }
 
@@ -454,7 +458,7 @@ class HttpViewmodel implements HttpRepository {
 
       return FlatsScrollModel.fromJson(data);
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpupdateflat');
     }
   }
 
@@ -484,7 +488,7 @@ class HttpViewmodel implements HttpRepository {
         return PlaceModel.fromJson(newMap);
       }).toList();
     } else {
-      throw Exception('Failed to load the user');
+      throw const ErrorApp(code: 'httpaddress');
     }
   }
 

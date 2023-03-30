@@ -17,7 +17,7 @@ class FlatItemPrice extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.left,
         text: TextSpan(
-          style: TextStyle(
+          style: const TextStyle(
             height: 1.152999997138977,
             fontSize: 16.0,
             fontFamily: 'Gilroy',
@@ -27,7 +27,7 @@ class FlatItemPrice extends StatelessWidget {
             /* letterSpacing: 0.0, */
           ),
           children: [
-            TextSpan(
+            const TextSpan(
               text: '''€''',
               style: TextStyle(
                 fontSize: 10.0,
@@ -37,7 +37,7 @@ class FlatItemPrice extends StatelessWidget {
                 /* letterSpacing: null, */
               ),
             ),
-            TextSpan(
+            const TextSpan(
               text: ''' ''',
               style: TextStyle(
                 fontSize: 16.0,
@@ -48,7 +48,7 @@ class FlatItemPrice extends StatelessWidget {
             TextSpan(
               text: ((rentPricePerMonthInCents + electricityPriceInCents) / 100)
                   .toString(),
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16.0,
                 fontFamily: 'DM Sans',
                 fontWeight: FontWeight.w700,
@@ -56,7 +56,7 @@ class FlatItemPrice extends StatelessWidget {
                 /* letterSpacing: null, */
               ),
             ),
-            TextSpan(
+            const TextSpan(
               text: ''' ''',
               style: TextStyle(
                 fontSize: 16.0,
@@ -64,7 +64,7 @@ class FlatItemPrice extends StatelessWidget {
                 /* letterSpacing: null, */
               ),
             ),
-            TextSpan(
+            const TextSpan(
               text: '''/ per month''',
               style: TextStyle(
                 fontSize: 12.0,

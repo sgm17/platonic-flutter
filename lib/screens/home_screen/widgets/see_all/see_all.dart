@@ -11,7 +11,7 @@ class SeeAll extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, '/FlatsScreen'),
-      child: SizedBox(
+      child: const SizedBox(
         height: 15.0,
         child: Row(
           children: [
@@ -20,10 +20,10 @@ class SeeAll extends StatelessWidget {
               height: 14.0,
               child: SeeAllTitle(),
             ),
-            const SizedBox(
+            SizedBox(
               width: 3.0,
             ),
-            const SizedBox(
+            SizedBox(
               height: 15.0,
               width: 15.0,
               child: NavigateIcon(),

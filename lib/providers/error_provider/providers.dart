@@ -1,3 +1,4 @@
+export 'create_flat/widgets.dart';
 export 'auth_error_provider.dart';
 export 'create_error_provider.dart';
 export 'home_error_provider.dart';

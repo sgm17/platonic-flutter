@@ -12,9 +12,8 @@ class AmenityM2Input extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void onSaved(String? built) {
-      if (built == null) return;
-
-      ref.read(builtProvider.notifier).state = int.parse(built);
+      ref.read(flatCreateProvider.notifier).state =
+          ref.read(flatCreateProvider).copyWith(built: int.parse(built!));
     }
 
     return Container(

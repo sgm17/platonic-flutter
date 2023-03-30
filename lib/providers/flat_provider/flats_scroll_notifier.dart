@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/providers/http_provider/providers.dart';
 
@@ -8,11 +9,20 @@ class FlatsScrollNotifier
   final Ref ref;
 
   FlatsScrollNotifier(this.ref) : super(const AsyncValue.loading()) {
-    ref.read(flatViewmodelProvider).getIndexFlatsScroll().then((flatsScroll) {
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    try {
+      final flatsScroll =
+          await ref.read(flatViewmodelProvider).getIndexFlatsScroll();
       state = AsyncValue.data(flatsScroll);
-    }).catchError((e) {
-      state = AsyncValue.error(e, StackTrace.current);
-    });
+    } on ErrorApp catch (e) {
+      
+    } catch (e) {
+            state = AsyncValue.error(e, StackTrace.current);
+
+    }
   }
 
   Future<void> deleteFlat({required int flatId}) async {
@@ -26,7 +36,7 @@ class FlatsScrollNotifier
           },
           error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
           loading: () => const AsyncValue.loading());
-    } catch (e) {
+    } onErrorApp catch (e) {
       print(e);
     }
   }

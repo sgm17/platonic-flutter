@@ -151,6 +151,42 @@
   "@httpcreatemultipleimages": {
     "description": ""
   },
+  "httpdeleteflat": "",
+  "@httpdeleteflat": {
+    "description": ""
+  },
+  "httpindexflats": "",
+  "@httpindexflats": {
+    "description": ""
+  },
+  "httphomeflat": "",
+  "@httphomeflat": {
+    "description": ""
+  },
+  "httpshowflat": "",
+  "@httpshowflat": {
+    "description": ""
+  },
+  "httpposttenant": "",
+  "@httpposttenant": {
+    "description": ""
+  },
+  "httpbookmark": "",
+  "@httpbookmark": {
+    "description": ""
+  },
+  "httpcreateflat": "",
+  "@httpcreateflat": {
+    "description": ""
+  },
+  "httpupdateflat": "",
+  "@httpupdateflat": {
+    "description": ""
+  },
+  "httpaddress": "",
+  "@httpaddress": {
+    "description": ""
+  },
   "meetdeletedialog": "",
   "@meetdeletedialog": {
     "description": ""

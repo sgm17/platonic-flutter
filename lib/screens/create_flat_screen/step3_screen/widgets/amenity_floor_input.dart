@@ -12,9 +12,8 @@ class AmenityFloorInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void onSaved(String? floor) {
-      if (floor == null) return;
-
-      ref.read(floorProvider.notifier).state = int.parse(floor);
+      ref.read(flatCreateProvider.notifier).state =
+          ref.read(flatCreateProvider).copyWith(floor: int.parse(floor!));
     }
 
     return Container(

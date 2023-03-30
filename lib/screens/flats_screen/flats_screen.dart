@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/providers/error_provider/flats_scroll_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
+import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'widgets/widgets.dart';
 
 /* Frame flats
@@ -13,10 +15,23 @@ class FlatsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatsScrollState = ref.watch(flatsScrollProvider);
+    final flatsScrollErrorState = ref.watch(flatsScrollErrorProvider);
 
     void toggleFlatDetailScreen() {
       Navigator.pushNamed(context, '/DetailScreen');
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (flatsScrollErrorState != null) {
+        showDialog(
+            context: context,
+            builder: (context) => ErrorDialog(
+                  error: flatsScrollErrorState.code,
+                ));
+
+        ref.read(flatsScrollErrorProvider.notifier).state = null;
+      }
+    });
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 27, 26, 29),

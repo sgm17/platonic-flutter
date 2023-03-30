@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
+import 'package:platonic/providers/error_provider/flat_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step2_screen/widgets/widgets.dart';
+import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'widgets/widgets.dart';
 
 class DetailScreen extends ConsumerWidget {
@@ -10,6 +12,19 @@ class DetailScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatState = ref.watch(flatProvider);
+    final flatErrorState = ref.watch(flatErrorProvider);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (flatErrorState != null) {
+        showDialog(
+            context: context,
+            builder: (context) => ErrorDialog(
+                  error: flatErrorState.code,
+                ));
+
+        ref.read(flatErrorProvider.notifier).state = null;
+      }
+    });
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
