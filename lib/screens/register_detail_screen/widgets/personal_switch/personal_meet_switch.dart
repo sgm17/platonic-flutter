@@ -22,7 +22,7 @@ class PersonalMeetSwitch extends ConsumerWidget {
         if (userState.sex == Sex.male) {
           ref.read(appUserProvider.notifier).setSex(Sex.female);
         } else {
-          ref.read(appUserProvider.notifier).setSex(Sex.female);
+          ref.read(appUserProvider.notifier).setSex(Sex.male);
         }
       },
       child: Container(

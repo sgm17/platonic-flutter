@@ -15,3 +15,4 @@ export 'flats_scroll_provider.dart';
 export 'floor_provider.dart';
 export 'map_controller_provider.dart';
 export 'suggestions_provider.dart';
+export 'flat_item_home_provider.dart';

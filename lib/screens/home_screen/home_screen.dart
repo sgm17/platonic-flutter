@@ -104,6 +104,10 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
             const SizedBox(
               height: 32.0,
             ),
+            const SizedBox(height: 139.0, child: FlatContainer()),
+            const SizedBox(
+              height: 32.0,
+            ),
             if (conversationsState.isNotEmpty)
               const Expanded(child: MessagesContainer()),
           ]),

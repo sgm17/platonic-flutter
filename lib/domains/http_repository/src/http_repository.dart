@@ -49,7 +49,7 @@ abstract class HttpRepository {
 
   // Flats
   // GET /api/v1/flats/index_home
-  Future<FlatHomeModel> getIndexHomeFlat();
+  Future<FlatHomeModel?> getIndexHomeFlat();
   // GET /api/v1/flats
   Future<List<FlatsScrollModel>> getIndexFlats();
   // GET /api/v1/flats/flat_id

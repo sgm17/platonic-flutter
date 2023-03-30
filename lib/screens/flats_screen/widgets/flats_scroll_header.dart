@@ -30,6 +30,10 @@ class FlatsScrollHeader extends ConsumerWidget {
       ]);
     }
 
+    void toggleNavigateBefore() {
+      Navigator.pop(context);
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       decoration: BoxDecoration(
@@ -40,11 +44,14 @@ class FlatsScrollHeader extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
             children: [
-              const SizedBox(
-                width: 25.0,
-                height: 25.0,
-                child: NavigateBeforeIconContainer(
-                  color: Colors.white,
+              GestureDetector(
+                onTap: toggleNavigateBefore,
+                child: const SizedBox(
+                  width: 25.0,
+                  height: 25.0,
+                  child: NavigateBeforeIconContainer(
+                    color: Colors.white,
+                  ),
                 ),
               ),
               const SizedBox(

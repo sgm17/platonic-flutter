@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
-
+import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 
 /* Frame step2

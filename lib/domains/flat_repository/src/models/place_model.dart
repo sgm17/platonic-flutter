@@ -4,7 +4,7 @@ part 'place_model.freezed.dart';
 part 'place_model.g.dart';
 
 @JsonSerializable(
-  createToJson: true,
+  createToJson: false,
   explicitToJson: true,
   anyMap: true,
   checked: true,

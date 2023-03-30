@@ -9,7 +9,7 @@ class FlatViewmodel implements FlatRepository {
   FlatViewmodel(this.ref);
 
   @override
-  Future<FlatHomeModel> getIndexFlatHome() {
+  Future<FlatHomeModel?> getIndexFlatHome() {
     return ref.read(httpViewmodelProvider).getIndexHomeFlat();
   }
 

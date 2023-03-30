@@ -36,6 +36,8 @@ class HttpViewmodel implements HttpRepository {
 
   @override
   Future<AppUser?> getIndexAppUser() async {
+    if (tokenId == null) return null;
+
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
@@ -93,6 +95,8 @@ class HttpViewmodel implements HttpRepository {
 
   @override
   Future<bool> putUpdateCloudTokenAppUser({required String cloudToken}) async {
+    if (tokenId == null) return false;
+
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
@@ -322,7 +326,7 @@ class HttpViewmodel implements HttpRepository {
   }
 
   @override
-  Future<FlatHomeModel> getIndexHomeFlat() async {
+  Future<FlatHomeModel?> getIndexHomeFlat() async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
@@ -334,8 +338,12 @@ class HttpViewmodel implements HttpRepository {
     );
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> data = await jsonDecode(response.body);
-      return FlatHomeModel.fromJson(data);
+      final Map<String, dynamic>? data = await jsonDecode(response.body);
+      if (data == null) {
+        return null;
+      } else {
+        return FlatHomeModel.fromJson(data);
+      }
     } else {
       throw Exception('Failed to load the user');
     }
