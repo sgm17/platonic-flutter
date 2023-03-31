@@ -17,15 +17,9 @@ class FeatureItemContainer extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final flatCreateState = ref.watch(flatCreateProvider);
     void toggleFeatureItem() {
-      final flat = ref.read(flatCreateProvider);
-
-      if (flat.features.contains(featureModel) == true) {
-        ref.read(flatCreateProvider.notifier).state = flat.copyWith(
-            features: flat.features.where((e) => e != featureModel).toList());
-      } else {
-        ref.read(flatCreateProvider.notifier).state = flatCreateState
-            .copyWith(features: [featureModel, ...flat.features]);
-      }
+      ref
+          .read(flatCreateProvider.notifier)
+          .setFeature(featureModel: featureModel);
     }
 
     return GestureDetector(

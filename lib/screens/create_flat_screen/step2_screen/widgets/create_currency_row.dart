@@ -9,10 +9,7 @@ class CreateCurrencyRow extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void toggleCurrency(Currency currency) {
-      ref.read(flatCreateProvider.notifier).state = ref
-          .read(flatCreateProvider.notifier)
-          .state
-          .copyWith(currency: currency);
+      ref.read(flatCreateProvider.notifier).setCurrency(currency: currency);
     }
 
     final flatCreateState = ref.watch(flatCreateProvider);

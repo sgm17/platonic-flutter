@@ -19,15 +19,16 @@ class FlatsScrollHeader extends ConsumerWidget {
     void toggleCreateFlatScreen() {
       Navigator.pushNamed(context, '/Step1Screen');
 
-      ref.read(flatCreateProvider.notifier).state =
-          ref.read(flatCreateProvider).copyWith(owner: myUser, transports: [
-        TransportModel(
-            id: 1,
-            name: 'Train',
-            icon: Icons.directions_train,
-            minutes: 0,
-            university: myUser.university!)
-      ]);
+      final transports = TransportModel(
+          id: 1,
+          name: 'Train',
+          icon: Icons.directions_train,
+          minutes: 0,
+          university: myUser.university!);
+
+      ref
+          .read(flatCreateProvider.notifier)
+          .setInitialState(owner: myUser, transports: [transports]);
     }
 
     void toggleNavigateBefore() {

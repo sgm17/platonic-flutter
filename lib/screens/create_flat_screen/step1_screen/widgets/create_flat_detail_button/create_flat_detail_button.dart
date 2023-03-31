@@ -6,31 +6,27 @@ import 'package:flutter/material.dart';
   */
 
 class CreateFlatDetailButton extends StatelessWidget {
-  final String text, route;
+  final String text;
 
-  const CreateFlatDetailButton(
-      {Key? key, required this.text, required this.route})
+  const CreateFlatDetailButton({Key? key, required this.text})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, route),
-      child: Container(
-        alignment: Alignment.center,
-        height: 44.0,
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 63, 141, 253),
-          borderRadius: BorderRadius.circular(10.0),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromARGB(63, 0, 0, 0),
-              offset: Offset(0.0, 4.0),
-              blurRadius: 4.0,
-            )
-          ],
-        ),
-        child: CreateFlatDetailButtonText(text: text),
+    return Container(
+      alignment: Alignment.center,
+      height: 44.0,
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 63, 141, 253),
+        borderRadius: BorderRadius.circular(10.0),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(63, 0, 0, 0),
+            offset: Offset(0.0, 4.0),
+            blurRadius: 4.0,
+          )
+        ],
       ),
+      child: CreateFlatDetailButtonText(text: text),
     );
   }
 }

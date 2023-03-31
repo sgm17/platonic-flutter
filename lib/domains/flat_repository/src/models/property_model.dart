@@ -23,6 +23,16 @@ class PropertyModel with _$PropertyModel {
       required String name,
       required String state}) = _PropertyModel;
 
+  static PropertyModel emptyProperties = PropertyModel(
+      country: '',
+      city: '',
+      countrycode: '',
+      postcode: '',
+      county: '',
+      housenumber: '',
+      state: '',
+      name: '');
+
   factory PropertyModel.fromJson(Map<String, dynamic> json) =>
       _$PropertyModelFromJson(json);
 

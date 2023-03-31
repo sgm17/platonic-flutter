@@ -9,6 +9,7 @@ class DetailTenantItem extends StatelessWidget {
   final AppUser tenant;
 
   const DetailTenantItem({Key? key, required this.tenant}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +22,7 @@ class DetailTenantItem extends StatelessWidget {
           width: 40.0,
           height: 40.0,
           child: DetailTenantImage(
-            image: tenant.profileImage!,
+            image: tenant.profileImage,
           ),
         ),
         const SizedBox(

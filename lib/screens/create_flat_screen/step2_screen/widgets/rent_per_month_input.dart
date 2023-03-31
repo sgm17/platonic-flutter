@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 
 /* Group rentpermonth
@@ -11,13 +13,9 @@ class RentPerMonthInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void onSaved(String? price) {
-      if (price == null) return;
-
-      final currentState = ref.read(flatCreateProvider.notifier).state;
-      final rentPricePerMonthInCents = int.parse(price) * 100;
-
-      ref.read(flatCreateProvider.notifier).state = currentState.copyWith(
-          rentPricePerMonthInCents: rentPricePerMonthInCents);
+      ref
+          .read(flatCreateProvider.notifier)
+          .setRentPerMonth(rentPricePerMonth: int.parse(price!));
     }
 
     return TextFormField(
@@ -28,11 +26,15 @@ class RentPerMonthInput extends ConsumerWidget {
       maxLines: 1,
       validator: (value) {
         if (value == null || value.isEmpty) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2rentpermonth');
           return 'Rent per month is required';
         }
 
         int? rent = int.tryParse(value);
         if (rent == null || rent <= 0 || rent >= 2000) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2rentvalid');
           return 'Rent per month must be an integer between 1 and 1999';
         }
 

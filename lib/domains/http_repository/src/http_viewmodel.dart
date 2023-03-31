@@ -111,7 +111,7 @@ class HttpViewmodel implements HttpRepository {
         headers: headers,
         body: jsonEncode({'cloud_token': cloudToken}));
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       await jsonDecode(response.body);
       return true;
     } else {
@@ -387,7 +387,7 @@ class HttpViewmodel implements HttpRepository {
         Uri.parse(
             "${dotenv.env['API_ENDPOINT']}/flats/$flatId/add_remove_tenant"),
         headers: headers,
-        body: body);
+        body: jsonEncode(body));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = await jsonDecode(response.body);
@@ -525,13 +525,13 @@ class HttpViewmodel implements HttpRepository {
       {required List<File> files}) async {
     final request = http.MultipartRequest(
       'POST',
-      Uri.parse('${dotenv.env['API_ENDPOINT']}/create_multiple'),
+      Uri.parse('${dotenv.env['API_ENDPOINT']}/images/create_multiple'),
     );
     request.headers['Authorization'] = 'Bearer $tokenId';
     for (final file in files) {
       request.files.add(
         await http.MultipartFile.fromPath(
-          'images',
+          'images[]',
           file.path,
         ),
       );
@@ -541,11 +541,12 @@ class HttpViewmodel implements HttpRepository {
 
     if (response.statusCode == 201) {
       final responseBody = await response.stream.bytesToString();
-      final List<dynamic> data = await jsonDecode(responseBody);
+      final Map<String, dynamic> data = await jsonDecode(responseBody);
+      final List<dynamic> images = data["images"];
 
-      return data.map((data) {
-        final name = data["name"];
-        final format = data["format"];
+      return images.map((image) {
+        final name = image["name"];
+        final format = image["format"];
 
         return "${dotenv.env['API_ENDPOINT']}/images?name=$name&format=$format";
       }).toList();

@@ -24,9 +24,3 @@ PlaceModel _$PlaceModelFromJson(Map json) => $checkedCreate(
         return val;
       },
     );
-
-Map<String, dynamic> _$PlaceModelToJson(PlaceModel instance) =>
-    <String, dynamic>{
-      'geometry': instance.geometry,
-      'properties': instance.properties.toJson(),
-    };

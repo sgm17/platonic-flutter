@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 
 /* Group fees
@@ -11,13 +13,9 @@ class RentCostElectricityInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void onSaved(String? electricity) {
-      if (electricity == null) return;
-
-      final currentState = ref.read(flatCreateProvider.notifier).state;
-      final electricityPriceInCents = int.parse(electricity) * 100;
-
-      ref.read(flatCreateProvider.notifier).state = currentState.copyWith(
-          electricityPriceInCents: electricityPriceInCents);
+      ref
+          .read(flatCreateProvider.notifier)
+          .setElectricity(electricityPrice: int.parse(electricity!));
     }
 
     return TextFormField(
@@ -27,11 +25,15 @@ class RentCostElectricityInput extends ConsumerWidget {
       textAlignVertical: TextAlignVertical.center,
       validator: (value) {
         if (value == null || value.isEmpty) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2costelectricity');
           return 'Cost of electricity is required';
         }
 
         int? rent = int.tryParse(value);
         if (rent == null || rent < 0 || rent >= 2000) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2electricityvalid');
           return 'Cost of electricity must be an integer between 0 and 1999';
         }
 

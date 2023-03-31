@@ -81,20 +81,8 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
         final firstTimeUsingTheApp = getFirstTimeUsingApp();
 
         if (firstTimeUsingTheApp == true) {
-          // First login of the user
-          return FutureBuilder<bool>(
-            // Set the first time using app to false
-            future: ref
-                .read(sharedPreferencesProvider)
-                .setBool(FIRST_TIME_USING_APP_KEY, false),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const SizedBox.shrink();
-              }
-              // Redirect to the StartScreen
-              return const StartScreen();
-            },
-          );
+          // Redirect to the StartScreen
+          return const StartScreen();
         } else {
           // Not the first time
           return const HomeScreen();

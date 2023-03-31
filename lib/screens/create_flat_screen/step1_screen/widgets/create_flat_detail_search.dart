@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/create_flat/step1_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/providers/http_provider/providers.dart';
 import 'widgets.dart';
@@ -16,12 +18,19 @@ class CreateFlatDetailSearch extends ConsumerWidget {
     Future<void> toggleAddressSearch() async {
       final address = ref.read(flatAddressInputProvider);
 
+      if (address.isEmpty) {
+        ref.read(step1ErrorProvider.notifier).state =
+            const ErrorApp(code: 'step1emptyaddress');
+      }
+
       List<PlaceModel> placeModel = [];
 
       try {
         placeModel = await ref
             .read(httpViewmodelProvider)
             .getIndexAddress(address: address);
+      } on ErrorApp catch (e) {
+        ref.read(step1ErrorProvider.notifier).state = e;
       } catch (e) {
         print(e);
       }
@@ -32,10 +41,7 @@ class CreateFlatDetailSearch extends ConsumerWidget {
     return TextField(
       onChanged: (text) =>
           ref.read(flatAddressInputProvider.notifier).state = text,
-      onSubmitted: (text) async {
-        ref.read(flatAddressInputProvider.notifier).state = text;
-        await toggleAddressSearch();
-      },
+      onSubmitted: (_) async => await toggleAddressSearch(),
       focusNode: ref.read(flatAddressInputFocusProvider),
       style: const TextStyle(
           height: 1.1530000141688757,

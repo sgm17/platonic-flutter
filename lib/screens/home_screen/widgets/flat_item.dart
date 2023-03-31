@@ -13,7 +13,6 @@ class FlatItem extends ConsumerWidget {
 
     void toggleFlatItemHome() {
       ref.read(activeFlatIdProvider.notifier).state = flatItemHomeState.id;
-
       Navigator.pushNamed(context, '/DetailScreen');
     }
 

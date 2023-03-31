@@ -28,8 +28,8 @@ mixin _$FlatModel {
   int get advancePriceInCents => throw _privateConstructorUsedError;
   int get electricityPriceInCents => throw _privateConstructorUsedError;
   DateTime get availableFrom => throw _privateConstructorUsedError;
-  double get maxMonthsStay => throw _privateConstructorUsedError;
-  double get minMonthsStay => throw _privateConstructorUsedError;
+  String get maxMonthsStay => throw _privateConstructorUsedError;
+  String get minMonthsStay => throw _privateConstructorUsedError;
   String get tenantsNumber => throw _privateConstructorUsedError;
   String get bedroom => throw _privateConstructorUsedError;
   String get bathroom => throw _privateConstructorUsedError;
@@ -39,7 +39,6 @@ mixin _$FlatModel {
   List<TransportModel> get transports => throw _privateConstructorUsedError;
   List<dynamic> get images => throw _privateConstructorUsedError;
   bool get bookMark => throw _privateConstructorUsedError;
-  bool get ownFlat => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FlatModelCopyWith<FlatModel> get copyWith =>
@@ -64,8 +63,8 @@ abstract class $FlatModelCopyWith<$Res> {
       int advancePriceInCents,
       int electricityPriceInCents,
       DateTime availableFrom,
-      double maxMonthsStay,
-      double minMonthsStay,
+      String maxMonthsStay,
+      String minMonthsStay,
       String tenantsNumber,
       String bedroom,
       String bathroom,
@@ -74,8 +73,7 @@ abstract class $FlatModelCopyWith<$Res> {
       List<FeatureModel> features,
       List<TransportModel> transports,
       List<dynamic> images,
-      bool bookMark,
-      bool ownFlat});
+      bool bookMark});
 
   $AppUserCopyWith<$Res> get owner;
   $PropertyModelCopyWith<$Res> get properties;
@@ -117,7 +115,6 @@ class _$FlatModelCopyWithImpl<$Res, $Val extends FlatModel>
     Object? transports = null,
     Object? images = null,
     Object? bookMark = null,
-    Object? ownFlat = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -171,11 +168,11 @@ class _$FlatModelCopyWithImpl<$Res, $Val extends FlatModel>
       maxMonthsStay: null == maxMonthsStay
           ? _value.maxMonthsStay
           : maxMonthsStay // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       minMonthsStay: null == minMonthsStay
           ? _value.minMonthsStay
           : minMonthsStay // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       tenantsNumber: null == tenantsNumber
           ? _value.tenantsNumber
           : tenantsNumber // ignore: cast_nullable_to_non_nullable
@@ -211,10 +208,6 @@ class _$FlatModelCopyWithImpl<$Res, $Val extends FlatModel>
       bookMark: null == bookMark
           ? _value.bookMark
           : bookMark // ignore: cast_nullable_to_non_nullable
-              as bool,
-      ownFlat: null == ownFlat
-          ? _value.ownFlat
-          : ownFlat // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -256,8 +249,8 @@ abstract class _$$_FlatModelCopyWith<$Res> implements $FlatModelCopyWith<$Res> {
       int advancePriceInCents,
       int electricityPriceInCents,
       DateTime availableFrom,
-      double maxMonthsStay,
-      double minMonthsStay,
+      String maxMonthsStay,
+      String minMonthsStay,
       String tenantsNumber,
       String bedroom,
       String bathroom,
@@ -266,8 +259,7 @@ abstract class _$$_FlatModelCopyWith<$Res> implements $FlatModelCopyWith<$Res> {
       List<FeatureModel> features,
       List<TransportModel> transports,
       List<dynamic> images,
-      bool bookMark,
-      bool ownFlat});
+      bool bookMark});
 
   @override
   $AppUserCopyWith<$Res> get owner;
@@ -309,7 +301,6 @@ class __$$_FlatModelCopyWithImpl<$Res>
     Object? transports = null,
     Object? images = null,
     Object? bookMark = null,
-    Object? ownFlat = null,
   }) {
     return _then(_$_FlatModel(
       id: null == id
@@ -363,11 +354,11 @@ class __$$_FlatModelCopyWithImpl<$Res>
       maxMonthsStay: null == maxMonthsStay
           ? _value.maxMonthsStay
           : maxMonthsStay // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       minMonthsStay: null == minMonthsStay
           ? _value.minMonthsStay
           : minMonthsStay // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       tenantsNumber: null == tenantsNumber
           ? _value.tenantsNumber
           : tenantsNumber // ignore: cast_nullable_to_non_nullable
@@ -404,10 +395,6 @@ class __$$_FlatModelCopyWithImpl<$Res>
           ? _value.bookMark
           : bookMark // ignore: cast_nullable_to_non_nullable
               as bool,
-      ownFlat: null == ownFlat
-          ? _value.ownFlat
-          : ownFlat // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -438,8 +425,7 @@ class _$_FlatModel extends _FlatModel {
       required final List<FeatureModel> features,
       required final List<TransportModel> transports,
       required final List<dynamic> images,
-      required this.bookMark,
-      required this.ownFlat})
+      required this.bookMark})
       : _tenants = tenants,
         _geometry = geometry,
         _features = features,
@@ -484,9 +470,9 @@ class _$_FlatModel extends _FlatModel {
   @override
   final DateTime availableFrom;
   @override
-  final double maxMonthsStay;
+  final String maxMonthsStay;
   @override
-  final double minMonthsStay;
+  final String minMonthsStay;
   @override
   final String tenantsNumber;
   @override
@@ -523,12 +509,10 @@ class _$_FlatModel extends _FlatModel {
 
   @override
   final bool bookMark;
-  @override
-  final bool ownFlat;
 
   @override
   String toString() {
-    return 'FlatModel(id: $id, owner: $owner, tenants: $tenants, title: $title, description: $description, properties: $properties, geometry: $geometry, currency: $currency, rentPricePerMonthInCents: $rentPricePerMonthInCents, advancePriceInCents: $advancePriceInCents, electricityPriceInCents: $electricityPriceInCents, availableFrom: $availableFrom, maxMonthsStay: $maxMonthsStay, minMonthsStay: $minMonthsStay, tenantsNumber: $tenantsNumber, bedroom: $bedroom, bathroom: $bathroom, built: $built, floor: $floor, features: $features, transports: $transports, images: $images, bookMark: $bookMark, ownFlat: $ownFlat)';
+    return 'FlatModel(id: $id, owner: $owner, tenants: $tenants, title: $title, description: $description, properties: $properties, geometry: $geometry, currency: $currency, rentPricePerMonthInCents: $rentPricePerMonthInCents, advancePriceInCents: $advancePriceInCents, electricityPriceInCents: $electricityPriceInCents, availableFrom: $availableFrom, maxMonthsStay: $maxMonthsStay, minMonthsStay: $minMonthsStay, tenantsNumber: $tenantsNumber, bedroom: $bedroom, bathroom: $bathroom, built: $built, floor: $floor, features: $features, transports: $transports, images: $images, bookMark: $bookMark)';
   }
 
   @override
@@ -573,8 +557,7 @@ class _$_FlatModel extends _FlatModel {
                 .equals(other._transports, _transports) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             (identical(other.bookMark, bookMark) ||
-                other.bookMark == bookMark) &&
-            (identical(other.ownFlat, ownFlat) || other.ownFlat == ownFlat));
+                other.bookMark == bookMark));
   }
 
   @override
@@ -602,8 +585,7 @@ class _$_FlatModel extends _FlatModel {
         const DeepCollectionEquality().hash(_features),
         const DeepCollectionEquality().hash(_transports),
         const DeepCollectionEquality().hash(_images),
-        bookMark,
-        ownFlat
+        bookMark
       ]);
 
   @JsonKey(ignore: true)
@@ -627,8 +609,8 @@ abstract class _FlatModel extends FlatModel {
       required final int advancePriceInCents,
       required final int electricityPriceInCents,
       required final DateTime availableFrom,
-      required final double maxMonthsStay,
-      required final double minMonthsStay,
+      required final String maxMonthsStay,
+      required final String minMonthsStay,
       required final String tenantsNumber,
       required final String bedroom,
       required final String bathroom,
@@ -637,8 +619,7 @@ abstract class _FlatModel extends FlatModel {
       required final List<FeatureModel> features,
       required final List<TransportModel> transports,
       required final List<dynamic> images,
-      required final bool bookMark,
-      required final bool ownFlat}) = _$_FlatModel;
+      required final bool bookMark}) = _$_FlatModel;
   _FlatModel._() : super._();
 
   @override
@@ -666,9 +647,9 @@ abstract class _FlatModel extends FlatModel {
   @override
   DateTime get availableFrom;
   @override
-  double get maxMonthsStay;
+  String get maxMonthsStay;
   @override
-  double get minMonthsStay;
+  String get minMonthsStay;
   @override
   String get tenantsNumber;
   @override
@@ -687,8 +668,6 @@ abstract class _FlatModel extends FlatModel {
   List<dynamic> get images;
   @override
   bool get bookMark;
-  @override
-  bool get ownFlat;
   @override
   @JsonKey(ignore: true)
   _$$_FlatModelCopyWith<_$_FlatModel> get copyWith =>

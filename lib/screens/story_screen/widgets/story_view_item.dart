@@ -42,7 +42,8 @@ class StoryViewItem extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final favouriteStoriesIdState = ref.watch(favouriteStoriesIdProvider);
     final userState = ref.watch(appUserProvider);
-    final favorite = favouriteStoriesIdState.contains(story.id);
+    final favorite =
+        favouriteStoriesIdState.contains(story.id) || story.favourite;
 
     final storyOwner = userState.id == story.user.id;
 

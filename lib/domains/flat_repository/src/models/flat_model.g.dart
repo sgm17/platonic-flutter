@@ -41,10 +41,8 @@ FlatModel _$FlatModelFromJson(Map json) => $checkedCreate(
               $checkedConvert('electricity_price_in_cents', (v) => v as int),
           availableFrom: $checkedConvert(
               'available_from', (v) => DateTime.parse(v as String)),
-          maxMonthsStay:
-              $checkedConvert('max_months_stay', (v) => (v as num).toDouble()),
-          minMonthsStay:
-              $checkedConvert('min_months_stay', (v) => (v as num).toDouble()),
+          maxMonthsStay: $checkedConvert('max_months_stay', (v) => v as String),
+          minMonthsStay: $checkedConvert('min_months_stay', (v) => v as String),
           tenantsNumber: $checkedConvert('tenants_number', (v) => v as String),
           bedroom: $checkedConvert('bedroom', (v) => v as String),
           bathroom: $checkedConvert('bathroom', (v) => v as String),
@@ -64,7 +62,6 @@ FlatModel _$FlatModelFromJson(Map json) => $checkedCreate(
                   .toList()),
           images: $checkedConvert('images', (v) => v as List<dynamic>),
           bookMark: $checkedConvert('book_mark', (v) => v as bool),
-          ownFlat: $checkedConvert('own_flat', (v) => v as bool),
         );
         return val;
       },
@@ -76,8 +73,7 @@ FlatModel _$FlatModelFromJson(Map json) => $checkedCreate(
         'maxMonthsStay': 'max_months_stay',
         'minMonthsStay': 'min_months_stay',
         'tenantsNumber': 'tenants_number',
-        'bookMark': 'book_mark',
-        'ownFlat': 'own_flat'
+        'bookMark': 'book_mark'
       },
     );
 
@@ -105,7 +101,6 @@ Map<String, dynamic> _$FlatModelToJson(FlatModel instance) => <String, dynamic>{
       'transports': instance.transports.map((e) => e.toJson()).toList(),
       'images': instance.images,
       'book_mark': instance.bookMark,
-      'own_flat': instance.ownFlat,
     };
 
 const _$CurrencyEnumMap = {

@@ -15,11 +15,8 @@ class FlatsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatsScrollState = ref.watch(flatsScrollProvider);
-    final flatsScrollErrorState = ref.watch(flatsScrollErrorProvider);
 
-    void toggleFlatDetailScreen() {
-      Navigator.pushNamed(context, '/DetailScreen');
-    }
+    final flatsScrollErrorState = ref.watch(flatsScrollErrorProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (flatsScrollErrorState != null) {
@@ -49,14 +46,11 @@ class FlatsScreen extends ConsumerWidget {
                   height: 22.0,
                 ),
                 itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: toggleFlatDetailScreen,
-                    child: SizedBox(
-                      height: 225.0,
-                      child: ProviderScope(overrides: [
-                        flatScrollProvider.overrideWithValue(flats[index])
-                      ], child: const FlatScrollItem()),
-                    ),
+                  return SizedBox(
+                    height: 225.0,
+                    child: ProviderScope(overrides: [
+                      flatScrollProvider.overrideWithValue(flats[index])
+                    ], child: const FlatScrollItem()),
                   );
                 },
               ))

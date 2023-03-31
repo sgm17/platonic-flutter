@@ -1,60 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/constants/constants.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 
 class AmenityTransportation extends ConsumerWidget {
   final int universityId;
 
-  const AmenityTransportation({Key? key, required this.universityId})
-      : super(key: key);
+  const AmenityTransportation({
+    Key? key,
+    required this.universityId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatCreateState = ref.watch(flatCreateProvider);
 
     void toggleNextIcon() {
-      int currentIndex = transportationIcons.indexOf(flatCreateState.transports
-          .firstWhere((e) => e.university.id == universityId)
-          .icon);
-
-      if (currentIndex == transportationIcons.length - 1) {
-        ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
-            transports: flatCreateState.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[0])
-                    : e)
-                .toList());
-      } else {
-        ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
-            transports: flatCreateState.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[currentIndex + 1])
-                    : e)
-                .toList());
-      }
+      ref
+          .read(flatCreateProvider.notifier)
+          .setIcon(universityId: universityId, isNext: true);
     }
 
     void togglePastIcon() {
-      int currentIndex = transportationIcons.indexOf(flatCreateState.transports
-          .firstWhere((e) => e.university.id == universityId)
-          .icon);
+      ref
+          .read(flatCreateProvider.notifier)
+          .setIcon(universityId: universityId, isNext: false);
+    }
 
-      if (currentIndex == 0) {
-        ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
-            transports: flatCreateState.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[0])
-                    : e)
-                .toList());
-      } else {
-        ref.read(flatCreateProvider.notifier).state = flatCreateState.copyWith(
-            transports: flatCreateState.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[currentIndex - 1])
-                    : e)
-                .toList());
-      }
+    void onSaved(String? minutes) {
+      ref
+          .read(flatCreateProvider.notifier)
+          .setMinutes(universityId: universityId, minutes: int.parse(minutes!));
     }
 
     return Row(children: [
@@ -98,21 +75,17 @@ class AmenityTransportation extends ConsumerWidget {
       SizedBox(
         width: 115.0,
         child: TextFormField(
-          onSaved: (newValue) {
-            ref.read(flatCreateProvider.notifier).state =
-                flatCreateState.copyWith(
-                    transports: flatCreateState.transports
-                        .map((t) => t.university.id == universityId
-                            ? t.copyWith(minutes: int.parse(newValue!))
-                            : t)
-                        .toList());
-          },
+          onSaved: onSaved,
           validator: (value) {
             if (value == null || value.isEmpty) {
+              ref.read(step3ErrorProvider.notifier).state =
+                  const ErrorApp(code: 'step3transportation');
               return 'Please enter a value';
             }
             int? time = int.tryParse(value);
             if (time == null || time < 0 || time > 240) {
+              ref.read(step3ErrorProvider.notifier).state =
+                  const ErrorApp(code: 'step3transportationvalid');
               return 'Please enter a valid time (0-240 minutes)';
             }
             return null;

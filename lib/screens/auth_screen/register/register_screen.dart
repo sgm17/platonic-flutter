@@ -55,12 +55,51 @@ class RegisterScreenState extends ConsumerState<RegisterScreen> {
                       const SizedBox(
                         height: 32.0,
                       ),
+                      const Oauth2Container(),
                       const SizedBox(
-                        height: 343.0,
-                        child: RegisterForm(),
+                        height: 32.0,
                       ),
                       const SizedBox(
-                        height: 16.0,
+                        height: 18.0,
+                        child: DividerContainer(),
+                      ),
+                      const SizedBox(
+                        height: 32.0,
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                        child: RegisterTitle(
+                          title: '''Email''',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      const SizedBox(
+                          height: 38.0,
+                          child: EmailAuthInput(
+                            isLogin: false,
+                          )),
+                      const SizedBox(
+                        height: 15.0,
+                      ),
+                      const SizedBox(
+                        height: 20.0,
+                        child: RegisterTitle(
+                          title: '''Password''',
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      const SizedBox(
+                        height: 38.0,
+                        child: PasswordAuthInput(
+                          isLogin: false,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 32.0,
                       ),
                       GestureDetector(
                         onTap: toggleContinueWithEmail,

@@ -12,6 +12,8 @@ const List<IconData> transportationIcons = [
   Icons.directions_walk,
 ];
 
+final List<double> emptyGeometry = [2.170056412042614, 41.3869926501536];
+
 final List<FeatureModel> featuresModel = [
   FeatureModel(
     id: 1,

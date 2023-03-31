@@ -7,16 +7,18 @@ import 'package:platonic/providers/http_provider/providers.dart';
 
 class FlatNotifier extends StateNotifier<AsyncValue<FlatModel>> {
   final Ref ref;
+  final int activeFlatIdProvider;
 
-  FlatNotifier(this.ref) : super(const AsyncValue.loading()) {
-    initialize();
+  FlatNotifier(this.ref, this.activeFlatIdProvider)
+      : super(const AsyncValue.loading()) {
+    initialize(activeFlatIdProvider);
   }
 
-  Future<void> initialize() async {
+  Future<void> initialize(int activeFlatIdProvider) async {
     try {
       final flat = await ref
           .read(flatViewmodelProvider)
-          .getShowFlatDetail(flatId: ref.read(activeFlatIdProvider));
+          .getShowFlatDetail(flatId: activeFlatIdProvider);
 
       state = AsyncValue.data(flat);
     } on ErrorApp catch (e) {
@@ -50,19 +52,26 @@ class FlatNotifier extends StateNotifier<AsyncValue<FlatModel>> {
     return false;
   }
 
-  Future<void> addOrRemoveBookmarkDetail({required bool bookmark}) async {
-    try {
-      final bookmark = await ref
-          .read(httpViewmodelProvider)
-          .postBookmarkFlat(flatId: flatId);
+  void addOrRemoveBookmarkDetail({required bool bookmark}) {
+    state = state.when(
+        data: (data) {
+          final newState = data.copyWith(bookMark: bookmark);
+          return AsyncValue.data(newState);
+        },
+        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+        loading: () => const AsyncValue.loading());
+  }
 
-      state = state.when(
-          data: (data) {
-            final newState = data.copyWith(bookMark: bookmark);
-            return AsyncValue.data(newState);
-          },
-          error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-          loading: () => const AsyncValue.loading());
-    } on ErrorApp catch (e) {}
+  Future<void> deleteFlat({required int flatId}) async {
+    try {
+      await ref.read(httpViewmodelProvider).deleteDestroyFlat(flatId: flatId);
+
+      ref.read(flatsScrollProvider.notifier).deleteFlat(flatId: flatId);
+      ref.read(flatHomeProvider.notifier).deleteHomeFlat(flatId: flatId);
+    } on ErrorApp catch (e) {
+      ref.read(flatErrorProvider.notifier).state = e;
+    } catch (e) {
+      state = AsyncValue.error(e, StackTrace.current);
+    }
   }
 }

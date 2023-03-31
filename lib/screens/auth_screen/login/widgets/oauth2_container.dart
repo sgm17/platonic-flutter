@@ -2,38 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:platonic/providers/user_provider/app_user_provider.dart';
 import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:io';
 
-class Oauth2Container extends ConsumerWidget {
+class Oauth2Container extends ConsumerStatefulWidget {
   const Oauth2Container({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Oauth2ContainerState createState() => Oauth2ContainerState();
+}
+
+class Oauth2ContainerState extends ConsumerState<Oauth2Container> {
+  bool isSigningIn = false;
+
+  @override
+  Widget build(BuildContext context) {
     Future<void> toggleGoogleSignIn() async {
-      await ref.read(appUserProvider.notifier).userRegisterGoogle();
+      if (isSigningIn == false) {
+        setState(() {
+          isSigningIn = true;
+        });
+        await ref.read(appUserProvider.notifier).userRegisterGoogle();
+        setState(() {
+          isSigningIn = false;
+        });
+      }
     }
 
     Future<void> toggleAppleSignIn() async {
-      await ref.read(appUserProvider.notifier).userRegisterApple();
+      if (isSigningIn == false) {
+        setState(() {
+          isSigningIn = true;
+        });
+        await ref.read(appUserProvider.notifier).userRegisterApple();
+        setState(() {
+          isSigningIn = false;
+        });
+      }
     }
 
     return SizedBox(
-      height: 104.0,
+      height: Platform.isAndroid ? 44.0 : 104.0,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        GestureDetector(
-          onTap: toggleAppleSignIn,
-          child: const SizedBox(
-            height: 44.0,
-            child: AppleOauth2Container(),
+        if (Platform.isIOS)
+          GestureDetector(
+            onTap: toggleAppleSignIn,
+            child: const SizedBox(
+              height: 44.0,
+              child: AppleOauth2Container(),
+            ),
           ),
-        ),
-        GestureDetector(
-          onTap: toggleGoogleSignIn,
-          child: const SizedBox(
-            height: 44.0,
-            child: GoogleOauth2Container(),
+        if (Platform.isIOS)
+          const SizedBox(
+            height: 16.0,
           ),
-        )
+        if (Platform.isAndroid || Platform.isIOS)
+          GestureDetector(
+            onTap: toggleGoogleSignIn,
+            child: const SizedBox(
+              height: 44.0,
+              child: GoogleOauth2Container(),
+            ),
+          )
       ]),
     );
   }

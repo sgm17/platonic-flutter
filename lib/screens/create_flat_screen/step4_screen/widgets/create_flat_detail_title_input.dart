@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/create_flat/step4_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 
 /* Group rentpermonth
@@ -12,18 +14,18 @@ class CreateFlatDetailTitleInput extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return TextFormField(
       onSaved: (title) {
-        ref.read(flatCreateProvider.notifier).state =
-            ref.read(flatCreateProvider).copyWith(title: title!);
+        ref.read(flatCreateProvider.notifier).setTitle(title: title!);
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
+          ref.read(step4ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step4adtitle');
           return 'Title is required';
         }
         if (value.trim().length < 5) {
+          ref.read(step4ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step4adtitleshort');
           return 'Title must be at least 5 characters';
-        }
-        if (value.trim().length > 25) {
-          return 'Title must be no more than 25 characters';
         }
         return null;
       },

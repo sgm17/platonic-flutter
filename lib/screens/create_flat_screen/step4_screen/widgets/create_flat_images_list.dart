@@ -1,11 +1,14 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
-
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 class CreateFlatImagesList extends ConsumerWidget {
-  const CreateFlatImagesList({Key? key}) : super(key: key);
+  const CreateFlatImagesList({Key? key, required this.toggleFlatImage})
+      : super(key: key);
+
+  final Future<void> Function() toggleFlatImage;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatCreateState = ref.watch(flatCreateProvider);
@@ -48,16 +51,19 @@ class CreateFlatImagesList extends ConsumerWidget {
     }
 
     if (rows.isEmpty) {
-      return const Wrap(
+      return Wrap(
         crossAxisAlignment: WrapCrossAlignment.center,
         children: [
-          SizedBox(
-            width: 170.0,
-            height: 95.0,
-            child: CreateFlatDetailImageEmpty(),
+          GestureDetector(
+            onTap: toggleFlatImage,
+            child: const SizedBox(
+              width: 170.0,
+              height: 95.0,
+              child: CreateFlatDetailImageEmpty(),
+            ),
           ),
-          SizedBox(width: 16.0),
-          SizedBox(
+          const SizedBox(width: 16.0),
+          const SizedBox(
             width: 170.0,
             height: 95.0,
             child: SizedBox.shrink(),

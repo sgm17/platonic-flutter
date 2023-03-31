@@ -12,9 +12,8 @@ class CreateFlatAddressSuggestion extends ConsumerWidget {
     final suggestionsState = ref.watch(suggestionsProvider);
 
     void toggleSuggestion(PlaceModel place) {
-      ref.read(flatCreateProvider.notifier).state = ref
-          .read(flatCreateProvider)
-          .copyWith(geometry: place.geometry, properties: place.properties);
+      ref.read(flatCreateProvider.notifier).setGeometryProperties(
+          geometry: place.geometry, properties: place.properties);
 
       ref
           .read(mapControllerProvider)

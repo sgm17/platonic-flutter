@@ -87,10 +87,7 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                       const SizedBox(
                         height: 32.0,
                       ),
-                      const SizedBox(
-                        height: 104.0,
-                        child: Oauth2Container(),
-                      ),
+                      const Oauth2Container(),
                       const SizedBox(
                         height: 32.0,
                       ),

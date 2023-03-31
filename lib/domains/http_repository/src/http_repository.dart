@@ -67,7 +67,8 @@ abstract class HttpRepository {
   Future<void> deleteDestroyFlat({required int flatId});
 
   // Images
-  // POST /api/v1/image
+  // POST /api/v1/images
   Future<String> postCreateImage({required File file});
+  // POST /api/v1/images/create_multiple
   Future<List<String>> postCreateMultipleImages({required List<File> files});
 }

@@ -1,5 +1,6 @@
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/chat_provider/active_user2_provider.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +22,13 @@ class DetailPrice extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void toggleContact() {
-      ref.read(activeUser2Provider.notifier).state = owner;
+      final userState = ref.read(appUserProvider);
 
-      Navigator.pushNamed(context, '/ChatScreen');
+      if (userState.id != owner.id) {
+        ref.read(activeUser2Provider.notifier).state = owner;
+
+        Navigator.pushNamed(context, '/ChatScreen');
+      }
     }
 
     return Container(
@@ -65,9 +70,7 @@ class DetailPrice extends ConsumerWidget {
           GestureDetector(
             onTap: toggleContact,
             child: const SizedBox(
-                width: 125.0,
-                child: CreateFlatDetailButton(
-                    text: 'Contact', route: '/ChatScreen')),
+                width: 125.0, child: CreateFlatDetailButton(text: 'Contact')),
           )
         ],
       ),

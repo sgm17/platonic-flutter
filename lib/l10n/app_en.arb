@@ -199,6 +199,10 @@
   "@storydeletedialog": {
     "description": ""
   },
+  "flatdeletedialog": "",
+  "@flatdeletedialog": {
+    "description": ""
+  },
   "userloadingdialog": "",
   "@userloadingdialog": {
     "description": ""
@@ -209,6 +213,10 @@
   },
   "imageloadingdialog": "",
   "@imageloadingdialog": {
+    "description": ""
+  },
+  "imagesloadingdialog": "",
+  "@imagesloadingdialog": {
     "description": ""
   },
   "registeruniversitydialog": "",
@@ -253,6 +261,106 @@
   },
   "profileimageerror": "",
   "@profileimageerror": {
+    "description": ""
+  },
+  "step1emptyaddress": "",
+  "@step1emptyaddress": {
+    "description": ""
+  },
+  "step1propertiesgeometry": "",
+  "@step1propertiesgeometry": {
+    "description": ""
+  },
+  "step2rentpermonth": "",
+  "@step2rentpermonth": {
+    "description": ""
+  },
+  "step2rentvalid": "",
+  "@step2rentvalid": {
+    "description": ""
+  },
+  "step2rentadvance": "",
+  "@step2rentadvance": {
+    "description": ""
+  },
+  "step2rentadvancevalid": "",
+  "@step2rentadvancevalid": {
+    "description": ""
+  },
+  "step2costelectricity": "",
+  "@step2costelectricity": {
+    "description": ""
+  },
+  "step2electricityvalid": "",
+  "@step2electricityvalid": {
+    "description": ""
+  },
+  "step2availablefrom": "empty",
+  "@step2availablefrom": {
+    "description": ""
+  },
+  "step2dateformat": "",
+  "@step2dateformat": {
+    "description": ""
+  },
+  "step2datefuture": "",
+  "@step2datefuture": {
+    "description": ""
+  },
+  "step2dateyear": "",
+  "@step2dateyear": {
+    "description": ""
+  },
+  "step3built": "",
+  "@step3built": {
+    "description": ""
+  },
+  "step3builtnegative": "",
+  "@step3builtnegative": {
+    "description": ""
+  },
+  "step3floor": "",
+  "@step3floor": {
+    "description": ""
+  },
+  "step3floornegative": "",
+  "@step3floornegative": {
+    "description": ""
+  },
+  "step3features": "",
+  "@step3features": {
+    "description": ""
+  },
+  "step3featuresshort": "",
+  "@step3featuresshort": {
+    "description": ""
+  },
+  "step3transportation": "",
+  "@step3transportation": {
+    "description": ""
+  },
+  "step3transportationvalid": "",
+  "@step3transportationvalid": {
+    "description": ""
+  },
+  "step4adtitle": "",
+  "@step4adtitle": {
+    "description": ""
+  },
+  "step4adtitleshort": "",
+  "@step4adtitleshort": {
+    "description": ""
+  },
+  "step4addescription": "",
+  "@step4addescription": {
+    "description": ""
+  },
+  "step4addescriptionshort": "",
+  "@step4addescriptionshort": {
+    "description": ""
+  },
+  "step4emptyimages": "",
+  "@step4emptyimages": {
     "description": ""
   }
 }

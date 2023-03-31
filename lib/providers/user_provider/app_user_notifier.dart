@@ -120,7 +120,6 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
   Future<void> userRegisterGoogle() async {
     try {
-      return;
       final googleSignIn = GoogleSignIn();
       final googleAccount = await googleSignIn.signIn();
       final googleAuth = await googleAccount!.authentication;
@@ -146,7 +145,6 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
   Future<void> userRegisterApple() async {
     try {
-      return;
       final appleCredential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
@@ -183,9 +181,11 @@ class AppUserNotifier extends StateNotifier<AppUser> {
       university: university,
       universityId: university.id,
       faculty: null,
-      study: null);
-  void setFaculty(Faculty faculty) => state =
-      state.copyWith(faculty: faculty, facultyId: faculty.id, study: null);
+      facultyId: 0,
+      study: null,
+      studyId: 0);
+  void setFaculty(Faculty faculty) => state = state.copyWith(
+      faculty: faculty, facultyId: faculty.id, study: null, studyId: 0);
   void setStudy(Study study) =>
       state = state.copyWith(study: study, studyId: study.id);
   void setMeetStatus() => state = state.copyWith(

@@ -3,6 +3,7 @@ export 'active_flat_id_provider.dart';
 export 'flat_address_input_focus_provider.dart';
 export 'flat_address_input_provider.dart';
 export 'flat_create_provider.dart';
+export 'flat_create_notifier.dart';
 export 'flat_home_provider.dart';
 export 'flat_home_notifier.dart';
 export 'flat_notifier.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
@@ -26,8 +27,25 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
     final flatCreateState = ref.watch(flatCreateProvider);
     final step3ErrorState = ref.watch(step3ErrorProvider);
 
+    bool checkStep3Create() {
+      final flatCreateState = ref.read(flatCreateProvider);
+
+      if (flatCreateState.features.isEmpty) {
+        ref.read(step3ErrorProvider.notifier).state =
+            const ErrorApp(code: 'step3features');
+        return false;
+      } else if (flatCreateState.features.length < 4) {
+        ref.read(step3ErrorProvider.notifier).state =
+            const ErrorApp(code: 'step3featuresshort');
+        return false;
+      }
+
+      return true;
+    }
+
     void toggleAmenitiesTransportationForm() {
       if (formKey.currentState!.validate()) {
+        if (checkStep3Create() == false) return;
         formKey.currentState!.save();
 
         Navigator.pushNamed(context, '/Step4Screen');
@@ -84,6 +102,7 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                             Flexible(
                               flex: 1,
                               child: SizedBox(
+                                height: 70.0,
                                 child: AmenityM2Input(),
                               ),
                             )
@@ -96,16 +115,11 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                           children: [
                             Flexible(
                               flex: 3,
-                              child: SizedBox(
-                                height: 70.0,
-                                child: BathroomNumberSelector(),
-                              ),
+                              child: BathroomNumberSelector(),
                             ),
                             Flexible(
                               flex: 1,
-                              child: SizedBox(
-                                child: AmenityFloorInput(),
-                              ),
+                              child: AmenityFloorInput(),
                             )
                           ]),
                       const SizedBox(

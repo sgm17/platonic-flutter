@@ -14,7 +14,7 @@ class FlatItemBadroom extends StatelessWidget {
     return SizedBox(
       height: 16.0,
       child: Row(children: [
-        SizedBox(
+        const SizedBox(
           width: 15.0,
           height: 15.0,
           child: FlatItemBathroomIcon(),

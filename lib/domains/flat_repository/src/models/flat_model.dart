@@ -28,8 +28,8 @@ class FlatModel with _$FlatModel {
       required int advancePriceInCents,
       required int electricityPriceInCents,
       required DateTime availableFrom,
-      required double maxMonthsStay,
-      required double minMonthsStay,
+      required String maxMonthsStay,
+      required String minMonthsStay,
       required String tenantsNumber,
       required String bedroom,
       required String bathroom,
@@ -38,8 +38,7 @@ class FlatModel with _$FlatModel {
       required List<FeatureModel> features,
       required List<TransportModel> transports,
       required List<dynamic> images,
-      required bool bookMark,
-      required bool ownFlat}) = _FlatModel;
+      required bool bookMark}) = _FlatModel;
 
   static List<double> emptyGeometry = [2.170056412042614, 41.3869926501536];
 
@@ -49,22 +48,14 @@ class FlatModel with _$FlatModel {
       tenants: [],
       title: '',
       description: '',
-      properties: PropertyModel(
-          country: '',
-          city: '',
-          countrycode: '',
-          postcode: '',
-          county: '',
-          housenumber: '',
-          state: '',
-          name: ''),
+      properties: PropertyModel.emptyProperties,
       geometry: emptyGeometry,
       rentPricePerMonthInCents: 0,
       advancePriceInCents: 0,
       electricityPriceInCents: 0,
       availableFrom: DateTime.now(),
-      minMonthsStay: 0,
-      maxMonthsStay: 1,
+      minMonthsStay: '0',
+      maxMonthsStay: '1',
       tenantsNumber: '1',
       bedroom: '1',
       bathroom: '1',
@@ -74,7 +65,6 @@ class FlatModel with _$FlatModel {
       transports: [],
       images: [],
       bookMark: false,
-      ownFlat: true,
       currency: Currency.eur);
 
   factory FlatModel.fromJson(Map<String, dynamic> json) =>

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'widgets.dart';
 
 /* Frame Frame 2
@@ -10,16 +11,20 @@ import 'widgets.dart';
 class DetailTenants extends ConsumerWidget {
   final List<AppUser> tenants;
   final int flatId;
-  final bool ownFlat;
+  final AppUser owner;
 
   const DetailTenants(
       {Key? key,
       required this.tenants,
       required this.flatId,
-      required this.ownFlat})
+      required this.owner})
       : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final userState = ref.read(appUserProvider);
+
+    final ownFlat = userState.id == owner.id;
+
     Future<bool?> confirmDismiss({required String email, required int flatId}) {
       return ref
           .read(flatProvider.notifier)
@@ -33,25 +38,31 @@ class DetailTenants extends ConsumerWidget {
           return Padding(
             padding: EdgeInsets.only(
                 bottom: (index == tenants.length - 1) ? 16.0 : 0.0),
-            child: Dismissible(
-              confirmDismiss: ownFlat
-                  ? (_) => confirmDismiss(email: tenant.email, flatId: flatId)
-                  : null,
-              background: Container(
-                color: Colors.red,
-              ),
-              key: Key(index.toString()),
-              child: SizedBox(
-                  height: 40.0,
-                  child: DetailTenantItem(
-                    tenant: tenant,
-                  )),
-            ),
+            child: ownFlat
+                ? Dismissible(
+                    confirmDismiss: (_) =>
+                        confirmDismiss(email: tenant.email, flatId: flatId),
+                    background: Container(
+                      color: Colors.red,
+                    ),
+                    key: Key(index.toString()),
+                    child: SizedBox(
+                        height: 40.0,
+                        child: DetailTenantItem(
+                          tenant: tenant,
+                        )),
+                  )
+                : SizedBox(
+                    height: 40.0,
+                    child: DetailTenantItem(
+                      tenant: tenant,
+                    )),
           );
         }).toList(),
       ),
       DetailAddTenantItem(
         flatId: flatId,
+        ownFlat: ownFlat,
       ),
     ]);
   }

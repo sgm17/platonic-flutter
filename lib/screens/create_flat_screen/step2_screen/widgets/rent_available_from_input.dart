@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'widgets.dart';
 
@@ -13,27 +15,26 @@ class RentAvailableFromInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void onSaved(String? value) {
-      if (value == null) return;
-
       final inputFormat = DateFormat('dd/MM/yyyy');
       DateTime? availableFrom;
 
       try {
-        availableFrom = inputFormat.parse(value);
+        availableFrom = inputFormat.parse(value!);
       } catch (e) {
         return;
       }
 
-      final currentState = ref.read(flatCreateProvider);
-
-      ref.read(flatCreateProvider.notifier).state =
-          currentState.copyWith(availableFrom: availableFrom);
+      ref
+          .read(flatCreateProvider.notifier)
+          .setAvailable(availableFrom: availableFrom);
     }
 
     return TextFormField(
       onSaved: onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2availablefrom');
           return 'Date cannot be empty';
         }
 
@@ -43,18 +44,24 @@ class RentAvailableFromInput extends ConsumerWidget {
         try {
           date = inputFormat.parse(value);
         } catch (e) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2dateformat');
           return 'Invalid date format';
         }
 
         // Check if the date is in the future
         final now = DateTime.now();
         if (date.isBefore(now)) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2datefuture');
           return 'Date must be in the future';
         }
 
         // Check if the date is within the next year
         final maxDate = now.add(const Duration(days: 365));
         if (date.isAfter(maxDate)) {
+          ref.read(step2ErrorProvider.notifier).state =
+              const ErrorApp(code: 'step2availablefrom');
           return 'Date must be within the next year';
         }
 
@@ -73,7 +80,7 @@ class RentAvailableFromInput extends ConsumerWidget {
       decoration: InputDecoration(
         suffixIcon: const RentCalendarIconContainer(),
         hintText:
-            'Available from ${DateFormat('dd/MM/yyyy').format(DateTime.now())}',
+            'Available from ${DateFormat('dd/MM/yyyy').format(DateTime.now().add(const Duration(days: 1)))}',
         hintStyle: TextStyle(color: Colors.grey[400]),
         counterText: "",
         errorStyle: const TextStyle(fontSize: 0.01),

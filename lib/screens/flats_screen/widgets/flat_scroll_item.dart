@@ -9,45 +9,54 @@ import 'package:platonic/screens/flats_screen/widgets/widgets.dart';
 
 class FlatScrollItem extends ConsumerWidget {
   const FlatScrollItem({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatScrollState = ref.watch(flatScrollProvider);
 
-    return Container(
-      height: 250.0,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
-          color: const Color.fromARGB(255, 255, 255, 255),
-          border: Border.all(
-              width: 1.0, color: const Color.fromARGB(255, 76, 76, 76))),
-      child: Column(children: [
-        Flexible(
-          flex: 9,
-          child: Stack(
-            children: [
-              FlatScrollBackground(
-                image: flatScrollState.image,
-              ),
-              if (!flatScrollState.ownFlat)
-                Positioned(
-                  right: 10.0,
-                  top: 10.0,
-                  width: 30.0,
-                  height: 30.0,
-                  child: BookMark(
-                    bookMarkActive: flatScrollState.bookMark,
-                  ),
+    void toggleFlatDetail() {
+      ref.read(activeFlatIdProvider.notifier).state = flatScrollState.id;
+      Navigator.pushNamed(context, '/DetailScreen');
+    }
+
+    return GestureDetector(
+      onTap: toggleFlatDetail,
+      child: Container(
+        height: 250.0,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: const Color.fromARGB(255, 255, 255, 255),
+            border: Border.all(
+                width: 1.0, color: const Color.fromARGB(255, 76, 76, 76))),
+        child: Column(children: [
+          Flexible(
+            flex: 9,
+            child: Stack(
+              children: [
+                FlatScrollBackground(
+                  image: flatScrollState.image,
                 ),
-            ],
+                if (!flatScrollState.ownFlat)
+                  Positioned(
+                    right: 10.0,
+                    top: 10.0,
+                    width: 30.0,
+                    height: 30.0,
+                    child: BookMark(
+                      bookMarkActive: flatScrollState.bookMark,
+                    ),
+                  ),
+              ],
+            ),
           ),
-        ),
-        Flexible(
-          flex: 4,
-          child: FlatScrollInfo(
-            flatsScrollModel: flatScrollState,
+          Flexible(
+            flex: 4,
+            child: FlatScrollInfo(
+              flatsScrollModel: flatScrollState,
+            ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }

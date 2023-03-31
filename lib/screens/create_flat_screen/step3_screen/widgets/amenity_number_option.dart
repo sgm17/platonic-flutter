@@ -18,11 +18,9 @@ class AmenityNumberOption extends ConsumerWidget {
 
     void toggleAmenityNumber() {
       if (bedroom == true) {
-        ref.read(flatCreateProvider.notifier).state =
-            flatCreateState.copyWith(bedroom: number);
+        ref.read(flatCreateProvider.notifier).setBedrooms(bedroom: number);
       } else {
-        ref.read(flatCreateProvider.notifier).state =
-            flatCreateState.copyWith(bathroom: number);
+        ref.read(flatCreateProvider.notifier).setBathrooms(bathroom: number);
       }
     }
 

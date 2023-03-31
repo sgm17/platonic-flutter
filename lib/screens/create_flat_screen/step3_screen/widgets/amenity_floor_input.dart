@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step2_screen/widgets/widgets.dart';
 
@@ -12,8 +14,7 @@ class AmenityFloorInput extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     void onSaved(String? floor) {
-      ref.read(flatCreateProvider.notifier).state =
-          ref.read(flatCreateProvider).copyWith(floor: int.parse(floor!));
+      ref.read(flatCreateProvider.notifier).setFloor(floor: int.parse(floor!));
     }
 
     return Container(
@@ -36,12 +37,17 @@ class AmenityFloorInput extends ConsumerWidget {
           child: TextFormField(
             validator: (String? value) {
               if (value == null || value.isEmpty) {
+                ref.read(step3ErrorProvider.notifier).state =
+                    const ErrorApp(code: 'step3floor');
                 return 'Please enter a floor number';
               }
 
               int? floor = int.tryParse(value);
 
               if (floor == null || floor < 0) {
+                ref.read(step3ErrorProvider.notifier).state =
+                    const ErrorApp(code: 'step3floornegative');
+
                 return 'Please enter a valid floor number';
               }
 

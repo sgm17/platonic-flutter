@@ -15,8 +15,7 @@ class TenantsNumberOption extends ConsumerWidget {
     final flatCreateState = ref.watch(flatCreateProvider);
 
     void toggleNumberTenants() {
-      ref.read(flatCreateProvider.notifier).state =
-          flatCreateState.copyWith(tenantsNumber: number);
+      ref.read(flatCreateProvider.notifier).setTenants(tenantsNumber: number);
     }
 
     return GestureDetector(

@@ -21,8 +21,8 @@ class PreferencesSliderState extends ConsumerState<PreferencesSlider> {
   void initState() {
     super.initState();
     final flatCreateState = ref.read(flatCreateProvider);
-    max = flatCreateState.maxMonthsStay;
-    min = flatCreateState.minMonthsStay;
+    max = double.parse(flatCreateState.maxMonthsStay);
+    min = double.parse(flatCreateState.minMonthsStay);
   }
 
   void toggleSliderMax(
@@ -35,8 +35,9 @@ class PreferencesSliderState extends ConsumerState<PreferencesSlider> {
                     (MediaQuery.of(context).size.width - 16.0 - 25.0))
             .clamp(min, 1.0);
       });
-      ref.read(flatCreateProvider.notifier).state =
-          ref.read(flatCreateProvider).copyWith(maxMonthsStay: max);
+      ref
+          .read(flatCreateProvider.notifier)
+          .setMaxMonths(maxMonthsStay: max.toString());
     }
   }
 
@@ -50,8 +51,9 @@ class PreferencesSliderState extends ConsumerState<PreferencesSlider> {
           .clamp(0.0, max);
     });
 
-    ref.read(flatCreateProvider.notifier).state =
-        ref.read(flatCreateProvider).copyWith(minMonthsStay: min);
+    ref
+        .read(flatCreateProvider.notifier)
+        .setMinMonths(minMonthsStay: min.toString());
   }
 
   @override
