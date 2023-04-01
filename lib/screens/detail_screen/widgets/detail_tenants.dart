@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/user_repository/src/models/models.dart';
+import 'package:platonic/providers/chat_provider/active_user2_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'widgets.dart';
@@ -26,9 +27,15 @@ class DetailTenants extends ConsumerWidget {
     final ownFlat = userState.id == owner.id;
 
     Future<bool?> confirmDismiss({required String email, required int flatId}) {
-      return ref
-          .read(flatProvider.notifier)
-          .addOrRemoveTenantFromFlat(email: email, flatId: flatId);
+      return ref.read(flatProvider.notifier).addOrRemoveTenantFromFlat(
+          email: email, flatId: flatId, isAdd: false);
+    }
+
+    void toggleStartChat({required AppUser user}) {
+      if (userState.id != user.id) {
+        ref.read(activeUser2Provider.notifier).state = user;
+        Navigator.pushNamed(context, '/ChatScreen');
+      }
     }
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -52,11 +59,14 @@ class DetailTenants extends ConsumerWidget {
                           tenant: tenant,
                         )),
                   )
-                : SizedBox(
-                    height: 40.0,
-                    child: DetailTenantItem(
-                      tenant: tenant,
-                    )),
+                : GestureDetector(
+                    onTap: () => toggleStartChat(user: tenant),
+                    child: SizedBox(
+                        height: 40.0,
+                        child: DetailTenantItem(
+                          tenant: tenant,
+                        )),
+                  ),
           );
         }).toList(),
       ),

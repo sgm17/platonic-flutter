@@ -58,7 +58,7 @@ abstract class HttpRepository {
   Future<FlatsScrollModel> postCreateFlat({required FlatModel flat});
   // POST /api/v1/flats/flat_id/add_remove_tenant
   Future<List<AppUser>> postAddRemoveTenant(
-      {required int flatId, required String tenantEmail});
+      {required int flatId, required String tenantEmail, required bool isAdd});
   // POST /api/v1/flats/flat_id/bookmark
   Future<bool> postBookmarkFlat({required int flatId});
   // PUT /api/v1/flats/flat_id

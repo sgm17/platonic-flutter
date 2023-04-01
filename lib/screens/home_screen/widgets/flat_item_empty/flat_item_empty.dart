@@ -33,7 +33,7 @@ class FlatItemEmpty extends StatelessWidget {
                       postcode: "17250",
                       county: null,
                       housenumber: 'housenumber',
-                      name: 'Av. Costa Braca',
+                      name: 'Av. Costa Brava',
                       state: 'Girona')))
         ],
       ),

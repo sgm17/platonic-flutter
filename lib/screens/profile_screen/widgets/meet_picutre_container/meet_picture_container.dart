@@ -27,15 +27,19 @@ class MeetPictureContainer extends ConsumerWidget {
       final otherUser = ref.read(otherUserProvider);
       return Container(
           alignment: Alignment.center,
-          decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 43, 45, 46),
-              borderRadius: BorderRadius.circular(20.0),
-              image: DecorationImage(
-                  image: NetworkImage(otherUser.meetPicture!, headers: {
-                    'Authorization':
-                        'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
-                  }),
-                  fit: BoxFit.cover)));
+          decoration: otherUser.meetPicture != null
+              ? BoxDecoration(
+                  color: const Color.fromARGB(255, 43, 45, 46),
+                  borderRadius: BorderRadius.circular(20.0),
+                  image: DecorationImage(
+                      image: NetworkImage(otherUser.meetPicture!, headers: {
+                        'Authorization':
+                            'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
+                      }),
+                      fit: BoxFit.cover))
+              : BoxDecoration(
+                  color: const Color.fromARGB(255, 43, 45, 46),
+                  borderRadius: BorderRadius.circular(20.0)));
     }
 
     if (userState.meetPicture == null) {

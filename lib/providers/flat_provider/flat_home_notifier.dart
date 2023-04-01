@@ -24,7 +24,16 @@ class FlatHomeNotifier extends StateNotifier<AsyncValue<FlatHomeModel?>> {
   }
 
   void createHomeFlat({required FlatHomeModel flatHomeModel}) {
-    state = AsyncValue.data(flatHomeModel);
+    state = state.when(
+        data: (data) {
+          if (data == null) {
+            return const AsyncValue.data(null);
+          } else {
+            return AsyncValue.data(flatHomeModel);
+          }
+        },
+        error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+        loading: () => const AsyncValue.loading());
   }
 
   void deleteHomeFlat({required int flatId}) {

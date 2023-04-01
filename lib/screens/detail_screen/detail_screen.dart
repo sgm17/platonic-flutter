@@ -42,7 +42,9 @@ class DetailScreen extends ConsumerWidget {
                                 .read(flatProvider.notifier)
                                 .deleteFlat(flatId: flat.id);
 
-                            Navigator.pop(context);
+                            Navigator.pushNamedAndRemoveUntil(
+                                context, '/HomeScreen', (route) => false);
+                            Navigator.pushNamed(context, '/FlatsScreen');
                           },
                         ));
               }
@@ -56,7 +58,7 @@ class DetailScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             NavigateBeforeDetail(
-                              bookmark: flat.bookMark,
+                              bookmark: flat.bookMark ?? false,
                               owner: flat.owner,
                               flat: flat,
                               toggleDeleteFlat: toggleDeleteFlat,
@@ -253,7 +255,7 @@ class DetailScreen extends ConsumerWidget {
                                                 : 16.0),
                                     child: DetailTransportation(
                                         title:
-                                            'By ${transport.name[0].toUpperCase()}${transport.name.substring(1)} to ${transport.university.simpleName.toUpperCase()} ${transport.minutes} minutes',
+                                            'By ${transport.name[0].toUpperCase()}${transport.name.substring(1)} to ${transport.user.university!.simpleName.toUpperCase()} ${transport.minutes} minutes',
                                         child:
                                             DetailTransportationIconContainer(
                                                 child: transport.icon)),

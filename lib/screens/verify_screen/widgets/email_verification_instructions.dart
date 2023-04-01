@@ -7,8 +7,10 @@ class EmailVerificationInstructions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final hiddenEmail = email.replaceRange(4, email.indexOf('@'), '****');
+
     return Text(
-      "We have sent a verification message to your email:\n$email",
+      "We have sent a verification message to your email:\n$hiddenEmail",
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
       style: const TextStyle(

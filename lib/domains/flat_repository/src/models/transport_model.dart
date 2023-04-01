@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/widgets.dart';
-import 'package:platonic/domains/university_repository/src/models/models.dart';
+import 'package:platonic/constants/constants.dart';
+import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/helpers/serialize/icon_data_converter.dart';
 part 'transport_model.freezed.dart';
 part 'transport_model.g.dart';
@@ -19,9 +20,16 @@ class TransportModel with _$TransportModel {
   factory TransportModel(
       {required int id,
       required String name,
+      required AppUser user,
       @IconDataConverter() required IconData icon,
-      required int minutes,
-      required University university}) = _TransportModel;
+      required int minutes}) = _TransportModel;
+
+  static TransportModel emptyTransport = TransportModel(
+      id: 0,
+      name: transportationNames.first,
+      icon: transportationIcons.first,
+      minutes: 0,
+      user: AppUser.emptyUser);
 
   factory TransportModel.fromJson(Map<String, dynamic> json) =>
       _$TransportModelFromJson(json);

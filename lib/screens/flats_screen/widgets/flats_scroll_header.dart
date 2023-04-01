@@ -1,9 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/domains/flat_repository/src/models/models.dart';
-import 'package:platonic/providers/flat_provider/providers.dart';
-import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 /* Rectangle wallpaper
@@ -14,21 +11,8 @@ class FlatsScrollHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final myUser = ref.read(appUserProvider);
-
     void toggleCreateFlatScreen() {
       Navigator.pushNamed(context, '/Step1Screen');
-
-      final transports = TransportModel(
-          id: 1,
-          name: 'Train',
-          icon: Icons.directions_train,
-          minutes: 0,
-          university: myUser.university!);
-
-      ref
-          .read(flatCreateProvider.notifier)
-          .setInitialState(owner: myUser, transports: [transports]);
     }
 
     void toggleNavigateBefore() {

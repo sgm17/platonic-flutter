@@ -31,8 +31,8 @@ class FlatScrollInfo extends StatelessWidget {
               ),
               FlatScrollTransport(
                 child: flatsScrollModel.transport.icon,
-                university: flatsScrollModel.transport.university,
                 minutes: flatsScrollModel.transport.minutes,
+                user: flatsScrollModel.transport.user,
               ),
             ],
           ),

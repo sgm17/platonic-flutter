@@ -1,7 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
-import 'package:platonic/domains/user_repository/user_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FlatCreateNotifier extends StateNotifier<FlatModel> {
   final Ref ref;
@@ -12,11 +10,6 @@ class FlatCreateNotifier extends StateNotifier<FlatModel> {
       .copyWith(owner: state.owner, transports: state.transports);
 
   void setEditState({required FlatModel flat}) => state = flat;
-
-  void setInitialState(
-      {required AppUser owner, required List<TransportModel> transports}) {
-    state = state.copyWith(owner: owner, transports: transports);
-  }
 
   void setGeometryProperties(
           {required List<double> geometry,
@@ -66,56 +59,14 @@ class FlatCreateNotifier extends StateNotifier<FlatModel> {
     }
   }
 
-  void setMinutes({required int universityId, required int minutes}) {
-    state = state.copyWith(
-        transports: state.transports
-            .map((t) => t.university.id == universityId
-                ? t.copyWith(minutes: minutes)
-                : t)
-            .toList());
-  }
-
-  void setIcon({required int universityId, required bool isNext}) {
-    if (isNext) {
-      final currentIndex = transportationIcons.indexOf(state.transports
-          .firstWhere((e) => e.university.id == universityId)
-          .icon);
-
-      if (currentIndex == transportationIcons.length - 1) {
-        state = state.copyWith(
-            transports: state.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[0])
-                    : e)
-                .toList());
-      } else {
-        state = state.copyWith(
-            transports: state.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[currentIndex + 1])
-                    : e)
-                .toList());
-      }
+  void setTransport({required TransportModel transport}) {
+    if (transport.id == 0) {
+      state = state.copyWith(transports: [transport, ...state.transports]);
     } else {
-      final currentIndex = transportationIcons.indexOf(state.transports
-          .firstWhere((e) => e.university.id == universityId)
-          .icon);
-
-      if (currentIndex == 0) {
-        state = state.copyWith(
-            transports: state.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[0])
-                    : e)
-                .toList());
-      } else {
-        state = state.copyWith(
-            transports: state.transports
-                .map((e) => e.university.id == universityId
-                    ? e.copyWith(icon: transportationIcons[currentIndex - 1])
-                    : e)
-                .toList());
-      }
+      state = state.copyWith(
+          transports: state.transports
+              .map((t) => t.id == transport.id ? transport : t)
+              .toList());
     }
   }
 
@@ -125,6 +76,11 @@ class FlatCreateNotifier extends StateNotifier<FlatModel> {
 
   void setDescription({required String description}) {
     state = state.copyWith(description: description);
+  }
+
+  void deleteImage({required String image}) {
+    state =
+        state.copyWith(images: state.images.where((e) => e != image).toList());
   }
 
   void setImages({required List<String> images}) {

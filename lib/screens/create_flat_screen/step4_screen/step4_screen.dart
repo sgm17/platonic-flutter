@@ -1,4 +1,3 @@
-import 'package:image_picker/image_picker.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/screens/error_dialog/loading_dialog/loading_dialog.dart';
 import 'package:platonic/providers/error_provider/create_flat/step4_error_provider.dart';
@@ -8,6 +7,7 @@ import 'package:platonic/screens/create_flat_screen/step2_screen/widgets/widgets
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 import 'dart:io';
@@ -90,19 +90,25 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
         // Get all the flat state
         final flatCreateState = ref.read(flatCreateProvider);
 
-        // Post and create a flat
-        await ref
-            .read(flatsScrollProvider.notifier)
-            .createFlat(flat: flatCreateState);
+        // The flat is new
+        if (flatCreateState.id == 0) {
+          // Post and create a flat
+          await ref
+              .read(flatsScrollProvider.notifier)
+              .createFlat(flat: flatCreateState);
+        } else {
+          await ref
+              .read(flatsScrollProvider.notifier)
+              .updateFlat(flat: flatCreateState);
+        }
 
         ref.read(flatCreateProvider.notifier).setEmptyState();
 
         // Push to the list of flats screen
         Navigator.pushNamedAndRemoveUntil(
-          context,
-          '/DetailScreen',
-          (route) => route.settings.name == '/FlatsScreen',
-        );
+            context, '/HomeScreen', (route) => false);
+
+        Navigator.pushNamed(context, '/FlatsScreen');
       }
     }
 
@@ -183,8 +189,10 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
                                   )
                                 ],
                               ),
-                              child: const CreateFlatDetailButtonText(
-                                  text: '''Publish'''))),
+                              child: CreateFlatDetailButtonText(
+                                  text: ref.read(flatCreateProvider).id == 0
+                                      ? '''Publish Flat'''
+                                      : '''Update Flat'''))),
                     ]),
               ),
             ),

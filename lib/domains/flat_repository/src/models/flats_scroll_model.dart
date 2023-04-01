@@ -20,7 +20,7 @@ class FlatsScrollModel with _$FlatsScrollModel {
       required PropertyModel properties,
       required int rentPricePerMonthInCents,
       required int electricityPriceInCents,
-      required bool bookMark,
+      @Default(false) bool? bookMark,
       required TransportModel transport,
       required String image,
       required bool ownFlat,

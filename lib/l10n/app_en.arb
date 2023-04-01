@@ -179,6 +179,10 @@
   "@httpcreateflat": {
     "description": ""
   },
+  "httpcreateflatspam": "",
+  "@httpcreateflatspam": {
+    "description": ""
+  },
   "httpupdateflat": "",
   "@httpupdateflat": {
     "description": ""

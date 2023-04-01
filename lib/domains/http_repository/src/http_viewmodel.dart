@@ -53,9 +53,11 @@ class HttpViewmodel implements HttpRepository {
       } else {
         return null;
       }
-    } else {
+    } else if (response.statusCode != 403) {
       throw const ErrorApp(code: 'httpindexappuser');
     }
+
+    return null;
   }
 
   @override
@@ -114,9 +116,10 @@ class HttpViewmodel implements HttpRepository {
     if (response.statusCode == 200) {
       await jsonDecode(response.body);
       return true;
-    } else {
+    } else if (response.statusCode != 403) {
       throw const ErrorApp(code: 'httpupdatecloudtokenappuser');
     }
+    return false;
   }
 
   @override
@@ -375,13 +378,19 @@ class HttpViewmodel implements HttpRepository {
 
   @override
   Future<List<AppUser>> postAddRemoveTenant(
-      {required int flatId, required String tenantEmail}) async {
+      {required int flatId,
+      required String tenantEmail,
+      required bool isAdd}) async {
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
 
-    final body = {'id': flatId, 'tenant_email': tenantEmail};
+    final body = {
+      'id': flatId,
+      'tenant_email': tenantEmail,
+      'is_add': isAdd,
+    };
 
     final response = await http.post(
         Uri.parse(
@@ -409,10 +418,10 @@ class HttpViewmodel implements HttpRepository {
     final response = await http.post(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/$flatId/bookmark"),
         headers: headers,
-        body: body);
+        body: jsonEncode(body));
 
     if (response.statusCode == 200) {
-      final Map<String, bool> data = await jsonDecode(response.body);
+      final Map<String, dynamic> data = await jsonDecode(response.body);
 
       return data["book_mark"] ?? false;
     } else {
@@ -436,6 +445,8 @@ class HttpViewmodel implements HttpRepository {
       final Map<String, dynamic> data = await jsonDecode(response.body);
 
       return FlatsScrollModel.fromJson(data);
+    } else if (response.statusCode == 249) {
+      throw const ErrorApp(code: 'httpcreateflatspam');
     } else {
       throw const ErrorApp(code: 'httpcreateflat');
     }

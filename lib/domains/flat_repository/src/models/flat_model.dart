@@ -38,7 +38,7 @@ class FlatModel with _$FlatModel {
       required List<FeatureModel> features,
       required List<TransportModel> transports,
       required List<dynamic> images,
-      required bool bookMark}) = _FlatModel;
+      @Default(false) bool? bookMark}) = _FlatModel;
 
   static List<double> emptyGeometry = [2.170056412042614, 41.3869926501536];
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
-
 import 'widgets.dart';
 
 /* Group wifi

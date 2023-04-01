@@ -29,11 +29,12 @@ class FlatNotifier extends StateNotifier<AsyncValue<FlatModel>> {
   }
 
   Future<bool?> addOrRemoveTenantFromFlat(
-      {required String email, required int flatId}) async {
+      {required String email, required int flatId, required bool isAdd}) async {
     try {
       final newTenants = await ref
           .read(httpViewmodelProvider)
-          .postAddRemoveTenant(tenantEmail: email, flatId: flatId);
+          .postAddRemoveTenant(
+              tenantEmail: email, flatId: flatId, isAdd: isAdd);
 
       state = state.when(
           data: (data) {

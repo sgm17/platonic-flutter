@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
@@ -12,6 +13,8 @@ class RentCostElectricityInput extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final flatCreateState = ref.read(flatCreateProvider);
+
     void onSaved(String? electricity) {
       ref
           .read(flatCreateProvider.notifier)
@@ -19,6 +22,10 @@ class RentCostElectricityInput extends ConsumerWidget {
     }
 
     return TextFormField(
+      initialValue: flatCreateState.electricityPriceInCents !=
+              FlatModel.emptyFlat.electricityPriceInCents
+          ? (flatCreateState.electricityPriceInCents ~/ 100).toString()
+          : null,
       onChanged: onSaved,
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,

@@ -21,7 +21,7 @@ mixin _$FlatsScrollModel {
   PropertyModel get properties => throw _privateConstructorUsedError;
   int get rentPricePerMonthInCents => throw _privateConstructorUsedError;
   int get electricityPriceInCents => throw _privateConstructorUsedError;
-  bool get bookMark => throw _privateConstructorUsedError;
+  bool? get bookMark => throw _privateConstructorUsedError;
   TransportModel get transport => throw _privateConstructorUsedError;
   String get image => throw _privateConstructorUsedError;
   bool get ownFlat => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $FlatsScrollModelCopyWith<$Res> {
       PropertyModel properties,
       int rentPricePerMonthInCents,
       int electricityPriceInCents,
-      bool bookMark,
+      bool? bookMark,
       TransportModel transport,
       String image,
       bool ownFlat,
@@ -76,7 +76,7 @@ class _$FlatsScrollModelCopyWithImpl<$Res, $Val extends FlatsScrollModel>
     Object? properties = null,
     Object? rentPricePerMonthInCents = null,
     Object? electricityPriceInCents = null,
-    Object? bookMark = null,
+    Object? bookMark = freezed,
     Object? transport = null,
     Object? image = null,
     Object? ownFlat = null,
@@ -105,10 +105,10 @@ class _$FlatsScrollModelCopyWithImpl<$Res, $Val extends FlatsScrollModel>
           ? _value.electricityPriceInCents
           : electricityPriceInCents // ignore: cast_nullable_to_non_nullable
               as int,
-      bookMark: null == bookMark
+      bookMark: freezed == bookMark
           ? _value.bookMark
           : bookMark // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       transport: null == transport
           ? _value.transport
           : transport // ignore: cast_nullable_to_non_nullable
@@ -167,7 +167,7 @@ abstract class _$$_FlatsScrollModelCopyWith<$Res>
       PropertyModel properties,
       int rentPricePerMonthInCents,
       int electricityPriceInCents,
-      bool bookMark,
+      bool? bookMark,
       TransportModel transport,
       String image,
       bool ownFlat,
@@ -197,7 +197,7 @@ class __$$_FlatsScrollModelCopyWithImpl<$Res>
     Object? properties = null,
     Object? rentPricePerMonthInCents = null,
     Object? electricityPriceInCents = null,
-    Object? bookMark = null,
+    Object? bookMark = freezed,
     Object? transport = null,
     Object? image = null,
     Object? ownFlat = null,
@@ -226,10 +226,10 @@ class __$$_FlatsScrollModelCopyWithImpl<$Res>
           ? _value.electricityPriceInCents
           : electricityPriceInCents // ignore: cast_nullable_to_non_nullable
               as int,
-      bookMark: null == bookMark
+      bookMark: freezed == bookMark
           ? _value.bookMark
           : bookMark // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       transport: null == transport
           ? _value.transport
           : transport // ignore: cast_nullable_to_non_nullable
@@ -267,7 +267,7 @@ class _$_FlatsScrollModel extends _FlatsScrollModel {
       required this.properties,
       required this.rentPricePerMonthInCents,
       required this.electricityPriceInCents,
-      required this.bookMark,
+      this.bookMark = false,
       required this.transport,
       required this.image,
       required this.ownFlat,
@@ -287,7 +287,8 @@ class _$_FlatsScrollModel extends _FlatsScrollModel {
   @override
   final int electricityPriceInCents;
   @override
-  final bool bookMark;
+  @JsonKey()
+  final bool? bookMark;
   @override
   final TransportModel transport;
   @override
@@ -363,7 +364,7 @@ abstract class _FlatsScrollModel extends FlatsScrollModel {
       required final PropertyModel properties,
       required final int rentPricePerMonthInCents,
       required final int electricityPriceInCents,
-      required final bool bookMark,
+      final bool? bookMark,
       required final TransportModel transport,
       required final String image,
       required final bool ownFlat,
@@ -383,7 +384,7 @@ abstract class _FlatsScrollModel extends FlatsScrollModel {
   @override
   int get electricityPriceInCents;
   @override
-  bool get bookMark;
+  bool? get bookMark;
   @override
   TransportModel get transport;
   @override

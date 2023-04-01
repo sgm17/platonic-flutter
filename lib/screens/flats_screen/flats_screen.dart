@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/providers/error_provider/flats_scroll_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
@@ -15,8 +16,8 @@ class FlatsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final flatsScrollState = ref.watch(flatsScrollProvider);
-
     final flatsScrollErrorState = ref.watch(flatsScrollErrorProvider);
+    final flatSearchBarState = ref.watch(flatSearchBarProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (flatsScrollErrorState != null) {
@@ -30,10 +31,25 @@ class FlatsScreen extends ConsumerWidget {
       }
     });
 
+    List<FlatsScrollModel> filterFlats(
+        {required List<FlatsScrollModel> flats,
+        required String searchBarState}) {
+      return searchBarState.trim().isEmpty
+          ? flats
+          : flats
+              .where((flat) => flat.properties.city
+                  .toLowerCase()
+                  .contains(searchBarState.toLowerCase()))
+              .toList();
+    }
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 27, 26, 29),
       body: flatsScrollState.when(
-        data: (flats) {
+        data: (data) {
+          final flats =
+              filterFlats(flats: data, searchBarState: flatSearchBarState);
+
           return Column(
             children: [
               const FlatsScrollHeader(),

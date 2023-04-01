@@ -19,44 +19,52 @@ class FlatScrollItem extends ConsumerWidget {
       Navigator.pushNamed(context, '/DetailScreen');
     }
 
-    return GestureDetector(
-      onTap: toggleFlatDetail,
-      child: Container(
-        height: 250.0,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: const Color.fromARGB(255, 255, 255, 255),
-            border: Border.all(
-                width: 1.0, color: const Color.fromARGB(255, 76, 76, 76))),
-        child: Column(children: [
-          Flexible(
-            flex: 9,
-            child: Stack(
-              children: [
-                FlatScrollBackground(
+    Future<void> toggleBookmarkFlat() async {
+      await ref.read(flatsScrollProvider.notifier).addOrRemoveBookmarkScroll(
+          flatId: flatScrollState.id, isFlatsScroll: true);
+    }
+
+    return Stack(
+      children: [
+        GestureDetector(
+          onTap: toggleFlatDetail,
+          child: Container(
+            height: 250.0,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                color: const Color.fromARGB(255, 255, 255, 255),
+                border: Border.all(
+                    width: 1.0, color: const Color.fromARGB(255, 76, 76, 76))),
+            child: Column(children: [
+              Flexible(
+                flex: 9,
+                child: FlatScrollBackground(
                   image: flatScrollState.image,
                 ),
-                if (!flatScrollState.ownFlat)
-                  Positioned(
-                    right: 10.0,
-                    top: 10.0,
-                    width: 30.0,
-                    height: 30.0,
-                    child: BookMark(
-                      bookMarkActive: flatScrollState.bookMark,
-                    ),
-                  ),
-              ],
+              ),
+              Flexible(
+                flex: 4,
+                child: FlatScrollInfo(
+                  flatsScrollModel: flatScrollState,
+                ),
+              ),
+            ]),
+          ),
+        ),
+        if (!flatScrollState.ownFlat)
+          Positioned(
+            right: 10.0,
+            top: 10.0,
+            width: 30.0,
+            height: 30.0,
+            child: GestureDetector(
+              onTap: toggleBookmarkFlat,
+              child: BookMark(
+                bookMarkActive: flatScrollState.bookMark ?? false,
+              ),
             ),
           ),
-          Flexible(
-            flex: 4,
-            child: FlatScrollInfo(
-              flatsScrollModel: flatScrollState,
-            ),
-          ),
-        ]),
-      ),
+      ],
     );
   }
 }

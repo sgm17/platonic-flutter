@@ -1,37 +1,97 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/constants/constants.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 
-class AmenityTransportation extends ConsumerWidget {
-  final int universityId;
+class AmenityTransportation extends ConsumerStatefulWidget {
+  final AppUser user;
 
-  const AmenityTransportation({
-    Key? key,
-    required this.universityId,
-  }) : super(key: key);
+  const AmenityTransportation({Key? key, required this.user}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final flatCreateState = ref.watch(flatCreateProvider);
+  AmenityTransportationState createState() => AmenityTransportationState();
+}
+
+class AmenityTransportationState extends ConsumerState<AmenityTransportation> {
+  late int index;
+
+  TransportModel? getTransportModel() {
+    final transport = ref.read(flatCreateProvider).transports.firstWhere(
+          (e) => e.user.id == widget.user.id,
+          orElse: () => TransportModel.emptyTransport,
+        );
+
+    return transport != TransportModel.emptyTransport ? transport : null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final transportModel = getTransportModel();
+
+    if (transportModel != null) {
+      index = transportationIcons.indexOf(transportModel.icon);
+    } else {
+      index = 0;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final transport = getTransportModel();
 
     void toggleNextIcon() {
-      ref
-          .read(flatCreateProvider.notifier)
-          .setIcon(universityId: universityId, isNext: true);
+      if (index == transportationIcons.length - 1) {
+        index = 0;
+      } else {
+        index++;
+      }
+
+      setState(() {});
     }
 
     void togglePastIcon() {
-      ref
-          .read(flatCreateProvider.notifier)
-          .setIcon(universityId: universityId, isNext: false);
+      if (index == 0) {
+        index = 0;
+      } else {
+        index--;
+      }
+
+      setState(() {});
     }
 
     void onSaved(String? minutes) {
-      ref
-          .read(flatCreateProvider.notifier)
-          .setMinutes(universityId: universityId, minutes: int.parse(minutes!));
+      final min = int.parse(minutes!);
+
+      if (transport != null) {
+        final updateTransport = TransportModel(
+          id: transport.id,
+          name: transportationNames[index],
+          icon: transportationIcons[index],
+          minutes: min,
+          user: widget.user,
+        );
+
+        ref
+            .read(flatCreateProvider.notifier)
+            .setTransport(transport: updateTransport);
+      } else {
+        final newTransport = TransportModel(
+          id: 0,
+          name: transportationNames[index],
+          icon: transportationIcons[index],
+          minutes: min,
+          user: widget.user,
+        );
+
+        ref
+            .read(flatCreateProvider.notifier)
+            .setTransport(transport: newTransport);
+      }
     }
 
     return Row(children: [
@@ -52,9 +112,7 @@ class AmenityTransportation extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(10.0),
                   color: const Color.fromARGB(255, 63, 141, 253)),
               child: Icon(
-                flatCreateState.transports
-                    .firstWhere((e) => e.university.id == universityId)
-                    .icon,
+                transportationIcons[index],
                 size: 20,
                 color: const Color.fromARGB(255, 255, 255, 255),
               ),
@@ -75,6 +133,10 @@ class AmenityTransportation extends ConsumerWidget {
       SizedBox(
         width: 115.0,
         child: TextFormField(
+          initialValue: transport?.minutes != null &&
+                  transport?.minutes != TransportModel.emptyTransport.minutes
+              ? transport!.minutes.toString()
+              : null,
           onSaved: onSaved,
           validator: (value) {
             if (value == null || value.isEmpty) {

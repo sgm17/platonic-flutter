@@ -61,7 +61,7 @@ FlatModel _$FlatModelFromJson(Map json) => $checkedCreate(
                       Map<String, dynamic>.from(e as Map)))
                   .toList()),
           images: $checkedConvert('images', (v) => v as List<dynamic>),
-          bookMark: $checkedConvert('book_mark', (v) => v as bool),
+          bookMark: $checkedConvert('book_mark', (v) => v as bool?),
         );
         return val;
       },

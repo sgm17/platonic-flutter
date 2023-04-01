@@ -1,4 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/story_repository/story_repository.dart';
+import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:platonic/providers/chat_provider/conversations_provider.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/error_provider/story_error_provider.dart';
@@ -32,6 +34,7 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
     popupMenuButtonKey = GlobalKey();
     controller = StoryController();
     streamSubscription = controller.playbackNotifier.listen(playbackChange);
+    focusNode.addListener(focusNodeListener);
   }
 
   @override
@@ -40,6 +43,14 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
     controller.dispose();
     streamSubscription?.cancel();
     super.dispose();
+  }
+
+  void focusNodeListener() {
+    if (focusNode.hasFocus) {
+      controller.pause();
+    } else {
+      controller.play();
+    }
   }
 
   void playbackChange(PlaybackState state) {
@@ -58,6 +69,14 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
     final storiesState = ref.watch(storiesProvider);
     final storyErrorState = ref.watch(storyErrorProvider);
     final userState = ref.read(appUserProvider);
+
+    bool shouldOpenConversation(Story actualStory) {
+      final conversations = ref.read(conversationsProvider);
+      final alreadyConversation = conversations.any((e) =>
+          e.user1.id == actualStory.user.id && e.user2.id == userState.id ||
+          e.user1.id == userState.id && e.user2.id == actualStory.user.id);
+      return !alreadyConversation;
+    }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (storyErrorState != null) {
@@ -82,7 +101,8 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
                   await ref
                       .read(storiesProvider.notifier)
                       .deleteStory(storyId: storyId);
-                  Navigator.pop(context);
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/HomeScreen', (route) => false);
                 }));
       });
     }
@@ -121,26 +141,23 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
                   },
                   controller: controller,
                   inline: true,
-                  onComplete: () => Navigator.pop(context),
+                  onComplete: () => Navigator.pushNamedAndRemoveUntil(
+                      context, '/HomeScreen', (route) => false),
                   onVerticalSwipeComplete: (direction) {
                     switch (direction) {
                       case Direction.down:
-                        Navigator.pop(context);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/HomeScreen', (route) => false);
                         break;
                       case Direction.up:
-                        final story = stories[ref.read(storyViewIdProvider)];
-
-                        final alreadyConversation = ref
-                            .read(conversationsProvider)
-                            .any((e) =>
-                                e.user1.id == story.user.id &&
-                                    e.user2.id == userState.id ||
-                                e.user1.id == userState.id &&
-                                    e.user2.id == story.user.id);
-
-                        if (!alreadyConversation) {
-                          controller.pause();
-                          focusNode.requestFocus();
+                        final storyViewIdState = ref.read(storyViewIdProvider);
+                        final story =
+                            stories.where((e) => e.id == storyViewIdState);
+                        if (story.isNotEmpty) {
+                          final actualStory = story.first;
+                          if (shouldOpenConversation(actualStory)) {
+                            focusNode.requestFocus();
+                          }
                         }
                         break;
                       default:

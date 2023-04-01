@@ -72,7 +72,8 @@ class CreateScreenState extends ConsumerState<CreateScreen> {
       ref.read(circularButtonProvider.notifier).state = false;
 
       if (result == true) {
-        Navigator.of(context).pop();
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/HomeScreen', (route) => false);
       }
     }
 

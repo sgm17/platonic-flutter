@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
@@ -13,6 +14,8 @@ class AmenityM2Input extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final flatCreateState = ref.read(flatCreateProvider);
+
     void onSaved(String? built) {
       ref.read(flatCreateProvider.notifier).setBuilt(built: int.parse(built!));
     }
@@ -33,6 +36,9 @@ class AmenityM2Input extends ConsumerWidget {
         SizedBox(
           height: 30.0,
           child: TextFormField(
+            initialValue: flatCreateState.built != FlatModel.emptyFlat.built
+                ? (flatCreateState.built).toString()
+                : null,
             onSaved: onSaved,
             validator: (String? value) {
               if (value == null || value.isEmpty) {

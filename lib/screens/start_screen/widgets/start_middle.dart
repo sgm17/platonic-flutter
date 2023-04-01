@@ -24,7 +24,10 @@ class StartMiddle extends StatelessWidget {
               bottom: null,
               width: 100.0,
               height: 150.0,
-              child: StartOriginal(),
+              child: StartOriginal(
+                image: 'assets/images/center_left.jpg',
+                name: '',
+              ),
             ),
             Positioned(
               left: 120.0,
@@ -33,7 +36,10 @@ class StartMiddle extends StatelessWidget {
               bottom: null,
               width: 100.0,
               height: 150.0,
-              child: StartOriginal(),
+              child: StartOriginal(
+                image: 'assets/images/center_middle.jpg',
+                name: '',
+              ),
             ),
             Positioned(
               left: 240.0,
@@ -42,7 +48,10 @@ class StartMiddle extends StatelessWidget {
               bottom: null,
               width: 100.0,
               height: 150.0,
-              child: StartOriginal(),
+              child: StartOriginal(
+                image: 'assets/images/center_right.jpg',
+                name: '',
+              ),
             )
           ]),
     );

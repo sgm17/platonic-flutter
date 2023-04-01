@@ -18,10 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TransportModel {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  AppUser get user => throw _privateConstructorUsedError;
   @IconDataConverter()
   IconData get icon => throw _privateConstructorUsedError;
   int get minutes => throw _privateConstructorUsedError;
-  University get university => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TransportModelCopyWith<TransportModel> get copyWith =>
@@ -37,11 +37,11 @@ abstract class $TransportModelCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
+      AppUser user,
       @IconDataConverter() IconData icon,
-      int minutes,
-      University university});
+      int minutes});
 
-  $UniversityCopyWith<$Res> get university;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -59,9 +59,9 @@ class _$TransportModelCopyWithImpl<$Res, $Val extends TransportModel>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? user = null,
     Object? icon = null,
     Object? minutes = null,
-    Object? university = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -72,6 +72,10 @@ class _$TransportModelCopyWithImpl<$Res, $Val extends TransportModel>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser,
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -80,18 +84,14 @@ class _$TransportModelCopyWithImpl<$Res, $Val extends TransportModel>
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
               as int,
-      university: null == university
-          ? _value.university
-          : university // ignore: cast_nullable_to_non_nullable
-              as University,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UniversityCopyWith<$Res> get university {
-    return $UniversityCopyWith<$Res>(_value.university, (value) {
-      return _then(_value.copyWith(university: value) as $Val);
+  $AppUserCopyWith<$Res> get user {
+    return $AppUserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
     });
   }
 }
@@ -107,12 +107,12 @@ abstract class _$$_TransportModelCopyWith<$Res>
   $Res call(
       {int id,
       String name,
+      AppUser user,
       @IconDataConverter() IconData icon,
-      int minutes,
-      University university});
+      int minutes});
 
   @override
-  $UniversityCopyWith<$Res> get university;
+  $AppUserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -128,9 +128,9 @@ class __$$_TransportModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
+    Object? user = null,
     Object? icon = null,
     Object? minutes = null,
-    Object? university = null,
   }) {
     return _then(_$_TransportModel(
       id: null == id
@@ -141,6 +141,10 @@ class __$$_TransportModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as AppUser,
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
@@ -149,10 +153,6 @@ class __$$_TransportModelCopyWithImpl<$Res>
           ? _value.minutes
           : minutes // ignore: cast_nullable_to_non_nullable
               as int,
-      university: null == university
-          ? _value.university
-          : university // ignore: cast_nullable_to_non_nullable
-              as University,
     ));
   }
 }
@@ -163,9 +163,9 @@ class _$_TransportModel extends _TransportModel {
   _$_TransportModel(
       {required this.id,
       required this.name,
+      required this.user,
       @IconDataConverter() required this.icon,
-      required this.minutes,
-      required this.university})
+      required this.minutes})
       : super._();
 
   @override
@@ -173,16 +173,16 @@ class _$_TransportModel extends _TransportModel {
   @override
   final String name;
   @override
+  final AppUser user;
+  @override
   @IconDataConverter()
   final IconData icon;
   @override
   final int minutes;
-  @override
-  final University university;
 
   @override
   String toString() {
-    return 'TransportModel(id: $id, name: $name, icon: $icon, minutes: $minutes, university: $university)';
+    return 'TransportModel(id: $id, name: $name, user: $user, icon: $icon, minutes: $minutes)';
   }
 
   @override
@@ -192,15 +192,13 @@ class _$_TransportModel extends _TransportModel {
             other is _$_TransportModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.icon, icon) || other.icon == icon) &&
-            (identical(other.minutes, minutes) || other.minutes == minutes) &&
-            (identical(other.university, university) ||
-                other.university == university));
+            (identical(other.minutes, minutes) || other.minutes == minutes));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, icon, minutes, university);
+  int get hashCode => Object.hash(runtimeType, id, name, user, icon, minutes);
 
   @JsonKey(ignore: true)
   @override
@@ -213,9 +211,9 @@ abstract class _TransportModel extends TransportModel {
   factory _TransportModel(
       {required final int id,
       required final String name,
+      required final AppUser user,
       @IconDataConverter() required final IconData icon,
-      required final int minutes,
-      required final University university}) = _$_TransportModel;
+      required final int minutes}) = _$_TransportModel;
   _TransportModel._() : super._();
 
   @override
@@ -223,12 +221,12 @@ abstract class _TransportModel extends TransportModel {
   @override
   String get name;
   @override
+  AppUser get user;
+  @override
   @IconDataConverter()
   IconData get icon;
   @override
   int get minutes;
-  @override
-  University get university;
   @override
   @JsonKey(ignore: true)
   _$$_TransportModelCopyWith<_$_TransportModel> get copyWith =>

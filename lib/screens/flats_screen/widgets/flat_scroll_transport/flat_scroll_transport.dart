@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
+import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/screens/flats_screen/widgets/widgets.dart';
 
 /* Group transport
@@ -8,13 +9,13 @@ import 'package:platonic/screens/flats_screen/widgets/widgets.dart';
 class FlatScrollTransport extends StatelessWidget {
   final IconData child;
   final int minutes;
-  final University university;
+  final AppUser user;
 
   const FlatScrollTransport(
       {Key? key,
       required this.child,
       required this.minutes,
-      required this.university})
+      required this.user})
       : super(key: key);
 
   @override
@@ -30,7 +31,7 @@ class FlatScrollTransport extends StatelessWidget {
       ),
       FlatScrollTransportTitle(
         minutes: minutes,
-        university: university,
+        university: user.university!,
       ),
     ]);
   }

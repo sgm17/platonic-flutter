@@ -1,9 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:platonic/domains/flat_repository/src/models/flat_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'widgets.dart';
 
 /* Group available
@@ -14,8 +15,10 @@ class RentAvailableFromInput extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final flatCreateState = ref.read(flatCreateProvider);
+    final inputFormat = DateFormat('dd/MM/yyyy');
+
     void onSaved(String? value) {
-      final inputFormat = DateFormat('dd/MM/yyyy');
       DateTime? availableFrom;
 
       try {
@@ -30,6 +33,10 @@ class RentAvailableFromInput extends ConsumerWidget {
     }
 
     return TextFormField(
+      initialValue:
+          flatCreateState.availableFrom != FlatModel.emptyFlat.availableFrom
+              ? inputFormat.format(flatCreateState.availableFrom)
+              : null,
       onSaved: onSaved,
       validator: (value) {
         if (value == null || value.isEmpty) {

@@ -12,62 +12,69 @@ const List<IconData> transportationIcons = [
   Icons.directions_walk,
 ];
 
+const List<String> transportationNames = [
+  "directions_train",
+  "directions_bus",
+  "directions_car",
+  "directions_walk"
+];
+
 final List<double> emptyGeometry = [2.170056412042614, 41.3869926501536];
 
 final List<FeatureModel> featuresModel = [
   FeatureModel(
     id: 1,
-    name: 'Wi-Fi',
+    name: 'feature_wifi',
     icon: Icons.wifi,
   ),
   FeatureModel(
     id: 2,
-    name: 'Air Conditioning',
+    name: 'feature_air_conditioning',
     icon: Icons.ac_unit,
   ),
   FeatureModel(
     id: 3,
-    name: 'Heating',
+    name: 'feature_eating',
     icon: Icons.hvac,
   ),
   FeatureModel(
     id: 4,
-    name: 'Closet',
+    name: 'feature_closet',
     icon: Icons.checkroom,
   ),
   FeatureModel(
     id: 5,
-    name: 'Dishwasher',
+    name: 'feature_dishwasher',
     icon: Icons.flatware,
   ),
   FeatureModel(
     id: 6,
-    name: 'Microwave',
+    name: 'feature_microwave',
     icon: Icons.microwave,
   ),
   FeatureModel(
     id: 7,
-    name: 'Oven',
+    name: 'feature_oven',
     icon: Icons.fireplace,
   ),
   FeatureModel(
     id: 8,
-    name: 'Refrigerator',
+    name: 'feature_refrigerator',
     icon: Icons.kitchen,
   ),
   FeatureModel(
     id: 9,
-    name: 'Smoke',
+    name: 'feature_smoke',
     icon: Icons.smoke_free,
   ),
   FeatureModel(
     id: 10,
-    name: 'Elevator',
+    name: 'feature_elevator',
     icon: Icons.elevator,
   ),
   FeatureModel(
     id: 11,
-    name: 'Garage',
+    name: 'feature_garage',
     icon: Icons.garage,
   ),
   FeatureModel(
@@ -77,32 +84,32 @@ final List<FeatureModel> featuresModel = [
   ),
   FeatureModel(
     id: 13,
-    name: 'Furnitures',
+    name: 'feature_furnitures',
     icon: Icons.shelves,
   ),
   FeatureModel(
     id: 14,
-    name: 'Gym',
+    name: 'feature_gym',
     icon: Icons.fitness_center,
   ),
   FeatureModel(
     id: 15,
-    name: 'Pool',
+    name: 'feature_pool',
     icon: Icons.pool,
   ),
   FeatureModel(
     id: 16,
-    name: 'Balcony',
+    name: 'feature_balcony',
     icon: Icons.balcony,
   ),
   FeatureModel(
     id: 17,
-    name: 'Local Library',
+    name: 'feature_local_library',
     icon: Icons.local_library,
   ),
   FeatureModel(
     id: 18,
-    name: 'Terrace',
+    name: 'feature_terrace',
     icon: Icons.deck,
   ),
 ];

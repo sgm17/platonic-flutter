@@ -76,22 +76,19 @@ class FlatsScrollNotifier
           .read(httpViewmodelProvider)
           .postBookmarkFlat(flatId: flatId);
 
-      if (isFlatsScroll) {
-        state = state.when(
-            data: (data) {
-              final newState = data
-                  .map((e) =>
-                      e.id == flatId ? e.copyWith(bookMark: bookmark) : e)
-                  .toList();
-              return AsyncValue.data(newState);
-            },
-            error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
-            loading: () => const AsyncValue.loading());
-      } else {
-        ref
-            .read(flatProvider.notifier)
-            .addOrRemoveBookmarkDetail(bookmark: bookmark);
-      }
+      ref
+          .read(flatProvider.notifier)
+          .addOrRemoveBookmarkDetail(bookmark: bookmark);
+
+      state = state.when(
+          data: (data) {
+            final newState = data
+                .map((e) => e.id == flatId ? e.copyWith(bookMark: bookmark) : e)
+                .toList();
+            return AsyncValue.data(newState);
+          },
+          error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
+          loading: () => const AsyncValue.loading());
     } on ErrorApp catch (e) {
       if (isFlatsScroll) {
         ref.read(flatsScrollErrorProvider.notifier).state = e;
@@ -110,8 +107,14 @@ class FlatsScrollNotifier
 
       state = state.when(
           data: (data) {
-            final newState = [newFlat, ...data];
-            return AsyncValue.data(newState);
+            if (data.map((e) => e.id).contains(newFlat.id)) {
+              final newState =
+                  data.map((e) => e.id == newFlat.id ? newFlat : e).toList();
+              return AsyncValue.data(newState);
+            } else {
+              final newState = [newFlat, ...data];
+              return AsyncValue.data(newState);
+            }
           },
           error: (error, stackTrace) => AsyncValue.error(error, stackTrace),
           loading: () => const AsyncValue.loading());

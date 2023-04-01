@@ -14,17 +14,24 @@ class CreateFlatImagesList extends ConsumerWidget {
     final flatCreateState = ref.watch(flatCreateProvider);
     final images = flatCreateState.images;
 
-    return _buildImageList(images);
+    return _buildImageList(images, ref);
   }
 
-  Widget _buildImageList(List<dynamic> images) {
+  void toggleDeleteImage({required dynamic image, required WidgetRef ref}) {
+    ref.read(flatCreateProvider.notifier).deleteImage(image: image);
+  }
+
+  Widget _buildImageList(List<dynamic> images, WidgetRef ref) {
     final imageWidgets = List<Widget>.generate(
       images.length,
-      (index) => SizedBox(
-        width: 170.0,
-        height: 95.0,
-        child: CreateFlatDetailImage(
-          image: images[index],
+      (index) => GestureDetector(
+        onLongPress: () => toggleDeleteImage(image: images[index], ref: ref),
+        child: SizedBox(
+          width: 170.0,
+          height: 95.0,
+          child: CreateFlatDetailImage(
+            image: images[index],
+          ),
         ),
       ),
     );
@@ -80,19 +87,22 @@ class CreateFlatImagesList extends ConsumerWidget {
             child: rows[i],
           ),
         if (images.length < 20)
-          const Padding(
-            padding: EdgeInsets.only(bottom: 16.0),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16.0),
             child: Row(
               children: [
                 Expanded(
-                  child: SizedBox(
-                    width: 170.0,
-                    height: 95.0,
-                    child: CreateFlatDetailImageEmpty(),
+                  child: GestureDetector(
+                    onTap: toggleFlatImage,
+                    child: const SizedBox(
+                      width: 170.0,
+                      height: 95.0,
+                      child: CreateFlatDetailImageEmpty(),
+                    ),
                   ),
                 ),
-                SizedBox(width: 16.0),
-                Expanded(
+                const SizedBox(width: 16.0),
+                const Expanded(
                   child: SizedBox(
                     width: 170.0,
                     height: 95.0,

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
 import 'package:platonic/screens/create_flat_screen/step2_screen/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,7 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
 
   @override
   Widget build(BuildContext context) {
+    final userState = ref.read(appUserProvider);
     final flatCreateState = ref.watch(flatCreateProvider);
     final step3ErrorState = ref.watch(step3ErrorProvider);
 
@@ -154,34 +156,41 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                       SizedBox(
                         height: 18.0,
                         child: AmenityTransportationSubtitle(
-                            university:
-                                "${flatCreateState.owner.university!.name} (${flatCreateState.owner.university!.simpleName.toUpperCase()})"),
+                            university: flatCreateState.id == 0
+                                ? "${userState.university!.name} (${userState.university!.simpleName.toUpperCase()})"
+                                : "${flatCreateState.owner.university!.name} (${flatCreateState.owner.university!.simpleName.toUpperCase()})"),
                       ),
                       const SizedBox(
                         height: 6.0,
                       ),
                       AmenityTransportation(
-                        universityId: flatCreateState.owner.universityId,
+                        user: flatCreateState.id == 0
+                            ? userState
+                            : flatCreateState.owner,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: flatCreateState.tenants.map((tenant) {
                           final index = flatCreateState.tenants.indexOf(tenant);
                           return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              const SizedBox(
+                                height: 10.0,
+                              ),
                               SizedBox(
                                 height: 18.0,
                                 child: AmenityTransportationSubtitle(
                                     university:
-                                        "${tenant.university} (${tenant.university!.simpleName.toUpperCase()})"),
+                                        "${tenant.university!.name} (${tenant.university!.simpleName.toUpperCase()})"),
                               ),
                               const SizedBox(
                                 height: 6.0,
                               ),
                               AmenityTransportation(
-                                universityId: tenant.universityId,
+                                user: tenant,
                               ),
-                              if (index == flatCreateState.tenants.length - 1)
+                              if (index != flatCreateState.tenants.length - 1)
                                 const SizedBox(
                                   height: 10,
                                 )

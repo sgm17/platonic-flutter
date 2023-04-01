@@ -24,7 +24,10 @@ class StartBottom extends StatelessWidget {
               bottom: null,
               width: 100.0,
               height: 150.0,
-              child: StartBlur(),
+              child: StartBlur(
+                image: 'assets/images/bottom_right.jpg',
+                name: '',
+              ),
             ),
             Positioned(
               left: 0.0,
@@ -33,7 +36,10 @@ class StartBottom extends StatelessWidget {
               bottom: null,
               width: 100.0,
               height: 150.0,
-              child: StartBlur(),
+              child: StartBlur(
+                image: 'assets/images/bottom_left.jpg',
+                name: '',
+              ),
             ),
             Positioned(
               left: 120.0,
@@ -42,7 +48,10 @@ class StartBottom extends StatelessWidget {
               bottom: null,
               width: 100.0,
               height: 150.0,
-              child: StartBlur(),
+              child: StartBlur(
+                image: 'assets/images/bottom_center.jpg',
+                name: '',
+              ),
             )
           ]),
     );

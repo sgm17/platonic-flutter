@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step4_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
@@ -12,7 +13,12 @@ class CreateFlatDetailTitleInput extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final flatCreateState = ref.read(flatCreateProvider);
+
     return TextFormField(
+      initialValue: flatCreateState.title != FlatModel.emptyFlat.title
+          ? (flatCreateState.title).toString()
+          : null,
       onSaved: (title) {
         ref.read(flatCreateProvider.notifier).setTitle(title: title!);
       },

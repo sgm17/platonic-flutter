@@ -38,7 +38,7 @@ mixin _$FlatModel {
   List<FeatureModel> get features => throw _privateConstructorUsedError;
   List<TransportModel> get transports => throw _privateConstructorUsedError;
   List<dynamic> get images => throw _privateConstructorUsedError;
-  bool get bookMark => throw _privateConstructorUsedError;
+  bool? get bookMark => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FlatModelCopyWith<FlatModel> get copyWith =>
@@ -73,7 +73,7 @@ abstract class $FlatModelCopyWith<$Res> {
       List<FeatureModel> features,
       List<TransportModel> transports,
       List<dynamic> images,
-      bool bookMark});
+      bool? bookMark});
 
   $AppUserCopyWith<$Res> get owner;
   $PropertyModelCopyWith<$Res> get properties;
@@ -114,7 +114,7 @@ class _$FlatModelCopyWithImpl<$Res, $Val extends FlatModel>
     Object? features = null,
     Object? transports = null,
     Object? images = null,
-    Object? bookMark = null,
+    Object? bookMark = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -205,10 +205,10 @@ class _$FlatModelCopyWithImpl<$Res, $Val extends FlatModel>
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      bookMark: null == bookMark
+      bookMark: freezed == bookMark
           ? _value.bookMark
           : bookMark // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 
@@ -259,7 +259,7 @@ abstract class _$$_FlatModelCopyWith<$Res> implements $FlatModelCopyWith<$Res> {
       List<FeatureModel> features,
       List<TransportModel> transports,
       List<dynamic> images,
-      bool bookMark});
+      bool? bookMark});
 
   @override
   $AppUserCopyWith<$Res> get owner;
@@ -300,7 +300,7 @@ class __$$_FlatModelCopyWithImpl<$Res>
     Object? features = null,
     Object? transports = null,
     Object? images = null,
-    Object? bookMark = null,
+    Object? bookMark = freezed,
   }) {
     return _then(_$_FlatModel(
       id: null == id
@@ -391,10 +391,10 @@ class __$$_FlatModelCopyWithImpl<$Res>
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
-      bookMark: null == bookMark
+      bookMark: freezed == bookMark
           ? _value.bookMark
           : bookMark // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -425,7 +425,7 @@ class _$_FlatModel extends _FlatModel {
       required final List<FeatureModel> features,
       required final List<TransportModel> transports,
       required final List<dynamic> images,
-      required this.bookMark})
+      this.bookMark = false})
       : _tenants = tenants,
         _geometry = geometry,
         _features = features,
@@ -508,7 +508,8 @@ class _$_FlatModel extends _FlatModel {
   }
 
   @override
-  final bool bookMark;
+  @JsonKey()
+  final bool? bookMark;
 
   @override
   String toString() {
@@ -619,7 +620,7 @@ abstract class _FlatModel extends FlatModel {
       required final List<FeatureModel> features,
       required final List<TransportModel> transports,
       required final List<dynamic> images,
-      required final bool bookMark}) = _$_FlatModel;
+      final bool? bookMark}) = _$_FlatModel;
   _FlatModel._() : super._();
 
   @override
@@ -667,7 +668,7 @@ abstract class _FlatModel extends FlatModel {
   @override
   List<dynamic> get images;
   @override
-  bool get bookMark;
+  bool? get bookMark;
   @override
   @JsonKey(ignore: true)
   _$$_FlatModelCopyWith<_$_FlatModel> get copyWith =>

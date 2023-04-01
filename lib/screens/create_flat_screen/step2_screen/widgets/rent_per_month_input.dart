@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/domains/flat_repository/src/models/flat_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
@@ -12,6 +13,8 @@ class RentPerMonthInput extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final flatCreateState = ref.read(flatCreateProvider);
+
     void onSaved(String? price) {
       ref
           .read(flatCreateProvider.notifier)
@@ -19,6 +22,10 @@ class RentPerMonthInput extends ConsumerWidget {
     }
 
     return TextFormField(
+      initialValue: flatCreateState.rentPricePerMonthInCents !=
+              FlatModel.emptyFlat.rentPricePerMonthInCents
+          ? (flatCreateState.rentPricePerMonthInCents ~/ 100).toString()
+          : null,
       onSaved: onSaved,
       textInputAction: TextInputAction.next,
       textAlignVertical: TextAlignVertical.center,

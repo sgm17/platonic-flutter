@@ -21,7 +21,7 @@ FlatsScrollModel _$FlatsScrollModelFromJson(Map json) => $checkedCreate(
               $checkedConvert('rent_price_per_month_in_cents', (v) => v as int),
           electricityPriceInCents:
               $checkedConvert('electricity_price_in_cents', (v) => v as int),
-          bookMark: $checkedConvert('book_mark', (v) => v as bool),
+          bookMark: $checkedConvert('book_mark', (v) => v as bool?),
           transport: $checkedConvert(
               'transport',
               (v) =>
