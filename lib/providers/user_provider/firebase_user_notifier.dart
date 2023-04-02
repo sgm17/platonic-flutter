@@ -20,7 +20,10 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
     final messaging = FirebaseMessaging.instance;
 
     userChangesListener = firebaseAuth.userChanges().listen(onUserChanges);
-    cloudTokenListener = messaging.onTokenRefresh.listen(onCloudTokenChanges);
+
+    if (state != null) {
+      cloudTokenListener = messaging.onTokenRefresh.listen(onCloudTokenChanges);
+    }
   }
 
   void onUserChanges(User? user) {

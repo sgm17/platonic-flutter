@@ -61,13 +61,13 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
     if (splashState == false) {
       return Center(
           child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 170, maxHeight: 170),
+              constraints: const BoxConstraints(maxWidth: 150, maxHeight: 150),
               child: Image.asset('assets/images/splash_image.png',
                   fit: BoxFit.cover)));
     }
 
     Widget buildSplashBody() {
-      if (firebaseUserState == null ) {
+      if (firebaseUserState == null) {
         return const AuthScreen();
       } else if (appUserState.id == AppUser.emptyUser.id) {
         return const RegisterDetailScreen();
