@@ -244,9 +244,11 @@ class DetailScreen extends ConsumerWidget {
                             ),
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: flat.transports.map((transport) {
-                                  final index =
-                                      flat.transports.indexOf(transport);
+                                children:
+                                    flat.transports.asMap().entries.map((e) {
+                                  final index = e.key;
+                                  final transport = e.value;
+
                                   return Padding(
                                     padding: EdgeInsets.only(
                                         bottom:
@@ -255,7 +257,7 @@ class DetailScreen extends ConsumerWidget {
                                                 : 16.0),
                                     child: DetailTransportation(
                                         title:
-                                            'By ${transport.name[0].toUpperCase()}${transport.name.substring(1)} to ${transport.user.university!.simpleName.toUpperCase()} ${transport.minutes} minutes',
+                                            'By ${transport.name} to ${transport.user.university!.simpleName.toUpperCase()} ${transport.minutes} minutes',
                                         child:
                                             DetailTransportationIconContainer(
                                                 child: transport.icon)),

@@ -1,3 +1,4 @@
+import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:platonic/screens/error_dialog/delete_dialog/delete_dialog.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/domains/chat_repository/src/models/models.dart';
@@ -91,76 +92,82 @@ class ChatScreen extends ConsumerWidget {
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),
-        body: SafeArea(
-            child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SizedBox(
-              height: 40.0,
-              child: ChatTopbar(
-                  activeConversation: activeConversation,
-                  appUser: activeUserState,
-                  toggleDeleteDialog: toggleDeleteDialog),
+        body: WillPopScope(
+          onWillPop: () => Future.delayed(Duration.zero, () {
+            ref.read(activeUser2Provider.notifier).state = AppUser.emptyUser;
+            return true;
+          }),
+          child: SafeArea(
+              child: Column(children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: SizedBox(
+                height: 40.0,
+                child: ChatTopbar(
+                    activeConversation: activeConversation,
+                    appUser: activeUserState,
+                    toggleDeleteDialog: toggleDeleteDialog),
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.separated(
-              reverse: true,
-              padding:
-                  const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final children = <Widget>[];
+            Expanded(
+              child: ListView.separated(
+                reverse: true,
+                padding: const EdgeInsets.only(
+                    left: 16.0, right: 16.0, bottom: 16.0),
+                itemCount: messages.length,
+                itemBuilder: (context, index) {
+                  final children = <Widget>[];
 
-                if (index == messages.length - 1 ||
-                    messages[index].creationDate.day !=
-                        messages[index + 1].creationDate.day) {
-                  children.add(ChatTimestampText(
-                    timestamp: messages[index].creationDate,
-                  ));
-                  children.add(const SizedBox(height: 8.0));
-                }
+                  if (index == messages.length - 1 ||
+                      messages[index].creationDate.day !=
+                          messages[index + 1].creationDate.day) {
+                    children.add(ChatTimestampText(
+                      timestamp: messages[index].creationDate,
+                    ));
+                    children.add(const SizedBox(height: 8.0));
+                  }
 
-                children.add(messages[index].userId != activeUserState.id
-                    ? SendedMessage(text: messages[index].body)
-                    : ReceivedMessage(
-                        text: messages[index].body,
-                        profileImage: activeUserState.profileImage,
-                      ));
+                  children.add(messages[index].userId != activeUserState.id
+                      ? SendedMessage(text: messages[index].body)
+                      : ReceivedMessage(
+                          text: messages[index].body,
+                          profileImage: activeUserState.profileImage,
+                        ));
 
-                return Column(
-                  crossAxisAlignment:
-                      messages[index].userId != activeUserState.id
-                          ? CrossAxisAlignment.end
-                          : CrossAxisAlignment.start,
-                  children: children,
-                );
-              },
-              separatorBuilder: (context, index) {
-                final currentUserId = messages[index].userId;
-                final nextUserId = index < messages.length - 1
-                    ? messages[index + 1].userId
-                    : null;
-                final isSameUser = currentUserId == nextUserId;
+                  return Column(
+                    crossAxisAlignment:
+                        messages[index].userId != activeUserState.id
+                            ? CrossAxisAlignment.end
+                            : CrossAxisAlignment.start,
+                    children: children,
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  final currentUserId = messages[index].userId;
+                  final nextUserId = index < messages.length - 1
+                      ? messages[index + 1].userId
+                      : null;
+                  final isSameUser = currentUserId == nextUserId;
 
-                return SizedBox(
-                  height: isSameUser ? 8.0 : 16.0,
-                );
-              },
+                  return SizedBox(
+                    height: isSameUser ? 8.0 : 16.0,
+                  );
+                },
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 1.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: ChatBottombar(
-              toggleSend: toggleSend,
+            const SizedBox(
+              height: 1.0,
             ),
-          ),
-          const SizedBox(
-            height: 16.0,
-          )
-        ])));
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: ChatBottombar(
+                toggleSend: toggleSend,
+              ),
+            ),
+            const SizedBox(
+              height: 16.0,
+            )
+          ])),
+        ));
   }
 }

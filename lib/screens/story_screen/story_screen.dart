@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/story_repository/story_repository.dart';
-import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
 import 'package:platonic/providers/chat_provider/conversations_provider.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/error_provider/story_error_provider.dart';

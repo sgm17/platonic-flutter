@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
+import 'package:flutter/material.dart';
 
 const FIRST_TIME_USING_APP_KEY = "FIRST_TIME_USING_APP_KEY";
-const FIREBASE_TOKEN_ID_KEY = "FIREBASE_TOKEN_ID_KEY";
 const MEET_LAST_USER_ID_KEY = "MEET_LAST_USER_ID_KEY";
+const PLACES_ADDRESS_LIMIT = 5;
 
 const List<IconData> transportationIcons = [
   Icons.directions_train,
@@ -18,6 +18,46 @@ const List<String> transportationNames = [
   "directions_car",
   "directions_walk"
 ];
+
+final FlatHomeModel emptyFlatHome = FlatHomeModel(
+  id: 0,
+  title: 'Student Flat With Pool',
+  bathroom: '''2''',
+  bedroom: '''4''',
+  electricityPriceInCents: 5000,
+  rentPricePerMonthInCents: 25000,
+  image: '',
+  properties: PropertyModel(
+      country: 'Spain',
+      city: '''Platja d'Aro''',
+      countrycode: 'ES',
+      postcode: "17250",
+      county: null,
+      housenumber: 'housenumber',
+      name: 'Av. Costa Brava',
+      state: 'Girona'),
+);
+
+final FlatsScrollModel emptyFlatsScrollModel = FlatsScrollModel(
+    id: 0,
+    title: 'Student Flat With Pool',
+    properties: PropertyModel(
+        country: 'Spain',
+        city: '''Platja d'Aro''',
+        countrycode: 'ES',
+        postcode: "17250",
+        county: null,
+        housenumber: 'housenumber',
+        name: 'Av. Costa Brava',
+        state: 'Girona'),
+    electricityPriceInCents: 5000,
+    rentPricePerMonthInCents: 25000,
+    transport: TransportModel.emptyTransport,
+    image: '',
+    ownFlat: false,
+    bedroom: '4',
+    bathroom: '2',
+    built: 90);
 
 final List<double> emptyGeometry = [2.170056412042614, 41.3869926501536];
 

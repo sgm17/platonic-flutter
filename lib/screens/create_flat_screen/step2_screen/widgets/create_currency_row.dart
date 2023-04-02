@@ -15,29 +15,30 @@ class CreateCurrencyRow extends ConsumerWidget {
     final flatCreateState = ref.watch(flatCreateProvider);
 
     return Row(
-      children: Currency.values.map((e) {
-        final index = Currency.values.indexOf(e);
+      children: Currency.values.asMap().entries.map((e) {
+        final index = e.key;
+        final currency = e.value;
         return Padding(
           padding: EdgeInsets.only(
               right: index == Currency.values.length - 1 ? 0.0 : 16.0),
           child: GestureDetector(
-            onTap: () => toggleCurrency(e),
+            onTap: () => toggleCurrency(currency),
             child: AnimatedContainer(
               height: 30.0,
               decoration: BoxDecoration(
-                  color: flatCreateState.currency == e
+                  color: flatCreateState.currency == currency
                       ? const Color.fromARGB(255, 63, 141, 253)
                       : null,
                   borderRadius: BorderRadius.circular(10.0),
                   border: Border.all(
-                      color: flatCreateState.currency == e
+                      color: flatCreateState.currency == currency
                           ? const Color.fromARGB(255, 63, 141, 253)
                           : const Color.fromARGB(255, 43, 45, 46),
                       width: 1.0)),
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               alignment: Alignment.center,
               duration: const Duration(milliseconds: 300),
-              child: Text(e.name.toUpperCase(),
+              child: Text(currency.name.toUpperCase(),
                   style: const TextStyle(
                     overflow: TextOverflow.visible,
                     height: 1.3020000457763672,

@@ -14,15 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "292854976758-u7fv1f78imm8n0senipia8mb8sk63e3h.apps.googleusercontent.com",
+          "client_id": "292854976758-7cnqg76p8cidjpigsd85d09ionrcfbnm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.invelex.platonic",
-            "certificate_hash": "212bf0ad476c98813df2bdb26664af19f51eccde"
+            "certificate_hash": "7db9d11ea8970e411c2f79bc470ace58178fed59"
           }
         },
         {
-          "client_id": "292854976758-ikbgalhqlmmfa38tfgedoj69cgdj6mb4.apps.googleusercontent.com",
+          "client_id": "292854976758-5ju44jjv0jasikpjrscmctqnr1o970ei.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "292854976758-ikbgalhqlmmfa38tfgedoj69cgdj6mb4.apps.googleusercontent.com",
+              "client_id": "292854976758-5ju44jjv0jasikpjrscmctqnr1o970ei.apps.googleusercontent.com",
               "client_type": 3
             },
             {

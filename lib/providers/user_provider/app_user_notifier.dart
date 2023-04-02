@@ -4,7 +4,6 @@ import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/auth_provider/providers.dart';
 import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -12,28 +11,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 
 class AppUserNotifier extends StateNotifier<AppUser> {
-  final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+  final String? tokenId;
   final User? user;
   final Ref ref;
 
-  AppUserNotifier(this.ref, this.user) : super(AppUser.emptyUser) {
-    userSignInBackend();
+  AppUserNotifier(this.ref, this.user, this.tokenId)
+      : super(AppUser.emptyUser) {
+    initialize();
   }
 
-  Future<void> userSignInBackend() async {
+  Future<void> initialize() async {
     if (user != null) {
       try {
-        // Get the tokenId
-        final tokenId = ref.read(tokenIdProvider);
+        if (tokenId == null) return;
 
-        if (tokenId != null) {
-          // Get the profile from the backend
-          final appUser =
-              await ref.read(userViewmodelProvider).getAppUserProfile();
+        final appUser =
+            await ref.read(userViewmodelProvider).getAppUserProfile();
 
-          if (appUser != null) {
-            state = appUser;
-          }
+        if (appUser != null) {
+          state = appUser;
         } else {
           state = AppUser.emptyUser;
         }
@@ -83,11 +79,6 @@ class AppUserNotifier extends StateNotifier<AppUser> {
       // Sign in with email and password
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-
-      // No need to fetch user profile from backend server here
-
-      // Initialize onUserChanges()
-      ref.read(firebaseUserProvider.notifier).initialize();
     } on FirebaseAuthException catch (e) {
       final errorApp = ErrorApp(code: e.code.split('-').join(""));
       ref.read(authErrorProvider.notifier).state = errorApp;
@@ -107,9 +98,6 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
       // Send email verification after register complete
       await FirebaseAuth.instance.currentUser?.sendEmailVerification();
-
-      // Initialize onUserChanges()
-      ref.read(firebaseUserProvider.notifier).initialize();
     } on FirebaseAuthException catch (e) {
       final errorApp = ErrorApp(code: e.code.split('-').join(""));
       ref.read(authErrorProvider.notifier).state = errorApp;
@@ -132,9 +120,6 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
       // Sign in with the credential
       await FirebaseAuth.instance.signInWithCredential(credential);
-
-      // Initialize onUserChanges()
-      ref.read(firebaseUserProvider.notifier).initialize();
     } on FirebaseAuthException catch (e) {
       final errorApp = ErrorApp(code: e.code.split('-').join(""));
       ref.read(authErrorProvider.notifier).state = errorApp;
@@ -160,9 +145,6 @@ class AppUserNotifier extends StateNotifier<AppUser> {
 
       // Sign in with the credential
       await FirebaseAuth.instance.signInWithCredential(credential);
-
-      // Initialize onUserChanges()
-      ref.read(firebaseUserProvider.notifier).initialize();
     } on FirebaseAuthException catch (e) {
       final errorApp = ErrorApp(code: e.code.split('-').join(""));
       ref.read(authErrorProvider.notifier).state = errorApp;

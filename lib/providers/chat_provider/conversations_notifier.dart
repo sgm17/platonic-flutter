@@ -6,7 +6,7 @@ import 'package:platonic/providers/chat_provider/providers.dart';
 class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   final String conversationChannelName = "ConversationChannel";
   final String messageChannelName = "MessageChannel";
-  final ActionCable action;
+  final ActionCable? action;
   final Ref ref;
 
   ConversationsNotifier(this.ref, this.action) : super([]) {
@@ -22,8 +22,7 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   }
 
   void subscribeConversationChannel() {
-    ref.read(actionProvider).subscribe(conversationChannelName,
-        onSubscribed: () {
+    action?.subscribe(conversationChannelName, onSubscribed: () {
       print('confirm conversations subscription');
       getConversations();
     }, onDisconnected: () {
@@ -71,16 +70,15 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
     });
   }
 
-  void unSubscribeMessageChannel() =>
-      ref.read(actionProvider).unsubscribe(messageChannelName);
+  void unSubscribeMessageChannel() => action?.unsubscribe(messageChannelName);
 
   void unSubscribeConversationChannel() =>
-      ref.read(actionProvider).unsubscribe(conversationChannelName);
+      action?.unsubscribe(conversationChannelName);
 
   void subscribeMessageChannel() {
     final conversationIds = state.map((e) => e.id).toList();
     if (conversationIds.isNotEmpty) {
-      ref.read(actionProvider).subscribe(messageChannelName,
+      action?.subscribe(messageChannelName,
           channelParams: {"conversation_ids": conversationIds},
           onSubscribed: () {
         print('confirm messages subscription: $conversationIds');
@@ -124,20 +122,20 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
   void getConversations() {
     ref
         .read(actionProvider)
-        .performAction(conversationChannelName, action: 'get_conversations');
+        ?.performAction(conversationChannelName, action: 'get_conversations');
   }
 
   void createConversation({required int user2Id, required Message message}) {
     final body = {"user2_id": user2Id, ...message.toJson()};
 
-    ref.read(actionProvider).performAction(conversationChannelName,
+    action?.performAction(conversationChannelName,
         action: 'create_conversation', actionParams: body);
   }
 
   void sendDeleteConversation({required String conversationId}) {
     final body = {"id": conversationId};
 
-    ref.read(actionProvider).performAction(conversationChannelName,
+    action?.performAction(conversationChannelName,
         action: 'delete_conversation', actionParams: body);
   }
 
@@ -145,17 +143,10 @@ class ConversationsNotifier extends StateNotifier<List<Conversation>> {
     final conversationIds = state.map((e) => e.id).toList();
 
     if (conversationIds.isNotEmpty) {
-      ref.read(actionProvider).performAction(messageChannelName,
+      action?.performAction(messageChannelName,
           channelParams: {"conversation_ids": conversationIds},
           action: 'new_message',
           actionParams: message.toJson());
     }
-  }
-
-  @override
-  void dispose() {
-    unSubscribeConversationChannel();
-    unSubscribeMessageChannel();
-    super.dispose();
   }
 }

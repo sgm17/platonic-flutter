@@ -50,6 +50,10 @@ class FlatsScreen extends ConsumerWidget {
           final flats =
               filterFlats(flats: data, searchBarState: flatSearchBarState);
 
+          if (data.isEmpty) {
+            return const FlatScrollItemEmpty();
+          }
+
           return Column(
             children: [
               const FlatsScrollHeader(),

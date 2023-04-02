@@ -30,10 +30,12 @@ class CreateFlatAddressSuggestion extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 8.0),
         child: Column(
-          children: suggestionsState.map((suggestion) {
-            final index = suggestionsState.indexOf(suggestion);
+          children: suggestionsState.asMap().entries.map((e) {
+            final index = e.key;
+            final suggestion = e.value;
+
             return GestureDetector(
-              onTap: () => toggleSuggestion(suggestionsState[index]),
+              onTap: () => toggleSuggestion(suggestion),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(.5),
@@ -48,7 +50,7 @@ class CreateFlatAddressSuggestion extends ConsumerWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                    '${suggestionsState[index].properties.name}, ${suggestionsState[index].properties.city}, ${suggestionsState[index].properties.state}',
+                    '${suggestion.properties.name}, ${suggestion.properties.city}, ${suggestion.properties.state}',
                     style: const TextStyle(
                       fontSize: 12.0,
                       fontFamily: 'DM Sans',

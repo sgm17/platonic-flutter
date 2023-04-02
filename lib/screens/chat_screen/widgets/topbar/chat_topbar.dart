@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/chat_repository/chat_repository.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
+import 'package:platonic/providers/chat_provider/active_user2_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
@@ -31,10 +32,14 @@ class ChatTopbar extends ConsumerWidget {
     return SizedBox(
       height: 40.0,
       child: Row(children: [
-        const SizedBox(
+        SizedBox(
           width: 35.0,
           height: 35.0,
-          child: BackButtonContainer(),
+          child: BackButtonContainer(
+            togglePopConversation: () => ref
+                .read(activeUser2Provider.notifier)
+                .state = AppUser.emptyUser,
+          ),
         ),
         const SizedBox(
           width: 30.0,

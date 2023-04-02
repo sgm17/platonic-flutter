@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:platonic/domains/university_repository/university_repository.dart';
 import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/screens/flats_screen/widgets/widgets.dart';
 

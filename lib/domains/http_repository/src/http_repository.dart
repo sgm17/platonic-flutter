@@ -12,8 +12,10 @@ abstract class HttpRepository {
   Future<List<UniversitiesList>> getIndexUniversitiesList();
 
   // Users
-  // GET /api/v1/users - Authentication required
+  // GET /api/v1/users
   Future<AppUser?> getIndexAppUser();
+  // GET /api/v1/users/:user_id
+  Future<AppUser> getShowAppUser({required int userId});
   // POST /api/v1/users
   Future<AppUser> postCreateAppUser({required AppUser user});
   // PUT /api/v1/users/:id

@@ -170,8 +170,11 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: flatCreateState.tenants.map((tenant) {
-                          final index = flatCreateState.tenants.indexOf(tenant);
+                        children:
+                            flatCreateState.tenants.asMap().entries.map((e) {
+                          final index = e.key;
+                          final tenant = e.value;
+
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

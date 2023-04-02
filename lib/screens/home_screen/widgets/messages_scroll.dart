@@ -13,27 +13,23 @@ class MessagesScroll extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final conversationsState = ref.watch(conversationsProvider);
 
-    return Expanded(
-        child: ListView.separated(
-      itemCount: conversationsState.length,
-      separatorBuilder: (context, index) {
-        return const SizedBox(
-          height: 10.0,
-        );
-      },
-      itemBuilder: (context, index) {
-        return ProviderScope(
-          overrides: [
-            conversationItemProvider
-                .overrideWithValue(conversationsState[index])
-          ],
+    return Column(
+        children: conversationsState.asMap().entries.map((e) {
+      final index = e.key;
+      final conversation = e.value;
+
+      return ProviderScope(
+        overrides: [conversationItemProvider.overrideWithValue(conversation)],
+        child: Padding(
+          padding:
+              index != 0 ? const EdgeInsets.only(top: 10.0) : EdgeInsets.zero,
           child: const SizedBox(
             width: 358.0,
             height: 80.0,
             child: MessageItem(),
           ),
-        );
-      },
-    ));
+        ),
+      );
+    }).toList());
   }
 }

@@ -1,11 +1,15 @@
+import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/providers/error_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:async';
 
 class FirebaseUserNotifier extends StateNotifier<User?> {
-  final Ref ref;
-
   StreamSubscription<User?>? userChangesListener;
+  StreamSubscription<String?>? cloudTokenListener;
+  final Ref ref;
 
   FirebaseUserNotifier(this.ref) : super(null) {
     initialize();
@@ -13,10 +17,10 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
 
   void initialize() {
     final firebaseAuth = FirebaseAuth.instance;
+    final messaging = FirebaseMessaging.instance;
 
-    if (firebaseAuth.currentUser != null) {
-      userChangesListener = firebaseAuth.userChanges().listen(onUserChanges);
-    }
+    userChangesListener = firebaseAuth.userChanges().listen(onUserChanges);
+    cloudTokenListener = messaging.onTokenRefresh.listen(onCloudTokenChanges);
   }
 
   void onUserChanges(User? user) {
@@ -29,5 +33,24 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
 
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  Future<void> onCloudTokenChanges(String cloudToken) async {
+    try {
+      await ref
+          .read(userViewmodelProvider)
+          .postUpdateCloudToken(cloudToken: cloudToken);
+    } on ErrorApp catch (e) {
+      ref.read(splashErrorProvider.notifier).state = e;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  @override
+  void dispose() {
+    userChangesListener?.cancel();
+    cloudTokenListener?.cancel();
+    super.dispose();
   }
 }

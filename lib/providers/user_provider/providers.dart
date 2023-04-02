@@ -6,5 +6,3 @@ export 'token_id_provider.dart';
 export 'token_id_notifier.dart';
 export 'firebase_user_notifier.dart';
 export 'firebase_user_provider.dart';
-export 'firebase_messaging_notifier.dart';
-export 'firebase_messaging_provider.dart';

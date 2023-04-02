@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/constants/constants.dart';
 import 'package:platonic/domains/story_repository/src/models/models.dart';
-import 'package:platonic/providers/shared_preferences_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 
 class StoryViewers extends ConsumerWidget {
   final List<Visualization> viewers;
@@ -36,7 +35,7 @@ class StoryViewers extends ConsumerWidget {
                                         viewers[i].user.profileImage!,
                                         headers: {
                                           'Authorization':
-                                              'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
+                                              'Bearer ${ref.read(tokenIdProvider)}'
                                         }),
                                     fit: BoxFit.cover)
                                 : const DecorationImage(

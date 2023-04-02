@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/constants/constants.dart';
-import 'package:platonic/providers/shared_preferences_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
 
@@ -33,8 +31,7 @@ class MeetPictureContainer extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(20.0),
                   image: DecorationImage(
                       image: NetworkImage(otherUser.meetPicture!, headers: {
-                        'Authorization':
-                            'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
+                        'Authorization': 'Bearer ${ref.read(tokenIdProvider)}'
                       }),
                       fit: BoxFit.cover))
               : BoxDecoration(
@@ -62,8 +59,7 @@ class MeetPictureContainer extends ConsumerWidget {
               borderRadius: BorderRadius.circular(20.0),
               image: DecorationImage(
                   image: NetworkImage(userState.meetPicture!, headers: {
-                    'Authorization':
-                        'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
+                    'Authorization': 'Bearer ${ref.read(tokenIdProvider)}'
                   }),
                   fit: BoxFit.cover))),
     );

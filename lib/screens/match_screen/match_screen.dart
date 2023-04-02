@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:platonic/constants/constants.dart';
 import 'package:platonic/providers/meet_provider/match_user_provider.dart';
-import 'package:platonic/providers/shared_preferences_provider/providers.dart';
+import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/match_screen/widgets/widgets.dart';
 
 /* Frame match
@@ -74,7 +73,7 @@ class MatchScreenState extends ConsumerState<MatchScreen>
                         image: NetworkImage(matchUserState!.meetPicture!,
                             headers: {
                               'Authorization':
-                                  'Bearer ${ref.read(sharedPreferencesProvider).getString(FIREBASE_TOKEN_ID_KEY) ?? ''}'
+                                  'Bearer ${ref.read(tokenIdProvider)}'
                             }),
                         fit: BoxFit.cover)),
             child:

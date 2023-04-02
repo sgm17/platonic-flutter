@@ -40,8 +40,10 @@ class DetailTenants extends ConsumerWidget {
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Column(
-        children: tenants.map((tenant) {
-          final index = tenants.indexOf(tenant);
+        children: tenants.asMap().entries.map((e) {
+          final index = e.key;
+          final tenant = e.value;
+
           return Padding(
             padding: EdgeInsets.only(
                 bottom: (index == tenants.length - 1) ? 16.0 : 0.0),

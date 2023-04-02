@@ -1,20 +1,22 @@
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
+import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/http_repository/src/http_repository.dart';
 import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/stories_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/story_model.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:platonic/constants/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
 
 class HttpViewmodel implements HttpRepository {
   final String? tokenId;
+  final http.Client httpClient;
 
-  HttpViewmodel({required this.tokenId});
+  HttpViewmodel({required this.tokenId, required this.httpClient});
 
   @override
   Future<List<UniversitiesList>> getIndexUniversitiesList() async {
@@ -22,7 +24,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.get(
+    final response = await httpClient.get(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/universities"),
         headers: headers);
 
@@ -36,13 +38,11 @@ class HttpViewmodel implements HttpRepository {
 
   @override
   Future<AppUser?> getIndexAppUser() async {
-    if (tokenId == null) return null;
-
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.get(
+    final response = await httpClient.get(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/users"),
         headers: headers);
 
@@ -56,8 +56,26 @@ class HttpViewmodel implements HttpRepository {
     } else if (response.statusCode != 403) {
       throw const ErrorApp(code: 'httpindexappuser');
     }
-
     return null;
+  }
+
+  @override
+  Future<AppUser> getShowAppUser({required int userId}) async {
+    final headers = {
+      'Authorization': 'Bearer $tokenId',
+      'Content-Type': 'application/json',
+    };
+
+    final response = await httpClient.get(
+        Uri.parse("${dotenv.env['API_ENDPOINT']}/users/$userId"),
+        headers: headers);
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = await jsonDecode(response.body);
+      return AppUser.fromJson(data);
+    } else {
+      throw const ErrorApp(code: 'httpshowappuser');
+    }
   }
 
   @override
@@ -67,7 +85,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.post(
+    final response = await httpClient.post(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/users"),
         headers: headers,
         body: jsonEncode(user.toJson()));
@@ -86,7 +104,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.put(
+    final response = await httpClient.put(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/users/${user.id}"),
         headers: headers,
         body: jsonEncode(user.toJson()));
@@ -101,14 +119,12 @@ class HttpViewmodel implements HttpRepository {
 
   @override
   Future<bool> putUpdateCloudTokenAppUser({required String cloudToken}) async {
-    if (tokenId == null) return false;
-
     final headers = {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
 
-    final response = await http.put(
+    final response = await httpClient.put(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/users/cloud_token"),
         headers: headers,
         body: jsonEncode({'cloud_token': cloudToken}));
@@ -128,7 +144,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.delete(
+    final response = await httpClient.delete(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/users/${user.id}"),
         headers: headers);
 
@@ -146,7 +162,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.get(
+    final response = await httpClient.get(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/meets"),
         headers: headers);
 
@@ -164,7 +180,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.delete(
+    final response = await httpClient.delete(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/meets/$meetId"),
         headers: headers);
 
@@ -182,7 +198,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.get(
+    final response = await httpClient.get(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/stories"),
         headers: headers);
 
@@ -201,7 +217,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.get(
+    final response = await httpClient.get(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/stories/$facultyId"),
         headers: headers);
 
@@ -219,7 +235,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.post(
+    final response = await httpClient.post(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/stories"),
         headers: headers,
         body: jsonEncode(story.toJson()));
@@ -239,7 +255,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.put(
+    final response = await httpClient.put(
         Uri.parse(
             "${dotenv.env['API_ENDPOINT']}/stories/$storyId/toggle_favourite"),
         headers: headers);
@@ -259,7 +275,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.post(
+    final response = await httpClient.post(
         Uri.parse(
             "${dotenv.env['API_ENDPOINT']}/stories/$storyId/visualizations"),
         headers: headers,
@@ -282,7 +298,7 @@ class HttpViewmodel implements HttpRepository {
       'Authorization': 'Bearer $tokenId',
       'Content-Type': 'application/json',
     };
-    final response = await http.delete(
+    final response = await httpClient.delete(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/stories/$storyId"),
         headers: headers);
 
@@ -301,7 +317,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.delete(
+    final response = await httpClient.delete(
       Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/$flatId"),
       headers: headers,
     );
@@ -318,7 +334,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.get(
+    final response = await httpClient.get(
       Uri.parse("${dotenv.env['API_ENDPOINT']}/flats"),
       headers: headers,
     );
@@ -339,7 +355,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.get(
+    final response = await httpClient.get(
       Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/index_home"),
       headers: headers,
     );
@@ -363,7 +379,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.get(
+    final response = await httpClient.get(
       Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/$flatId"),
       headers: headers,
     );
@@ -392,7 +408,7 @@ class HttpViewmodel implements HttpRepository {
       'is_add': isAdd,
     };
 
-    final response = await http.post(
+    final response = await httpClient.post(
         Uri.parse(
             "${dotenv.env['API_ENDPOINT']}/flats/$flatId/add_remove_tenant"),
         headers: headers,
@@ -415,7 +431,7 @@ class HttpViewmodel implements HttpRepository {
 
     final body = {'id': flatId};
 
-    final response = await http.post(
+    final response = await httpClient.post(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/$flatId/bookmark"),
         headers: headers,
         body: jsonEncode(body));
@@ -436,7 +452,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.post(
+    final response = await httpClient.post(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/flats"),
         headers: headers,
         body: jsonEncode(flat.toJson()));
@@ -459,7 +475,7 @@ class HttpViewmodel implements HttpRepository {
       'Content-Type': 'application/json',
     };
 
-    final response = await http.put(
+    final response = await httpClient.put(
         Uri.parse("${dotenv.env['API_ENDPOINT']}/flats/${flat.id}"),
         headers: headers,
         body: jsonEncode(flat.toJson()));
@@ -475,11 +491,9 @@ class HttpViewmodel implements HttpRepository {
 
   @override
   Future<List<PlaceModel>> getIndexAddress({required String address}) async {
-    const ADDRESS_LIMIT = 5;
-
-    final response = await http.get(
+    final response = await httpClient.get(
         Uri.parse(
-            "https://photon.komoot.io/api/?q=$address&limit=$ADDRESS_LIMIT"),
+            "https://photon.komoot.io/api/?q=$address&limit=$PLACES_ADDRESS_LIMIT"),
         headers: {
           'Content-Type': 'application/json',
         });
