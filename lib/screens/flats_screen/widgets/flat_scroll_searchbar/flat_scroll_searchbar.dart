@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
@@ -22,7 +23,7 @@ class FlatScrollSearchbar extends ConsumerWidget {
           color: Colors.black),
       decoration: InputDecoration(
         prefixIcon: const FlatScrollSearchbarIconContainer(),
-        hintText: '''Search by city''',
+        hintText: AppLocalizations.of(context)!.flatsSearchPlaceholder,
         hintStyle: const TextStyle(color: Color.fromARGB(255, 130, 130, 132)),
         counterText: "",
         errorStyle: const TextStyle(fontSize: 0.01),

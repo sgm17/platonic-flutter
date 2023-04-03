@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
@@ -68,7 +69,7 @@ class PasswordAuthInput extends ConsumerWidget {
             borderSide: const BorderSide(
                 color: Color.fromARGB(255, 43, 45, 46), width: 1.0),
           ),
-          hintText: '''Your password''',
+          hintText: AppLocalizations.of(context)!.passwordAuthInputHintText,
           hintStyle: TextStyle(color: Colors.grey[400]),
           errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.0),

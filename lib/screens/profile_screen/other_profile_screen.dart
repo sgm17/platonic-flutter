@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
@@ -70,12 +71,13 @@ class OtherProfileScreen extends ConsumerWidget {
                   const SizedBox(
                     height: 39.0,
                   ),
-                  const Align(
+                  Align(
                     alignment: Alignment.topLeft,
                     child: SizedBox(
                       height: 18.0,
                       child: HomeTitle(
-                        title: '''Meet Picture''',
+                        title: AppLocalizations.of(context)!
+                            .otherProfileMeetPictureTitle,
                       ),
                     ),
                   ),

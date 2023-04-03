@@ -74,7 +74,7 @@ final List<FeatureModel> featuresModel = [
   ),
   FeatureModel(
     id: 3,
-    name: 'feature_eating',
+    name: 'feature_heating',
     icon: Icons.hvac,
   ),
   FeatureModel(
@@ -119,7 +119,7 @@ final List<FeatureModel> featuresModel = [
   ),
   FeatureModel(
     id: 12,
-    name: 'Laundry',
+    name: 'feature_laundry',
     icon: Icons.local_laundry_service,
   ),
   FeatureModel(

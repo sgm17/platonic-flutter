@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/profile_error_provider.dart';
@@ -198,12 +199,13 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
                       const SizedBox(
                         height: 39.0,
                       ),
-                      const Align(
+                      Align(
                         alignment: Alignment.topLeft,
                         child: SizedBox(
                           height: 18.0,
                           child: HomeTitle(
-                            title: '''Meet Picture''',
+                            title: AppLocalizations.of(context)!
+                                .profileMeetPictureTitle,
                           ),
                         ),
                       ),

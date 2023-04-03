@@ -211,6 +211,10 @@
   "@flatdeletedialog": {
     "description": ""
   },
+  "imagedeletedialog": "",
+  "@imagedeletedialog": {
+    "description": ""
+  },
   "userloadingdialog": "",
   "@userloadingdialog": {
     "description": ""
@@ -369,6 +373,738 @@
   },
   "step4emptyimages": "",
   "@step4emptyimages": {
+    "description": ""
+  },
+  "registerTitle": "Get your free account",
+  "@registerTitle": {
+    "description": ""
+  },
+  "oauthAppleText": "Continue with Apple",
+  "@oauthAppleText": {
+    "description": ""
+  },
+  "oauthGoogleText": "Continue with Google",
+  "@oauthGoogleText": {
+    "description": ""
+  },
+  "registerEmailTitle": "Email",
+  "@registerEmailTitle": {
+    "description": ""
+  },
+  "registerPasswordTitle": "Password",
+  "@registerPasswordTitle": {
+    "description": ""
+  },
+  "registerContinueButton": "Continue With Email",
+  "@registerContinueButton": {
+    "description": ""
+  },
+  "emailAuthInputHintText": "hello@example.com",
+  "@emailAuthInputHintText": {
+    "description": ""
+  },
+  "passwordAuthInputHintText": "Your password",
+  "@passwordAuthInputHintText": {
+    "description": ""
+  },
+  "authDividerText": "OR",
+  "@authDividerText" : {
+    "description": ""
+  },
+  "registerAlreadyAccountText": "Already have an account",
+  "@registerAlreadyAccountText": {
+    "description": ""
+  },
+  "registerAlreadyAccountLoginText": "Login",
+  "@registerAlreadyAccountLoginText": {
+    "description": ""
+  },
+  "loginTitle": "Log in to Platonic",
+  "@loginTitle": {
+    "description": ""
+  },
+  "loginFormEmailTitle": "Email",
+  "@loginFormEmailTitle": {
+    "description": ""
+  },
+  "loginFormPasswordTitle": "Password",
+  "@loginFormPasswordTitle": {
+    "description": ""
+  },
+  "loginForgotPasswordText": "Forgot Password?",
+  "@loginForgotPasswordText": {
+    "description": ""
+  },
+  "loginLoginButton": "Login",
+  "@loginLoginButton": {
+    "description": ""
+  },
+  "loginDontHaveAccountText": "Don't have an account",
+  "@loginDontHaveAccountText": {
+    "description": ""
+  },
+  "loginDontHaveAccountSignupText": "Don't have an account",
+  "@loginDontHaveAccountSignupText": {
+    "description": ""
+  },
+  "forgotPasswordTitle": "Forgot Password?",
+  "@forgotPasswordTitle": {
+    "description": ""
+  },
+  "forgotPasswordInstructionsText": "Enter your registered email below to receive password reset instruction",
+  "@forgotPasswordInstructionsText": {
+    "description": ""
+  },
+  "forgotPasswordEmailTitle": "Email",
+  "@forgotPasswordEmailTitle": {
+    "description": ""
+  },
+  "forgotPasswordEmailInputHintText": "hello@example.com",
+  "@forgotPasswordEmailInputHintText": {
+    "description": ""
+  },
+  "forgotPasswordSendEmailButton": "Send Email",
+  "@forgotPasswordSendEmailButton": {
+    "description": ""
+  },
+  "forgotPasswordRememberText": "Remember password?",
+  "@forgotPasswordRememberText": {
+    "description": ""
+  },
+  "forgotPasswordRememberLoginText": "Login",
+  "@forgotPasswordRememberLoginText": {
+    "description": ""
+  },
+  "verifyTitle": "Email Verification",
+  "@verifyTitle": {
+    "description": ""
+  },
+  "verifyInstructionsText": "We have sent a verification message to your email:\n{hiddenEmail}",
+  "@verifyInstructionsText": {
+    "description": "",
+    "placeholders": {
+      "hiddenEmail": {
+        "type": "String",
+        "example": "hello@gmail.com"
+      }
+    }
+  },
+  "verifyMessageNotReceivedText": "Didn't receive the email?",
+  "@verifyMessageNotReceivedText": {
+    "description": ""
+  },
+  "verifyMessageNotReceivedResendText": "Resend",
+  "@verifyMessageNotReceivedResendText": {
+    "description": ""
+  },
+  "verifyAccountButton": "Verify Account",
+  "@verifyAccountButton": {
+    "description": ""
+  },
+  "registerDetailPersonalTitle": "Personal Information",
+  "@registerDetailPersonalTitle": {
+    "description": ""
+  },
+  "registerDetailPersonalNameTitle": "Name",
+  "@registerDetailPersonalNameTitle": {
+    "description": ""
+  },
+  "registerDetailPersonalNameInputHintText": "Your name",
+  "@registerDetailPersonalNameInputHintText": {
+    "description": ""
+  },
+  "registerDetailPersonalAgeTitle": "Age",
+  "@registerDetailPersonalAgeTitle": {
+    "description": ""
+  },
+  "registerDetailPersonalAgeInputHintText": "Your age",
+  "@registerDetailPersonalAgeInputHintText": {
+    "description": ""
+  },
+  "registerDetailPersonalSwitchTitle": "Sex",
+  "@registerDetailPersonalSwitchTitle": {
+    "description": ""
+  },
+  "registerDetailPersonalSwitchManText": "Man",
+  "@registerDetailPersonalSwitchManText": {
+    "description": ""
+  },
+  "registerDetailPersonalSwitchWomanText": "Woman",
+  "@registerDetailPersonalSwitchWomanText": {
+    "description": ""
+  },
+  "registerDetailPersonalUniversityPlaceholderText": "Your university",
+  "@registerDetailPersonalUniversityPlaceholderText": {
+    "description": ""
+  },
+  "registerDetailPersonalFacultyPlaceholderText": "Your faculty",
+  "@registerDetailPersonalFacultyPlaceholderText": {
+    "description": ""
+  },
+  "registerDetailPersonalStudiesPlaceholderText": "Your studies",
+  "@registerDetailPersonalStudiesPlaceholderText": {
+    "description": ""
+  },
+  "registerDetailMeetTitle": "Meet Settings",
+  "@registerDetailMeetTitle": {
+    "description": ""
+  },
+  "registerDetailMeetUniversityPlaceholderText": "Your university to meet",
+  "@registerDetailMeetUniversityPlaceholderText": {
+    "description": ""
+  },
+  "registerDetailMeetUniversityTtitle": "University to meet",
+  "@registerDetailMeetUniversityTtitle": {
+    "description": ""
+  },
+  "registerDetailMeetFacultiesPlaceholderText": "Your faculties to meet",
+  "@registerDetailMeetFacultiesPlaceholderText": {
+    "description": ""
+  },
+  "registerDetailMeetFacultiesTitle": "Faculties to meet",
+  "@registerDetailMeetFacultiesTitle": {
+    "description": ""
+  },
+  "registerDetailMeetDescriptionText": "Meet is a functionality that automatically matches you with a person of your choice every day at 3 pm",
+  "@registerDetailMeetDescriptionText": {
+    "description": ""
+  },
+  "registerDetailFinishRegisterButton": "Finish the Register",
+  "@registerDetailFinishRegisterButton": {
+    "description": ""
+  },
+  "startTitle": "Find New Friends\nWith Platonic",
+  "@startTitle": {
+    "description": ""
+  },
+  "startSubtitle": "With the Meet functionality you\ncan meet a new person of your\nchoice every day at 3 pm",
+  "@startSubtitle": {
+    "description": ""
+  },
+  "startGetStartedButton": "Get Started",
+  "@startGetStartedButton": {
+    "description": ""
+  },
+  "homeStoriesTitle": "Stories",
+  "@homeStoriesTitle": {
+    "description": ""
+  },
+  "homeMeetsTitle": "Meets",
+  "@homeMeetsTitle": {
+    "description": ""
+  },
+  "homeMeetDisclaimer": "Maybe this Meet is waiting\n for you at 3 pm",
+  "@homeMeetDisclaimer": {
+    "description": ""
+  },
+  "homeFlatsTitle": "Flats",
+  "@homeFlatsTitle": {
+    "description": ""
+  },
+  "homeFlatsSeeAllTitle": "See All",
+  "@homeFlatsSeeAllTitle": {
+    "description": ""
+  },
+  "homeMessagesTitle": "Messages",
+  "@homeMessagesTitle": {
+    "description": ""
+  },
+  "flatHomeBedroom": "{bedroom} bedrooms",
+  "@flatHomeBedroom": {
+    "description": "",
+    "placeholders": {
+      "bedroom": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
+  "flatHomeBathroom": "{bathroom} bathrooms",
+  "@flatHomeBathroom": {
+    "description": "",
+    "placeholders": {
+      "bathroom": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
+  "flatHomePerMonthText": "/ per month",
+  "@flatHomePerMonthText": {
+    "description": ""
+  },
+  "profileMeetPictureTitle": "Meet Picture",
+  "@profileMeetPictureTitle": {
+    "description": ""
+  },
+  "otherProfileMeetPictureTitle": "Meet Picture",
+  "@otherProfileMeetPictureTitle": {
+    "description": ""
+  },
+  "settingsTitle": "Meet Settings",
+  "@settingsTitle": {
+    "description": ""
+  },
+  "settingsSwitchTitle": "Active",
+  "@settingsSwitchTitle": {
+    "description": ""
+  },
+  "settingsSexToMeetTitle": "Sex to meet",
+  "@settingsSexToMeetTitle": {
+    "description": ""
+  },
+  "settingsSexToMeetManText": "Man",
+  "@settingsSexToMeetManText": {
+    "description": ""
+  },
+  "settingsSexToMeetWomanText": "Woman",
+  "@settingsSexToMeetWomanText": {
+    "description": ""
+  },
+  "settingsLogoutButton": "Log out",
+  "@settingsLogoutButton": {
+    "description": ""
+  },
+  "createHintText": "Tap to write",
+  "@createHintText": {
+    "description": ""
+  },
+  "createBottomText": "STORY",
+  "@createBottomText": {
+    "description": ""
+  },
+  "createFacultyText": "Your faculty",
+  "@createFacultyText": {
+    "description": ""
+  },
+  "storyHintText": "Enter a message",
+  "@storyHintText": {
+    "description": ""
+  },
+  "storyVisualizationText": "Saw by {totalViewers}",
+  "@storyVisualizationText": {
+    "description": "",
+    "placeholders": {
+      "totalViewers": {
+        "type": "int",
+        "example": "0"
+      }
+    }
+  },
+  "storyDotsMenuText": "Delete Story",
+  "@storyDotsMenuText": {
+    "description": ""
+  },
+  "chatInputHintText": "Enter a message",
+  "@chatInputHintText": {
+    "description": ""
+  },
+  "universityDialogMeetTitle": "Set university to Meet",
+  "@universityDialogMeetTitle": {
+    "description": ""
+  },
+  "universityDialogPersonalTitle": "Set your university",
+  "@universityDialogPersonalTitle": {
+    "description": ""
+  },
+  "universityDialogSearchPlaceholder": "Search by university",
+  "@universityDialogSearchPlaceholder": {
+    "description": ""
+  },
+  "facultyDialogMeetTitle": "Set faculties to Meet",
+  "@facultyDialogMeetTitle": {
+    "description": ""
+  },
+  "facultyDialogPersonalTitle": "Set your faculty",
+  "@facultyDialogPersonalTitle": {
+    "description": ""
+  },
+  "facultyDialogSearchPlaceholder": "Search by faculty",
+  "@facultyDialogSearchPlaceholder": {
+    "description": ""
+  },
+  "studyDialogPersonalTitle": "Set your study",
+  "@studyDialogPersonalTitle": {
+    "description": ""
+  },
+  "studyDialogSearchPlaceholder": "Search by study",
+  "@studyDialogSearchPlaceholder": {
+    "description": ""
+  },
+  "flatsSearchPlaceholder": "Search by city",
+  "@flatsSearchPlaceholder": {
+    "description": ""
+  },
+  "flatsTransportTitle": "{minutes} min. to {simpleName}",
+  "@flatsTransportTitle": {
+    "description": "",
+    "placeholders": {
+      "minutes": {
+        "type": "int",
+        "example": "0"
+      },
+      "simpleName": {
+        "type": "String",
+        "example": "AAA"
+      }
+    }
+  },
+  "step1NavigatorTitle": "Step 1-4",
+  "@step1NavigatorTitle": {
+    "description": ""
+  },
+  "step1ConfirmAddressButton": "Confirm Address",
+  "@step1ConfirmAddressButton": {
+    "description": ""
+  },
+  "step2NavigatorTitle": "Step 2-4",
+  "@step2NavigatorTitle": {
+    "description": ""
+  },
+  "step2Title": "Room Preferences",
+  "@step2Title": {
+    "description": ""
+  },
+  "step2RentPerMonthHintText": "Rent per month",
+  "@step2RentPerMonthHintText": {
+    "description": ""
+  },
+  "step2RentAdvanceHintText": "Rent advance",
+  "@step2RentAdvanceHintText": {
+    "description": ""
+  },
+  "step2CostElectricityHintText": "Cost of electricity, water, gas and internet",
+  "@step2CostElectricityHintText": {
+    "description": ""
+  },
+  "step2AvailableFromHintText": "Available from {date}",
+  "@step2AvailableFromHintText": {
+    "description": "",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "00/00/0000"
+      }
+    }
+  },
+  "step2SliderMaxText": "Over 12 months",
+  "@step2SliderMaxText": {
+    "description": ""
+  },
+  "step2SliderMinText": "No minimum",
+  "@step2SliderMinText": {
+    "description": ""
+  },
+  "step2SliderLeftTitle": "Minimum stay",
+  "@step2SliderLeftTitle": {
+    "description": ""
+  },
+  "step2SliderRightTitle": "No Min.",
+  "@step2SliderRightTitle": {
+    "description": ""
+  },
+  "step2SliderRightTitleWithParam": "Min. {months} mo.",
+  "@step2SliderRightTitleWithParam": {
+    "description": "",
+    "placeholders": {
+      "months": {
+        "type": "int",
+        "example": "0"
+      }
+    }
+  },
+  "step2RoomTenantsTitle": "Room Tenants",
+  "@step2RoomTenantsTitle": {
+    "description": ""
+  },
+  "step2RoomTenantsSubtitle": "Tenants",
+  "@step2RoomTenantsSubtitle": {
+    "description": ""
+  },
+  "step2NextButton": "Next",
+  "@step2NextButton": {
+    "description": ""
+  },
+  "step3NavigatorTitle": "Step 3-4",
+  "@step3NavigatorTitle": {
+    "description": ""
+  },
+  "step3Title": "Property Amenities",
+  "@step3Title": {
+    "description": ""
+  },
+  "step3BedroomTitle": "Bedrooms",
+  "@step3BedroomTitle": {
+    "description": ""
+  },
+  "step3BathroomTitle": "Bathrooms",
+  "@step3BathroomTitle": {
+    "description": ""
+  },
+  "step3BuiltTitle": "Built",
+  "@step3BuiltTitle": {
+    "description": ""
+  },
+  "step3FloorTitle": "Floor",
+  "@step3FloorTitle": {
+    "description": ""
+  },
+  "step3FeaturesSubtitleTitle": "Features",
+  "@step3FeaturesSubtitleTitle": {
+    "description": ""
+  },
+  "step3TransportationSubtitleTitle": "Transportation",
+  "@step3TransportationSubtitleTitle": {
+    "description": ""
+  },
+  "step3FeaturesText": "Select some features",
+  "@step3FeaturesText": {
+    "description": ""
+  },
+  "step3TransportationHintText": "10 minutes",
+  "@step3TransportationHintText": {
+    "description": ""
+  },
+  "step3DisclaimerText": "If you share a flat with students from other universities, adding them to the flat will also be published in their university and only you will keep the permissions",
+  "@step3DisclaimerText": {
+    "description": ""
+  },
+  "step3NextButton": "Next",
+  "@step3NextButton": {
+    "description": ""
+  },
+  "step4NavigatorTitle": "Step 4-4",
+  "@step4NavigatorTitle": {
+    "description": ""
+  },
+  "step4Title": "Ads Details",
+  "@step4Title": {
+    "description": ""
+  },
+  "step4TitleHintText": "Provide a title",
+  "@step4TitleHintText": {
+    "description": ""
+  },
+  "step4DescriptionHintText": "Provide a description",
+  "@step4DescriptionHintText": {
+    "description": ""
+  },
+  "step4ImagesTitle": "Property Images",
+  "@step4ImagesTitle": {
+    "description": ""
+  },
+  "step4ImagesSubtitle": "(Max 20 photos)",
+  "@step4ImagesSubtitle": {
+    "description": ""
+  },
+  "detailNavigatorTitle": "Details",
+  "@detailNavigatorTitle": {
+    "description": ""
+  },
+  "detailAmenitiesBedroom": "{bedroom} bedrooms",
+  "@detailAmenitiesBedroom": {
+    "description": "",
+    "placeholders": {
+      "bedroom": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
+  "detailAmenitiesBathroom": "{bathroom} bathrooms",
+  "@detailAmenitiesBathroom": {
+    "description": "",
+    "placeholders": {
+      "bathroom": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
+  "detailAmenitiesBuilt": "{built} built m",
+  "@detailAmenitiesBuilt": {
+    "description": "",
+    "placeholders": {
+      "built": {
+        "type": "int",
+        "example": "0"
+      }
+    }
+  },
+  "detailAmenitiesFloor": "{floor} floor",
+  "@detailAmenitiesFloor": {
+    "description": "",
+    "placeholders": {
+      "floor": {
+        "type": "int",
+        "example": "0"
+      }
+    }
+  },
+  "detailDisclaimerText": "If you share a flat with students from other universities, add them",
+  "@detailDisclaimerText": {
+    "description": ""
+  },
+  "detailFeaturesSubtitle": "Features",
+  "@detailFeaturesSubtitle": {
+    "description": ""
+  },
+  "detailFeaturesSeeAllTitle": "See All",
+  "@detailFeaturesSeeAllTitle": {
+    "description": ""
+  },
+  "detailLocationSubtitle": "Where you’ll be",
+  "@detailLocationSubtitle": {
+    "description": ""
+  },
+  "detailDetailsSubtitle": "Property Details",
+  "@detailDetailsSubtitle": {
+    "description": ""
+  },
+  "detailCostSubtitle": "Monthly Cost",
+  "@detailCostSubtitle": {
+    "description": ""
+  },
+  "detailPrincipalConceptTitle": "Principal & Interest",
+  "@detailPrincipalConceptTitle": {
+    "description": ""
+  },
+  "detailElectricityConceptTitle": "Cost of electricity, water, gas and internet",
+  "@detailElectricityConceptTitle": {
+    "description": ""
+  },
+  "detailFirstMonthConceptTitle": "First month rent advance",
+  "@detailFirstMonthConceptTitle": {
+    "description": ""
+  },
+  "detailTransportationSubtitle": "Transportation",
+  "@detailTransportationSubtitle": {
+    "description": ""
+  },
+  "detailTransportationTitle": "By {transportName} to {university} {minutes} minutes",
+  "@detailTransportationTitle": {
+    "description": "",
+    "placeholders": {
+      "transportName": {
+        "type": "String",
+        "example": "Car"
+      },
+      "university": {
+        "type": "String",
+        "example": "AAA"
+      },
+      "minutes": {
+        "type": "int",
+        "example": "0"
+      }
+    }
+  },
+  "detailPriceTitle": "Price",
+  "@detailPriceTitle": {
+    "description": ""
+  },
+  "detailPricePerMonthText": "/month",
+  "@detailPricePerMonthText": {
+    "description": ""
+  },
+  "detailContactButton": "Contact",
+  "@detailContactButton": {
+    "description": ""
+  },
+  "featuresCreateNavigatorTitle": "Features",
+  "@featuresCreateNavigatorTitle": {
+    "description": ""
+  },
+  "featuresListNavigatorTitle": "Features",
+  "@featuresListNavigatorTitle": {
+    "description": ""
+  },
+  "directions_train": "Train",
+  "@directions_train": {
+    "description": ""
+  },
+  "directions_bus": "Bus",
+  "@directions_bus": {
+    "description": ""
+  },
+  "directions_car": "Car",
+  "@directions_car": {
+    "description": ""
+  },
+  "directions_walk": "Walk",
+  "@directions_walk": {
+    "description": ""
+  },
+  "feature_wifi": "Wi-Fi",
+  "@feature_wifi": {
+    "description": ""
+  },
+  "feature_air_conditioning": "Air Conditioning",
+  "@feature_air_conditioning": {
+    "description": ""
+  },
+  "feature_heating": "Heating",
+  "@feature_heating": {
+    "description": ""
+  },
+  "feature_closet": "Closet",
+  "@feature_closet": {
+    "description": ""
+  },
+  "feature_dishwasher": "Dishwasher",
+  "@feature_dishwasher": {
+    "description": ""
+  },
+  "feature_microwave": "Microwave",
+  "@feature_microwave": {
+    "description": ""
+  },
+  "feature_oven": "Oven",
+  "@feature_oven": {
+    "description": ""
+  },
+  "feature_refrigerator": "Refrigerator",
+  "@feature_refrigerator": {
+    "description": ""
+  },
+  "feature_smoke": "Smoke",
+  "@feature_smoke": {
+    "description": ""
+  },
+  "feature_elevator": "Elevator",
+  "@feature_elevator": {
+    "description": ""
+  },
+  "feature_garage": "Garage",
+  "@feature_garage": {
+    "description": ""
+  },
+  "feature_laundry": "Laundry",
+  "@feature_laundry": {
+    "description": ""
+  },
+  "feature_furnitures": "Furnitures",
+  "@feature_furnitures": {
+    "description": ""
+  },
+  "feature_gym": "Gym",
+  "@feature_gym": {
+    "description": ""
+  },
+  "feature_pool": "Pool",
+  "@feature_pool": {
+    "description": ""
+  },
+  "feature_balcony": "Balcony",
+  "@feature_balcony": {
+    "description": ""
+  },
+  "feature_local_library": "Local Library",
+  "@feature_local_library": {
+    "description": ""
+  },
+  "feature_terrace": "Terrace",
+  "@feature_terrace": {
     "description": ""
   }
 }

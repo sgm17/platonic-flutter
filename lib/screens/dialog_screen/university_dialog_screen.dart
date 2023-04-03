@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/university_repository/src/models/models.dart';
@@ -48,16 +49,19 @@ class UniversityDialogScreen extends ConsumerWidget {
                 height: 31.0,
                 child: DialogTitle(
                     title: isMeetSettings
-                        ? '''Set university to Meet'''
-                        : '''Set your university'''),
+                        ? AppLocalizations.of(context)!
+                            .universityDialogMeetTitle
+                        : AppLocalizations.of(context)!
+                            .universityDialogPersonalTitle),
               ),
               const SizedBox(
                 height: 20.0,
               ),
-              const SizedBox(
+              SizedBox(
                 height: 20.0,
                 child: SearchBar(
-                  placeholder: '''Search by university''',
+                  placeholder: AppLocalizations.of(context)!
+                      .universityDialogSearchPlaceholder,
                 ),
               ),
               const SizedBox(

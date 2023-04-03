@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/chat_provider/active_user2_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
@@ -69,8 +70,10 @@ class DetailPrice extends ConsumerWidget {
           ),
           GestureDetector(
             onTap: toggleContact,
-            child: const SizedBox(
-                width: 125.0, child: CreateFlatDetailButton(text: 'Contact')),
+            child: SizedBox(
+                width: 125.0,
+                child: CreateFlatDetailButton(
+                    text: AppLocalizations.of(context)!.detailContactButton)),
           )
         ],
       ),

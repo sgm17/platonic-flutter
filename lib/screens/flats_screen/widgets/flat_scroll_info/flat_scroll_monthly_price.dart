@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text monthly
@@ -36,9 +37,9 @@ class FlatScrollMonthlyPrice extends StatelessWidget {
             TextSpan(
               text: ''' ${rentPricePerMonthInCents / 100} ''',
             ),
-            const TextSpan(
-              text: '''/ per month''',
-              style: TextStyle(
+            TextSpan(
+              text: AppLocalizations.of(context)!.flatHomePerMonthText,
+              style: const TextStyle(
                 fontSize: 8.0,
                 fontFamily: 'DM Sans',
                 fontWeight: FontWeight.w400,

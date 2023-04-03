@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/dialog_provider/is_meet_settings_dialog_provider.dart';
@@ -61,7 +62,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
           child: PersonalSelect(
             placeholder: userState.universityId != 0
                 ? userState.university!.name
-                : 'Your university',
+                : AppLocalizations.of(context)!
+                    .registerDetailPersonalUniversityPlaceholderText,
             title: '''University''',
             toggleDialog: toggleUniversity,
           ),
@@ -74,7 +76,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
           child: PersonalSelect(
             placeholder: userState.facultyId != 0
                 ? userState.faculty!.facultyName!
-                : 'Your faculty',
+                : AppLocalizations.of(context)!
+                    .registerDetailPersonalFacultyPlaceholderText,
             title: '''Faculty''',
             toggleDialog: toggleFaculty,
           ),
@@ -87,7 +90,8 @@ class RegisterDetailPersonal extends ConsumerWidget {
           child: PersonalSelect(
             placeholder: userState.studyId != 0
                 ? userState.study!.studyName
-                : 'Your studies',
+                : AppLocalizations.of(context)!
+                    .registerDetailPersonalStudiesPlaceholderText,
             title: '''Studies''',
             toggleDialog: toggleStudy,
           ),

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text text
@@ -8,13 +9,13 @@ class GoogleOauth2Text extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Align(
+    return Align(
       alignment: Alignment.center,
       child: Text(
-        '''Continue with Google''',
+        AppLocalizations.of(context)!.oauthGoogleText,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           height: 1.1529999838935003,
           fontSize: 18.0,
           fontFamily: 'Gilroy',

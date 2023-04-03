@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text 46months
@@ -17,9 +18,10 @@ class PreferencesSliderMonthsTitle extends StatelessWidget {
     final String text;
 
     if (maxMonths == minMonths) {
-      text = 'No Min.';
+      text = AppLocalizations.of(context)!.step2SliderRightTitle;
     } else {
-      text = 'Min. ${maxMonths - minMonths} mo.';
+      text = AppLocalizations.of(context)!
+          .step2SliderRightTitleWithParam(maxMonths - minMonths);
     }
 
     return Align(

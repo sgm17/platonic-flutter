@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platonic/domains/university_repository/src/models/faculties_list_model.dart';
 import 'package:platonic/domains/university_repository/university_repository.dart';
 import 'package:platonic/providers/dialog_provider/search_bar_provider.dart';
@@ -62,17 +63,20 @@ class StudyDialogScreen extends ConsumerWidget {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 31.0,
-                        child: DialogTitle(title: '''Set your study'''),
+                        child: DialogTitle(
+                            title: AppLocalizations.of(context)!
+                                .studyDialogPersonalTitle),
                       ),
                       const SizedBox(
                         height: 20.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 20.0,
                         child: SearchBar(
-                          placeholder: '''Search by study''',
+                          placeholder: AppLocalizations.of(context)!
+                              .studyDialogSearchPlaceholder,
                         ),
                       ),
                       const SizedBox(

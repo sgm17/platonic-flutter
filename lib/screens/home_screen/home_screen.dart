@@ -4,7 +4,6 @@ import 'package:platonic/providers/error_provider/home_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/providers/http_provider/providers.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
-import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';

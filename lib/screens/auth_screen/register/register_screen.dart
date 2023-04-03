@@ -5,6 +5,7 @@ import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/login/widgets/widgets.dart';
 import 'package:platonic/screens/auth_screen/register/widgets/widgets.dart';
 import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
@@ -46,10 +47,10 @@ class RegisterScreenState extends ConsumerState<RegisterScreen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 34.0,
                         child: AuthenticationTitleText(
-                          title: '''Get your free account''',
+                          title: AppLocalizations.of(context)!.registerTitle,
                         ),
                       ),
                       const SizedBox(
@@ -66,11 +67,11 @@ class RegisterScreenState extends ConsumerState<RegisterScreen> {
                       const SizedBox(
                         height: 32.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 20.0,
                         child: RegisterTitle(
-                          title: '''Email''',
-                        ),
+                            title: AppLocalizations.of(context)!
+                                .registerEmailTitle),
                       ),
                       const SizedBox(
                         height: 5.0,
@@ -83,11 +84,11 @@ class RegisterScreenState extends ConsumerState<RegisterScreen> {
                       const SizedBox(
                         height: 15.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 20.0,
                         child: RegisterTitle(
-                          title: '''Password''',
-                        ),
+                            title: AppLocalizations.of(context)!
+                                .registerPasswordTitle),
                       ),
                       const SizedBox(
                         height: 5.0,
@@ -103,10 +104,11 @@ class RegisterScreenState extends ConsumerState<RegisterScreen> {
                       ),
                       GestureDetector(
                         onTap: toggleContinueWithEmail,
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 44.0,
                           child: AuthenticationButtonContainer(
-                            text: '''Continue With Email''',
+                            text: AppLocalizations.of(context)!
+                                .registerContinueButton,
                           ),
                         ),
                       ),

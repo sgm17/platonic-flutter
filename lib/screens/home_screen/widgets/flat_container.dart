@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class FlatContainer extends ConsumerWidget {
   const FlatContainer({super.key});
@@ -14,11 +15,14 @@ class FlatContainer extends ConsumerWidget {
       height: 139.0,
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: 18.0, child: HomeTitle(title: '''Flats''')),
-              SizedBox(height: 15.0, child: SeeAll())
+              SizedBox(
+                  height: 18.0,
+                  child: HomeTitle(
+                      title: AppLocalizations.of(context)!.homeFlatsTitle)),
+              const SizedBox(height: 15.0, child: SeeAll())
             ],
           ),
           const SizedBox(

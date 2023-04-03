@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/dialog_provider/providers.dart';
@@ -49,8 +50,10 @@ class SettingsForm extends ConsumerWidget {
             placeholder: userState.universityToMeet != null &&
                     userState.universityToMeet!.name.isNotEmpty
                 ? userState.universityToMeet!.name
-                : 'Your university to meet',
-            title: '''University to meet''',
+                : AppLocalizations.of(context)!
+                    .registerDetailMeetUniversityPlaceholderText,
+            title: AppLocalizations.of(context)!
+                .registerDetailMeetUniversityTtitle,
             toggleDialog: toggleUniversity,
           ),
         ),
@@ -63,8 +66,10 @@ class SettingsForm extends ConsumerWidget {
             placeholder: userState.facultiesToMeet != null &&
                     userState.facultiesToMeet!.isNotEmpty
                 ? '${userState.facultiesToMeet!.first.facultyName} +${userState.facultiesToMeet!.length - 1}'
-                : 'Your faculties to meet',
-            title: '''Faculties to meet''',
+                : AppLocalizations.of(context)!
+                    .registerDetailMeetFacultiesPlaceholderText,
+            title:
+                AppLocalizations.of(context)!.registerDetailMeetFacultiesTitle,
             toggleDialog: toggleFaculty,
           ),
         )

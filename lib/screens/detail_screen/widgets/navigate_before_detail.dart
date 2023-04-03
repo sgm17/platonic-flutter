@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 class NavigateBeforeDetail extends ConsumerWidget {
@@ -47,10 +48,10 @@ class NavigateBeforeDetail extends ConsumerWidget {
           ),
         ),
       ),
-      const SizedBox(
+      SizedBox(
         height: 25.0,
         child: NavigateBeforeTitle(
-          title: '''Details''',
+          title: AppLocalizations.of(context)!.detailNavigatorTitle,
           color: Colors.white,
         ),
       ),

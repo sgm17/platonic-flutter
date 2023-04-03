@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +14,8 @@ class MessageNotReceived extends StatelessWidget {
         child: RichText(
             overflow: TextOverflow.visible,
             textAlign: TextAlign.center,
-            text: const TextSpan(
-              style: TextStyle(
+            text: TextSpan(
+              style: const TextStyle(
                 height: 1.152999997138977,
                 fontSize: 16.0,
                 fontFamily: 'Gilroy',
@@ -25,11 +26,14 @@ class MessageNotReceived extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: '''Didn't receive the email? ''',
+                  text: AppLocalizations.of(context)!
+                      .verifyMessageNotReceivedText,
                 ),
+                const TextSpan(text: ' '),
                 TextSpan(
-                  text: '''Resend''',
-                  style: TextStyle(
+                  text: AppLocalizations.of(context)!
+                      .verifyMessageNotReceivedResendText,
+                  style: const TextStyle(
                     color: Color.fromARGB(255, 63, 141, 253),
 
                     /* letterSpacing: null, */

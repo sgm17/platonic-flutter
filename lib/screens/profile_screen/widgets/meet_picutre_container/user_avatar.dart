@@ -26,7 +26,7 @@ class UserAvatar extends ConsumerWidget {
         child: ClipOval(
           child: profileImage == null
               ? Image.asset(
-                  'assets/images/default_avatar.jpg',
+                  'assets/images/default_avatar.png',
                   width: 100.0,
                   height: 100.0,
                   fit: BoxFit.cover,

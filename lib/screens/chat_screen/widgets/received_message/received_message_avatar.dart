@@ -32,7 +32,7 @@ class ReceivedMessageAvatar extends ConsumerWidget {
                 offset: const Offset(0.0, 0.0),
                 child: profileImage == null
                     ? Image.asset(
-                        'assets/images/default_avatar.jpg',
+                        'assets/images/default_avatar.png',
                         fit: BoxFit.cover,
                         width: 35.0,
                         height: 35.0,

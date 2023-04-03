@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/university_repository/src/models/faculties_list_model.dart';
@@ -81,16 +82,19 @@ class FacultyDialogScreen extends ConsumerWidget {
                       height: 31.0,
                       child: DialogTitle(
                           title: isMeetSettings
-                              ? '''Set faculties to Meet'''
-                              : '''Set your faculty'''),
+                              ? AppLocalizations.of(context)!
+                                  .facultyDialogMeetTitle
+                              : AppLocalizations.of(context)!
+                                  .facultyDialogPersonalTitle),
                     ),
                     const SizedBox(
                       height: 20.0,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 20.0,
                       child: SearchBar(
-                        placeholder: '''Search by faculty''',
+                        placeholder: AppLocalizations.of(context)!
+                            .facultyDialogSearchPlaceholder,
                       ),
                     ),
                     const SizedBox(

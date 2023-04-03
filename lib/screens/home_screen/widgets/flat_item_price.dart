@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text pricetitle
@@ -64,9 +65,9 @@ class FlatItemPrice extends StatelessWidget {
                 /* letterSpacing: null, */
               ),
             ),
-            const TextSpan(
-              text: '''/ per month''',
-              style: TextStyle(
+            TextSpan(
+              text: AppLocalizations.of(context)!.flatHomePerMonthText,
+              style: const TextStyle(
                 fontSize: 12.0,
                 fontFamily: 'DM Sans',
                 fontWeight: FontWeight.w400,

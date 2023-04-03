@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text minimumstay
@@ -8,13 +9,13 @@ class DetailPriceTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Align(
+    return Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        '''Price''',
+        AppLocalizations.of(context)!.detailPriceTitle,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.left,
-        style: TextStyle(
+        style: const TextStyle(
           height: 1.3020000457763672,
           fontSize: 14.0,
           fontFamily: 'DM Sans',

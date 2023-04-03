@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/user_provider/firebase_user_provider.dart';
@@ -36,9 +37,10 @@ class ForgotPasswordScreen extends ConsumerWidget {
             const SizedBox(
               height: 22.0,
             ),
-            const SizedBox(
+            SizedBox(
               height: 34.0,
-              child: AuthenticationTitleText(title: '''Forgot Password?'''),
+              child: AuthenticationTitleText(
+                  title: AppLocalizations.of(context)!.forgotPasswordTitle),
             ),
             const SizedBox(
               height: 22.0,
@@ -60,7 +62,11 @@ class ForgotPasswordScreen extends ConsumerWidget {
             const SizedBox(
               height: 22.0,
             ),
-            const SizedBox(height: 18.0, child: LoginTitle(title: '''Email''')),
+            SizedBox(
+                height: 18.0,
+                child: LoginTitle(
+                    title: AppLocalizations.of(context)!
+                        .forgotPasswordEmailTitle)),
             const SizedBox(
               height: 5.0,
             ),
@@ -73,10 +79,11 @@ class ForgotPasswordScreen extends ConsumerWidget {
             ),
             GestureDetector(
               onTap: toggleSendEmail,
-              child: const SizedBox(
+              child: SizedBox(
                 height: 44.0,
                 child: AuthenticationButtonContainer(
-                  text: '''Send Email''',
+                  text: AppLocalizations.of(context)!
+                      .forgotPasswordSendEmailButton,
                 ),
               ),
             ),

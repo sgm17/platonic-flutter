@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'widgets.dart';
 
@@ -9,19 +10,19 @@ class TenantsNumberSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
+    return SizedBox(
       height: 70.0,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
           height: 26.0,
           child: CreateFlatDetailSubtitle(
-            subtitle: '''Tenants''',
+            subtitle: AppLocalizations.of(context)!.step2RoomTenantsSubtitle,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 14.0,
         ),
-        SizedBox(
+        const SizedBox(
           height: 30.0,
           child: TenantsNumberRow(),
         )

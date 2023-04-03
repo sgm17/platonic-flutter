@@ -27,7 +27,7 @@ class DetailTenantImage extends ConsumerWidget {
                   ))
               : const DecorationImage(
                   image: AssetImage(
-                    'assets/images/default_avatar.jpg',
+                    'assets/images/default_avatar.png',
                   ),
                   fit: BoxFit.cover),
         ));

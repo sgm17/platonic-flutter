@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text woman_option
@@ -8,13 +9,13 @@ class WomanOption extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Align(
+    return Align(
       alignment: Alignment.center,
       child: Text(
-        '''Woman''',
+        AppLocalizations.of(context)!.settingsSexToMeetWomanText,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           height: 1.153000036875407,
           fontSize: 12.0,
           fontFamily: 'Gilroy',

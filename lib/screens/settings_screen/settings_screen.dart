@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
@@ -107,11 +108,11 @@ class SettingsScreenState extends ConsumerState<SettingsScreen> {
               const SizedBox(
                 height: 22.0,
               ),
-              const SizedBox(
+              SizedBox(
                 width: 289.0,
                 height: 34.0,
                 child: AuthenticationTitleText(
-                  title: '''Meet Settings''',
+                  title: AppLocalizations.of(context)!.settingsTitle,
                 ),
               ),
               const SizedBox(

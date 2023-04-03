@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platonic/domains/flat_repository/src/models/flat_model.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
@@ -86,8 +87,9 @@ class RentAvailableFromInput extends ConsumerWidget {
           color: Color.fromARGB(255, 255, 255, 255)),
       decoration: InputDecoration(
         suffixIcon: const RentCalendarIconContainer(),
-        hintText:
-            'Available from ${DateFormat('dd/MM/yyyy').format(DateTime.now().add(const Duration(days: 1)))}',
+        hintText: AppLocalizations.of(context)!.step2AvailableFromHintText(
+            DateFormat('dd/MM/yyyy')
+                .format(DateTime.now().add(const Duration(days: 1)))),
         hintStyle: TextStyle(color: Colors.grey[400]),
         counterText: "",
         errorStyle: const TextStyle(fontSize: 0.01),

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text bathroomtitle
@@ -25,7 +26,7 @@ class DetailPropertyBuiltTitle extends StatelessWidget {
           ),
           children: [
             TextSpan(
-              text: '''$built built m''',
+              text: AppLocalizations.of(context)!.detailAmenitiesBuilt(built),
             ),
             const TextSpan(
               text: '''2''',

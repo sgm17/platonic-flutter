@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:platonic/providers/error_provider/flat_error_provider.dart';
@@ -119,16 +120,17 @@ class DetailScreen extends ConsumerWidget {
                             const SizedBox(
                               height: 22.0,
                             ),
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
                                   height: 26.0,
                                   child: CreateFlatDetailSubtitle(
-                                    subtitle: '''Features''',
+                                    subtitle: AppLocalizations.of(context)!
+                                        .detailFeaturesSubtitle,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15.0,
                                   child: DetailSeeAllTitle(),
                                 )
@@ -146,10 +148,11 @@ class DetailScreen extends ConsumerWidget {
                             const SizedBox(
                               height: 22.0,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 23.0,
                               child: CreateFlatDetailSubtitle(
-                                subtitle: '''Where you’ll be''',
+                                subtitle: AppLocalizations.of(context)!
+                                    .detailLocationSubtitle,
                               ),
                             ),
                             const SizedBox(
@@ -173,10 +176,11 @@ class DetailScreen extends ConsumerWidget {
                             const SizedBox(
                               height: 22.0,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 23.0,
                               child: CreateFlatDetailSubtitle(
-                                subtitle: '''Property Details''',
+                                subtitle: AppLocalizations.of(context)!
+                                    .detailDetailsSubtitle,
                               ),
                             ),
                             const SizedBox(
@@ -188,10 +192,11 @@ class DetailScreen extends ConsumerWidget {
                             const SizedBox(
                               height: 22.0,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 23.0,
                               child: CreateFlatDetailSubtitle(
-                                subtitle: '''Montly Cost''',
+                                subtitle: AppLocalizations.of(context)!
+                                    .detailCostSubtitle,
                               ),
                             ),
                             const SizedBox(
@@ -233,10 +238,11 @@ class DetailScreen extends ConsumerWidget {
                             const SizedBox(
                               height: 22.0,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 26.0,
                               child: CreateFlatDetailSubtitle(
-                                subtitle: '''Transportation''',
+                                subtitle: AppLocalizations.of(context)!
+                                    .detailTransportationSubtitle,
                               ),
                             ),
                             const SizedBox(
@@ -256,8 +262,7 @@ class DetailScreen extends ConsumerWidget {
                                                 ? 0.0
                                                 : 16.0),
                                     child: DetailTransportation(
-                                        title:
-                                            'By ${transport.name} to ${transport.user.university!.simpleName.toUpperCase()} ${transport.minutes} minutes',
+                                        transport: transport,
                                         child:
                                             DetailTransportationIconContainer(
                                                 child: transport.icon)),

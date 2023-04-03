@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -46,7 +47,7 @@ class ChatBottombar extends ConsumerWidget {
             width: 2.0,
           ),
         ),
-        hintText: 'Enter a message',
+        hintText: AppLocalizations.of(context)!.chatInputHintText,
         hintStyle: TextStyle(color: Colors.grey[400]),
       ),
     );

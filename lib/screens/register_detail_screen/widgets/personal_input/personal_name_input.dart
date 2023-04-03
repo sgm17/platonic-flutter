@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
@@ -49,7 +50,8 @@ class PersonalNameInput extends ConsumerWidget {
           fontWeight: FontWeight.w300,
           color: Color.fromARGB(255, 255, 255, 255)),
       decoration: InputDecoration(
-        hintText: '''Your name''',
+        hintText: AppLocalizations.of(context)!
+            .registerDetailPersonalNameInputHintText,
         hintStyle: TextStyle(color: Colors.grey[400]),
         counterText: "",
         errorStyle: const TextStyle(fontSize: 0.01),

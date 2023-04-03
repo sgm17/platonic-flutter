@@ -18,7 +18,7 @@ class FlatItemEmptyImage extends StatelessWidget {
         child: Stack(
           children: [
             Image.asset(
-              "assets/images/flat_item_empty_image.jpg",
+              "assets/images/flat_item_empty_image.png",
               fit: BoxFit.cover,
               width: 110.0,
               height: 110.0,

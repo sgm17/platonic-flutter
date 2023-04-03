@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text See All
@@ -10,11 +11,11 @@ class DetailSeeAllTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context, '/FeaturesListScreen'),
-      child: const Text(
-        '''See All''',
+      child: Text(
+        AppLocalizations.of(context)!.detailFeaturesSeeAllTitle,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.left,
-        style: TextStyle(
+        style: const TextStyle(
           height: 1.3020000457763672,
           fontSize: 10.0,
           fontFamily: 'DM Sans',

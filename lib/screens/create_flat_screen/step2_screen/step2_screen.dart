@@ -1,8 +1,9 @@
 import 'package:platonic/providers/error_provider/create_flat/step2_error_provider.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter/material.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/material.dart';
 import 'widgets/widgets.dart';
 
 /* Frame step2
@@ -51,17 +52,17 @@ class Step2ScreenState extends ConsumerState<Step2Screen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const NavigateBefore(
+                    NavigateBefore(
                       color: Colors.white,
-                      title: '''Step 2-4''',
+                      title: AppLocalizations.of(context)!.step2NavigatorTitle,
                     ),
                     const SizedBox(
                       height: 22.0,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 33.0,
                       child: CreateFlatDetailTitle(
-                        title: '''Room Preferences''',
+                        title: AppLocalizations.of(context)!.step2Title,
                       ),
                     ),
                     const SizedBox(
@@ -90,10 +91,11 @@ class Step2ScreenState extends ConsumerState<Step2Screen> {
                     const SizedBox(
                       height: 32.0,
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 33.0,
                       child: CreateFlatDetailTitle(
-                        title: '''Room Tenants''',
+                        title:
+                            AppLocalizations.of(context)!.step2RoomTenantsTitle,
                       ),
                     ),
                     const SizedBox(
@@ -124,8 +126,9 @@ class Step2ScreenState extends ConsumerState<Step2Screen> {
                                 )
                               ],
                             ),
-                            child: const CreateFlatDetailButtonText(
-                                text: '''Next'''),
+                            child: CreateFlatDetailButtonText(
+                                text: AppLocalizations.of(context)!
+                                    .step2NextButton),
                           )),
                     ),
                   ]),

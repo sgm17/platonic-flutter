@@ -6,6 +6,7 @@ import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/src/models/models.dart';
 import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
 import 'package:platonic/providers/flat_provider/providers.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AmenityTransportation extends ConsumerStatefulWidget {
   final AppUser user;
@@ -164,7 +165,7 @@ class AmenityTransportationState extends ConsumerState<AmenityTransportation> {
               fontWeight: FontWeight.w300,
               color: Color.fromARGB(255, 255, 255, 255)),
           decoration: InputDecoration(
-            hintText: '''10 minutes''',
+            hintText: AppLocalizations.of(context)!.step3TransportationHintText,
             hintStyle: TextStyle(color: Colors.grey[400]),
             counterText: "",
             errorStyle: const TextStyle(fontSize: 0.01),

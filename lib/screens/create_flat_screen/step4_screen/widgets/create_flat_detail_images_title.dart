@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text minimumstay
@@ -11,8 +12,8 @@ class CreateFlatDetailImagesTitle extends StatelessWidget {
     return RichText(
         overflow: TextOverflow.visible,
         textAlign: TextAlign.left,
-        text: const TextSpan(
-          style: TextStyle(
+        text: TextSpan(
+          style: const TextStyle(
             height: 1.3020000457763672,
             fontSize: 16.0,
             fontFamily: 'DM Sans',
@@ -23,9 +24,9 @@ class CreateFlatDetailImagesTitle extends StatelessWidget {
           ),
           children: [
             TextSpan(
-              text: '''Property Images ''',
+              text: AppLocalizations.of(context)!.step4ImagesTitle,
             ),
-            TextSpan(
+            const TextSpan(
               text: ''' ''',
               style: TextStyle(
                 color: Color.fromARGB(255, 255, 0, 0),
@@ -34,8 +35,8 @@ class CreateFlatDetailImagesTitle extends StatelessWidget {
               ),
             ),
             TextSpan(
-              text: '''(Max 20 photos)''',
-              style: TextStyle(
+              text: AppLocalizations.of(context)!.step4ImagesSubtitle,
+              style: const TextStyle(
                 color: Color.fromARGB(255, 130, 130, 132),
 
                 /* letterSpacing: null, */

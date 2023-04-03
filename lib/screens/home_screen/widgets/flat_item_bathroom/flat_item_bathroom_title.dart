@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text bathroomtitle
@@ -11,7 +12,7 @@ class FlatItemBathroomTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '''$bathroom bathroom''',
+      AppLocalizations.of(context)!.flatHomeBathroom(bathroom),
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.left,
       style: const TextStyle(

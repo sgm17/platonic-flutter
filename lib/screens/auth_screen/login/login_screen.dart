@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
@@ -43,10 +44,10 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 34.0,
                         child: AuthenticationTitleText(
-                            title: '''Log in to Platonic'''),
+                            title: AppLocalizations.of(context)!.loginTitle),
                       ),
                       const SizedBox(
                         height: 32.0,
@@ -70,10 +71,11 @@ class LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       GestureDetector(
                         onTap: toggleLogin,
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 44.0,
                           child: AuthenticationButtonContainer(
-                            text: '''Login''',
+                            text:
+                                AppLocalizations.of(context)!.loginLoginButton,
                           ),
                         ),
                       ),

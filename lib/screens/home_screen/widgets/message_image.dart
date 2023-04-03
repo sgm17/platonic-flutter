@@ -20,7 +20,7 @@ class MessageImage extends ConsumerWidget {
           image: profileImage == null
               ? const DecorationImage(
                   image: AssetImage(
-                    'assets/images/default_avatar.jpg',
+                    'assets/images/default_avatar.png',
                   ),
                   fit: BoxFit.cover,
                 )

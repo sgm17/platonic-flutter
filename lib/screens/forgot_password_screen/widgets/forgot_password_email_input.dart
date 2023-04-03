@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Group email
@@ -34,7 +35,8 @@ class ForgotPasswordEmailInput extends StatelessWidget {
           fontWeight: FontWeight.w300,
           color: Color.fromARGB(255, 255, 255, 255)),
       decoration: InputDecoration(
-        hintText: '''hello@example.com''',
+        hintText:
+            AppLocalizations.of(context)!.forgotPasswordEmailInputHintText,
         hintStyle: TextStyle(color: Colors.grey[400]),
         counterText: "",
         errorStyle: const TextStyle(fontSize: 0.01),

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
@@ -80,10 +81,11 @@ class RegisterDetailScreenState extends ConsumerState<RegisterDetailScreen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         height: 34.0,
                         child: AuthenticationTitleText(
-                            title: '''Personal Information'''),
+                            title: AppLocalizations.of(context)!
+                                .registerDetailPersonalTitle),
                       ),
                       const SizedBox(
                         height: 22.0,
@@ -95,10 +97,11 @@ class RegisterDetailScreenState extends ConsumerState<RegisterDetailScreen> {
                       const SizedBox(
                         height: 48.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 34.0,
-                        child:
-                            AuthenticationTitleText(title: '''Meet Settings'''),
+                        child: AuthenticationTitleText(
+                            title: AppLocalizations.of(context)!
+                                .registerDetailMeetTitle),
                       ),
                       const SizedBox(
                         height: 22.0,
@@ -119,10 +122,11 @@ class RegisterDetailScreenState extends ConsumerState<RegisterDetailScreen> {
                       ),
                       GestureDetector(
                         onTap: toggleFinishRegister,
-                        child: const SizedBox(
+                        child: SizedBox(
                           height: 44.0,
                           child: AuthenticationButtonContainer(
-                            text: '''Finish the Register''',
+                            text: AppLocalizations.of(context)!
+                                .registerDetailFinishRegisterButton,
                           ),
                         ),
                       ),

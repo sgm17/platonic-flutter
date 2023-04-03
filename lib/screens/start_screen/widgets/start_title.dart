@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text title
@@ -8,12 +9,11 @@ class StartTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '''Find New Friends
-With Platonic''',
+    return Text(
+      AppLocalizations.of(context)!.startTitle,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.2250000448787914,
         fontSize: 34.0,
         fontFamily: 'Gilroy',

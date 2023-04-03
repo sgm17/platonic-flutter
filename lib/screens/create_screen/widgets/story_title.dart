@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text story_title
@@ -8,11 +9,11 @@ class StoryTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '''STORY''',
+    return Text(
+      AppLocalizations.of(context)!.createBottomText,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.14990234375,
         fontSize: 18.0,
         fontFamily: 'Arial',

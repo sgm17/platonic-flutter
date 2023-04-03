@@ -25,7 +25,7 @@ class MeetItem extends ConsumerWidget {
       return showDialog(
           context: context,
           builder: (context) => DeleteDialog(
-              error: '''meetdelete''',
+              error: '''meetdeletedialog''',
               toggleDelete: () async {
                 await ref
                     .read(meetsScrollProvider.notifier)
@@ -47,7 +47,7 @@ class MeetItem extends ConsumerWidget {
                 ? const DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(
-                      'assets/images/default_avatar.jpg',
+                      'assets/images/default_avatar.png',
                     ))
                 : DecorationImage(
                     fit: BoxFit.cover,

@@ -40,7 +40,7 @@ class StoryViewers extends ConsumerWidget {
                                     fit: BoxFit.cover)
                                 : const DecorationImage(
                                     image: AssetImage(
-                                        'assets/images/default_avatar.jpg'),
+                                        'assets/images/default_avatar.png'),
                                     fit: BoxFit.cover))),
                   ),
               ],

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text Enter your registered email below to receive password reset instruction
@@ -8,12 +9,11 @@ class ForgotPasswordInstructions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '''Enter your registered email below to receive
-password reset instruction''',
+    return Text(
+      AppLocalizations.of(context)!.forgotPasswordInstructionsText,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.1530000141688757,
         fontSize: 14.0,
         fontFamily: 'Gilroy',

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/create_provider/circular_button_provider.dart';
@@ -23,10 +24,10 @@ class CreateInput extends ConsumerWidget {
         maxLines: null,
         textAlign: TextAlign.center,
         maxLength: 200,
-        decoration: const InputDecoration(
-          counter: SizedBox.shrink(),
-          hintText: "Tap to write",
-          hintStyle: TextStyle(
+        decoration: InputDecoration(
+          counter: const SizedBox.shrink(),
+          hintText: AppLocalizations.of(context)!.createHintText,
+          hintStyle: const TextStyle(
             height: 1.2,
             fontSize: 35.0,
             fontFamily: 'DezenPro',
@@ -34,7 +35,7 @@ class CreateInput extends ConsumerWidget {
             color: Color.fromARGB(255, 255, 255, 255),
           ),
           border: InputBorder.none,
-          contentPadding: EdgeInsets.symmetric(horizontal: 32.0),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 32.0),
         ),
         style: const TextStyle(
           height: 1.2,

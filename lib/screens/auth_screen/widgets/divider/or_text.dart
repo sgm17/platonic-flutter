@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text OR
@@ -8,13 +9,13 @@ class OrText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Align(
+    return Align(
       alignment: Alignment.center,
       child: Text(
-        '''OR''',
+        AppLocalizations.of(context)!.authDividerText,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           height: 1.152999997138977,
           fontSize: 16.0,
           fontFamily: 'Gilroy',

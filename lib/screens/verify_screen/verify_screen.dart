@@ -4,6 +4,7 @@ import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
 import 'package:platonic/screens/verify_screen/widgets/email_verification_instructions.dart';
 import 'package:platonic/screens/verify_screen/widgets/message_not_received.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VerifyScreen extends ConsumerWidget {
   const VerifyScreen({super.key});
@@ -22,9 +23,10 @@ class VerifyScreen extends ConsumerWidget {
           child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const SizedBox(
+          SizedBox(
             height: 34.0,
-            child: AuthenticationTitleText(title: '''Email Verification'''),
+            child: AuthenticationTitleText(
+                title: AppLocalizations.of(context)!.verifyTitle),
           ),
           const SizedBox(
             height: 22.0,
@@ -56,10 +58,10 @@ class VerifyScreen extends ConsumerWidget {
           ),
           GestureDetector(
             onTap: toggleVerifyAccount,
-            child: const SizedBox(
+            child: SizedBox(
                 height: 44.0,
                 child: AuthenticationButtonContainer(
-                  text: '''Verify Account''',
+                  text: AppLocalizations.of(context)!.verifyAccountButton,
                 )),
           ),
         ]),

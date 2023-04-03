@@ -4,10 +4,15 @@ import 'package:flutter/material.dart';
 import 'widgets.dart';
 
 class CreateFlatImagesList extends ConsumerWidget {
-  const CreateFlatImagesList({Key? key, required this.toggleFlatImage})
+  const CreateFlatImagesList(
+      {Key? key,
+      required this.toggleFlatImage,
+      required this.toggleDeleteDialog})
       : super(key: key);
 
   final Future<void> Function() toggleFlatImage;
+  final Future<void> Function(void Function() toggleDeleteImage)
+      toggleDeleteDialog;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,8 +22,10 @@ class CreateFlatImagesList extends ConsumerWidget {
     return _buildImageList(images, ref);
   }
 
-  void toggleDeleteImage({required dynamic image, required WidgetRef ref}) {
-    ref.read(flatCreateProvider.notifier).deleteImage(image: image);
+  Future<void> toggleDeleteImage(
+      {required dynamic image, required WidgetRef ref}) async {
+    await toggleDeleteDialog(
+        () => ref.read(flatCreateProvider.notifier).deleteImage(image: image));
   }
 
   Widget _buildImageList(List<dynamic> images, WidgetRef ref) {

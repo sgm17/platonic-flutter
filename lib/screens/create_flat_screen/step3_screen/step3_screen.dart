@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/create_flat/step3_error_provider.dart';
@@ -77,17 +78,18 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const NavigateBefore(
+                      NavigateBefore(
                         color: Colors.white,
-                        title: 'Step 3-4',
+                        title:
+                            AppLocalizations.of(context)!.step3NavigatorTitle,
                       ),
                       const SizedBox(
                         height: 22.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 33.0,
                         child: CreateFlatDetailTitle(
-                            title: '''Property Amenities '''),
+                            title: AppLocalizations.of(context)!.step3Title),
                       ),
                       const SizedBox(
                         height: 22.0,
@@ -127,10 +129,11 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                       const SizedBox(
                         height: 22.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 26.0,
                         child: CreateFlatDetailSubtitle(
-                          subtitle: '''Features''',
+                          subtitle: AppLocalizations.of(context)!
+                              .step3FeaturesSubtitleTitle,
                         ),
                       ),
                       const SizedBox(
@@ -145,10 +148,11 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                       const SizedBox(
                         height: 22.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                           height: 26.0,
                           child: CreateFlatDetailSubtitle(
-                            subtitle: '''Transportation''',
+                            subtitle: AppLocalizations.of(context)!
+                                .step3TransportationSubtitleTitle,
                           )),
                       const SizedBox(
                         height: 6.0,
@@ -229,8 +233,9 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
                                   )
                                 ],
                               ),
-                              child: const CreateFlatDetailButtonText(
-                                  text: '''Next'''),
+                              child: CreateFlatDetailButtonText(
+                                  text: AppLocalizations.of(context)!
+                                      .step3NextButton),
                             )),
                       ),
                     ]),

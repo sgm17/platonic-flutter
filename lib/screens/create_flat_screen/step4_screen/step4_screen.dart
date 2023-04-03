@@ -1,4 +1,6 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
+import 'package:platonic/screens/error_dialog/delete_dialog/delete_dialog.dart';
 import 'package:platonic/screens/error_dialog/loading_dialog/loading_dialog.dart';
 import 'package:platonic/providers/error_provider/create_flat/step4_error_provider.dart';
 import 'package:platonic/providers/http_provider/http_viewmodel_provider.dart';
@@ -112,6 +114,19 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
       }
     }
 
+    Future<void> toggleDeleteDialog(
+      void Function() toggleDeleteImage,
+    ) async {
+      return showDialog(
+          context: context,
+          builder: (context) => DeleteDialog(
+              error: '''imagedeletedialog''',
+              toggleDelete: () {
+                toggleDeleteImage();
+                Navigator.of(context).pop();
+              }));
+    }
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (step4ErrorState != null) {
         showDialog(
@@ -135,14 +150,16 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const NavigateBefore(title: 'Step 4-4'),
+                      NavigateBefore(
+                          title: AppLocalizations.of(context)!
+                              .step4NavigatorTitle),
                       const SizedBox(
                         height: 22.0,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         height: 33.0,
                         child: CreateFlatDetailTitle(
-                          title: '''Ads Details''',
+                          title: AppLocalizations.of(context)!.step4Title,
                         ),
                       ),
                       const SizedBox(
@@ -169,6 +186,7 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
                       ),
                       CreateFlatImagesList(
                         toggleFlatImage: toggleFlatImage,
+                        toggleDeleteDialog: toggleDeleteDialog,
                       ),
                       const SizedBox(
                         height: 32.0,

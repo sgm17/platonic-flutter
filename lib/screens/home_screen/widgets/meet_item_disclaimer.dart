@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class MeetItemDisclaimer extends StatelessWidget {
@@ -5,11 +6,11 @@ class MeetItemDisclaimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '''Maybe this Meet is waiting\n for you at 3 pm''',
+    return Text(
+      AppLocalizations.of(context)!.homeMeetDisclaimer,
       overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.152999997138977,
         fontSize: 14.0,
         fontFamily: 'Gilroy',

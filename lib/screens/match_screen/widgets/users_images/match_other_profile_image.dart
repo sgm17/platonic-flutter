@@ -43,7 +43,7 @@ class MatchOtherProfileImage extends ConsumerWidget {
                                 'Bearer ${ref.read(tokenIdProvider)}'
                           })
                     : Image.asset(
-                        'assets/images/default_avatar.jpg',
+                        'assets/images/default_avatar.png',
                         fit: BoxFit.cover,
                         width: 140.0,
                         height: 140.0,

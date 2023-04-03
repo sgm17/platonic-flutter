@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text bedroomtitle
@@ -11,7 +12,7 @@ class DetailAmenitiesBedroomTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      '''$bedroom bedrooms''',
+      AppLocalizations.of(context)!.detailAmenitiesBedroom(bedroom),
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
       style: const TextStyle(

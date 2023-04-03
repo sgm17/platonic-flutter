@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,11 +25,11 @@ class StoryDotsMenu extends ConsumerWidget {
       ),
       itemBuilder: (context) {
         return [
-          const PopupMenuItem(
+          PopupMenuItem(
               value: 0,
               height: 30.0,
-              child: Text('Delete Story',
-                  style: TextStyle(
+              child: Text(AppLocalizations.of(context)!.storyDotsMenuText,
+                  style: const TextStyle(
                       fontSize: 14.0,
                       fontFamily: 'Gilroy',
                       fontWeight: FontWeight.w800,

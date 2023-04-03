@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text text
@@ -8,11 +9,11 @@ class StartText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '''Get Started''',
+    return Text(
+      AppLocalizations.of(context)!.startGetStartedButton,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.1529999838935003,
         fontSize: 18.0,
         fontFamily: 'Gilroy',

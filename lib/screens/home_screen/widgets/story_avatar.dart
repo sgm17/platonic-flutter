@@ -33,7 +33,7 @@ class StoryAvatar extends ConsumerWidget {
                 offset: const Offset(0.0, 0.0),
                 child: url == null
                     ? Image.asset(
-                        'assets/images/default_avatar.jpg',
+                        'assets/images/default_avatar.png',
                         fit: BoxFit.cover,
                         width: 25.0,
                         height: 25.0,

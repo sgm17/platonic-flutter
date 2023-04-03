@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text See All
@@ -8,11 +9,11 @@ class SeeAllTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '''See All''',
+    return Text(
+      AppLocalizations.of(context)!.homeFlatsSeeAllTitle,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.1529999732971192,
         fontSize: 10.0,
         fontFamily: 'Gilroy',

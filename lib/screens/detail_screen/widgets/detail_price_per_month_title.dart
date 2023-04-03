@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text €820/month
@@ -38,9 +39,9 @@ class DetailPricePerMonthTitle extends StatelessWidget {
               TextSpan(
                 text: ((principalCost + electricityCost) / 100).toString(),
               ),
-              const TextSpan(
-                text: '''/month''',
-                style: TextStyle(
+              TextSpan(
+                text: AppLocalizations.of(context)!.detailPricePerMonthText,
+                style: const TextStyle(
                   fontSize: 10.0,
                   color: Color.fromARGB(255, 130, 130, 132),
 

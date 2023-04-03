@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 /* Text meet_description
@@ -8,11 +9,11 @@ class AmenityDisclaimerText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      '''If you share a flat with students from other universities, adding them to the flat will also be published in their university and only you will keep the permissions''',
+    return Text(
+      AppLocalizations.of(context)!.step3DisclaimerText,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: const TextStyle(
         height: 1.152999997138977,
         fontSize: 16.0,
         fontFamily: 'Gilroy',

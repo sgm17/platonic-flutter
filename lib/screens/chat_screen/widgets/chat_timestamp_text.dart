@@ -11,6 +11,8 @@ class ChatTimestampText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentLocale = Localizations.localeOf(context);
+
     return Align(
       alignment: Alignment.center,
       child: RichText(
@@ -28,11 +30,12 @@ class ChatTimestampText extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: DateFormat('EEEE').format(timestamp),
+                  text: DateFormat('EEEE', currentLocale.toString())
+                      .format(timestamp.toLocal()),
                 ),
                 const TextSpan(text: ' '),
                 TextSpan(
-                  text: DateFormat('HH:mm').format(timestamp),
+                  text: DateFormat('HH:mm').format(timestamp.toLocal()),
                   style: const TextStyle(
                     fontFamily: 'Gilroy',
                     fontWeight: FontWeight.w300,

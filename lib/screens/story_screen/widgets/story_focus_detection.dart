@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:platonic/domains/story_repository/story_repository.dart';
 import 'package:platonic/providers/story_provider/providers.dart';
 import 'package:story_view/controller/story_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StoryFocusDetection extends ConsumerWidget {
   const StoryFocusDetection(
@@ -52,8 +53,8 @@ class StoryFocusDetection extends ConsumerWidget {
             RelativeRect.fromLTRB(target.dx, target.dy, target.dx, target.dy),
         items: [
           PopupMenuItem(
-            child: const Text('Delete Story',
-                style: TextStyle(
+            child: Text(AppLocalizations.of(context)!.storyDotsMenuText,
+                style: const TextStyle(
                     fontSize: 14.0,
                     fontFamily: 'Gilroy',
                     fontWeight: FontWeight.w800,

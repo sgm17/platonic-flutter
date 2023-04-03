@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class EmailVerificationInstructions extends StatelessWidget {
@@ -8,9 +9,10 @@ class EmailVerificationInstructions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hiddenEmail = email.replaceRange(4, email.indexOf('@'), '****');
-
+    final text =
+        AppLocalizations.of(context)!.verifyInstructionsText(hiddenEmail);
     return Text(
-      "We have sent a verification message to your email:\n$hiddenEmail",
+      text,
       overflow: TextOverflow.visible,
       textAlign: TextAlign.left,
       style: const TextStyle(

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/constants/constants.dart';
@@ -191,10 +192,12 @@ class CreateScreenState extends ConsumerState<CreateScreen> {
                                       const SizedBox(
                                         width: 6.0,
                                       ),
-                                      const Text('''Your faculty''',
+                                      Text(
+                                          AppLocalizations.of(context)!
+                                              .createFacultyText,
                                           overflow: TextOverflow.visible,
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 12.0,
                                             fontFamily: 'Arial',
                                             fontWeight: FontWeight.w700,

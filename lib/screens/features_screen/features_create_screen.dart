@@ -1,6 +1,7 @@
+import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:platonic/constants/constants.dart';
-import 'package:platonic/screens/create_flat_screen/step1_screen/widgets/widgets.dart';
 import 'widgets/widgets.dart';
 
 /* Frame features
@@ -20,11 +21,12 @@ class FeaturesCreateScreen extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 25.0,
                       child: NavigateBefore(
-                        color: Color.fromARGB(255, 255, 255, 255),
-                        title: 'Features',
+                        color: const Color.fromARGB(255, 255, 255, 255),
+                        title: AppLocalizations.of(context)!
+                            .featuresCreateNavigatorTitle,
                       ),
                     ),
                     const SizedBox(

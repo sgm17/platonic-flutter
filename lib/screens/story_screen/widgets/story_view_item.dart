@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 import 'package:platonic/domains/chat_repository/src/models/models.dart';
@@ -195,7 +196,7 @@ class StoryViewItem extends ConsumerWidget {
                             width: 1.0,
                           ),
                         ),
-                        hintText: 'Enter a message',
+                        hintText: AppLocalizations.of(context)!.storyHintText,
                         hintStyle: const TextStyle(
                             color: Color.fromARGB(255, 255, 255, 255)),
                       ),
