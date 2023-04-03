@@ -66,9 +66,9 @@ class PlatonicApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate
       ],
       supportedLocales: const [
-        Locale('en'), // English
-        Locale('es'), // Spanish
-        Locale('ca'), // Catalan
+        Locale('en'),
+        Locale('es'),
+        Locale('ca'),
       ],
       routes: {
         '/SplashScreen': (context) => const SplashScreen(),
