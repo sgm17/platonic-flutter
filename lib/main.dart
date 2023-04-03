@@ -68,6 +68,7 @@ class PlatonicApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en'), // English
         Locale('es'), // Spanish
+        Locale('ca'), // Catalan
       ],
       routes: {
         '/SplashScreen': (context) => const SplashScreen(),
