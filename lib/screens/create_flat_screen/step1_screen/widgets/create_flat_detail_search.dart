@@ -18,24 +18,21 @@ class CreateFlatDetailSearch extends ConsumerWidget {
     Future<void> toggleAddressSearch() async {
       final address = ref.read(flatAddressInputProvider);
 
-      if (address.isEmpty) {
-        ref.read(step1ErrorProvider.notifier).state =
-            const ErrorApp(code: 'step1emptyaddress');
-      }
-
       List<PlaceModel> placeModel = [];
 
-      try {
-        placeModel = await ref
-            .read(httpViewmodelProvider)
-            .getIndexAddress(address: address);
-      } on ErrorApp catch (e) {
-        ref.read(step1ErrorProvider.notifier).state = e;
-      } catch (e) {
-        print(e);
-      }
+      if (address.isNotEmpty) {
+        try {
+          placeModel = await ref
+              .read(httpViewmodelProvider)
+              .getIndexAddress(address: address);
+        } on ErrorApp catch (e) {
+          ref.read(step1ErrorProvider.notifier).state = e;
+        } catch (e) {
+          print(e);
+        }
 
-      ref.read(suggestionsProvider.notifier).state = placeModel;
+        ref.read(suggestionsProvider.notifier).state = placeModel;
+      }
     }
 
     return TextField(

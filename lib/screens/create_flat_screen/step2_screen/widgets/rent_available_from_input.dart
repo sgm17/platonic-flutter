@@ -42,7 +42,7 @@ class RentAvailableFromInput extends ConsumerWidget {
       validator: (value) {
         if (value == null || value.isEmpty) {
           ref.read(step2ErrorProvider.notifier).state =
-              const ErrorApp(code: 'step2availablefrom');
+              const ErrorApp(code: 'step2availablefromempty');
           return 'Date cannot be empty';
         }
 
@@ -69,7 +69,7 @@ class RentAvailableFromInput extends ConsumerWidget {
         final maxDate = now.add(const Duration(days: 365));
         if (date.isAfter(maxDate)) {
           ref.read(step2ErrorProvider.notifier).state =
-              const ErrorApp(code: 'step2availablefrom');
+              const ErrorApp(code: 'step2dateyear');
           return 'Date must be within the next year';
         }
 

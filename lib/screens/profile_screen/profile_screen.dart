@@ -52,9 +52,8 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         image = await ref
             .read(httpViewmodelProvider)
             .postCreateImage(file: File(pickedFile.path));
-      } on ErrorApp {
-        ref.read(profileErrorProvider.notifier).state =
-            const ErrorApp(code: 'profileimageerror');
+      } on ErrorApp catch (e) {
+        ref.read(profileErrorProvider.notifier).state = e;
       }
 
       // Hide the loading dialog

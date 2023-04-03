@@ -79,299 +79,283 @@
   "@httpindexuniversities" : {
     "description": ""
   },
-  "httpindexappuser": "",
+  "httpindexappuser": "Unexpected error retrieving the user",
   "@httpindexappuser": {
     "description": ""
   },
-  "httpshowappuser": "",
+  "httpshowappuser": "Unexpected error retrieving the other user",
   "@httpshowappuser": {
     "description": ""
   },
-  "httpcreateappuser": "",
+  "httpcreateappuser": "Unexpected error creating the user",
   "@httpcreateappuser": {
     "description": ""
   },
-  "httpupdateappuser": "",
+  "httpupdateappuser": "Unexpected error updating the user",
   "@httpupdateappuser": {
     "description": ""
   },
-  "httpdestroyappuser": "",
+  "httpdestroyappuser": "Unexpected error deleting the user",
   "@httpdestroyappuser": {
     "description": ""
   },
-  "httpupdatecloudtokenappuser": "",
+  "httpupdatecloudtokenappuser": "Unexpected error updating the cloud token",
   "@httpupdatecloudtokenappuser": {
     "description": ""
   },
-  "httpindexmeet": "",
+  "httpindexmeet": "Unexpected error retrieving the meets",
   "@httpindexmeet": {
     "description": ""
   },
-  "httpdestroymeet": "",
+  "httpdestroymeet": "Unexpected error deleting the meet",
   "@httpdestroymeet": {
     "description": ""
   },
-  "httpindexstories": "",
+  "httpindexstories": "Unexpected error retrieving the stories",
   "@httpindexstories": {
     "description": ""
   },
-  "httpshowstories": "",
+  "httpshowstories": "Unexpected error retrieving the faculty stories",
   "@httpshowstories": {
     "description": ""
   },
-  "httpcreatestories": "",
+  "httpcreatestories": "Unexpected error creating the story",
   "@httpcreatestories": {
     "description": ""
   },
-  "httpspamtories": "",
+  "httpspamtories": "You have already published the maximum of daily stories that are 2",
   "@httpspamtories": {
     "description": ""
   },
-  "httpfavouritestories": "",
+  "httpfavouritestories": "Unexpected error favouring the story",
   "@httpfavouritestories": {
     "description": ""
   },
-  "httpdeletestories": "",
+  "httpdeletestories": "Unexpected error deleting the story",
   "@httpdeletestories": {
     "description": ""
   },
-  "httpindexconversations": "",
+  "httpindexconversations": "Unexpected error retrieving all the conversations",
   "@httpindexconversations": {
     "description": ""
   },
-  "httpdestroyconversations": "",
+  "httpdestroyconversations": "Unexpected error deleting the conversation",
   "@httpdestroyconversations": {
     "description": ""
   },
-  "httpcreatevisualization": "",
+  "httpcreatevisualization": "Unexpected error marking the story as viewed",
   "@httpcreatevisualization": {
     "description": ""
   },
-  "httpcreateimage": "",
+  "httpcreateimage": "Unexpected error uploading the image to the server",
   "@httpcreateimage": {
     "description": ""
   },
-  "httpcreatemultipleimages": "",
+  "httpcreatemultipleimages": "Unexpected error uploading the images to the server",
   "@httpcreatemultipleimages": {
     "description": ""
   },
-  "httpdeleteflat": "",
+  "httpdeleteflat": "Unexpected error deleting the flat",
   "@httpdeleteflat": {
     "description": ""
   },
-  "httpindexflats": "",
+  "httpindexflats": "Unexpected error retrieving all the flats",
   "@httpindexflats": {
     "description": ""
   },
-  "httphomeflat": "",
+  "httphomeflat": "Unexpected error retrieving the home flat",
   "@httphomeflat": {
     "description": ""
   },
-  "httpshowflat": "",
+  "httpshowflat": "Unexpected error retrieving the detailed flat",
   "@httpshowflat": {
     "description": ""
   },
-  "httpposttenant": "",
+  "httpposttenant": "Unexpected error adding a new tenant to the flat",
   "@httpposttenant": {
     "description": ""
   },
-  "httpbookmark": "",
+  "httpbookmark": "Unexpected error saving the flat",
   "@httpbookmark": {
     "description": ""
   },
-  "httpcreateflat": "",
+  "httpcreateflat": "Unexpected error creating the flat",
   "@httpcreateflat": {
     "description": ""
   },
-  "httpcreateflatspam": "",
+  "httpcreateflatspam": "You have already published the maximum number of daily flats, which is 1",
   "@httpcreateflatspam": {
     "description": ""
   },
-  "httpupdateflat": "",
+  "httpupdateflat": "Unexpected error updating the flat",
   "@httpupdateflat": {
     "description": ""
   },
-  "httpaddress": "",
+  "httpaddress": "Unexpected error retrieving the addresses",
   "@httpaddress": {
     "description": ""
   },
-  "meetdeletedialog": "",
+  "meetdeletedialog": "Are you sure you want to delete the meet?",
   "@meetdeletedialog": {
     "description": ""
   },
-  "conversationdeletedialog": "",
+  "conversationdeletedialog": "Are you sure you want to delete the conversation?",
   "@conversationdeletedialog": {
     "description": ""
   },
-  "storydeletedialog": "",
+  "storydeletedialog": "Are you sure you want to delete the story?",
   "@storydeletedialog": {
     "description": ""
   },
-  "flatdeletedialog": "",
+  "flatdeletedialog": "Are you sure you want to delete the flat?",
   "@flatdeletedialog": {
     "description": ""
   },
-  "imagedeletedialog": "",
+  "imagedeletedialog": "Are you sure you want to delete the image?",
   "@imagedeletedialog": {
     "description": ""
   },
-  "userloadingdialog": "",
+  "userloadingdialog": "Wait while user is updated",
   "@userloadingdialog": {
     "description": ""
   },
-  "settingsloadingdialog": "",
+  "settingsloadingdialog": "Wait while settings are updated",
   "@settingsloadingdialog": {
     "description": ""
   },
-  "imageloadingdialog": "",
+  "imageloadingdialog": "Wait while the image finishes loading",
   "@imageloadingdialog": {
     "description": ""
   },
-  "imagesloadingdialog": "",
+  "imagesloadingdialog": "Wait while the images finish loading",
   "@imagesloadingdialog": {
     "description": ""
   },
-  "registeruniversitydialog": "",
+  "registeruniversitydialog": "Your university or the university to meet cannot be empty",
   "@registeruniversitydialog": {
     "description": ""
   },
-  "registerfacultydialog": "",
+  "registerfacultydialog": "Your faculty or the faculties to meet cannot be empty",
   "@registerfacultydialog": {
     "description": ""
   },
-  "registerstudydialog": "",
+  "registerstudydialog": "Your studies cannot be empty",
   "@registerstudydialog": {
     "description": ""
   },
-  "registernamerequireddialog": "",
+  "registernamerequireddialog": "Your name cannot be empty",
   "@registernamerequireddialog": {
     "description": ""
   },
-  "registernamelongdialog": "",
-  "@registernamelongdialog": {
-    "description": ""
-  },
-  "registernameonlylettersdialog": "",
+  "registernameonlylettersdialog": "Your name can only contain letters",
   "@registernameonlylettersdialog": {
     "description": ""
   },
-  "authemptyemaildialog": "",
+  "authemptyemaildialog": "Your email cannot be empty",
   "@authemptyemaildialog": {
     "description": ""
   },
-  "authvalidemaildialog": "",
+  "authvalidemaildialog": "The email introduced does not have a valid structure",
   "@authvalidemaildialog": {
     "description": ""
   },
-  "authemptypasswordialog": "",
+  "authemptypasswordialog": "Your password cannot be empty",
   "@authemptypasswordialog": {
     "description": ""
   },
-  "authshortpasswordialog": "",
+  "authshortpasswordialog": "The password introduced must be at least 6 characters long",
   "@authshortpasswordialog": {
     "description": ""
   },
-  "profileimageerror": "",
-  "@profileimageerror": {
-    "description": ""
-  },
-  "step1emptyaddress": "",
+  "step1emptyaddress": "The address cannot be empty",
   "@step1emptyaddress": {
     "description": ""
   },
-  "step1propertiesgeometry": "",
-  "@step1propertiesgeometry": {
-    "description": ""
-  },
-  "step2rentpermonth": "",
+  "step2rentpermonth": "The rent per month is required",
   "@step2rentpermonth": {
     "description": ""
   },
-  "step2rentvalid": "",
+  "step2rentvalid": "The rent per month must be an integer between 1 and 1999",
   "@step2rentvalid": {
     "description": ""
   },
-  "step2rentadvance": "",
+  "step2rentadvance": "The rent advance is required",
   "@step2rentadvance": {
     "description": ""
   },
-  "step2rentadvancevalid": "",
+  "step2rentadvancevalid": "The rent advance must be an integer between 0 and 1999",
   "@step2rentadvancevalid": {
     "description": ""
   },
-  "step2costelectricity": "",
+  "step2costelectricity": "The cost of electricity is required",
   "@step2costelectricity": {
     "description": ""
   },
-  "step2electricityvalid": "",
+  "step2electricityvalid": "The cost of electricity must be an integer between 0 and 1999",
   "@step2electricityvalid": {
     "description": ""
   },
-  "step2availablefrom": "empty",
-  "@step2availablefrom": {
+  "step2availablefromempty": "It is necessary to provide an availability date",
+  "@step2availablefromempty": {
     "description": ""
   },
-  "step2dateformat": "",
+  "step2dateformat": "The date has an invalid format",
   "@step2dateformat": {
     "description": ""
   },
-  "step2datefuture": "",
+  "step2datefuture": "The date must be in the future",
   "@step2datefuture": {
     "description": ""
   },
-  "step2dateyear": "",
+  "step2dateyear": "The date must be within the next year",
   "@step2dateyear": {
     "description": ""
   },
-  "step3built": "",
+  "step3built": "The square meters of the flat are required",
   "@step3built": {
     "description": ""
   },
-  "step3builtnegative": "",
+  "step3builtnegative": "The square meters are not a valid number",
   "@step3builtnegative": {
     "description": ""
   },
-  "step3floor": "",
+  "step3floor": "The floor of the flat is required",
   "@step3floor": {
     "description": ""
   },
-  "step3floornegative": "",
+  "step3floornegative": "The floor is not a valid number",
   "@step3floornegative": {
     "description": ""
   },
-  "step3features": "",
-  "@step3features": {
-    "description": ""
-  },
-  "step3featuresshort": "",
+  "step3featuresshort": "The features of the flat must be at least of 5",
   "@step3featuresshort": {
     "description": ""
   },
-  "step3transportation": "",
+  "step3transportation": "The minutes of the trip are required",
   "@step3transportation": {
     "description": ""
   },
-  "step3transportationvalid": "",
+  "step3transportationvalid": "The minutes of the trip must be greater than 0 and less than 240",
   "@step3transportationvalid": {
     "description": ""
   },
-  "step4adtitle": "",
+  "step4adtitle": "The title is required",
   "@step4adtitle": {
     "description": ""
   },
-  "step4adtitleshort": "",
+  "step4adtitleshort": "The title must be at least 5 characters",
   "@step4adtitleshort": {
     "description": ""
   },
-  "step4addescription": "",
+  "step4addescription": "The description is required",
   "@step4addescription": {
     "description": ""
   },
-  "step4addescriptionshort": "",
+  "step4addescriptionshort": "The description must be at least 20 characters long",
   "@step4addescriptionshort": {
     "description": ""
   },
-  "step4emptyimages": "",
+  "step4emptyimages": "At least one image is required",
   "@step4emptyimages": {
     "description": ""
   },
@@ -693,6 +677,10 @@
   },
   "storyDotsMenuText": "Delete Story",
   "@storyDotsMenuText": {
+    "description": ""
+  },
+  "chatDotsMenuText": "Delete Chat",
+  "@chatDotsMenuText": {
     "description": ""
   },
   "chatInputHintText": "Enter a message",

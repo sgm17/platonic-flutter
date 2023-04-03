@@ -49,7 +49,7 @@ class Step1Screen extends ConsumerWidget {
         Navigator.pushNamed(context, '/Step2Screen');
       } else {
         ref.read(step1ErrorProvider.notifier).state =
-            const ErrorApp(code: 'step1propertiesgeometry');
+            const ErrorApp(code: 'step1emptyaddress');
       }
     }
 

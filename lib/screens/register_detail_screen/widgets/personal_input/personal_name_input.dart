@@ -19,12 +19,6 @@ class PersonalNameInput extends ConsumerWidget {
             const ErrorApp(code: 'registernamerequireddialog');
         return 'Name is required';
       }
-      if (value.length > 10) {
-        ref.read(registerDetailErrorProvider.notifier).state =
-            const ErrorApp(code: 'registernamelongdialog');
-
-        return 'Name is too long';
-      }
       if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
         ref.read(registerDetailErrorProvider.notifier).state =
             const ErrorApp(code: 'registernameonlylettersdialog');

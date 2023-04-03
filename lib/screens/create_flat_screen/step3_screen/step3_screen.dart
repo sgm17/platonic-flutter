@@ -33,11 +33,7 @@ class Step3ScreenState extends ConsumerState<Step3Screen> {
     bool checkStep3Create() {
       final flatCreateState = ref.read(flatCreateProvider);
 
-      if (flatCreateState.features.isEmpty) {
-        ref.read(step3ErrorProvider.notifier).state =
-            const ErrorApp(code: 'step3features');
-        return false;
-      } else if (flatCreateState.features.length < 4) {
+      if (flatCreateState.features.length < 4) {
         ref.read(step3ErrorProvider.notifier).state =
             const ErrorApp(code: 'step3featuresshort');
         return false;

@@ -1,3 +1,5 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:platonic/domains/chat_repository/src/models/models.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
@@ -47,15 +49,15 @@ class ChatDotsMenu extends ConsumerWidget {
       ),
       itemBuilder: (context) {
         return [
-          const PopupMenuItem(
+          PopupMenuItem(
             value: 0,
             height: 30.0,
-            textStyle: TextStyle(
+            textStyle: const TextStyle(
                 fontSize: 14.0,
                 fontFamily: 'Gilroy',
                 fontWeight: FontWeight.w800,
                 color: Colors.red),
-            child: Text('Delete Chat'),
+            child: Text(AppLocalizations.of(context)!.chatDotsMenuText),
           )
         ];
       },
