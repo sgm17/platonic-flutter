@@ -1,5 +1,9 @@
+export 'authentication_button/widgets.dart';
+export 'divider/widgets.dart';
+export 'oauth2/widgets.dart';
 export 'auth_placeholder_text.dart';
 export 'email_auth_input.dart';
 export 'email_container.dart';
 export 'password_auth_input.dart';
 export 'register_title.dart';
+export 'authentication_title_text.dart';

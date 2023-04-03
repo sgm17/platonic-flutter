@@ -5,11 +5,11 @@ import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/error_provider/settings_error_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
-import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/error_dialog/loading_dialog/loading_dialog.dart';
 import 'package:platonic/screens/profile_screen/widgets/widgets.dart';
 import 'package:platonic/screens/register_detail_screen/widgets/widgets.dart';
+import 'package:platonic/screens/register_screen/widgets/widgets.dart';
 import 'package:platonic/screens/settings_screen/widgets/widgets.dart';
 
 /* Frame settings

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
 import 'package:platonic/helpers/transform/transform.dart';
+import 'package:platonic/screens/register_screen/widgets/widgets.dart';
 
 class GoogleOauth2Container extends StatelessWidget {
   const GoogleOauth2Container({super.key});

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,13 +24,15 @@ import 'package:platonic/screens/create_screen/create_screen.dart';
 import 'package:platonic/screens/chat_screen/chat_screen.dart';
 import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/profile_screen/other_profile_screen.dart';
-import 'package:platonic/screens/auth_screen/auth_screen.dart';
 import 'package:platonic/screens/story_screen/story_screen.dart';
 import 'package:platonic/screens/verify_screen/verify_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'screens/login_screen/login_screen.dart';
+import 'screens/register_screen/register_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,10 +64,12 @@ class PlatonicApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/SplashScreen',
       localizationsDelegates: const [
+        AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
+      locale: Locale('es'),
       supportedLocales: const [
         Locale('en'),
         Locale('es'),
@@ -72,7 +77,8 @@ class PlatonicApp extends StatelessWidget {
       ],
       routes: {
         '/SplashScreen': (context) => const SplashScreen(),
-        '/AuthScreen': (context) => const AuthScreen(),
+        '/RegisterScreen': (context) => const RegisterScreen(),
+        '/LoginScreen': (context) => const LoginScreen(),
         '/ForgotPasswordScreen': (context) => const ForgotPasswordScreen(),
         '/VerifyScreen': (context) => const VerifyScreen(),
         '/RegisterDetailScreen': (context) => const RegisterDetailScreen(),

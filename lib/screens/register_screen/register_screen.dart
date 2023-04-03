@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/auth_provider/register_provider.dart';
+import 'package:platonic/providers/error_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
-import 'package:platonic/screens/auth_screen/login/widgets/widgets.dart';
-import 'package:platonic/screens/auth_screen/register/widgets/widgets.dart';
-import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
+import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
+import 'package:platonic/screens/login_screen/widgets/widgets.dart';
+import 'package:platonic/screens/register_screen/widgets/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
@@ -19,6 +20,8 @@ class RegisterScreenState extends ConsumerState<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authErrorState = ref.watch(authErrorProvider);
+
     Future<void> toggleContinueWithEmail() async {
       if (formKey.currentState!.validate()) {
         formKey.currentState!.save();
@@ -35,6 +38,18 @@ class RegisterScreenState extends ConsumerState<RegisterScreen> {
         // Fire onAuthStateChanges(User? user) and redirect to RegisterDetailScreen()
       }
     }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (authErrorState != null) {
+        showDialog(
+            context: context,
+            builder: (context) => ErrorDialog(
+                  error: authErrorState.code,
+                ));
+
+        ref.read(authErrorProvider.notifier).state = null;
+      }
+    });
 
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 27, 26, 29),

@@ -427,7 +427,7 @@
   "@loginDontHaveAccountText": {
     "description": ""
   },
-  "loginDontHaveAccountSignupText": "Don't have an account",
+  "loginDontHaveAccountSignupText": "Register",
   "@loginDontHaveAccountSignupText": {
     "description": ""
   },

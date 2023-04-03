@@ -2,10 +2,10 @@ import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/providers/error_provider/splash_error_provider.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
-import 'package:platonic/screens/auth_screen/auth_screen.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/register_detail_screen/register_detail_screen.dart';
+import 'package:platonic/screens/register_screen/register_screen.dart';
 import 'package:platonic/screens/start_screen/start_screen.dart';
 import 'package:platonic/screens/verify_screen/verify_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -45,6 +45,7 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
 
     final appUserState = ref.watch(appUserProvider);
     final firebaseUserState = ref.watch(firebaseUserProvider);
+    final tokenIdState = ref.watch(tokenIdProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (splashErrorState != null) {
@@ -67,8 +68,8 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
     }
 
     Widget buildSplashBody() {
-      if (firebaseUserState == null) {
-        return const AuthScreen();
+      if (firebaseUserState == null || tokenIdState == null) {
+        return const RegisterScreen();
       } else if (appUserState.id == AppUser.emptyUser.id) {
         return const RegisterDetailScreen();
       } else if (firebaseUserState.emailVerified == false &&

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
-import 'package:platonic/screens/auth_screen/widgets/widgets.dart';
+import 'package:platonic/screens/register_screen/widgets/widgets.dart';
 import 'package:platonic/screens/verify_screen/widgets/email_verification_instructions.dart';
 import 'package:platonic/screens/verify_screen/widgets/message_not_received.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

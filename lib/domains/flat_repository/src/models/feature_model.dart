@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../../helpers/serialize/icon_data_converter.dart';
+import 'package:platonic/helpers/serialize/icon_data_converter.dart';
 part 'feature_model.freezed.dart';
 part 'feature_model.g.dart';
 

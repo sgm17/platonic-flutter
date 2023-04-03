@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:platonic/screens/auth_screen/login/widgets/widgets.dart';
-import 'package:platonic/screens/auth_screen/register/widgets/widgets.dart';
+import 'package:platonic/screens/login_screen/widgets/widgets.dart';
+import 'package:platonic/screens/register_screen/widgets/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginForm extends StatelessWidget {
