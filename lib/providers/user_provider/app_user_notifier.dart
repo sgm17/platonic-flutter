@@ -34,7 +34,7 @@ class AppUserNotifier extends StateNotifier<AppUser> {
           state = AppUser.emptyUser;
         }
       } on ErrorApp catch (e) {
-        ref.read(splashErrorProvider.notifier).state = e;
+        ref.read(authErrorProvider.notifier).state = e;
       } catch (e) {
         print(e);
       }

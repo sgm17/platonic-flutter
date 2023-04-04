@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/constants/constants.dart';
+import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/auth_provider/register_provider.dart';
 import 'package:platonic/providers/error_provider/providers.dart';
+import 'package:platonic/providers/shared_preferences_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/error_dialog/error_dialog/error_dialog.dart';
 import 'package:platonic/screens/login_screen/widgets/widgets.dart';
@@ -17,6 +21,51 @@ class RegisterScreen extends ConsumerStatefulWidget {
 
 class RegisterScreenState extends ConsumerState<RegisterScreen> {
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+
+    FlutterNativeSplash.remove();
+
+    bool getFirstTimeUsingApp() {
+      final sharedPreferences = ref.read(sharedPreferencesProvider);
+
+      final firstTimeUsingAppp =
+          sharedPreferences.getBool(FIRST_TIME_USING_APP_KEY);
+
+      return firstTimeUsingAppp ?? true;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final appUserState = ref.watch(appUserProvider);
+      final firebaseUserState = ref.watch(firebaseUserProvider);
+
+      if (firebaseUserState != null) {
+        if (appUserState.id == AppUser.emptyUser.id) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/RegisterDetailScreen', (route) => false);
+        } else if (firebaseUserState.emailVerified == false &&
+            appUserState.id != AppUser.emptyUser.id) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/VerifyScreen', (route) => false);
+        } else {
+          // User in the backend
+          final firstTimeUsingTheApp = getFirstTimeUsingApp();
+
+          if (firstTimeUsingTheApp == true) {
+            // Redirect to the StartScreen
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/StartScreen', (route) => false);
+          } else {
+            // Not the first time
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/HomeScreen', (route) => false);
+          }
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

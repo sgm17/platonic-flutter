@@ -11,7 +11,8 @@ class AlreadyHaveAnAccount extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/LoginScreen'),
+      onTap: () => Navigator.pushNamedAndRemoveUntil(
+          context, '/LoginScreen', (route) => false),
       child: Align(
         alignment: Alignment.center,
         child: RichText(

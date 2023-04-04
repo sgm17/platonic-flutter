@@ -1,6 +1,7 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/step1_screen.dart';
 import 'package:platonic/screens/create_flat_screen/step2_screen/step2_screen.dart';
@@ -16,7 +17,6 @@ import 'package:platonic/screens/flats_screen/flats_screen.dart';
 import 'package:platonic/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:platonic/screens/match_screen/match_screen.dart';
 import 'package:platonic/screens/profile_screen/profile_screen.dart';
-import 'package:platonic/screens/splash_screen/splash_screen.dart';
 import 'package:platonic/screens/start_screen/start_screen.dart';
 import 'package:platonic/screens/settings_screen/settings_screen.dart';
 import 'package:platonic/screens/register_detail_screen/register_detail_screen.dart';
@@ -26,16 +26,17 @@ import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/profile_screen/other_profile_screen.dart';
 import 'package:platonic/screens/story_screen/story_screen.dart';
 import 'package:platonic/screens/verify_screen/verify_screen.dart';
+import 'screens/login_screen/login_screen.dart';
+import 'screens/register_screen/register_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/login_screen/login_screen.dart';
-import 'screens/register_screen/register_screen.dart';
-
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   await Firebase.initializeApp();
   final sharedPreferenches = await SharedPreferences.getInstance();
 
@@ -62,7 +63,7 @@ class PlatonicApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: '/RegisterScreen',
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -75,7 +76,6 @@ class PlatonicApp extends StatelessWidget {
         Locale('ca'),
       ],
       routes: {
-        '/': (context) => const SplashScreen(),
         '/RegisterScreen': (context) => const RegisterScreen(),
         '/LoginScreen': (context) => const LoginScreen(),
         '/ForgotPasswordScreen': (context) => const ForgotPasswordScreen(),

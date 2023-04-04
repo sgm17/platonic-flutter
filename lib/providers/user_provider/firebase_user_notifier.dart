@@ -44,7 +44,7 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
           .read(userViewmodelProvider)
           .postUpdateCloudToken(cloudToken: cloudToken);
     } on ErrorApp catch (e) {
-      ref.read(splashErrorProvider.notifier).state = e;
+      ref.read(authErrorProvider.notifier).state = e;
     } catch (e) {
       print(e);
     }
