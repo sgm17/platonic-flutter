@@ -8,7 +8,7 @@ class FlatScrollItemEmpty extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
-      height: 250.0,
+      height: 225.0,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
           color: const Color.fromARGB(255, 255, 255, 255),

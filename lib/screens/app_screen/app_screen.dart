@@ -26,7 +26,8 @@ class AppScreenState extends ConsumerState<AppScreen> {
         const Duration(milliseconds: 2000), () => FlutterNativeSplash.remove());
   }
 
-  Widget buildAppBody() {
+  @override
+  Widget build(BuildContext context) {
     final appUserState = ref.watch(appUserProvider);
     final firebaseUserState = ref.watch(firebaseUserProvider);
 
@@ -49,10 +50,5 @@ class AppScreenState extends ConsumerState<AppScreen> {
         return const HomeScreen();
       }
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return buildAppBody();
   }
 }

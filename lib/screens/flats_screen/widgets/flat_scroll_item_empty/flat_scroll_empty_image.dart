@@ -1,20 +1,17 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 class FlatScrollEmptyImage extends StatelessWidget {
   const FlatScrollEmptyImage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20.0),
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(10.0)),
       child: Stack(
         children: [
           Image.asset(
-            "assets/images/flat_item_empty_image.png",
+            "assets/images/flat_scroll_empty_image.png",
             fit: BoxFit.cover,
-            width: 110.0,
-            height: 110.0,
             colorBlendMode: BlendMode.dstATop,
           ),
           BackdropFilter(

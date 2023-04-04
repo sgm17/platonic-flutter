@@ -102,7 +102,7 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
                       .read(storiesProvider.notifier)
                       .deleteStory(storyId: storyId);
                   Navigator.popUntil(
-                      context, (route) => route.settings.name == '/HomeScreen');
+                      context, (route) => route.settings.name == '/AppScreen');
                 }));
       });
     }
@@ -142,12 +142,12 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
                   controller: controller,
                   inline: true,
                   onComplete: () => Navigator.popUntil(
-                      context, (route) => route.settings.name == '/HomeScreen'),
+                      context, (route) => route.settings.name == '/AppScreen'),
                   onVerticalSwipeComplete: (direction) {
                     switch (direction) {
                       case Direction.down:
                         Navigator.popUntil(context,
-                            (route) => route.settings.name == '/HomeScreen');
+                            (route) => route.settings.name == '/AppScreen');
                         break;
                       case Direction.up:
                         final storyViewIdState = ref.read(storyViewIdProvider);
