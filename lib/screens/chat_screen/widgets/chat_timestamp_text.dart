@@ -13,6 +13,9 @@ class ChatTimestampText extends StatelessWidget {
   Widget build(BuildContext context) {
     final currentLocale = Localizations.localeOf(context);
 
+    final weekDay = DateFormat('EEEE', currentLocale.toString())
+        .format(timestamp.toLocal());
+
     return Align(
       alignment: Alignment.center,
       child: RichText(
@@ -30,8 +33,8 @@ class ChatTimestampText extends StatelessWidget {
               ),
               children: [
                 TextSpan(
-                  text: DateFormat('EEEE', currentLocale.toString())
-                      .format(timestamp.toLocal()),
+                  text:
+                      "${weekDay[0].toUpperCase()}${weekDay.substring(1).toLowerCase()}",
                 ),
                 const TextSpan(text: ' '),
                 TextSpan(
