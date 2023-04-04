@@ -45,7 +45,6 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
 
     final appUserState = ref.watch(appUserProvider);
     final firebaseUserState = ref.watch(firebaseUserProvider);
-    final tokenIdState = ref.watch(tokenIdProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (splashErrorState != null) {
@@ -59,16 +58,8 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
       }
     });
 
-    if (splashState == false) {
-      return Center(
-          child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 150, maxHeight: 150),
-              child: Image.asset('assets/images/splash_image.png',
-                  fit: BoxFit.cover)));
-    }
-
-    Widget buildSplashBody() {
-      if (firebaseUserState == null || tokenIdState == null) {
+    Widget buildCoreScreen() {
+      if (firebaseUserState == null) {
         return const RegisterScreen();
       } else if (appUserState.id == AppUser.emptyUser.id) {
         return const RegisterDetailScreen();
@@ -89,8 +80,17 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
       }
     }
 
+    if (splashState == false) {
+      return Center(
+          child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 150, maxHeight: 150),
+              child: Image.asset('assets/images/splash_image.png',
+                  fit: BoxFit.cover)));
+    }
+
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 27, 26, 29),
-        body: SafeArea(child: buildSplashBody()));
+      backgroundColor: const Color.fromARGB(255, 27, 26, 29),
+      body: buildCoreScreen(),
+    );
   }
 }

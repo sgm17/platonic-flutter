@@ -62,21 +62,20 @@ class PlatonicApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/SplashScreen',
+      initialRoute: '/',
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
       ],
-      locale: Locale('es'),
       supportedLocales: const [
         Locale('en'),
         Locale('es'),
         Locale('ca'),
       ],
       routes: {
-        '/SplashScreen': (context) => const SplashScreen(),
+        '/': (context) => const SplashScreen(),
         '/RegisterScreen': (context) => const RegisterScreen(),
         '/LoginScreen': (context) => const LoginScreen(),
         '/ForgotPasswordScreen': (context) => const ForgotPasswordScreen(),

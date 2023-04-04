@@ -11,8 +11,7 @@ class DontHaveAnAccount extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamedAndRemoveUntil(
-          context, '/RegisterScreen', (route) => false),
+      onTap: () => Navigator.pushNamed(context, '/RegisterScreen'),
       child: Align(
         alignment: Alignment.center,
         child: RichText(

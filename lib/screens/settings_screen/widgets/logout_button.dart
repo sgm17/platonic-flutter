@@ -13,8 +13,7 @@ class LogoutButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Future<void> toggleLogoutButton() async {
       await ref.read(firebaseUserProvider.notifier).signOut();
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/SplashScreen', (route) => false);
+      Navigator.pop(context);
     }
 
     return GestureDetector(
