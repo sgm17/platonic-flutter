@@ -21,7 +21,7 @@ class DetailScreen extends ConsumerWidget {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: flatErrorState.code,
+                  errorApp: flatErrorState,
                 ));
 
         ref.read(flatErrorProvider.notifier).state = null;
@@ -37,14 +37,16 @@ class DetailScreen extends ConsumerWidget {
                 showDialog(
                     context: context,
                     builder: (context) => DeleteDialog(
-                          error: '''flatdeletedialog''',
+                          delete:
+                              AppLocalizations.of(context)!.flatdeletedialog,
                           toggleDelete: () async {
                             await ref
                                 .read(flatProvider.notifier)
                                 .deleteFlat(flatId: flat.id);
 
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, '/HomeScreen', (route) => false);
+                            Navigator.popUntil(context,
+                                (route) => route.settings.name == '/AppScreen');
+
                             Navigator.pushNamed(context, '/FlatsScreen');
                           },
                         ));

@@ -1,3 +1,4 @@
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:platonic/domains/story_repository/story_repository.dart';
 import 'package:platonic/providers/chat_provider/conversations_provider.dart';
@@ -82,7 +83,7 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: storyErrorState.code,
+                  errorApp: storyErrorState,
                 ));
 
         ref.read(storyErrorProvider.notifier).state = null;
@@ -94,14 +95,14 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
         showDialog(
             context: context,
             builder: (context) => DeleteDialog(
-                error: 'storydeletedialog',
+                delete: AppLocalizations.of(context)!.storydeletedialog,
                 toggleDelete: () async {
                   controller.pause();
                   await ref
                       .read(storiesProvider.notifier)
                       .deleteStory(storyId: storyId);
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, '/HomeScreen', (route) => false);
+                  Navigator.popUntil(
+                      context, (route) => route.settings.name == '/HomeScreen');
                 }));
       });
     }
@@ -140,13 +141,13 @@ class StoryScreenState extends ConsumerState<StoryScreen> {
                   },
                   controller: controller,
                   inline: true,
-                  onComplete: () => Navigator.pushNamedAndRemoveUntil(
-                      context, '/HomeScreen', (route) => false),
+                  onComplete: () => Navigator.popUntil(
+                      context, (route) => route.settings.name == '/HomeScreen'),
                   onVerticalSwipeComplete: (direction) {
                     switch (direction) {
                       case Direction.down:
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, '/HomeScreen', (route) => false);
+                        Navigator.popUntil(context,
+                            (route) => route.settings.name == '/HomeScreen');
                         break;
                       case Direction.up:
                         final storyViewIdState = ref.read(storyViewIdProvider);

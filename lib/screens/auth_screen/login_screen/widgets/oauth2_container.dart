@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:platonic/providers/user_provider/app_user_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 import 'dart:io';
 
-import 'package:platonic/screens/register_screen/widgets/widgets.dart';
+import 'package:platonic/screens/auth_screen/register_screen/widgets/widgets.dart';
 
 class Oauth2Container extends ConsumerStatefulWidget {
   const Oauth2Container({super.key});

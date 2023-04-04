@@ -1,9 +1,10 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/screens/error_dialog/delete_dialog/delete_dialog.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/meet_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
-import 'package:platonic/screens/error_dialog/delete_dialog/delete_dialog.dart';
 import 'package:platonic/screens/home_screen/widgets/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
 /* Component meet_item
@@ -25,7 +26,7 @@ class MeetItem extends ConsumerWidget {
       return showDialog(
           context: context,
           builder: (context) => DeleteDialog(
-              error: '''meetdeletedialog''',
+              delete: AppLocalizations.of(context)!.meetdeletedialog,
               toggleDelete: () async {
                 await ref
                     .read(meetsScrollProvider.notifier)

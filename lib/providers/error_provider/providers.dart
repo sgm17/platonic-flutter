@@ -7,3 +7,4 @@ export 'story_error_provider.dart';
 export 'register_detail_error_provider.dart';
 export 'settings_error_provider.dart';
 export 'flat_error_provider.dart';
+export 'forgot_password_error_provider.dart';

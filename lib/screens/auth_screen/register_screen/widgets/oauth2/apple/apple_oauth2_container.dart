@@ -1,19 +1,13 @@
+import 'package:platonic/screens/auth_screen/register_screen/widgets/widgets.dart';
 import 'package:platonic/helpers/transform/transform.dart';
 import 'package:flutter/material.dart';
-import 'package:platonic/screens/register_screen/widgets/widgets.dart';
 
-class AuthenticationButtonContainer extends StatelessWidget {
-  final String text;
-
-  const AuthenticationButtonContainer({
-    Key? key,
-    required this.text,
-  }) : super(key: key);
+class AppleOauth2Container extends StatelessWidget {
+  const AppleOauth2Container({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 358.0,
       height: 44.0,
       child: Stack(
           fit: StackFit.expand,
@@ -30,7 +24,6 @@ class AuthenticationButtonContainer extends StatelessWidget {
               child: LayoutBuilder(
                   builder: (BuildContext context, BoxConstraints constraints) {
                 final double width = constraints.maxWidth;
-
                 final double height = constraints.maxHeight;
 
                 return Stack(children: [
@@ -41,7 +34,7 @@ class AuthenticationButtonContainer extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: height,
-                        child: const AuthenticationButtonBackground(),
+                        child: const SigninContainer(),
                       ))
                 ]);
               }),
@@ -68,7 +61,7 @@ class AuthenticationButtonContainer extends StatelessWidget {
                       child: SizedBox(
                         width: width,
                         height: height,
-                        child: AuthenticationButtonText(text: text),
+                        child: const AppleOauth2ContentContainer(),
                       ))
                 ]);
               }),

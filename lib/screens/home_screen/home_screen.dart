@@ -45,7 +45,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: homeErrorState.code,
+                  errorApp: homeErrorState,
                 ));
 
         ref.read(homeErrorProvider.notifier).state = null;

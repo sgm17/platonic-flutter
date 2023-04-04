@@ -40,8 +40,8 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
       showDialog(
         barrierDismissible: false,
         context: context,
-        builder: (_) => const LoadingDialog(
-          loading: 'imageloadingdialog',
+        builder: (_) => LoadingDialog(
+          loading: AppLocalizations.of(context)!.imageloadingdialog,
         ),
       );
 
@@ -86,7 +86,8 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
       showDialog(
         context: context,
         barrierDismissible: false,
-        builder: (context) => const LoadingDialog(loading: 'userloadingdialog'),
+        builder: (context) => LoadingDialog(
+            loading: AppLocalizations.of(context)!.userloadingdialog),
       );
 
       await ref.read(appUserProvider.notifier).updateProfile();
@@ -124,7 +125,7 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: profileErrorState.code,
+                  errorApp: profileErrorState,
                 ));
 
         ref.read(profileErrorProvider.notifier).state = null;

@@ -55,8 +55,8 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
         showDialog(
           barrierDismissible: false,
           context: context,
-          builder: (_) => const LoadingDialog(
-            loading: 'imagesloadingdialog',
+          builder: (_) => LoadingDialog(
+            loading: AppLocalizations.of(context)!.imagesloadingdialog,
           ),
         );
 
@@ -107,8 +107,8 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
         ref.read(flatCreateProvider.notifier).setEmptyState();
 
         // Push to the list of flats screen
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/HomeScreen', (route) => false);
+        Navigator.popUntil(
+            context, (route) => route.settings.name == '/AppScreen');
 
         Navigator.pushNamed(context, '/FlatsScreen');
       }
@@ -120,7 +120,7 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
       return showDialog(
           context: context,
           builder: (context) => DeleteDialog(
-              error: '''imagedeletedialog''',
+              delete: AppLocalizations.of(context)!.imagedeletedialog,
               toggleDelete: () {
                 toggleDeleteImage();
                 Navigator.of(context).pop();
@@ -132,7 +132,7 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: step4ErrorState.code,
+                  errorApp: step4ErrorState,
                 ));
 
         ref.read(step4ErrorProvider.notifier).state = null;

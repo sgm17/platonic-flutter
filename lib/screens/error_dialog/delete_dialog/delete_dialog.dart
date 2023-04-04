@@ -6,9 +6,9 @@ import 'package:platonic/screens/error_dialog/delete_dialog/widgets/widgets.dart
   */
 class DeleteDialog extends StatelessWidget {
   const DeleteDialog(
-      {super.key, required this.error, required this.toggleDelete});
+      {super.key, required this.delete, required this.toggleDelete});
 
-  final String error;
+  final String delete;
 
   final Function() toggleDelete;
 
@@ -34,7 +34,7 @@ class DeleteDialog extends StatelessWidget {
                       child: Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.all(10.0),
-                        child: DeleteText(error: error),
+                        child: DeleteText(delete: delete),
                       ),
                     ),
                     Row(

@@ -24,7 +24,7 @@ class FlatsScreen extends ConsumerWidget {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: flatsScrollErrorState.code,
+                  errorApp: flatsScrollErrorState,
                 ));
 
         ref.read(flatsScrollErrorProvider.notifier).state = null;

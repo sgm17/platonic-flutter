@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:platonic/screens/app_screen/app_screen.dart';
 import 'package:platonic/screens/create_flat_screen/step1_screen/step1_screen.dart';
 import 'package:platonic/screens/create_flat_screen/step2_screen/step2_screen.dart';
 import 'package:platonic/screens/create_flat_screen/step3_screen/step3_screen.dart';
@@ -17,17 +18,12 @@ import 'package:platonic/screens/flats_screen/flats_screen.dart';
 import 'package:platonic/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:platonic/screens/match_screen/match_screen.dart';
 import 'package:platonic/screens/profile_screen/profile_screen.dart';
-import 'package:platonic/screens/start_screen/start_screen.dart';
 import 'package:platonic/screens/settings_screen/settings_screen.dart';
-import 'package:platonic/screens/register_detail_screen/register_detail_screen.dart';
 import 'package:platonic/screens/create_screen/create_screen.dart';
 import 'package:platonic/screens/chat_screen/chat_screen.dart';
 import 'package:platonic/screens/home_screen/home_screen.dart';
 import 'package:platonic/screens/profile_screen/other_profile_screen.dart';
 import 'package:platonic/screens/story_screen/story_screen.dart';
-import 'package:platonic/screens/verify_screen/verify_screen.dart';
-import 'screens/login_screen/login_screen.dart';
-import 'screens/register_screen/register_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -63,7 +59,7 @@ class PlatonicApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/RegisterScreen',
+      initialRoute: '/AppScreen',
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
@@ -76,13 +72,9 @@ class PlatonicApp extends StatelessWidget {
         Locale('ca'),
       ],
       routes: {
-        '/RegisterScreen': (context) => const RegisterScreen(),
-        '/LoginScreen': (context) => const LoginScreen(),
-        '/ForgotPasswordScreen': (context) => const ForgotPasswordScreen(),
-        '/VerifyScreen': (context) => const VerifyScreen(),
-        '/RegisterDetailScreen': (context) => const RegisterDetailScreen(),
-        '/StartScreen': (context) => const StartScreen(),
+        '/AppScreen': (context) => const AppScreen(),
         '/HomeScreen': (context) => const HomeScreen(),
+        '/ForgotPasswordScreen': (context) => const ForgotPasswordScreen(),
         '/ProfileScreen': (context) => const ProfileScreen(),
         '/OtherProfileScreen': (context) => const OtherProfileScreen(),
         '/SettingsScreen': (context) => const SettingsScreen(),

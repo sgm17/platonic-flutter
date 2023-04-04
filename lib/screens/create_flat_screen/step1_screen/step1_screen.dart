@@ -24,7 +24,7 @@ class Step1Screen extends ConsumerWidget {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: step1ErrorState.code,
+                  errorApp: step1ErrorState,
                 ));
 
         ref.read(step1ErrorProvider.notifier).state = null;

@@ -36,7 +36,7 @@ class Step2ScreenState extends ConsumerState<Step2Screen> {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: step2ErrorState.code,
+                  errorApp: step2ErrorState,
                 ));
 
         ref.read(step2ErrorProvider.notifier).state = null;

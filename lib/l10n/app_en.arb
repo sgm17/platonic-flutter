@@ -1094,5 +1094,17 @@
   "feature_terrace": "Terrace",
   "@feature_terrace": {
     "description": ""
+  },
+  "error_dialog_retry": "Retry",
+  "@error_dialog_retry": {
+    "description": ""
+  },
+  "delete_dialog_cancel": "Cancel",
+  "@delete_dialog_cancel": {
+    "description": ""
+  },
+  "delete_dialog_confirm": "Delete",
+  "@delete_dialog_confirm": {
+    "description": ""
   }
 }

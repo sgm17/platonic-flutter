@@ -45,7 +45,7 @@ class CreateScreenState extends ConsumerState<CreateScreen> {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: createErrorState.code,
+                  errorApp: createErrorState,
                 ));
 
         ref.read(createErrorProvider.notifier).state = null;
@@ -73,8 +73,8 @@ class CreateScreenState extends ConsumerState<CreateScreen> {
       ref.read(circularButtonProvider.notifier).state = false;
 
       if (result == true) {
-        Navigator.pushNamedAndRemoveUntil(
-            context, '/HomeScreen', (route) => false);
+        Navigator.popUntil(
+            context, (route) => route.settings.name == '/AppScreen');
       }
     }
 

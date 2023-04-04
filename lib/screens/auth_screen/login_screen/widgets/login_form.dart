@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:platonic/screens/login_screen/widgets/widgets.dart';
-import 'package:platonic/screens/register_screen/widgets/widgets.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:platonic/screens/auth_screen/login_screen/widgets/widgets.dart';
+import 'package:platonic/screens/auth_screen/register_screen/widgets/widgets.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});

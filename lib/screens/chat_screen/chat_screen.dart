@@ -6,6 +6,7 @@ import 'package:platonic/providers/error_provider/chat_error_provider.dart';
 import 'package:platonic/providers/chat_provider/providers.dart';
 import 'package:platonic/providers/user_provider/providers.dart';
 import 'package:platonic/screens/chat_screen/widgets/widgets.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
@@ -70,7 +71,7 @@ class ChatScreen extends ConsumerWidget {
         showDialog(
             context: context,
             builder: (context) => ErrorDialog(
-                  error: chatErrorState.code,
+                  errorApp: chatErrorState,
                 ));
 
         ref.read(chatErrorProvider.notifier).state = null;
@@ -83,7 +84,7 @@ class ChatScreen extends ConsumerWidget {
       return showDialog(
           context: context,
           builder: (context) => DeleteDialog(
-              error: '''conversationdeletedialog''',
+              delete: AppLocalizations.of(context)!.conversationdeletedialog,
               toggleDelete: () {
                 toggleDeleteConversation();
                 Navigator.of(context).pop();

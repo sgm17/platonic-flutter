@@ -1,3 +1,4 @@
+import 'package:platonic/providers/shared_preferences_provider/first_time_provider.dart';
 import 'package:platonic/providers/shared_preferences_provider/providers.dart';
 import 'package:platonic/screens/start_screen/widgets/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,8 +18,7 @@ class StartScreen extends ConsumerWidget {
           .read(sharedPreferencesProvider)
           .setBool(FIRST_TIME_USING_APP_KEY, false);
 
-      Navigator.pushNamedAndRemoveUntil(
-          context, '/HomeScreen', (route) => false);
+      ref.read(firstTimeProvider.notifier).state = false;
     }
 
     return Scaffold(

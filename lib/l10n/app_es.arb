@@ -251,5 +251,8 @@
     "feature_pool": "Pool",
     "feature_balcony": "Balcony",
     "feature_local_library": "Local Library",
-    "feature_terrace": "Terrace"
+    "feature_terrace": "Terrace",
+    "error_dialog_retry": "Retry",
+    "delete_dialog_cancel": "Cancel",
+    "delete_dialog_confirm": "Delete"
   }
