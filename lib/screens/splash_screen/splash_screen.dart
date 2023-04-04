@@ -1,3 +1,4 @@
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:platonic/domains/user_repository/user_repository.dart';
 import 'package:platonic/providers/shared_preferences_provider/shared_preferences_provider.dart';
 import 'package:platonic/providers/error_provider/splash_error_provider.dart';
@@ -26,8 +27,13 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
   void initState() {
     super.initState();
 
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(
+          const Duration(seconds: 1), () => FlutterNativeSplash.remove());
+    });
+/* 
     Future.delayed(
-        const Duration(seconds: 2), () => setState(() => splashState = true));
+        const Duration(seconds: 2), () => setState(() => splashState = true)); */
   }
 
   bool getFirstTimeUsingApp() {
@@ -80,13 +86,13 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
       }
     }
 
-    if (splashState == false) {
+/*     if (splashState == false) {
       return Center(
           child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 150, maxHeight: 150),
-              child: Image.asset('assets/images/splash_image.png',
-                  fit: BoxFit.cover)));
-    }
+              child:
+                  Image.asset('assets/images/splash.png', fit: BoxFit.cover)));
+    } */
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 27, 26, 29),
