@@ -10,6 +10,7 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
   StreamSubscription<User?>? userChangesListener;
   StreamSubscription<String?>? cloudTokenListener;
   final Ref ref;
+  bool isStored = false;
 
   FirebaseUserNotifier(this.ref) : super(null) {
     initialize();
@@ -20,18 +21,21 @@ class FirebaseUserNotifier extends StateNotifier<User?> {
     final messaging = FirebaseMessaging.instance;
 
     userChangesListener = firebaseAuth.userChanges().listen(onUserChanges);
-
-    if (state != null) {
-      final tokenId = await messaging.getToken();
-      if (tokenId != null) {
-        await onCloudTokenChanges(tokenId);
-      }
-      cloudTokenListener = messaging.onTokenRefresh.listen(onCloudTokenChanges);
-    }
+    cloudTokenListener = messaging.onTokenRefresh.listen(onCloudTokenChanges);
   }
 
-  void onUserChanges(User? user) {
+  Future<void> onUserChanges(User? user) async {
+    final messaging = FirebaseMessaging.instance;
+
     state = user;
+
+    if (state != null && isStored == false) {
+      isStored = true;
+      final cloudToken = await messaging.getToken();
+      if (cloudToken != null) {
+        await onCloudTokenChanges(cloudToken);
+      }
+    }
   }
 
   Future<void> firebaseUserRefresh() async {
