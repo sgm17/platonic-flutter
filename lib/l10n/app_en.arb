@@ -929,6 +929,10 @@
       }
     }
   },
+  "detailTenantHintText": "hello@gmail.com",
+  "@detailTenantHintText": {
+    "description": ""
+  },
   "detailDisclaimerText": "If you share a flat with students from other universities, add them",
   "@detailDisclaimerText": {
     "description": ""

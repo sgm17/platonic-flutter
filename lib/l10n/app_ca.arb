@@ -214,6 +214,7 @@
   "detailAmenitiesBathroom": "{bathroom} banys",
   "detailAmenitiesBuilt": "{built} m",
   "detailAmenitiesFloor": "pis {floor}",
+  "detailTenantHintText": "hola@gmail.com",
   "detailDisclaimerText": "Si comparteixes pis amb estudiants d'altres universitats, afegeix-los",
   "detailFeaturesSubtitle": "Característiques",
   "detailFeaturesSeeAllTitle": "Veure Tots",

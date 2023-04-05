@@ -1,4 +1,5 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:heic_to_jpg/heic_to_jpg.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/screens/error_dialog/delete_dialog/delete_dialog.dart';
 import 'package:platonic/screens/error_dialog/loading_dialog/loading_dialog.dart';
@@ -60,13 +61,29 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
           ),
         );
 
-        List<String> images = [];
+        List<File> processImages = [];
+
+        for (var pickedFile in pickedFiles) {
+          String fileExtension = pickedFile.path.split('.').last;
+          if (fileExtension == '.heic') {
+            String? jpegPath = await HeicToJpg.convert(pickedFile.path);
+
+            if (jpegPath == null) {
+              processImages.add(File(pickedFile.path));
+            } else {
+              processImages.add(File(jpegPath));
+            }
+          } else {
+            processImages.add(File(pickedFile.path));
+          }
+        }
+
+        List<String> resultImages = [];
 
         try {
-          images = await ref
+          resultImages = await ref
               .read(httpViewmodelProvider)
-              .postCreateMultipleImages(
-                  files: pickedFiles.map((e) => File(e.path)).toList());
+              .postCreateMultipleImages(files: processImages);
         } on ErrorApp catch (e) {
           ref.read(step4ErrorProvider.notifier).state = e;
         }
@@ -77,9 +94,9 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
           isLoading = false;
         });
 
-        if (images.isEmpty) return;
+        if (resultImages.isEmpty) return;
 
-        ref.read(flatCreateProvider.notifier).setImages(images: images);
+        ref.read(flatCreateProvider.notifier).setImages(images: resultImages);
       }
     }
 

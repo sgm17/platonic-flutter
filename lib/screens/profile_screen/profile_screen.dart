@@ -1,4 +1,5 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:heic_to_jpg/heic_to_jpg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/profile_error_provider.dart';
@@ -45,13 +46,24 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
       );
 
-      String? image;
+      File processImage = File(pickedFile.path);
+
+      String fileExtension = pickedFile.path.split('.').last;
+      if (fileExtension == '.heic') {
+        String? jpegPath = await HeicToJpg.convert(pickedFile.path);
+
+        if (jpegPath != null) {
+          processImage = File(jpegPath);
+        }
+      }
+
+      String? resultImage;
 
       try {
         // Upload the image file to the server
-        image = await ref
+        resultImage = await ref
             .read(httpViewmodelProvider)
-            .postCreateImage(file: File(pickedFile.path));
+            .postCreateImage(file: processImage);
       } on ErrorApp catch (e) {
         ref.read(profileErrorProvider.notifier).state = e;
       }
@@ -63,12 +75,12 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         isLoading = false;
       });
 
-      if (image == null) return;
+      if (resultImage == null) return;
 
       if (profileImage) {
-        ref.read(appUserProvider.notifier).setProfileImage(image);
+        ref.read(appUserProvider.notifier).setProfileImage(resultImage);
       } else {
-        ref.read(appUserProvider.notifier).setMeetImage(image);
+        ref.read(appUserProvider.notifier).setMeetImage(resultImage);
       }
     }
 
