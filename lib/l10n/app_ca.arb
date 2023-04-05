@@ -209,6 +209,8 @@
   "step4DescriptionHintText": "Introdueix una descripció",
   "step4ImagesTitle": "Imatges del Piso",
   "step4ImagesSubtitle": "(Màxim 20 imatges)",
+  "step4PublishButton": "Publicar el Pis",
+  "step4UpdateButton": "Actualitzar el Pis",
   "detailNavigatorTitle": "Detalls",
   "detailAmenitiesBedroom": "{bedroom} habitacions",
   "detailAmenitiesBathroom": "{bathroom} banys",

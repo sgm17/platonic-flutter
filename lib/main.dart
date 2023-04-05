@@ -36,7 +36,7 @@ void main() async {
   await Firebase.initializeApp();
   final sharedPreferenches = await SharedPreferences.getInstance();
 
-  const String env = String.fromEnvironment('ENV', defaultValue: 'development');
+  const String env = String.fromEnvironment('ENV', defaultValue: 'production');
 
   await dotenv.load(
       fileName: env == 'production'
