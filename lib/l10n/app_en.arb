@@ -749,7 +749,7 @@
   "@step2NavigatorTitle": {
     "description": ""
   },
-  "step2Title": "Room Preferences",
+  "step2Title": "Flat Preferences",
   "@step2Title": {
     "description": ""
   },
@@ -801,7 +801,7 @@
       }
     }
   },
-  "step2RoomTenantsTitle": "Room Tenants",
+  "step2RoomTenantsTitle": "Flat Tenants",
   "@step2RoomTenantsTitle": {
     "description": ""
   },
@@ -817,7 +817,7 @@
   "@step3NavigatorTitle": {
     "description": ""
   },
-  "step3Title": "Property Amenities",
+  "step3Title": "Flat Amenities",
   "@step3Title": {
     "description": ""
   },
@@ -877,7 +877,7 @@
   "@step4DescriptionHintText": {
     "description": ""
   },
-  "step4ImagesTitle": "Property Images",
+  "step4ImagesTitle": "Flat Images",
   "@step4ImagesTitle": {
     "description": ""
   },
@@ -945,7 +945,7 @@
   "@detailLocationSubtitle": {
     "description": ""
   },
-  "detailDetailsSubtitle": "Property Details",
+  "detailDetailsSubtitle": "Flat Details",
   "@detailDetailsSubtitle": {
     "description": ""
   },
@@ -1055,7 +1055,7 @@
   "@feature_refrigerator": {
     "description": ""
   },
-  "feature_smoke": "Smoke",
+  "feature_smoke": "No Smoke",
   "@feature_smoke": {
     "description": ""
   },
