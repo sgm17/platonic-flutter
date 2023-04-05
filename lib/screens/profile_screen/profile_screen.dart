@@ -1,5 +1,4 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:heic_to_jpg/heic_to_jpg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
 import 'package:platonic/providers/error_provider/profile_error_provider.dart';
@@ -46,24 +45,13 @@ class ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
       );
 
-      File processImage = File(pickedFile.path);
-
-      String fileExtension = pickedFile.path.split('.').last;
-      if (fileExtension == '.heic') {
-        String? jpegPath = await HeicToJpg.convert(pickedFile.path);
-
-        if (jpegPath != null) {
-          processImage = File(jpegPath);
-        }
-      }
-
       String? resultImage;
 
       try {
         // Upload the image file to the server
         resultImage = await ref
             .read(httpViewmodelProvider)
-            .postCreateImage(file: processImage);
+            .postCreateImage(file: File(pickedFile.path));
       } on ErrorApp catch (e) {
         ref.read(profileErrorProvider.notifier).state = e;
       }

@@ -529,16 +529,17 @@ class HttpViewmodel implements HttpRepository {
       quality: 80,
     );
 
+    final fileExtension = file.path.split('.').last;
+
     final request = http.MultipartRequest(
       'POST',
       Uri.parse('${dotenv.env['API_ENDPOINT']}/images'),
     );
     request.headers['Authorization'] = 'Bearer $tokenId';
     request.files.add(
-      http.MultipartFile.fromBytes(
-        'image',
-        compressedImage!.toList(),
-      ),
+      http.MultipartFile.fromBytes('image', compressedImage!.toList(),
+          filename:
+              "${DateTime.now().toUtc().millisecondsSinceEpoch}.$fileExtension"),
     );
 
     final response = await request.send();
@@ -571,11 +572,12 @@ class HttpViewmodel implements HttpRepository {
         quality: 80,
       );
 
+      final fileExtension = file.path.split('.').last;
+
       request.files.add(
-        http.MultipartFile.fromBytes(
-          'images[]',
-          compressedImage!.toList(),
-        ),
+        http.MultipartFile.fromBytes('images[]', compressedImage!.toList(),
+            filename:
+                "${DateTime.now().toUtc().millisecondsSinceEpoch}.$fileExtension"),
       );
     }
 
