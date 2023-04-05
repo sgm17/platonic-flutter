@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:platonic/domains/university_repository/src/models/universities_list_model.dart';
 import 'package:platonic/domains/flat_repository/src/models/models.dart';
 import 'package:platonic/domains/http_repository/models/error_app_model.dart';
@@ -6,6 +8,7 @@ import 'package:platonic/domains/meet_repository/src/models/meets_scroll_model.d
 import 'package:platonic/domains/story_repository/src/models/stories_scroll_model.dart';
 import 'package:platonic/domains/story_repository/src/models/story_model.dart';
 import 'package:platonic/domains/user_repository/src/models/app_user_model.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:platonic/constants/constants.dart';
 import 'package:http/http.dart' as http;
@@ -519,15 +522,22 @@ class HttpViewmodel implements HttpRepository {
 
   @override
   Future<String> postCreateImage({required File file}) async {
+    Uint8List? compressedImage = await FlutterImageCompress.compressWithFile(
+      file.path,
+      minHeight: 600,
+      minWidth: 600,
+      quality: 80,
+    );
+
     final request = http.MultipartRequest(
       'POST',
       Uri.parse('${dotenv.env['API_ENDPOINT']}/images'),
     );
     request.headers['Authorization'] = 'Bearer $tokenId';
     request.files.add(
-      await http.MultipartFile.fromPath(
+      http.MultipartFile.fromBytes(
         'image',
-        file.path,
+        compressedImage!.toList(),
       ),
     );
 
@@ -554,10 +564,17 @@ class HttpViewmodel implements HttpRepository {
     );
     request.headers['Authorization'] = 'Bearer $tokenId';
     for (final file in files) {
+      Uint8List? compressedImage = await FlutterImageCompress.compressWithFile(
+        file.path,
+        minHeight: 600,
+        minWidth: 600,
+        quality: 80,
+      );
+
       request.files.add(
-        await http.MultipartFile.fromPath(
+        http.MultipartFile.fromBytes(
           'images[]',
-          file.path,
+          compressedImage!.toList(),
         ),
       );
     }
