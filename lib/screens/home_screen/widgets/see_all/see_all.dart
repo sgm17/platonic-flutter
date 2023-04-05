@@ -16,7 +16,6 @@ class SeeAll extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: 33.0,
               height: 14.0,
               child: SeeAllTitle(),
             ),

@@ -212,7 +212,7 @@
     "detailNavigatorTitle": "Detalles",
     "detailAmenitiesBedroom": "{bedroom} habitaciones",
     "detailAmenitiesBathroom": "{bathroom} baños",
-    "detailAmenitiesBuilt": "construidos {built} m",
+    "detailAmenitiesBuilt": "{built} m",
     "detailAmenitiesFloor": "piso {floor}",
     "detailDisclaimerText": "Si compartes piso con estudiantes de otras universidades, añádelos",
     "detailFeaturesSubtitle": "Características",

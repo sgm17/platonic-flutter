@@ -909,7 +909,7 @@
       }
     }
   },
-  "detailAmenitiesBuilt": "{built} built m",
+  "detailAmenitiesBuilt": "{built} m",
   "@detailAmenitiesBuilt": {
     "description": "",
     "placeholders": {

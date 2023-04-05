@@ -212,7 +212,7 @@
   "detailNavigatorTitle": "Detalls",
   "detailAmenitiesBedroom": "{bedroom} habitacions",
   "detailAmenitiesBathroom": "{bathroom} banys",
-  "detailAmenitiesBuilt": "construïts {built} m",
+  "detailAmenitiesBuilt": "{built} m",
   "detailAmenitiesFloor": "pis {floor}",
   "detailDisclaimerText": "Si comparteixes pis amb estudiants d'altres universitats, afegeix-los",
   "detailFeaturesSubtitle": "Característiques",
