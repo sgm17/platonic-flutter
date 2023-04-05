@@ -209,6 +209,8 @@
     "step4DescriptionHintText": "Introduce una descripción",
     "step4ImagesTitle": "Imágenes del Piso",
     "step4ImagesSubtitle": "(Máximo 20 imágenes)",
+    "step4PublishButton": "Publicar el Piso",
+    "step4UpdateButton": "Actualizar el Piso",
     "detailNavigatorTitle": "Detalles",
     "detailAmenitiesBedroom": "{bedroom} habitaciones",
     "detailAmenitiesBathroom": "{bathroom} baños",

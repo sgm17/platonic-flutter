@@ -209,8 +209,10 @@ class Step4ScreenState extends ConsumerState<Step4Screen> {
                               ),
                               child: CreateFlatDetailButtonText(
                                   text: ref.read(flatCreateProvider).id == 0
-                                      ? '''Publish Flat'''
-                                      : '''Update Flat'''))),
+                                      ? AppLocalizations.of(context)!
+                                          .step4PublishButton
+                                      : AppLocalizations.of(context)!
+                                          .step4UpdateButton))),
                     ]),
               ),
             ),

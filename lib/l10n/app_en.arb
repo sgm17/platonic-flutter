@@ -885,6 +885,14 @@
   "@step4ImagesSubtitle": {
     "description": ""
   },
+  "step4PublishButton": "Publish Flat",
+  "@step4PublishButton": {
+    "description": ""
+  },
+  "step4UpdateButton": "Update Flat",
+  "@step4UpdateButton": {
+    "description": ""
+  },
   "detailNavigatorTitle": "Details",
   "@detailNavigatorTitle": {
     "description": ""
