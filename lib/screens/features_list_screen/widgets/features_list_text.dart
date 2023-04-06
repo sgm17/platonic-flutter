@@ -12,7 +12,7 @@ class FeaturesListText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       localizationToFeature(key: text, context: context),
-      overflow: TextOverflow.fade,
+      overflow: TextOverflow.ellipsis,
       textAlign: TextAlign.center,
       maxLines: 1,
       style: const TextStyle(
