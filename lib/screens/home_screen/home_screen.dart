@@ -25,13 +25,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   StreamSubscription<RemoteMessage>? messageOpenedAppListener;
   StreamSubscription<RemoteMessage?>? foregroundMessageListener;
 
-  final initializationSettings = const InitializationSettings(
-      android: AndroidInitializationSettings('ic_notification'),
-      iOS: DarwinInitializationSettings());
-
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
-
   @override
   void initState() {
     super.initState();
@@ -103,9 +96,33 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   Future<void> initialize() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
+    // Initialization settings
+    const initializationSettings = InitializationSettings(
+        android: AndroidInitializationSettings('ic_notification'),
+        iOS: DarwinInitializationSettings());
+
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+
     // Initialize local notifications
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: handleOnDidReceiveNotification);
+        onDidReceiveNotificationResponse: (NotificationResponse details) async {
+      if (details.payload != null) {
+        RegExp regex = RegExp(r'{\s*id:\s*(\d+),\s*type:\s*(\w+)\s*}');
+        RegExpMatch? match = regex.firstMatch(details.payload!)!;
+
+        Map<String, dynamic> output = {
+          'id': match.group(1),
+          'type': match.group(2),
+        };
+
+        final route = await handleInitialMessage(payload: output);
+
+        if (route != null) {
+          Navigator.pushNamed(context, route);
+        }
+      }
+    });
 
     // Request permission
     await messaging.requestPermission();
@@ -115,8 +132,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         alert: true, badge: true, sound: true);
 
     // Android foreground messages listener
-    foregroundMessageListener =
-        FirebaseMessaging.onMessage.listen(showNotification);
+    foregroundMessageListener = FirebaseMessaging.onMessage.listen((message) =>
+        showNotification(message, flutterLocalNotificationsPlugin));
   }
 
   Future<String?> handleInitialMessage(
@@ -140,26 +157,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     return null;
   }
 
-  Future<void> handleOnDidReceiveNotification(
-      NotificationResponse details) async {
-    if (details.payload != null) {
-      RegExp regex = RegExp(r'{\s*id:\s*(\d+),\s*type:\s*(\w+)\s*}');
-      RegExpMatch? match = regex.firstMatch(details.payload!)!;
-
-      Map<String, dynamic> output = {
-        'id': match.group(1),
-        'type': match.group(2),
-      };
-
-      final route = await handleInitialMessage(payload: output);
-
-      if (route != null) {
-        Navigator.pushNamed(context, route);
-      }
-    }
-  }
-
-  Future<void> showNotification(RemoteMessage message) async {
+  Future<void> showNotification(RemoteMessage message,
+      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'high_importance_channel',
