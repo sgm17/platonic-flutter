@@ -25,6 +25,13 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   StreamSubscription<RemoteMessage>? messageOpenedAppListener;
   StreamSubscription<RemoteMessage?>? foregroundMessageListener;
 
+  final initializationSettings = const InitializationSettings(
+      android: AndroidInitializationSettings('ic_notification'),
+      iOS: DarwinInitializationSettings());
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
   @override
   void initState() {
     super.initState();
@@ -96,14 +103,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   Future<void> initialize() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-    const initializationSettings = InitializationSettings(
-        android: AndroidInitializationSettings('ic_notification'),
-        iOS: DarwinInitializationSettings());
-
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-
-    flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    // Initialize local notifications
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onDidReceiveNotificationResponse: handleOnDidReceiveNotification);
 
     // Request permission
     await messaging.requestPermission();
@@ -138,6 +140,25 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     return null;
   }
 
+  Future<void> handleOnDidReceiveNotification(
+      NotificationResponse details) async {
+    if (details.payload != null) {
+      RegExp regex = RegExp(r'{\s*id:\s*(\d+),\s*type:\s*(\w+)\s*}');
+      RegExpMatch? match = regex.firstMatch(details.payload!)!;
+
+      Map<String, dynamic> output = {
+        'id': match.group(1),
+        'type': match.group(2),
+      };
+
+      final route = await handleInitialMessage(payload: output);
+
+      if (route != null) {
+        Navigator.pushNamed(context, route);
+      }
+    }
+  }
+
   Future<void> showNotification(RemoteMessage message) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
@@ -151,39 +172,8 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
 
-    const initializationSettings = InitializationSettings(
-        android: AndroidInitializationSettings('ic_notification'));
-    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-        FlutterLocalNotificationsPlugin();
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: (details) async {
-      if (details.payload != null) {
-        RegExp regex = RegExp(r'{\s*id:\s*(\d+),\s*type:\s*(\w+)\s*}');
-        RegExpMatch? match = regex.firstMatch(details.payload!)!;
-
-        Map<String, dynamic> output = {
-          'id': match.group(1),
-          'type': match.group(2),
-        };
-
-        final route = await handleInitialMessage(payload: output);
-
-        if (route != null) {
-          Navigator.pushNamed(context, route);
-        }
-      }
-    });
-
     if (message.notification != null && message.notification?.android != null) {
-      if (message.notification?.body == null) {
-        await flutterLocalNotificationsPlugin.show(
-          0,
-          message.notification!.title,
-          null,
-          platformChannelSpecifics,
-          payload: message.data.toString(),
-        );
-      } else if (message.notification != null) {
+      if (message.notification != null) {
         if (message.data["type"] == "chat" &&
             message.data["id"] == ref.read(activeUser2Provider).id.toString()) {
           return;
