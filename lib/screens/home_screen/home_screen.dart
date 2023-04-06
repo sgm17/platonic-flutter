@@ -93,9 +93,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     );
   }
 
-  Future<void> initialize() async {
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
-
+  Future<FlutterLocalNotificationsPlugin> initializeLocalNotifications() async {
     // Initialization settings
     const initializationSettings = InitializationSettings(
         android: AndroidInitializationSettings('ic_notification'),
@@ -106,23 +104,17 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
     // Initialize local notifications
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onDidReceiveNotificationResponse: (NotificationResponse details) async {
-      if (details.payload != null) {
-        RegExp regex = RegExp(r'{\s*id:\s*(\d+),\s*type:\s*(\w+)\s*}');
-        RegExpMatch? match = regex.firstMatch(details.payload!)!;
+        onDidReceiveNotificationResponse: onDidReceiveNotificationResponse);
 
-        Map<String, dynamic> output = {
-          'id': match.group(1),
-          'type': match.group(2),
-        };
+    return flutterLocalNotificationsPlugin;
+  }
 
-        final route = await handleInitialMessage(payload: output);
+  Future<void> initialize() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-        if (route != null) {
-          Navigator.pushNamed(context, route);
-        }
-      }
-    });
+    // Initialize flutter local notifications
+    final flutterLocalNotificationsPlugin =
+        await initializeLocalNotifications();
 
     // Request permission
     await messaging.requestPermission();
@@ -132,8 +124,39 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
         alert: true, badge: true, sound: true);
 
     // Android foreground messages listener
-    foregroundMessageListener = FirebaseMessaging.onMessage.listen((message) =>
-        showNotification(message, flutterLocalNotificationsPlugin));
+    foregroundMessageListener =
+        FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
+      const AndroidNotificationDetails androidPlatformChannelSpecifics =
+          AndroidNotificationDetails(
+        'high_importance_channel',
+        'High Importance Notifications',
+        channelDescription: 'your channel description',
+        importance: Importance.max,
+        priority: Priority.high,
+      );
+
+      const NotificationDetails platformChannelSpecifics =
+          NotificationDetails(android: androidPlatformChannelSpecifics);
+
+      if (message.notification != null &&
+          message.notification?.android != null) {
+        if (message.notification != null) {
+          if (message.data["type"] == "chat" &&
+              message.data["id"] ==
+                  ref.read(activeUser2Provider).id.toString()) {
+            return;
+          }
+
+          await flutterLocalNotificationsPlugin.show(
+            0,
+            message.notification!.title,
+            message.notification!.body,
+            platformChannelSpecifics,
+            payload: message.data.toString(),
+          );
+        }
+      }
+    });
   }
 
   Future<String?> handleInitialMessage(
@@ -157,38 +180,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
     return null;
   }
 
-  Future<void> showNotification(RemoteMessage message,
-      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
-    const AndroidNotificationDetails androidPlatformChannelSpecifics =
-        AndroidNotificationDetails(
-      'high_importance_channel',
-      'High Importance Notifications',
-      channelDescription: 'your channel description',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-
-    const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-
-    if (message.notification != null && message.notification?.android != null) {
-      if (message.notification != null) {
-        if (message.data["type"] == "chat" &&
-            message.data["id"] == ref.read(activeUser2Provider).id.toString()) {
-          return;
-        }
-
-        await flutterLocalNotificationsPlugin.show(
-          0,
-          message.notification!.title,
-          message.notification!.body,
-          platformChannelSpecifics,
-          payload: message.data.toString(),
-        );
-      }
-    }
-  }
-
   Future<void> getMessageOpenedApp() async {
     messageOpenedAppListener =
         FirebaseMessaging.onMessageOpenedApp.listen((message) async {
@@ -206,6 +197,24 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
     if (route != null) {
       Navigator.pushNamed(context, route);
+    }
+  }
+
+  void onDidReceiveNotificationResponse(NotificationResponse details) async {
+    if (details.payload != null) {
+      RegExp regex = RegExp(r'{\s*id:\s*(\d+),\s*type:\s*(\w+)\s*}');
+      RegExpMatch? match = regex.firstMatch(details.payload!)!;
+
+      Map<String, dynamic> output = {
+        'id': match.group(1),
+        'type': match.group(2),
+      };
+
+      final route = await handleInitialMessage(payload: output);
+
+      if (route != null) {
+        Navigator.pushNamed(context, route);
+      }
     }
   }
 
