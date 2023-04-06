@@ -10,35 +10,21 @@ class StartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       width: 220.0,
       height: 60.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.0),
+        color: const Color.fromARGB(255, 63, 141, 253),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromARGB(63, 0, 0, 0),
+            offset: Offset(0.0, 4.0),
+            blurRadius: 4.0,
+          )
+        ],
       ),
-      child: const Stack(
-          fit: StackFit.expand,
-          alignment: Alignment.center,
-          clipBehavior: Clip.none,
-          children: [
-            Positioned(
-              left: 0.0,
-              top: 0.0,
-              right: null,
-              bottom: null,
-              width: 220.0,
-              height: 60.0,
-              child: StartContainer(),
-            ),
-            Positioned(
-              left: 61.0,
-              top: 20.0,
-              right: null,
-              bottom: null,
-              width: 101.0,
-              height: 23.0,
-              child: StartText(),
-            )
-          ]),
+      child: const StartText(),
     );
   }
 }
